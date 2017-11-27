@@ -1,0 +1,586 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2268CA41FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C6B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m */; };
+		C2268CA51FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C6D1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.m */; };
+		C2268CA61FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+API.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C701FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+API.m */; };
+		C2268CA71FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C721FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.m */; };
+		C2268CA81FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C741FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m */; };
+		C2268CA91FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C771FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.m */; };
+		C2268CAA1FCC3CFF00C98EA7 /* ZZFlexibleLayoutEmptyHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C7C1FCC3CFF00C98EA7 /* ZZFlexibleLayoutEmptyHeaderFooterView.m */; };
+		C2268CAB1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C7E1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.m */; };
+		C2268CAC1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C7F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m */; };
+		C2268CAD1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C801FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m */; };
+		C2268CAE1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C811FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m */; };
+		C2268CAF1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C831FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m */; };
+		C2268CCB1FCC3F3500C98EA7 /* ZZFLEXEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CC61FCC3F3500C98EA7 /* ZZFLEXEditModel.m */; };
+		C2268CCC1FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CC71FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m */; };
+		C2268CD21FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CCE1FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m */; };
+		C2268CD31FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CCF1FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.m */; };
+		C2268CEC1FCC3FF500C98EA7 /* UIView+ZZFLEX.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CD51FCC3FF500C98EA7 /* UIView+ZZFLEX.m */; };
+		C2268CED1FCC3FF500C98EA7 /* ZZLabelChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CD91FCC3FF500C98EA7 /* ZZLabelChainModel.m */; };
+		C2268CEE1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CDA1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m */; };
+		C2268CEF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CDF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m */; };
+		C2268CF01FCC3FF500C98EA7 /* ZZButtonChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE31FCC3FF500C98EA7 /* ZZButtonChainModel.m */; };
+		C2268CF11FCC3FF500C98EA7 /* ZZCustomViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE51FCC3FF500C98EA7 /* ZZCustomViewChainModel.m */; };
+		C2268CF21FCC3FF500C98EA7 /* ZZScrollViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE61FCC3FF500C98EA7 /* ZZScrollViewChainModel.m */; };
+		C2268CF31FCC3FF500C98EA7 /* ZZImageViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE71FCC3FF500C98EA7 /* ZZImageViewChainModel.m */; };
+		C2268CF41FCC3FF500C98EA7 /* ZZControlChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE81FCC3FF500C98EA7 /* ZZControlChainModel.m */; };
+		C2268CF51FCC3FF500C98EA7 /* ZZSwitchChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CEA1FCC3FF500C98EA7 /* ZZSwitchChainModel.m */; };
+		C2268CF61FCC3FF500C98EA7 /* ZZViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CEB1FCC3FF500C98EA7 /* ZZViewChainModel.m */; };
+		C2268CFD1FCC40AE00C98EA7 /* UIControl+ZZEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CFC1FCC40AE00C98EA7 /* UIControl+ZZEvent.m */; };
+		C2268D001FCC413800C98EA7 /* UIView+ZZFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CFF1FCC413800C98EA7 /* UIView+ZZFrame.m */; };
+		C2268D031FCC439A00C98EA7 /* UIButton+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268D021FCC439A00C98EA7 /* UIButton+ZZExtension.m */; };
+		C2D788E21FCC396D00778993 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D788E11FCC396D00778993 /* AppDelegate.m */; };
+		C2D788E51FCC396D00778993 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D788E41FCC396D00778993 /* ViewController.m */; };
+		C2D788EA1FCC396D00778993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D788E91FCC396D00778993 /* Assets.xcassets */; };
+		C2D788ED1FCC396D00778993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D788EB1FCC396D00778993 /* LaunchScreen.storyboard */; };
+		C2D788F01FCC396D00778993 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D788EF1FCC396D00778993 /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C2268C681FCC3CFF00C98EA7 /* ZZFlexibleLayoutFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutFramework.h; sourceTree = "<group>"; };
+		C2268C6A1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutViewProtocol.h; sourceTree = "<group>"; };
+		C2268C6B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutViewController.m; sourceTree = "<group>"; };
+		C2268C6D1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutSeperatorCell.m; sourceTree = "<group>"; };
+		C2268C6E1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutSeperatorCell.h; sourceTree = "<group>"; };
+		C2268C6F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZZFlexibleLayoutViewController+OldAPI.h"; sourceTree = "<group>"; };
+		C2268C701FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZZFlexibleLayoutViewController+API.m"; sourceTree = "<group>"; };
+		C2268C721FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainSectionModel.m; sourceTree = "<group>"; };
+		C2268C731FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainViewModel.h; sourceTree = "<group>"; };
+		C2268C741FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainViewArrayModel.m; sourceTree = "<group>"; };
+		C2268C751FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainSectionModel.h; sourceTree = "<group>"; };
+		C2268C761FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainViewArrayModel.h; sourceTree = "<group>"; };
+		C2268C771FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainViewModel.m; sourceTree = "<group>"; };
+		C2268C791FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutSectionModel.h; sourceTree = "<group>"; };
+		C2268C7A1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutFlowLayout.h; sourceTree = "<group>"; };
+		C2268C7B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutViewModel.h; sourceTree = "<group>"; };
+		C2268C7C1FCC3CFF00C98EA7 /* ZZFlexibleLayoutEmptyHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutEmptyHeaderFooterView.m; sourceTree = "<group>"; };
+		C2268C7D1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZZFlexibleLayoutViewController+Kernel.h"; sourceTree = "<group>"; };
+		C2268C7E1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutSectionModel.m; sourceTree = "<group>"; };
+		C2268C7F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutFlowLayout.m; sourceTree = "<group>"; };
+		C2268C801FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutViewModel.m; sourceTree = "<group>"; };
+		C2268C811FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZZFlexibleLayoutViewController+Kernel.m"; sourceTree = "<group>"; };
+		C2268C821FCC3CFF00C98EA7 /* ZZFlexibleLayoutEmptyHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutEmptyHeaderFooterView.h; sourceTree = "<group>"; };
+		C2268C831FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZZFlexibleLayoutViewController+OldAPI.m"; sourceTree = "<group>"; };
+		C2268C841FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutViewController.h; sourceTree = "<group>"; };
+		C2268CBD1FCC3D7B00C98EA7 /* ZZFLEXMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFLEXMacros.h; sourceTree = "<group>"; };
+		C2268CC61FCC3F3500C98EA7 /* ZZFLEXEditModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXEditModel.m; sourceTree = "<group>"; };
+		C2268CC71FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZZFlexibleLayoutViewController+EditExtension.m"; sourceTree = "<group>"; };
+		C2268CC81FCC3F3500C98EA7 /* ZZFLEXEditModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXEditModelProtocol.h; sourceTree = "<group>"; };
+		C2268CC91FCC3F3500C98EA7 /* ZZFLEXEditModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXEditModel.h; sourceTree = "<group>"; };
+		C2268CCA1FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZZFlexibleLayoutViewController+EditExtension.h"; sourceTree = "<group>"; };
+		C2268CCE1FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXRequestModel.m; sourceTree = "<group>"; };
+		C2268CCF1FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXRequestQueue.m; sourceTree = "<group>"; };
+		C2268CD01FCC3FDF00C98EA7 /* ZZFLEXRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXRequestModel.h; sourceTree = "<group>"; };
+		C2268CD11FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXRequestQueue.h; sourceTree = "<group>"; };
+		C2268CD51FCC3FF500C98EA7 /* UIView+ZZFLEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZFLEX.m"; sourceTree = "<group>"; };
+		C2268CD61FCC3FF500C98EA7 /* UIView+ZZFLEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZZFLEX.h"; sourceTree = "<group>"; };
+		C2268CD81FCC3FF500C98EA7 /* ZZButtonChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZButtonChainModel.h; sourceTree = "<group>"; };
+		C2268CD91FCC3FF500C98EA7 /* ZZLabelChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZLabelChainModel.m; sourceTree = "<group>"; };
+		C2268CDA1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCollectionViewChainModel.m; sourceTree = "<group>"; };
+		C2268CDB1FCC3FF500C98EA7 /* ZZControlChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZControlChainModel.h; sourceTree = "<group>"; };
+		C2268CDC1FCC3FF500C98EA7 /* ZZImageViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZImageViewChainModel.h; sourceTree = "<group>"; };
+		C2268CDD1FCC3FF500C98EA7 /* ZZScrollViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZScrollViewChainModel.h; sourceTree = "<group>"; };
+		C2268CDE1FCC3FF500C98EA7 /* ZZCustomViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCustomViewChainModel.h; sourceTree = "<group>"; };
+		C2268CDF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTableViewChainModel.m; sourceTree = "<group>"; };
+		C2268CE01FCC3FF500C98EA7 /* ZZSwitchChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZSwitchChainModel.h; sourceTree = "<group>"; };
+		C2268CE11FCC3FF500C98EA7 /* ZZViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZViewChainModel.h; sourceTree = "<group>"; };
+		C2268CE21FCC3FF500C98EA7 /* ZZCollectionViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCollectionViewChainModel.h; sourceTree = "<group>"; };
+		C2268CE31FCC3FF500C98EA7 /* ZZButtonChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZButtonChainModel.m; sourceTree = "<group>"; };
+		C2268CE41FCC3FF500C98EA7 /* ZZLabelChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZLabelChainModel.h; sourceTree = "<group>"; };
+		C2268CE51FCC3FF500C98EA7 /* ZZCustomViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCustomViewChainModel.m; sourceTree = "<group>"; };
+		C2268CE61FCC3FF500C98EA7 /* ZZScrollViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZScrollViewChainModel.m; sourceTree = "<group>"; };
+		C2268CE71FCC3FF500C98EA7 /* ZZImageViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZImageViewChainModel.m; sourceTree = "<group>"; };
+		C2268CE81FCC3FF500C98EA7 /* ZZControlChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZControlChainModel.m; sourceTree = "<group>"; };
+		C2268CE91FCC3FF500C98EA7 /* ZZTableViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTableViewChainModel.h; sourceTree = "<group>"; };
+		C2268CEA1FCC3FF500C98EA7 /* ZZSwitchChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZSwitchChainModel.m; sourceTree = "<group>"; };
+		C2268CEB1FCC3FF500C98EA7 /* ZZViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZViewChainModel.m; sourceTree = "<group>"; };
+		C2268CFB1FCC40AE00C98EA7 /* UIControl+ZZEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+ZZEvent.h"; sourceTree = "<group>"; };
+		C2268CFC1FCC40AE00C98EA7 /* UIControl+ZZEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+ZZEvent.m"; sourceTree = "<group>"; };
+		C2268CFE1FCC413800C98EA7 /* UIView+ZZFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZZFrame.h"; sourceTree = "<group>"; };
+		C2268CFF1FCC413800C98EA7 /* UIView+ZZFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZFrame.m"; sourceTree = "<group>"; };
+		C2268D011FCC439A00C98EA7 /* UIButton+ZZExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZZExtension.h"; sourceTree = "<group>"; };
+		C2268D021FCC439A00C98EA7 /* UIButton+ZZExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZZExtension.m"; sourceTree = "<group>"; };
+		C2D788DD1FCC396D00778993 /* ZZFLEXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZFLEXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2D788E01FCC396D00778993 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C2D788E11FCC396D00778993 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C2D788E31FCC396D00778993 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C2D788E41FCC396D00778993 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C2D788E91FCC396D00778993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C2D788EC1FCC396D00778993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C2D788EE1FCC396D00778993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2D788EF1FCC396D00778993 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2D788DA1FCC396D00778993 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2268C611FCC3CFF00C98EA7 /* ZZFlexibleLayoutFramework */ = {
+			isa = PBXGroup;
+			children = (
+				C2268C681FCC3CFF00C98EA7 /* ZZFlexibleLayoutFramework.h */,
+				C2268C691FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController */,
+				C2268CC51FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension */,
+				C2268CCD1FCC3FDF00C98EA7 /* ZZFLEXRequestQueue */,
+				C2268CD41FCC3FF500C98EA7 /* ZZFLEXViewExtension */,
+			);
+			name = ZZFlexibleLayoutFramework;
+			path = ../../ZZFlexibleLayoutFramework;
+			sourceTree = "<group>";
+		};
+		C2268C691FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C2268C781FCC3CFF00C98EA7 /* Private */,
+				C2268C6C1FCC3CFF00C98EA7 /* CommonViews */,
+				C2268C711FCC3CFF00C98EA7 /* ChainModels */,
+				C2268C6A1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewProtocol.h */,
+				C2268C841FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.h */,
+				C2268C6B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m */,
+				C2268C701FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+API.m */,
+				C2268C6F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.h */,
+				C2268C831FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m */,
+			);
+			path = ZZFlexibleLayoutViewController;
+			sourceTree = "<group>";
+		};
+		C2268C6C1FCC3CFF00C98EA7 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				C2268C6D1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.m */,
+				C2268C6E1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.h */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		C2268C711FCC3CFF00C98EA7 /* ChainModels */ = {
+			isa = PBXGroup;
+			children = (
+				C2268C751FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.h */,
+				C2268C721FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.m */,
+				C2268C731FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.h */,
+				C2268C771FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.m */,
+				C2268C741FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m */,
+				C2268C761FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.h */,
+			);
+			path = ChainModels;
+			sourceTree = "<group>";
+		};
+		C2268C781FCC3CFF00C98EA7 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				C2268CBD1FCC3D7B00C98EA7 /* ZZFLEXMacros.h */,
+				C2268C791FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.h */,
+				C2268C7E1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.m */,
+				C2268C801FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m */,
+				C2268C7B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.h */,
+				C2268C7A1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.h */,
+				C2268C7F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m */,
+				C2268C7D1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.h */,
+				C2268C811FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m */,
+				C2268C821FCC3CFF00C98EA7 /* ZZFlexibleLayoutEmptyHeaderFooterView.h */,
+				C2268C7C1FCC3CFF00C98EA7 /* ZZFlexibleLayoutEmptyHeaderFooterView.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		C2268CC51FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension */ = {
+			isa = PBXGroup;
+			children = (
+				C2268CC81FCC3F3500C98EA7 /* ZZFLEXEditModelProtocol.h */,
+				C2268CC91FCC3F3500C98EA7 /* ZZFLEXEditModel.h */,
+				C2268CC61FCC3F3500C98EA7 /* ZZFLEXEditModel.m */,
+				C2268CCA1FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.h */,
+				C2268CC71FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m */,
+			);
+			path = "ZZFlexibleLayoutViewController+EditExtension";
+			sourceTree = "<group>";
+		};
+		C2268CCD1FCC3FDF00C98EA7 /* ZZFLEXRequestQueue */ = {
+			isa = PBXGroup;
+			children = (
+				C2268CD11FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.h */,
+				C2268CCF1FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.m */,
+				C2268CD01FCC3FDF00C98EA7 /* ZZFLEXRequestModel.h */,
+				C2268CCE1FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m */,
+			);
+			path = ZZFLEXRequestQueue;
+			sourceTree = "<group>";
+		};
+		C2268CD41FCC3FF500C98EA7 /* ZZFLEXViewExtension */ = {
+			isa = PBXGroup;
+			children = (
+				C2268CF71FCC400E00C98EA7 /* Base */,
+				C2268CD71FCC3FF500C98EA7 /* ViewsChainModels */,
+				C2268CD61FCC3FF500C98EA7 /* UIView+ZZFLEX.h */,
+				C2268CD51FCC3FF500C98EA7 /* UIView+ZZFLEX.m */,
+			);
+			path = ZZFLEXViewExtension;
+			sourceTree = "<group>";
+		};
+		C2268CD71FCC3FF500C98EA7 /* ViewsChainModels */ = {
+			isa = PBXGroup;
+			children = (
+				C2268CE11FCC3FF500C98EA7 /* ZZViewChainModel.h */,
+				C2268CEB1FCC3FF500C98EA7 /* ZZViewChainModel.m */,
+				C2268CDE1FCC3FF500C98EA7 /* ZZCustomViewChainModel.h */,
+				C2268CE51FCC3FF500C98EA7 /* ZZCustomViewChainModel.m */,
+				C2268CDC1FCC3FF500C98EA7 /* ZZImageViewChainModel.h */,
+				C2268CE71FCC3FF500C98EA7 /* ZZImageViewChainModel.m */,
+				C2268CE41FCC3FF500C98EA7 /* ZZLabelChainModel.h */,
+				C2268CD91FCC3FF500C98EA7 /* ZZLabelChainModel.m */,
+				C2268CDB1FCC3FF500C98EA7 /* ZZControlChainModel.h */,
+				C2268CE81FCC3FF500C98EA7 /* ZZControlChainModel.m */,
+				C2268CD81FCC3FF500C98EA7 /* ZZButtonChainModel.h */,
+				C2268CE31FCC3FF500C98EA7 /* ZZButtonChainModel.m */,
+				C2268CE01FCC3FF500C98EA7 /* ZZSwitchChainModel.h */,
+				C2268CEA1FCC3FF500C98EA7 /* ZZSwitchChainModel.m */,
+				C2268CDD1FCC3FF500C98EA7 /* ZZScrollViewChainModel.h */,
+				C2268CE61FCC3FF500C98EA7 /* ZZScrollViewChainModel.m */,
+				C2268CE91FCC3FF500C98EA7 /* ZZTableViewChainModel.h */,
+				C2268CDF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m */,
+				C2268CE21FCC3FF500C98EA7 /* ZZCollectionViewChainModel.h */,
+				C2268CDA1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m */,
+			);
+			path = ViewsChainModels;
+			sourceTree = "<group>";
+		};
+		C2268CF71FCC400E00C98EA7 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C2268CFB1FCC40AE00C98EA7 /* UIControl+ZZEvent.h */,
+				C2268CFC1FCC40AE00C98EA7 /* UIControl+ZZEvent.m */,
+				C2268CFE1FCC413800C98EA7 /* UIView+ZZFrame.h */,
+				C2268CFF1FCC413800C98EA7 /* UIView+ZZFrame.m */,
+				C2268D011FCC439A00C98EA7 /* UIButton+ZZExtension.h */,
+				C2268D021FCC439A00C98EA7 /* UIButton+ZZExtension.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C2D788D41FCC396D00778993 = {
+			isa = PBXGroup;
+			children = (
+				C2D788DF1FCC396D00778993 /* ZZFLEXDemo */,
+				C2D788DE1FCC396D00778993 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2D788DE1FCC396D00778993 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2D788DD1FCC396D00778993 /* ZZFLEXDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2D788DF1FCC396D00778993 /* ZZFLEXDemo */ = {
+			isa = PBXGroup;
+			children = (
+				C2268C611FCC3CFF00C98EA7 /* ZZFlexibleLayoutFramework */,
+				C2D788E01FCC396D00778993 /* AppDelegate.h */,
+				C2D788E11FCC396D00778993 /* AppDelegate.m */,
+				C2D788E31FCC396D00778993 /* ViewController.h */,
+				C2D788E41FCC396D00778993 /* ViewController.m */,
+				C2D788E91FCC396D00778993 /* Assets.xcassets */,
+				C2D788EB1FCC396D00778993 /* LaunchScreen.storyboard */,
+				C2D788EE1FCC396D00778993 /* Info.plist */,
+				C2D788EF1FCC396D00778993 /* main.m */,
+			);
+			path = ZZFLEXDemo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2D788DC1FCC396D00778993 /* ZZFLEXDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2D788F31FCC396D00778993 /* Build configuration list for PBXNativeTarget "ZZFLEXDemo" */;
+			buildPhases = (
+				C2D788D91FCC396D00778993 /* Sources */,
+				C2D788DA1FCC396D00778993 /* Frameworks */,
+				C2D788DB1FCC396D00778993 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZZFLEXDemo;
+			productName = ZZFLEXDemo;
+			productReference = C2D788DD1FCC396D00778993 /* ZZFLEXDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2D788D51FCC396D00778993 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "李伯坤";
+				TargetAttributes = {
+					C2D788DC1FCC396D00778993 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C2D788D81FCC396D00778993 /* Build configuration list for PBXProject "ZZFLEXDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C2D788D41FCC396D00778993;
+			productRefGroup = C2D788DE1FCC396D00778993 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2D788DC1FCC396D00778993 /* ZZFLEXDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2D788DB1FCC396D00778993 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D788ED1FCC396D00778993 /* LaunchScreen.storyboard in Resources */,
+				C2D788EA1FCC396D00778993 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2D788D91FCC396D00778993 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2268CCB1FCC3F3500C98EA7 /* ZZFLEXEditModel.m in Sources */,
+				C2268CF41FCC3FF500C98EA7 /* ZZControlChainModel.m in Sources */,
+				C2268CF21FCC3FF500C98EA7 /* ZZScrollViewChainModel.m in Sources */,
+				C2268CA61FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+API.m in Sources */,
+				C2268CAD1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m in Sources */,
+				C2268CAE1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m in Sources */,
+				C2268CAB1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.m in Sources */,
+				C2268CA91FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.m in Sources */,
+				C2268CF61FCC3FF500C98EA7 /* ZZViewChainModel.m in Sources */,
+				C2268CF31FCC3FF500C98EA7 /* ZZImageViewChainModel.m in Sources */,
+				C2D788E51FCC396D00778993 /* ViewController.m in Sources */,
+				C2268CA51FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.m in Sources */,
+				C2D788F01FCC396D00778993 /* main.m in Sources */,
+				C2268CFD1FCC40AE00C98EA7 /* UIControl+ZZEvent.m in Sources */,
+				C2268D001FCC413800C98EA7 /* UIView+ZZFrame.m in Sources */,
+				C2268CEC1FCC3FF500C98EA7 /* UIView+ZZFLEX.m in Sources */,
+				C2268CD31FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.m in Sources */,
+				C2268CCC1FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m in Sources */,
+				C2268CF11FCC3FF500C98EA7 /* ZZCustomViewChainModel.m in Sources */,
+				C2268CEE1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m in Sources */,
+				C2268CEF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m in Sources */,
+				C2268D031FCC439A00C98EA7 /* UIButton+ZZExtension.m in Sources */,
+				C2268CAA1FCC3CFF00C98EA7 /* ZZFlexibleLayoutEmptyHeaderFooterView.m in Sources */,
+				C2268CA71FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.m in Sources */,
+				C2268CA81FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m in Sources */,
+				C2268CAF1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */,
+				C2268CF51FCC3FF500C98EA7 /* ZZSwitchChainModel.m in Sources */,
+				C2268CA41FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m in Sources */,
+				C2268CF01FCC3FF500C98EA7 /* ZZButtonChainModel.m in Sources */,
+				C2268CED1FCC3FF500C98EA7 /* ZZLabelChainModel.m in Sources */,
+				C2268CAC1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m in Sources */,
+				C2268CD21FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m in Sources */,
+				C2D788E21FCC396D00778993 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C2D788EB1FCC396D00778993 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2D788EC1FCC396D00778993 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C2D788F11FCC396D00778993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C2D788F21FCC396D00778993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C2D788F41FCC396D00778993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8ZE6MPGQ6N;
+				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C2D788F51FCC396D00778993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8ZE6MPGQ6N;
+				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2D788D81FCC396D00778993 /* Build configuration list for PBXProject "ZZFLEXDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2D788F11FCC396D00778993 /* Debug */,
+				C2D788F21FCC396D00778993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2D788F31FCC396D00778993 /* Build configuration list for PBXNativeTarget "ZZFLEXDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2D788F41FCC396D00778993 /* Debug */,
+				C2D788F51FCC396D00778993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C2D788D51FCC396D00778993 /* Project object */;
+}
