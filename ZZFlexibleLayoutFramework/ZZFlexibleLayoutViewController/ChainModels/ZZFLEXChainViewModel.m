@@ -81,4 +81,12 @@
     };
 }
 
+- (ZZFLEXChainViewModel *(^)(id ((^)(id data))))selectedAction
+{
+    return ^(id ((^eventAction)(id data))) {
+        [self.viewModel setSelectedAction:eventAction];
+        return self;
+    };
+}
+
 @end

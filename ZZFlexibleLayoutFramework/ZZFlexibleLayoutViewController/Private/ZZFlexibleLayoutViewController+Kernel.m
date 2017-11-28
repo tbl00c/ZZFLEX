@@ -164,6 +164,9 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
         if ([viewModel.dataModel isKindOfClass:[NSNull class]]) {
             dataModel = nil;
         }
+        if (viewModel.selectedAction) {
+            viewModel.selectedAction(dataModel);
+        }
         [self collectionViewDidSelectItem:dataModel sectionTag:sectionModel.sectionTag cellTag:viewModel.viewTag className:viewModel.className indexPath:indexPath];
     }
 }

@@ -30,11 +30,14 @@
 
 @property (nonatomic, assign) NSInteger viewTag;
 
-/// view/cell中的事件回调
+/// view/cell中的事件
 @property (nonatomic, copy) id (^eventAction)(NSInteger actionType, id data);
 
 /// 业务方指定的代理，默认nil
 @property (nonatomic, copy) id delegate;
+
+/// cell选中事件
+@property (nonatomic, copy) id (^selectedAction)(id data);
 
 /**
  *  根据类名和数据源初始化viewModel
