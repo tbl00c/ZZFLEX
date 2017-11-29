@@ -10,7 +10,7 @@
 #define ZZFDMainTitles_h
 
 #define     TITLE_ZZFLEX_VC                 @"\
-ZZFlexibleLayoutViewController 是一个基于UICollectionView实现的数据驱动的列表页框架，可大大降低复杂列表界面实现和维护的难度。\n\
+ZZFlexibleLayoutViewController 是一个基于UICollectionView实现的数据驱动的列表页框架，可大幅降低复杂列表界面实现和维护的难度。\n\
 ZZFLEX的核心思路是UI的模块化，使用ZZFLEX我们无需再关心collectionView的各种代理方法，只需潜心实现我们需要的列表元素。\n\
 它使得一个复杂界面的构建就如同拼图一般，我们只需一件件的add需要的模块，即可构建出我们想要的界面。\
 "

@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSArray *goodImages;
 @property (nonatomic, strong) NSString *price;
 
+@property (nonatomic, strong, readonly) NSAttributedString *attrPrice;
+
 + (void)requestHomePageDataWithOffset:(NSInteger)offset
                               success:(void (^)(NSArray *data))success
                               failure:(void (^)(NSString *errMsg))failure;

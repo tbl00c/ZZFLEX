@@ -47,6 +47,7 @@
 		C27E9F6E1FCE61DF0062C896 /* TLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F6D1FCE61DF0062C896 /* TLBadge.m */; };
 		C27E9F721FCE63B40062C896 /* UIColor+ZZFD.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F711FCE63B40062C896 /* UIColor+ZZFD.m */; };
 		C27E9F751FCE64C20062C896 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C27E9F741FCE64C20062C896 /* Mine.xcassets */; };
+		C27E9F781FCE84E40062C896 /* ZZGood.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C27E9F771FCE84E40062C896 /* ZZGood.xcassets */; };
 		C2863A921FCCFB76008BC3C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2863A8E1FCCFB76008BC3C0 /* Assets.xcassets */; };
 		C2863A931FCCFB76008BC3C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863A8F1FCCFB76008BC3C0 /* main.m */; };
 		C2863A941FCCFB76008BC3C0 /* ZZFDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863A901FCCFB76008BC3C0 /* ZZFDAppDelegate.m */; };
@@ -146,6 +147,7 @@
 		C27E9F701FCE63B40062C896 /* UIColor+ZZFD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZZFD.h"; sourceTree = "<group>"; };
 		C27E9F711FCE63B40062C896 /* UIColor+ZZFD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZZFD.m"; sourceTree = "<group>"; };
 		C27E9F741FCE64C20062C896 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
+		C27E9F771FCE84E40062C896 /* ZZGood.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ZZGood.xcassets; sourceTree = "<group>"; };
 		C2863A8D1FCCFB76008BC3C0 /* ZZFDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDAppDelegate.h; sourceTree = "<group>"; };
 		C2863A8E1FCCFB76008BC3C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2863A8F1FCCFB76008BC3C0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		C27E9F3F1FCE609C0062C896 /* ZZGood */ = {
 			isa = PBXGroup;
 			children = (
+				C27E9F761FCE84DA0062C896 /* Resources */,
 				C27E9F401FCE609C0062C896 /* GoodDetail */,
 				C27E9F431FCE609C0062C896 /* GoodList */,
 			);
@@ -359,10 +362,10 @@
 		C27E9F431FCE609C0062C896 /* GoodList */ = {
 			isa = PBXGroup;
 			children = (
-				C27E9F441FCE609C0062C896 /* ZZFDGoodListViewController.h */,
 				C27E9F451FCE609C0062C896 /* Models */,
-				C27E9F481FCE609C0062C896 /* ZZFDGoodListViewController.m */,
 				C27E9F491FCE609C0062C896 /* Views */,
+				C27E9F441FCE609C0062C896 /* ZZFDGoodListViewController.h */,
+				C27E9F481FCE609C0062C896 /* ZZFDGoodListViewController.m */,
 			);
 			path = GoodList;
 			sourceTree = "<group>";
@@ -436,6 +439,14 @@
 				C27E9F741FCE64C20062C896 /* Mine.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		C27E9F761FCE84DA0062C896 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F771FCE84E40062C896 /* ZZGood.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		C2863A8A1FCCFB33008BC3C0 /* Supporting Files */ = {
@@ -585,6 +596,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C27E9F781FCE84E40062C896 /* ZZGood.xcassets in Resources */,
 				C2863A921FCCFB76008BC3C0 /* Assets.xcassets in Resources */,
 				C2863A9B1FCCFBA7008BC3C0 /* LaunchScreen.storyboard in Resources */,
 				C27E9F751FCE64C20062C896 /* Mine.xcassets in Resources */,

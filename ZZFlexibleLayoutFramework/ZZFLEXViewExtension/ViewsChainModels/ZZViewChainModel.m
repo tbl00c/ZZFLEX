@@ -16,7 +16,9 @@
 {   \
     return ^id ( void (^constraints)(MASConstraintMaker *) ) {  \
         if (self.view.superview) { \
-            [self.view masonryMethod:constraints];    \
+            dispatch_async(dispatch_get_main_queue(), ^{    \
+                [self.view masonryMethod:constraints];    \
+            });\
         }   \
         return self;    \
     };  \
