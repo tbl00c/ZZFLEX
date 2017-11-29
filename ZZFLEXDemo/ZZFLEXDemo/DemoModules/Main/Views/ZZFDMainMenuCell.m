@@ -50,6 +50,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
+        [self setSelectedBackgrounColor:[UIColor colorGrayLine]];
         
         self.titleLabel = self.contentView.addLabel(1)
         .font([UIFont systemFontOfSize:15])

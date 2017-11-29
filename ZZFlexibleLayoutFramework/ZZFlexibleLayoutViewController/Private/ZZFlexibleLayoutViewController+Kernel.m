@@ -157,16 +157,16 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
+    id dataModel = viewModel.dataModel;
+    if ([viewModel.dataModel isKindOfClass:[NSNull class]]) {
+        dataModel = nil;
+    }
+    if (viewModel.selectedAction) {
+        viewModel.selectedAction(dataModel);
+    }
     if (indexPath.section < self.data.count && [self respondsToSelector:@selector(collectionViewDidSelectItem:sectionTag:cellTag:className:indexPath:)]) {
-        ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
-        ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
-        id dataModel = viewModel.dataModel;
-        if ([viewModel.dataModel isKindOfClass:[NSNull class]]) {
-            dataModel = nil;
-        }
-        if (viewModel.selectedAction) {
-            viewModel.selectedAction(dataModel);
-        }
         [self collectionViewDidSelectItem:dataModel sectionTag:sectionModel.sectionTag cellTag:viewModel.viewTag className:viewModel.className indexPath:indexPath];
     }
 }

@@ -37,7 +37,7 @@
 @property (nonatomic, copy) id delegate;
 
 /// cell选中事件
-@property (nonatomic, copy) id (^selectedAction)(id data);
+@property (nonatomic, copy) void (^selectedAction)(id data);
 
 /**
  *  根据类名和数据源初始化viewModel

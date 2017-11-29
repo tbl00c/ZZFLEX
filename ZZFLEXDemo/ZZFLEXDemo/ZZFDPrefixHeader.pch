@@ -12,4 +12,6 @@
 #import <TLKit/TLKit.h>
 #import <Masonry/Masonry.h>
 
+#import "UIColor+ZZFD.h"
+
 #endif /* ZZFDPrefixHeader_pch */

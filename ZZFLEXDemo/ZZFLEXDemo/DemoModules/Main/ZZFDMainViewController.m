@@ -7,12 +7,18 @@
 //
 
 #import "ZZFDMainViewController.h"
+#import "ZZFDMainTitles.h"
+#import "ZZFDMainIntroduceHeader.h"
+#import "ZZFDMainMenuCell.h"
+
+#import "ZZFDGoodListViewController.h"
+#import "TLMineViewController.h"
 
 typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
-    ZZFDMainSectionTypeVC = 100,            // ZZFlexibleLayoutViewController
+    ZZFDMainSectionTypeVC,                  // ZZFlexibleLayoutViewController
     ZZFDMainSectionTypeVCEdit,              // ZZFlexibleLayoutViewController 编辑拓展
-    ZZFDMainSectionTypeRQ,                  // ZZFLEX事件响应队列
     ZZFDMainSectionTypeVE,                  // ZZFLEX View拓展
+    ZZFDMainSectionTypeRQ,                  // ZZFLEX事件响应队列
     ZZFDMainSectionTypeAD,                  // 广告
 };
 
@@ -25,9 +31,9 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
 - (void)loadView
 {
     [super loadView];
-    
-    [self setTitle:@"ZZFLEX"];
-    [self.view setBackgroundColor:RGBColor(239.0, 239.0, 244.0)];
+
+    [self setTitle:@"ZZFlexibleLayoutFramework"];
+    [self.view setBackgroundColor:[UIColor colorGrayBG]];
 }
 
 - (void)viewDidLoad
@@ -39,33 +45,52 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
 
 - (void)initMainMenu
 {
+    @weakify(self);
+    
+    NSString *headerClassName = NSStringFromClass([ZZFDMainIntroduceHeader class]);
+    NSString *menuCellCalssName = NSStringFromClass([ZZFDMainMenuCell class]);
+    
     // ZZFlexibleLayoutViewController
     self.addSection(ZZFDMainSectionTypeVC).sectionInsets(UIEdgeInsetsMake(0, 0, 25, 0));
-    self.setHeader(@"ZZFDMainIntroduceHeader")
-    .withDataModel(@"ZZFLEXVC是一个基于UICollectionView实现的数据驱动的列表页框架。\n使用ZZFLEX，我们无需再关心collectionView的各种代理方法，只需潜心实现我们需要的列表元素。\n它使得一个复杂界面的构建就如同拼图一般，我们只需一件件的add我们需要的模块即可。")
+    // 设置header
+    self.setHeader(headerClassName)
+    .withDataModel(TITLE_ZZFLEX_VC)
     .toSection(ZZFDMainSectionTypeVC);
-    self.addCell(@"ZZFDMainMenuCell").withDataModel(@"ZZFLEXVC 电商详情页Demo").toSection(ZZFDMainSectionTypeVC);
+    // 添加cell，模块化
+    self.addCell(menuCellCalssName).withDataModel(@"商品列表&详情页 Demo").toSection(ZZFDMainSectionTypeVC).selectedAction(^(id model){
+        @strongify(self);
+        ZZFDGoodListViewController *goodDetailVC = [[ZZFDGoodListViewController alloc] init];
+        PushVC(goodDetailVC);
+    });
+    self.addCell(menuCellCalssName).withDataModel(@"微信“我的” Demo").toSection(ZZFDMainSectionTypeVC).selectedAction(^(id model){
+        @strongify(self);
+        TLMineViewController *mineVC = [[TLMineViewController alloc] init];
+        PushVC(mineVC);
+    });
     
     // ZZFlexibleLayoutViewController + Edit
     self.addSection(ZZFDMainSectionTypeVCEdit).sectionInsets(UIEdgeInsetsMake(0, 0, 25, 0));
-    self.setHeader(@"ZZFDMainIntroduceHeader")
-    .withDataModel(@"ZZFLEXVC+Edit拓展，是ZZFLEX具有处理编辑页面能力的一种解决方案.\n其主要原理是将数据模型的属性与UI控件对应属性进行关联映射。")
+    self.setHeader(headerClassName)
+    .withDataModel(TITLE_ZZFLEX_EDIT_VC)
     .toSection(ZZFDMainSectionTypeVCEdit);
-    self.addCell(@"ZZFDMainMenuCell").withDataModel(@"ZZFLEXVC+Edit 信息编辑页Demo").toSection(ZZFDMainSectionTypeVCEdit);
-    
-    // ZZFLEX事件响应队列
-    self.addSection(ZZFDMainSectionTypeRQ).sectionInsets(UIEdgeInsetsMake(0, 0, 25, 0));;
-    self.setHeader(@"ZZFDMainIntroduceHeader")
-    .withDataModel(@"某些复杂页面的数据可能是来自多个网络请求的，然而同时发起的网络请求，请求结果返回顺序是不确定的。\nZZFLEXRequestQueue设计用来保证这种业务场景下，按既定顺序依次加载展示UI。")
-    .toSection(ZZFDMainSectionTypeRQ);
-    self.addCell(@"ZZFDMainMenuCell").withDataModel(@"ZZFLEXRequestQueue 多接口页面Demo").toSection(ZZFDMainSectionTypeRQ);
+    self.addCell(menuCellCalssName).withDataModel(@"信息编辑页 Demo").toSection(ZZFDMainSectionTypeVCEdit);
     
     // ZZFLEX View拓展
     self.addSection(ZZFDMainSectionTypeVE).sectionInsets(UIEdgeInsetsMake(0, 0, 25, 0));
-    self.setHeader(@"ZZFDMainIntroduceHeader")
-    .withDataModel(@"UIView+ZZFLEX 是使用链式API实现的快速编写UI代码的拓展，旨在实现View级别的模块化。")
+    self.setHeader(headerClassName)
+    .withDataModel(TITLE_ZZFLEX_VE)
     .toSection(ZZFDMainSectionTypeVE);
-    self.addCell(@"ZZFDMainMenuCell").withDataModel(@"UIView+ZZFLEX Demo").toSection(ZZFDMainSectionTypeVE);
+    self.addCell(menuCellCalssName).withDataModel(@"UIView+ZZFLEX Demo").toSection(ZZFDMainSectionTypeVE);
+    
+    
+    // ZZFLEX事件响应队列
+    self.addSection(ZZFDMainSectionTypeRQ).sectionInsets(UIEdgeInsetsMake(0, 0, 25, 0));;
+    self.setHeader(headerClassName)
+    .withDataModel(TITLE_ZZFLEX_RQ)
+    .toSection(ZZFDMainSectionTypeRQ);
+    self.addCell(menuCellCalssName).withDataModel(@"多接口页面 Demo").toSection(ZZFDMainSectionTypeRQ);
+    self.addCell(menuCellCalssName).withDataModel(@"多接口页面 - 接口失败重试 Demo").toSection(ZZFDMainSectionTypeRQ);
+    
     
     // ZZFLEX AD
     self.addSection(ZZFDMainSectionTypeAD).sectionInsets(UIEdgeInsetsMake(40, 0, 80, 0));

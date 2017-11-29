@@ -8,7 +8,6 @@
 
 #import "ZZFDADCell.h"
 #import "UIView+ZZFLEX.h"
-#import "ZZFLEXMacros.h"
 
 #define     HEIGHT_AD_IMAGE     38
 

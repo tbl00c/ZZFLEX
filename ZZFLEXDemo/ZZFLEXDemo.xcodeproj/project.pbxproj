@@ -35,6 +35,18 @@
 		C2268CFD1FCC40AE00C98EA7 /* UIControl+ZZEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CFC1FCC40AE00C98EA7 /* UIControl+ZZEvent.m */; };
 		C2268D001FCC413800C98EA7 /* UIView+ZZFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CFF1FCC413800C98EA7 /* UIView+ZZFrame.m */; };
 		C2268D031FCC439A00C98EA7 /* UIButton+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268D021FCC439A00C98EA7 /* UIButton+ZZExtension.m */; };
+		C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */; };
+		C27E9F4E1FCE609C0062C896 /* ZZFDGoodListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F471FCE609C0062C896 /* ZZFDGoodListModel.m */; };
+		C27E9F4F1FCE609C0062C896 /* ZZFDGoodListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F481FCE609C0062C896 /* ZZFDGoodListViewController.m */; };
+		C27E9F501FCE609C0062C896 /* ZZFDGoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F4B1FCE609C0062C896 /* ZZFDGoodListCell.m */; };
+		C27E9F581FCE60E70062C896 /* TLMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F521FCE60E70062C896 /* TLMineViewController.m */; };
+		C27E9F5A1FCE60E70062C896 /* TLMineHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F561FCE60E70062C896 /* TLMineHeaderCell.m */; };
+		C27E9F651FCE61580062C896 /* TLMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F641FCE61580062C896 /* TLMenuItem.m */; };
+		C27E9F681FCE615F0062C896 /* TLMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F671FCE615F0062C896 /* TLMenuItemCell.m */; };
+		C27E9F6B1FCE61840062C896 /* TLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F691FCE61840062C896 /* TLUser.m */; };
+		C27E9F6E1FCE61DF0062C896 /* TLBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F6D1FCE61DF0062C896 /* TLBadge.m */; };
+		C27E9F721FCE63B40062C896 /* UIColor+ZZFD.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F711FCE63B40062C896 /* UIColor+ZZFD.m */; };
+		C27E9F751FCE64C20062C896 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C27E9F741FCE64C20062C896 /* Mine.xcassets */; };
 		C2863A921FCCFB76008BC3C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2863A8E1FCCFB76008BC3C0 /* Assets.xcassets */; };
 		C2863A931FCCFB76008BC3C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863A8F1FCCFB76008BC3C0 /* main.m */; };
 		C2863A941FCCFB76008BC3C0 /* ZZFDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863A901FCCFB76008BC3C0 /* ZZFDAppDelegate.m */; };
@@ -111,6 +123,29 @@
 		C2268CFF1FCC413800C98EA7 /* UIView+ZZFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZFrame.m"; sourceTree = "<group>"; };
 		C2268D011FCC439A00C98EA7 /* UIButton+ZZExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZZExtension.h"; sourceTree = "<group>"; };
 		C2268D021FCC439A00C98EA7 /* UIButton+ZZExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZZExtension.m"; sourceTree = "<group>"; };
+		C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFDGoodDetailViewController.m; sourceTree = "<group>"; };
+		C27E9F421FCE609C0062C896 /* ZZFDGoodDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodDetailViewController.h; sourceTree = "<group>"; };
+		C27E9F441FCE609C0062C896 /* ZZFDGoodListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodListViewController.h; sourceTree = "<group>"; };
+		C27E9F461FCE609C0062C896 /* ZZFDGoodListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodListModel.h; sourceTree = "<group>"; };
+		C27E9F471FCE609C0062C896 /* ZZFDGoodListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFDGoodListModel.m; sourceTree = "<group>"; };
+		C27E9F481FCE609C0062C896 /* ZZFDGoodListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFDGoodListViewController.m; sourceTree = "<group>"; };
+		C27E9F4A1FCE609C0062C896 /* ZZFDGoodListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodListCell.h; sourceTree = "<group>"; };
+		C27E9F4B1FCE609C0062C896 /* ZZFDGoodListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFDGoodListCell.m; sourceTree = "<group>"; };
+		C27E9F511FCE60E70062C896 /* TLMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMineViewController.h; sourceTree = "<group>"; };
+		C27E9F521FCE60E70062C896 /* TLMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMineViewController.m; sourceTree = "<group>"; };
+		C27E9F561FCE60E70062C896 /* TLMineHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMineHeaderCell.m; sourceTree = "<group>"; };
+		C27E9F571FCE60E70062C896 /* TLMineHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMineHeaderCell.h; sourceTree = "<group>"; };
+		C27E9F631FCE61580062C896 /* TLMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuItem.h; sourceTree = "<group>"; };
+		C27E9F641FCE61580062C896 /* TLMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMenuItem.m; sourceTree = "<group>"; };
+		C27E9F661FCE615F0062C896 /* TLMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuItemCell.h; sourceTree = "<group>"; };
+		C27E9F671FCE615F0062C896 /* TLMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMenuItemCell.m; sourceTree = "<group>"; };
+		C27E9F691FCE61840062C896 /* TLUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLUser.m; sourceTree = "<group>"; };
+		C27E9F6A1FCE61840062C896 /* TLUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLUser.h; sourceTree = "<group>"; };
+		C27E9F6C1FCE61DF0062C896 /* TLBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLBadge.h; sourceTree = "<group>"; };
+		C27E9F6D1FCE61DF0062C896 /* TLBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBadge.m; sourceTree = "<group>"; };
+		C27E9F701FCE63B40062C896 /* UIColor+ZZFD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZZFD.h"; sourceTree = "<group>"; };
+		C27E9F711FCE63B40062C896 /* UIColor+ZZFD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZZFD.m"; sourceTree = "<group>"; };
+		C27E9F741FCE64C20062C896 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		C2863A8D1FCCFB76008BC3C0 /* ZZFDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDAppDelegate.h; sourceTree = "<group>"; };
 		C2863A8E1FCCFB76008BC3C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2863A8F1FCCFB76008BC3C0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -127,6 +162,7 @@
 		C2863AA81FCD0B9D008BC3C0 /* ZZFDMainIntroduceHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDMainIntroduceHeader.m; sourceTree = "<group>"; };
 		C2863AAA1FCD7436008BC3C0 /* ZZFDADCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDADCell.h; sourceTree = "<group>"; };
 		C2863AAB1FCD7436008BC3C0 /* ZZFDADCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDADCell.m; sourceTree = "<group>"; };
+		C2863AB11FCD830E008BC3C0 /* ZZFDMainTitles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDMainTitles.h; sourceTree = "<group>"; };
 		C2D788DD1FCC396D00778993 /* ZZFLEXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZFLEXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D788EE1FCC396D00778993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -302,6 +338,106 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		C27E9F3F1FCE609C0062C896 /* ZZGood */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F401FCE609C0062C896 /* GoodDetail */,
+				C27E9F431FCE609C0062C896 /* GoodList */,
+			);
+			path = ZZGood;
+			sourceTree = "<group>";
+		};
+		C27E9F401FCE609C0062C896 /* GoodDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */,
+				C27E9F421FCE609C0062C896 /* ZZFDGoodDetailViewController.h */,
+			);
+			path = GoodDetail;
+			sourceTree = "<group>";
+		};
+		C27E9F431FCE609C0062C896 /* GoodList */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F441FCE609C0062C896 /* ZZFDGoodListViewController.h */,
+				C27E9F451FCE609C0062C896 /* Models */,
+				C27E9F481FCE609C0062C896 /* ZZFDGoodListViewController.m */,
+				C27E9F491FCE609C0062C896 /* Views */,
+			);
+			path = GoodList;
+			sourceTree = "<group>";
+		};
+		C27E9F451FCE609C0062C896 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F461FCE609C0062C896 /* ZZFDGoodListModel.h */,
+				C27E9F471FCE609C0062C896 /* ZZFDGoodListModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C27E9F491FCE609C0062C896 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F4A1FCE609C0062C896 /* ZZFDGoodListCell.h */,
+				C27E9F4B1FCE609C0062C896 /* ZZFDGoodListCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C27E9F4C1FCE609C0062C896 /* WXMine */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F621FCE61480062C896 /* Models */,
+				C27E9F551FCE60E70062C896 /* Views */,
+				C27E9F731FCE64C20062C896 /* Resource */,
+				C27E9F511FCE60E70062C896 /* TLMineViewController.h */,
+				C27E9F521FCE60E70062C896 /* TLMineViewController.m */,
+			);
+			path = WXMine;
+			sourceTree = "<group>";
+		};
+		C27E9F551FCE60E70062C896 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F6C1FCE61DF0062C896 /* TLBadge.h */,
+				C27E9F6D1FCE61DF0062C896 /* TLBadge.m */,
+				C27E9F661FCE615F0062C896 /* TLMenuItemCell.h */,
+				C27E9F671FCE615F0062C896 /* TLMenuItemCell.m */,
+				C27E9F571FCE60E70062C896 /* TLMineHeaderCell.h */,
+				C27E9F561FCE60E70062C896 /* TLMineHeaderCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C27E9F621FCE61480062C896 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F6A1FCE61840062C896 /* TLUser.h */,
+				C27E9F691FCE61840062C896 /* TLUser.m */,
+				C27E9F631FCE61580062C896 /* TLMenuItem.h */,
+				C27E9F641FCE61580062C896 /* TLMenuItem.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C27E9F6F1FCE63A20062C896 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F701FCE63B40062C896 /* UIColor+ZZFD.h */,
+				C27E9F711FCE63B40062C896 /* UIColor+ZZFD.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C27E9F731FCE64C20062C896 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F741FCE64C20062C896 /* Mine.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		C2863A8A1FCCFB33008BC3C0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,8 +450,11 @@
 		C2863A8B1FCCFB76008BC3C0 /* DemoModules */ = {
 			isa = PBXGroup;
 			children = (
+				C27E9F6F1FCE63A20062C896 /* Common */,
 				C2863A8C1FCCFB76008BC3C0 /* Launcher */,
 				C2863A911FCCFB76008BC3C0 /* Main */,
+				C27E9F4C1FCE609C0062C896 /* WXMine */,
+				C27E9F3F1FCE609C0062C896 /* ZZGood */,
 			);
 			path = DemoModules;
 			sourceTree = "<group>";
@@ -336,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				C2863AA31FCD020D008BC3C0 /* Views */,
+				C2863AB11FCD830E008BC3C0 /* ZZFDMainTitles.h */,
 				C2863A9C1FCCFD52008BC3C0 /* ZZFDMainViewController.h */,
 				C2863A9D1FCCFD52008BC3C0 /* ZZFDMainViewController.m */,
 			);
@@ -447,6 +587,7 @@
 			files = (
 				C2863A921FCCFB76008BC3C0 /* Assets.xcassets in Resources */,
 				C2863A9B1FCCFBA7008BC3C0 /* LaunchScreen.storyboard in Resources */,
+				C27E9F751FCE64C20062C896 /* Mine.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,19 +650,27 @@
 				C2863AA11FCCFEAA008BC3C0 /* ZZFlexibleLayoutEmptyHeaderFooterView.m in Sources */,
 				C2268CF41FCC3FF500C98EA7 /* ZZControlChainModel.m in Sources */,
 				C2268CF21FCC3FF500C98EA7 /* ZZScrollViewChainModel.m in Sources */,
+				C27E9F6E1FCE61DF0062C896 /* TLBadge.m in Sources */,
+				C27E9F651FCE61580062C896 /* TLMenuItem.m in Sources */,
 				C2863A941FCCFB76008BC3C0 /* ZZFDAppDelegate.m in Sources */,
 				C2863AA61FCD022B008BC3C0 /* ZZFDMainMenuCell.m in Sources */,
 				C2268CAD1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m in Sources */,
 				C2268CAE1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m in Sources */,
 				C2268CAB1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.m in Sources */,
+				C27E9F581FCE60E70062C896 /* TLMineViewController.m in Sources */,
 				C2863AAC1FCD7436008BC3C0 /* ZZFDADCell.m in Sources */,
+				C27E9F501FCE609C0062C896 /* ZZFDGoodListCell.m in Sources */,
 				C2268CA91FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.m in Sources */,
 				C2268CF61FCC3FF500C98EA7 /* ZZViewChainModel.m in Sources */,
 				C2268CF31FCC3FF500C98EA7 /* ZZImageViewChainModel.m in Sources */,
+				C27E9F4F1FCE609C0062C896 /* ZZFDGoodListViewController.m in Sources */,
+				C27E9F5A1FCE60E70062C896 /* TLMineHeaderCell.m in Sources */,
+				C27E9F721FCE63B40062C896 /* UIColor+ZZFD.m in Sources */,
 				C2268CA51FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.m in Sources */,
 				C2268CFD1FCC40AE00C98EA7 /* UIControl+ZZEvent.m in Sources */,
 				C2268D001FCC413800C98EA7 /* UIView+ZZFrame.m in Sources */,
 				C2863A931FCCFB76008BC3C0 /* main.m in Sources */,
+				C27E9F681FCE615F0062C896 /* TLMenuItemCell.m in Sources */,
 				C2863AA91FCD0B9D008BC3C0 /* ZZFDMainIntroduceHeader.m in Sources */,
 				C2268CEC1FCC3FF500C98EA7 /* UIView+ZZFLEX.m in Sources */,
 				C2268CD31FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.m in Sources */,
@@ -531,6 +680,8 @@
 				C2268CEF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m in Sources */,
 				C2268D031FCC439A00C98EA7 /* UIButton+ZZExtension.m in Sources */,
 				C2268CA71FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.m in Sources */,
+				C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */,
+				C27E9F6B1FCE61840062C896 /* TLUser.m in Sources */,
 				C2268CA81FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m in Sources */,
 				C2268CAF1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */,
 				C2268CF51FCC3FF500C98EA7 /* ZZSwitchChainModel.m in Sources */,
@@ -540,6 +691,7 @@
 				C2863A9E1FCCFD52008BC3C0 /* ZZFDMainViewController.m in Sources */,
 				C2268CAC1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m in Sources */,
 				C2268CD21FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m in Sources */,
+				C27E9F4E1FCE609C0062C896 /* ZZFDGoodListModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

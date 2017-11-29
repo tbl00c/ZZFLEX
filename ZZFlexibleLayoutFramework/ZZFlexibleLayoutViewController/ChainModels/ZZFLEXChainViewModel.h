@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, ZZFLEXChainViewType) {
 - (ZZFLEXChainViewModel *(^)(id delegate))delegate;
 - (ZZFLEXChainViewModel *(^)(id ((^)(NSInteger actionType, id data))))eventAction;
 - (ZZFLEXChainViewModel *(^)(NSInteger viewTag))viewTag;
-- (ZZFLEXChainViewModel *(^)(id ((^)(id data))))selectedAction;
+- (ZZFLEXChainViewModel *(^)(void ((^)(id data))))selectedAction;
 
 - (id)initWithListData:(NSMutableArray *)listData viewModel:(ZZFlexibleLayoutViewModel *)viewModel andType:(ZZFLEXChainViewType)type;
 
