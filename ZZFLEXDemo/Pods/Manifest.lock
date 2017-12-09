@@ -1,5 +1,4 @@
 PODS:
-  - JZNavigationExtension (3.7)
   - Masonry (1.1.0)
   - MJRefresh (3.1.15)
   - SVProgressHUD (2.2.2)
@@ -90,33 +89,25 @@ PODS:
   - TLKit/TLShortcut (0.0.14)
 
 DEPENDENCIES:
-  - JZNavigationExtension (from `https://github.com/tbl00c/JZNavigationExtension.git`, tag `3.7`)
   - Masonry (~> 1.1.0)
   - MJRefresh (~> 3.1.15)
   - TLKit (from `https://github.com/tbl00c/TLKit.git`)
 
 EXTERNAL SOURCES:
-  JZNavigationExtension:
-    :git: https://github.com/tbl00c/JZNavigationExtension.git
-    :tag: '3.7'
   TLKit:
     :git: https://github.com/tbl00c/TLKit.git
 
 CHECKOUT OPTIONS:
-  JZNavigationExtension:
-    :git: https://github.com/tbl00c/JZNavigationExtension.git
-    :tag: '3.7'
   TLKit:
     :commit: c10f3517c3077458e1849d171d6702b90b13fc57
     :git: https://github.com/tbl00c/TLKit.git
 
 SPEC CHECKSUMS:
-  JZNavigationExtension: 55dbcd4ac1abe4ff003019d324fce548de509255
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   TLKit: 34e6ad6a8306fc6fa9e8aa017c3f4107c933b8e9
 
-PODFILE CHECKSUM: d0dacba316c0ea56d966398bff5a7ad1fe2cf15f
+PODFILE CHECKSUM: 9b4dfbc582fcc7f8e06417f4a50edf2a09ee2ed5
 
 COCOAPODS: 1.2.1

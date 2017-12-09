@@ -14,6 +14,14 @@
 
 @implementation ZZFDGoodDetailViewController
 
+- (id)initWithListModel:(ZZFDGoodListModel *)listModel
+{
+    if (self = [super init]) {
+        self.listModel = listModel;
+    }
+    return self;
+}
+
 - (void)loadView
 {
     [super loadView];

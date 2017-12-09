@@ -23,8 +23,6 @@ UICollectionViewDelegate,
 ZZFlexibleLayoutFlowLayoutDelegate
 >
 
-@property (nonatomic, assign) BOOL isReloading;
-
 - (ZZFlexibleLayoutSectionModel *)sectionModelAtIndex:(NSInteger)section;
 
 /// 根据tag获取sectionModel

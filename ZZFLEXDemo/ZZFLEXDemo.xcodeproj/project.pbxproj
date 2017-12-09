@@ -244,8 +244,8 @@
 				C2268C721FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.m */,
 				C2268C731FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.h */,
 				C2268C771FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.m */,
-				C2268C741FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m */,
 				C2268C761FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.h */,
+				C2268C741FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m */,
 			);
 			path = ChainModels;
 			sourceTree = "<group>";
@@ -256,8 +256,8 @@
 				C2268CBD1FCC3D7B00C98EA7 /* ZZFLEXMacros.h */,
 				C2268C791FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.h */,
 				C2268C7E1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSectionModel.m */,
-				C2268C801FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m */,
 				C2268C7B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.h */,
+				C2268C801FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m */,
 				C2268C7A1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.h */,
 				C2268C7F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m */,
 				C2268C7D1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.h */,
@@ -343,9 +343,9 @@
 		C27E9F3F1FCE609C0062C896 /* ZZGood */ = {
 			isa = PBXGroup;
 			children = (
-				C27E9F761FCE84DA0062C896 /* Resources */,
-				C27E9F401FCE609C0062C896 /* GoodDetail */,
 				C27E9F431FCE609C0062C896 /* GoodList */,
+				C27E9F401FCE609C0062C896 /* GoodDetail */,
+				C27E9F761FCE84DA0062C896 /* Resources */,
 			);
 			path = ZZGood;
 			sourceTree = "<group>";
@@ -353,8 +353,8 @@
 		C27E9F401FCE609C0062C896 /* GoodDetail */ = {
 			isa = PBXGroup;
 			children = (
-				C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */,
 				C27E9F421FCE609C0062C896 /* ZZFDGoodDetailViewController.h */,
+				C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */,
 			);
 			path = GoodDetail;
 			sourceTree = "<group>";

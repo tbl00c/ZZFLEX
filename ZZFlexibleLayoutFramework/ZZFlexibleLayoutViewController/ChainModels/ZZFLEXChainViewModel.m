@@ -59,8 +59,8 @@
 
 - (ZZFLEXChainViewModel *(^)(id delegate))delegate
 {
-    return ^(id dataModel) {
-        [self.viewModel setDelegate:dataModel];
+    return ^(id delegate) {
+        [self.viewModel setDelegate:delegate];
         return self;
     };
 }

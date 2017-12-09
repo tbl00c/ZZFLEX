@@ -7,7 +7,12 @@
 //
 
 #import "ZZFlexibleLayoutViewController.h"
+#import "ZZFDGoodListModel.h"
 
 @interface ZZFDGoodDetailViewController : ZZFlexibleLayoutViewController
+
+@property (nonatomic, strong) ZZFDGoodListModel *listModel;
+
+- (id)initWithListModel:(ZZFDGoodListModel *)listModel;
 
 @end

@@ -14,9 +14,11 @@
 @property (nonatomic, assign) BOOL hasSectionValue;
 
 @property (nonatomic, strong) NSString *className;
-@property (nonatomic, weak) NSMutableArray *listData;
+@property (nonatomic, strong) NSMutableArray *listData;
 @property (nonatomic, strong) NSMutableArray *viewModelArray;
-@property (nonatomic, copy) id (^action)(NSInteger actionType, id data);
+@property (nonatomic, weak) id itemsDelegate;
+@property (nonatomic, copy) id (^itemsEventAction)(NSInteger actionType, id data);
+@property (nonatomic, copy) void (^itemsSelectedAction)(id data);
 @property (nonatomic, assign) NSInteger tag;
 @property (nonatomic, assign) NSInteger section;
 
@@ -57,7 +59,9 @@
             [viewModel setClassName:self.className];
             [viewModel setDataModel:model];
             [viewModel setViewTag:self.tag];
-            [viewModel setEventAction:self.action];
+            [viewModel setDelegate:self.itemsDelegate];
+            [viewModel setEventAction:self.itemsEventAction];
+            [viewModel setSelectedAction:self.itemsSelectedAction];
             [self.viewModelArray addObject:viewModel];
         }
         if (self.hasSectionValue) {
@@ -67,10 +71,26 @@
     };
 }
 
+- (ZZFLEXChainViewArrayModel *(^)(id delegate))delegate
+{
+    return ^(id delegate) {
+        [self setItemsDelegate:delegate];
+        return self;
+    };
+}
+
 - (ZZFLEXChainViewArrayModel *(^)(id ((^)(NSInteger actionType, id data))))eventAction
 {
     return ^(id ((^eventAction)(NSInteger actionType, id data))) {
-        [self setAction:eventAction];
+        [self setItemsEventAction:eventAction];
+        return self;
+    };
+}
+
+- (ZZFLEXChainViewArrayModel *(^)(void ((^)(id data))))selectedAction
+{
+    return ^(void ((^selectedAction)(id data))) {
+        [self setItemsSelectedAction:selectedAction];
         return self;
     };
 }
@@ -84,11 +104,27 @@
 }
 
 #pragma mark - # Setters
-- (void)setAction:(id (^)(NSInteger, id))action
+- (void)setItemsDelegate:(id)itemsDelegate
 {
-    _action = action;
+    _itemsDelegate = itemsDelegate;
     for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
-        [viewModel setEventAction:action];
+        [viewModel setDelegate:itemsDelegate];
+    }
+}
+
+- (void)setItemsEventAction:(id (^)(NSInteger, id))itemsEventAction
+{
+    _itemsEventAction = itemsEventAction;
+    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+        [viewModel setEventAction:itemsEventAction];
+    }
+}
+
+- (void)setItemsSelectedAction:(void (^)(id))itemsSelectedAction
+{
+    _itemsSelectedAction = itemsSelectedAction;
+    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+        [viewModel setSelectedAction:itemsSelectedAction];
     }
 }
 

@@ -13,6 +13,15 @@
 #import "ZZFlexibleLayoutSeperatorCell.h"
 #import "ZZFLEXMacros.h"
 
+@interface ZZFlexibleLayoutViewController ()
+{
+    NSInteger __reloadTag;
+}
+
+@property (nonatomic, assign) BOOL isReloading;
+
+@end
+
 @implementation ZZFlexibleLayoutViewController
 
 - (id)init
@@ -60,12 +69,21 @@
 /// 刷新页面
 - (void)reloadView
 {
+    if (self.isReloading) {
+        __reloadTag ++;
+        return;
+    }
+    __reloadTag = 0;
     self.isReloading = YES;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadData];
+    [self.collectionView reloadData];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.isReloading = NO;
+        if (__reloadTag > 0) {
+            [self reloadView];
+        }
     });
 }
+
 #pragma mark 页面重新布局
 - (void)updateSectionForTag:(NSInteger)sectionTag
 {

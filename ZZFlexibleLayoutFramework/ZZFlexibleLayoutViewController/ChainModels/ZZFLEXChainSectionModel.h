@@ -6,6 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
+/**
+ *  向列表中添加Section
+ */
+
 #import <UIKit/UIKit.h>
 
 @class ZZFlexibleLayoutSectionModel;
@@ -20,6 +24,8 @@
 /// backgrounColor
 - (ZZFLEXChainSectionModel *(^)(UIColor *backgrounColor))backgrounColor;
 
+
+#pragma mark - 框架内部使用
 - (id)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel;
 
 @end

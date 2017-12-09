@@ -54,18 +54,7 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
         return cell;
     }
     
-    @try {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:model.className forIndexPath:indexPath];
-    } @catch (NSException *exception) {
-        NSLog(@"!!! CollectionViewCell未注册，将自动注册Class：%@ %@", model.className, exception.reason);
-        RegisterCollectionViewCell(collectionView, model.className);
-        @try {
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:model.className forIndexPath:indexPath];
-        } @catch (NSException *exception) {
-            NSLog(@"!!! CollectionViewCell获取失败，将使用空白Cell：%@ %@", model.className, exception.reason);
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_SEPEARTOR forIndexPath:indexPath];
-        }
-    }
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:model.className forIndexPath:indexPath];
     
     if ([cell respondsToSelector:@selector(setViewDataModel:)]) {
         [cell setViewDataModel:([model.dataModel isKindOfClass:[NSNull class]] ? nil : model.dataModel)];
@@ -88,20 +77,9 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
     UICollectionReusableView<ZZFlexibleLayoutViewProtocol> *view = nil;
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     if([kind isEqual:UICollectionElementKindSectionHeader]) {
-        if (sectionModel.headerViewModel != nil) {
-            @try {
-                view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.headerViewModel.className forIndexPath:indexPath];
-            } @catch (NSException *exception) {
-                RegisterCollectionViewReusableView(self.collectionView, kind, sectionModel.headerViewModel.className);
-                @try {
-                    view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.headerViewModel.className forIndexPath:indexPath];
-                } @catch (NSException *exception) {
-                    NSLog(@"!!! CollectionViewHeaderView获取失败:%@ %@", sectionModel.headerViewModel.className, exception.reason);
-                    view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ZZFlexibleLayoutEmptyHeaderFooterView" forIndexPath:indexPath];
-                    return view;
-                }
-            }
-            
+        if (sectionModel.headerViewModel && sectionModel.headerViewModel.viewClass) {
+            view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.headerViewModel.className forIndexPath:indexPath];
+
             if ([view respondsToSelector:@selector(setViewDataModel:)]) {
                 [view setViewDataModel:sectionModel.headerViewModel.dataModel];
             }
@@ -115,20 +93,9 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
         }
     }
     else {
-        if (sectionModel.footerViewModel != nil) {
-            @try {
-                view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.footerViewModel.className forIndexPath:indexPath];
-            } @catch (NSException *exception) {
-                RegisterCollectionViewReusableView(self.collectionView, kind, sectionModel.footerViewModel.className);
-                @try {
-                    view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.footerViewModel.className forIndexPath:indexPath];
-                } @catch (NSException *exception) {
-                    NSLog(@"!!! CollectionViewFooterView获取失败:%@ %@", sectionModel.footerViewModel.className, exception.reason);
-                    view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ZZFlexibleLayoutEmptyHeaderFooterView" forIndexPath:indexPath];
-                    return view;
-                }
-            }
-            
+        if (sectionModel.footerViewModel && sectionModel.footerViewModel.viewClass) {
+            view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.footerViewModel.className forIndexPath:indexPath];
+    
             if ([view respondsToSelector:@selector(setViewDataModel:)]) {
                 [view setViewDataModel:sectionModel.footerViewModel.dataModel];
             }
@@ -267,16 +234,6 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
         }
     }
     return data;
-}
-
-static BOOL s_isReloading = NO;
-- (BOOL)isReloading
-{
-    return s_isReloading;
-}
-- (void)setIsReloading:(BOOL)isReloading
-{
-    s_isReloading = isReloading;
 }
 
 @end

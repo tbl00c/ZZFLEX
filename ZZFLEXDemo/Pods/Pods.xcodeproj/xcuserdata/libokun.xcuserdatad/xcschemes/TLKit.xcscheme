@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5D440B0CE84497DA68543CBF64A220F4'
+               BlueprintIdentifier = 'F09D8DC54A1D77D9757324C5FC2C8CE8'
                BlueprintName = 'TLKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libTLKit.a'>
