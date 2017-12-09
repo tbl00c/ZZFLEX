@@ -6,10 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZViewChainModel.h"
+#import "ZZBaseViewChainModel.h"
 
 @class ZZImageViewChainModel;
-@interface ZZImageViewChainModel : ZZViewChainModel <ZZImageViewChainModel *>
+@interface ZZImageViewChainModel : ZZBaseViewChainModel <ZZImageViewChainModel *>
 
 ZZFLEX_CHAIN_PROPERTY ZZImageViewChainModel *(^ image)(UIImage *image);
 ZZFLEX_CHAIN_PROPERTY ZZImageViewChainModel *(^ highlightedImage)(UIImage *highlightedImage);

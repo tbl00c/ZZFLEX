@@ -6,10 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZViewChainModel.h"
+#import "ZZBaseViewChainModel.h"
 
 @class ZZLabelChainModel;
-@interface ZZLabelChainModel : ZZViewChainModel <ZZLabelChainModel *>
+@interface ZZLabelChainModel : ZZBaseViewChainModel <ZZLabelChainModel *>
 
 ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ text)(NSString *text);
 ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ font)(UIFont *font);

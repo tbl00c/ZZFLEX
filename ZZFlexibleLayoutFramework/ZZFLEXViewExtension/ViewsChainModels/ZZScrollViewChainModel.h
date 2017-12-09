@@ -6,10 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZViewChainModel.h"
+#import "ZZBaseViewChainModel.h"
 
 @class ZZScrollViewChainModel;
-@interface ZZScrollViewChainModel : ZZViewChainModel<ZZScrollViewChainModel *>
+@interface ZZScrollViewChainModel : ZZBaseViewChainModel<ZZScrollViewChainModel *>
 
 ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ delegate)(id<UIScrollViewDelegate> delegate);
 

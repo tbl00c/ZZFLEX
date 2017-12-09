@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZZViewChainModel.h"
 
-#import "ZZCustomViewChainModel.h"
+#import "ZZViewChainModel.h"
 #import "ZZLabelChainModel.h"
 #import "ZZImageViewChainModel.h"
 
@@ -26,7 +25,7 @@
 @interface UIView (ZZFLEX)
 
 /// 添加View
-ZZFLEX_VIEW_CHAIN_TYPE ZZCustomViewChainModel *(^ addView)(NSInteger tag);
+ZZFLEX_VIEW_CHAIN_TYPE ZZViewChainModel *(^ addView)(NSInteger tag);
 
 /// 添加Label
 ZZFLEX_VIEW_CHAIN_TYPE ZZLabelChainModel *(^ addLabel)(NSInteger tag);

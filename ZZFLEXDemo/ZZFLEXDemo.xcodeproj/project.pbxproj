@@ -26,15 +26,16 @@
 		C2268CEE1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CDA1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m */; };
 		C2268CEF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CDF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m */; };
 		C2268CF01FCC3FF500C98EA7 /* ZZButtonChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE31FCC3FF500C98EA7 /* ZZButtonChainModel.m */; };
-		C2268CF11FCC3FF500C98EA7 /* ZZCustomViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE51FCC3FF500C98EA7 /* ZZCustomViewChainModel.m */; };
+		C2268CF11FCC3FF500C98EA7 /* ZZViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE51FCC3FF500C98EA7 /* ZZViewChainModel.m */; };
 		C2268CF21FCC3FF500C98EA7 /* ZZScrollViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE61FCC3FF500C98EA7 /* ZZScrollViewChainModel.m */; };
 		C2268CF31FCC3FF500C98EA7 /* ZZImageViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE71FCC3FF500C98EA7 /* ZZImageViewChainModel.m */; };
 		C2268CF41FCC3FF500C98EA7 /* ZZControlChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CE81FCC3FF500C98EA7 /* ZZControlChainModel.m */; };
 		C2268CF51FCC3FF500C98EA7 /* ZZSwitchChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CEA1FCC3FF500C98EA7 /* ZZSwitchChainModel.m */; };
-		C2268CF61FCC3FF500C98EA7 /* ZZViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CEB1FCC3FF500C98EA7 /* ZZViewChainModel.m */; };
+		C2268CF61FCC3FF500C98EA7 /* ZZBaseViewChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CEB1FCC3FF500C98EA7 /* ZZBaseViewChainModel.m */; };
 		C2268CFD1FCC40AE00C98EA7 /* UIControl+ZZEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CFC1FCC40AE00C98EA7 /* UIControl+ZZEvent.m */; };
 		C2268D001FCC413800C98EA7 /* UIView+ZZFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CFF1FCC413800C98EA7 /* UIView+ZZFrame.m */; };
 		C2268D031FCC439A00C98EA7 /* UIButton+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268D021FCC439A00C98EA7 /* UIButton+ZZExtension.m */; };
+		C2351DC91FDBC2A400CFDE5B /* ZZTextFieldChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2351DC81FDBC2A400CFDE5B /* ZZTextFieldChainModel.m */; };
 		C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */; };
 		C27E9F4E1FCE609C0062C896 /* ZZFDGoodListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F471FCE609C0062C896 /* ZZFDGoodListModel.m */; };
 		C27E9F4F1FCE609C0062C896 /* ZZFDGoodListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F481FCE609C0062C896 /* ZZFDGoodListViewController.m */; };
@@ -104,26 +105,28 @@
 		C2268CDB1FCC3FF500C98EA7 /* ZZControlChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZControlChainModel.h; sourceTree = "<group>"; };
 		C2268CDC1FCC3FF500C98EA7 /* ZZImageViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZImageViewChainModel.h; sourceTree = "<group>"; };
 		C2268CDD1FCC3FF500C98EA7 /* ZZScrollViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZScrollViewChainModel.h; sourceTree = "<group>"; };
-		C2268CDE1FCC3FF500C98EA7 /* ZZCustomViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCustomViewChainModel.h; sourceTree = "<group>"; };
+		C2268CDE1FCC3FF500C98EA7 /* ZZViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZViewChainModel.h; sourceTree = "<group>"; };
 		C2268CDF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTableViewChainModel.m; sourceTree = "<group>"; };
 		C2268CE01FCC3FF500C98EA7 /* ZZSwitchChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZSwitchChainModel.h; sourceTree = "<group>"; };
-		C2268CE11FCC3FF500C98EA7 /* ZZViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZViewChainModel.h; sourceTree = "<group>"; };
+		C2268CE11FCC3FF500C98EA7 /* ZZBaseViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZBaseViewChainModel.h; sourceTree = "<group>"; };
 		C2268CE21FCC3FF500C98EA7 /* ZZCollectionViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCollectionViewChainModel.h; sourceTree = "<group>"; };
 		C2268CE31FCC3FF500C98EA7 /* ZZButtonChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZButtonChainModel.m; sourceTree = "<group>"; };
 		C2268CE41FCC3FF500C98EA7 /* ZZLabelChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZLabelChainModel.h; sourceTree = "<group>"; };
-		C2268CE51FCC3FF500C98EA7 /* ZZCustomViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCustomViewChainModel.m; sourceTree = "<group>"; };
+		C2268CE51FCC3FF500C98EA7 /* ZZViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZViewChainModel.m; sourceTree = "<group>"; };
 		C2268CE61FCC3FF500C98EA7 /* ZZScrollViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZScrollViewChainModel.m; sourceTree = "<group>"; };
 		C2268CE71FCC3FF500C98EA7 /* ZZImageViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZImageViewChainModel.m; sourceTree = "<group>"; };
 		C2268CE81FCC3FF500C98EA7 /* ZZControlChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZControlChainModel.m; sourceTree = "<group>"; };
 		C2268CE91FCC3FF500C98EA7 /* ZZTableViewChainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZTableViewChainModel.h; sourceTree = "<group>"; };
 		C2268CEA1FCC3FF500C98EA7 /* ZZSwitchChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZSwitchChainModel.m; sourceTree = "<group>"; };
-		C2268CEB1FCC3FF500C98EA7 /* ZZViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZViewChainModel.m; sourceTree = "<group>"; };
+		C2268CEB1FCC3FF500C98EA7 /* ZZBaseViewChainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZBaseViewChainModel.m; sourceTree = "<group>"; };
 		C2268CFB1FCC40AE00C98EA7 /* UIControl+ZZEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+ZZEvent.h"; sourceTree = "<group>"; };
 		C2268CFC1FCC40AE00C98EA7 /* UIControl+ZZEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+ZZEvent.m"; sourceTree = "<group>"; };
 		C2268CFE1FCC413800C98EA7 /* UIView+ZZFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZZFrame.h"; sourceTree = "<group>"; };
 		C2268CFF1FCC413800C98EA7 /* UIView+ZZFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZFrame.m"; sourceTree = "<group>"; };
 		C2268D011FCC439A00C98EA7 /* UIButton+ZZExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZZExtension.h"; sourceTree = "<group>"; };
 		C2268D021FCC439A00C98EA7 /* UIButton+ZZExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZZExtension.m"; sourceTree = "<group>"; };
+		C2351DC71FDBC2A400CFDE5B /* ZZTextFieldChainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZTextFieldChainModel.h; sourceTree = "<group>"; };
+		C2351DC81FDBC2A400CFDE5B /* ZZTextFieldChainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZTextFieldChainModel.m; sourceTree = "<group>"; };
 		C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFDGoodDetailViewController.m; sourceTree = "<group>"; };
 		C27E9F421FCE609C0062C896 /* ZZFDGoodDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodDetailViewController.h; sourceTree = "<group>"; };
 		C27E9F441FCE609C0062C896 /* ZZFDGoodListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodListViewController.h; sourceTree = "<group>"; };
@@ -303,16 +306,18 @@
 		C2268CD71FCC3FF500C98EA7 /* ViewsChainModels */ = {
 			isa = PBXGroup;
 			children = (
-				C2268CE11FCC3FF500C98EA7 /* ZZViewChainModel.h */,
-				C2268CEB1FCC3FF500C98EA7 /* ZZViewChainModel.m */,
-				C2268CDE1FCC3FF500C98EA7 /* ZZCustomViewChainModel.h */,
-				C2268CE51FCC3FF500C98EA7 /* ZZCustomViewChainModel.m */,
+				C2268CE11FCC3FF500C98EA7 /* ZZBaseViewChainModel.h */,
+				C2268CEB1FCC3FF500C98EA7 /* ZZBaseViewChainModel.m */,
+				C2268CDE1FCC3FF500C98EA7 /* ZZViewChainModel.h */,
+				C2268CE51FCC3FF500C98EA7 /* ZZViewChainModel.m */,
 				C2268CDC1FCC3FF500C98EA7 /* ZZImageViewChainModel.h */,
 				C2268CE71FCC3FF500C98EA7 /* ZZImageViewChainModel.m */,
 				C2268CE41FCC3FF500C98EA7 /* ZZLabelChainModel.h */,
 				C2268CD91FCC3FF500C98EA7 /* ZZLabelChainModel.m */,
 				C2268CDB1FCC3FF500C98EA7 /* ZZControlChainModel.h */,
 				C2268CE81FCC3FF500C98EA7 /* ZZControlChainModel.m */,
+				C2351DC71FDBC2A400CFDE5B /* ZZTextFieldChainModel.h */,
+				C2351DC81FDBC2A400CFDE5B /* ZZTextFieldChainModel.m */,
 				C2268CD81FCC3FF500C98EA7 /* ZZButtonChainModel.h */,
 				C2268CE31FCC3FF500C98EA7 /* ZZButtonChainModel.m */,
 				C2268CE01FCC3FF500C98EA7 /* ZZSwitchChainModel.h */,
@@ -673,9 +678,10 @@
 				C2863AAC1FCD7436008BC3C0 /* ZZFDADCell.m in Sources */,
 				C27E9F501FCE609C0062C896 /* ZZFDGoodListCell.m in Sources */,
 				C2268CA91FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.m in Sources */,
-				C2268CF61FCC3FF500C98EA7 /* ZZViewChainModel.m in Sources */,
+				C2268CF61FCC3FF500C98EA7 /* ZZBaseViewChainModel.m in Sources */,
 				C2268CF31FCC3FF500C98EA7 /* ZZImageViewChainModel.m in Sources */,
 				C27E9F4F1FCE609C0062C896 /* ZZFDGoodListViewController.m in Sources */,
+				C2351DC91FDBC2A400CFDE5B /* ZZTextFieldChainModel.m in Sources */,
 				C27E9F5A1FCE60E70062C896 /* TLMineHeaderCell.m in Sources */,
 				C27E9F721FCE63B40062C896 /* UIColor+ZZFD.m in Sources */,
 				C2268CA51FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.m in Sources */,
@@ -687,7 +693,7 @@
 				C2268CEC1FCC3FF500C98EA7 /* UIView+ZZFLEX.m in Sources */,
 				C2268CD31FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.m in Sources */,
 				C2268CCC1FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m in Sources */,
-				C2268CF11FCC3FF500C98EA7 /* ZZCustomViewChainModel.m in Sources */,
+				C2268CF11FCC3FF500C98EA7 /* ZZViewChainModel.m in Sources */,
 				C2268CEE1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m in Sources */,
 				C2268CEF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m in Sources */,
 				C2268D031FCC439A00C98EA7 /* UIButton+ZZExtension.m in Sources */,

@@ -21,7 +21,7 @@
 
 @implementation UIView (ZZFLEX)
 
-ZZFLEX_VE_API(addView, ZZCustomViewChainModel, UIView);
+ZZFLEX_VE_API(addView, ZZViewChainModel, UIView);
 ZZFLEX_VE_API(addLabel, ZZLabelChainModel, UILabel);
 ZZFLEX_VE_API(addImageView, ZZImageViewChainModel, UIImageView);
 
@@ -33,6 +33,18 @@ ZZFLEX_VE_API(addSwitch, ZZSwitchChainModel, UISwitch);
 #pragma mark - # 滚动视图类
 ZZFLEX_VE_API(addScrollView, ZZScrollViewChainModel, UIScrollView);
 ZZFLEX_VE_API(addTableView, ZZTableViewChainModel, UITableView);
-ZZFLEX_VE_API(addCollectionView, ZZCollectionViewChainModel, UICollectionView);
+- (ZZCollectionViewChainModel * (^)(NSInteger tag))addCollectionView
+{
+    return ^ZZCollectionViewChainModel* (NSInteger tag) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.minimumInteritemSpacing = layout.minimumLineSpacing = 0;
+        layout.itemSize = layout.headerReferenceSize = layout.footerReferenceSize = CGSizeZero;
+        layout.sectionInset = UIEdgeInsetsZero;
+        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        [self addSubview:view];
+        ZZCollectionViewChainModel *chainModel = [[ZZCollectionViewChainModel alloc] initWithTag:tag andView:view];
+        return chainModel;
+    };
+}
 
 @end

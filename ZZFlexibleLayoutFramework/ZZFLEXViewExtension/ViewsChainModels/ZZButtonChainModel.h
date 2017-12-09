@@ -6,10 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZViewChainModel.h"
+#import "ZZBaseViewChainModel.h"
 
 @class ZZButtonChainModel;
-@interface ZZButtonChainModel : ZZViewChainModel<ZZButtonChainModel *>
+@interface ZZButtonChainModel : ZZBaseViewChainModel<ZZButtonChainModel *>
 
 ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ title)(NSString *title);
 ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleHL)(NSString *titleHL);

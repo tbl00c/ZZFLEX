@@ -6,10 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZViewChainModel.h"
+#import "ZZBaseViewChainModel.h"
 
 @class ZZSwitchChainModel;
-@interface ZZSwitchChainModel : ZZViewChainModel<ZZSwitchChainModel *>
+@interface ZZSwitchChainModel : ZZBaseViewChainModel<ZZSwitchChainModel *>
 
 ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ on)(BOOL on);
 ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ onTintColor)(UIColor *onTintColor);

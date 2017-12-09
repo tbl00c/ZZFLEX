@@ -6,10 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZViewChainModel.h"
+#import "ZZBaseViewChainModel.h"
 
 @class ZZCollectionViewChainModel;
-@interface ZZCollectionViewChainModel : ZZViewChainModel<ZZCollectionViewChainModel *>
+@interface ZZCollectionViewChainModel : ZZBaseViewChainModel<ZZCollectionViewChainModel *>
 
 ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ collectionViewLayout)(UICollectionViewLayout *collectionViewLayout);
 ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ delegate)(id<UICollectionViewDelegate> delegate);

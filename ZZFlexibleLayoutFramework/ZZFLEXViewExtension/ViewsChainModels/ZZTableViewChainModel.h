@@ -6,10 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZViewChainModel.h"
+#import "ZZBaseViewChainModel.h"
 
 @class ZZTableViewChainModel;
-@interface ZZTableViewChainModel : ZZViewChainModel<ZZTableViewChainModel *>
+@interface ZZTableViewChainModel : ZZBaseViewChainModel<ZZTableViewChainModel *>
 
 ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ delegate)(id<UITableViewDelegate> delegate);
 ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ dataSource)(id<UITableViewDataSource> dataSource);

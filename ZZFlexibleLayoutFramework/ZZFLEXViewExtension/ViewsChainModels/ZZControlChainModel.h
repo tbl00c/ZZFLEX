@@ -6,10 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZViewChainModel.h"
+#import "ZZBaseViewChainModel.h"
 
 @class ZZControlChainModel;
-@interface ZZControlChainModel : ZZViewChainModel<ZZControlChainModel *>
+@interface ZZControlChainModel : ZZBaseViewChainModel<ZZControlChainModel *>
 
 ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ enabled)(BOOL enabled);
 ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ selected)(BOOL selected);
