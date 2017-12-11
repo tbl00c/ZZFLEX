@@ -10,6 +10,9 @@
 #import "ZZFLEXChainSectionModel.h"
 #import "ZZFLEXChainViewModel.h"
 #import "ZZFLEXChainViewArrayModel.h"
+#import "ZZFLEXChainCellEditModel.h"
+#import "ZZFLEXChainAllCellsEditModel.h"
+#import "ZZFLEXChainDataModel.h"
 
 /**
  *  动态布局页面框架类 3.0
@@ -101,30 +104,25 @@ ZZFLEX_CHAINAPI_TYPE BOOL (^deleteSection)(NSInteger tag);
 /// 判断section是否存在
 ZZFLEX_CHAINAPI_TYPE BOOL (^hasSection)(NSInteger tag);
 
-/// 删除section的所有元素（cell,header,footer），也可使用 self.sectionFotTag(tag).clear();
+/// 删除section的所有元素（cell,header,footer），或使用 self.sectionFotTag(tag).clear();
 - (BOOL)deleteAllItemsForSection:(NSInteger)tag;
 
-/// 删除section的所有cell,也可使用 self.sectionFotTag(tag).clearAllCells()
+/// 删除section的所有cell, 或使用 self.sectionFotTag(tag).clearAllCells()
 - (BOOL)deleteAllCellsForSection:(NSInteger)tag;
 
-/// 更新section信息，也可使用 self.sectionFotTag(tag).update()
+/// 更新section信息，或使用 self.sectionFotTag(tag).update()
 - (void)updateSectionForTag:(NSInteger)sectionTag;
 
 /// 获取section index
 - (NSInteger)sectionIndexForTag:(NSInteger)sectionTag;
 
+
 #pragma mark - # Section HeaderFooter 操作
 /// 为section添加headerView，传入nil将删除header
-- (ZZFLEXChainViewModel *(^)(NSString *className))setHeader;
-
-/// 获取header数据源
-- (id)dataModelForSectionHeader:(NSInteger)sectionTag;
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^setHeader)(NSString *className);
 
 /// 为section添加footerView，传入nil将删除footer
-- (ZZFLEXChainViewModel *(^)(NSString *className))setFooter;
-
-/// 获取footer数据源
-- (id)dataModelForSectionFooter:(NSInteger)sectionTag;
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^setFooter)(NSString *className);
 
 
 #pragma mark - # Section Cell 操作
@@ -140,65 +138,33 @@ ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewInsertModel *(^ insertCell)(NSString *classN
 /// 批量插入cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewArrayInsertModel *(^ insertCells)(NSString *className);
 
-
 /// 添加空白cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addSeperatorCell)(CGSize size, UIColor *color);
 
+/// 删除第一个符合条件的cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainCellEditModel *deleteCell;
 
-/// 根据indexPath删除cell
-- (BOOL)deleteCellAtIndexPath:(NSIndexPath *)indexPath;
-- (BOOL)deleteCellsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+/// 删除所有符合条件的cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainAllCellsEditModel *deleteAllCells;
 
-/// 根据tag删除cell，仅删除找到的第一个
-- (BOOL)deleteCellByCellTag:(NSInteger)tag;
-- (BOOL)deleteCellForSection:(NSInteger)sectionTag tag:(NSInteger)tag;
+/// 更新第一个符合条件的cell高度
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainCellEditModel *updateCell;
 
-/// 根据tag删除cell，删除所有
-- (BOOL)deleteAllCellsByCellTag:(NSInteger)tag;
-- (BOOL)deleteAllCellsForSection:(NSInteger)sectionTag tag:(NSInteger)tag;
+/// 更新所有符合条件的cell高度
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainAllCellsEditModel *updateAllCells;
 
-/// 根据数据源删除cell
-- (BOOL)deleteCellByModel:(id)model;
-- (BOOL)deleteCellForSection:(NSInteger)sectionTag model:(id)model;
+/// 是否包含cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainCellEditModel *hasCell;
 
-/// 根据数据源删除找到的所有cell
-- (BOOL)deleteAllCellsByModel:(id)model;
-- (BOOL)deleteAllCellsForSection:(NSInteger)sectionTag model:(id)model;
+#pragma mark - # DataModel 数据源获取
+/// 数据源获取
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainDataModel *dataModel;
 
-/// 根据类名删除cell
-- (BOOL)deleteCellsByClassName:(NSString *)className;
-- (BOOL)deleteCellsForSection:(NSInteger)sectionTag className:(NSString *)className;
+@end
 
-/// 判断cell是否存在
-- (BOOL)hasCell:(NSInteger)tag;
-- (BOOL)hasCellWithDataModel:(id)dataModel;
-- (BOOL)hasCellAtSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
-- (BOOL)hasCellAtIndexPath:(NSIndexPath *)indexPath;
+#pragma mark - ## ZZFlexibleLayoutViewController (View)
+@interface ZZFlexibleLayoutViewController (View)
 
-/// 更新cell信息，将重新计算高度，但不会reload
-- (void)updateCellsForCellTag:(NSInteger)cellTag;
-- (void)updateCellsForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
-- (void)updateCellAtIndexPath:(NSIndexPath *)indexPath;
-- (void)updateCellsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
-
-
-#pragma mark - # Index获取
-
-/// 获取cell的IndexPaths
-- (NSArray<NSIndexPath *> *)cellIndexPathForCellTag:(NSInteger)cellTag;
-- (NSArray<NSIndexPath *> *)cellIndexPathForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
-
-#pragma mark - # 数据获取操作
-/// 获取指定单个数据源
-- (id)dataModelAtIndexPath:(NSIndexPath *)indexPath;
-- (id)dataModelForSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
-- (id)dataModelForSection:(NSInteger)sectionTag className:(NSString *)className;
-- (NSArray *)dataModelArrayForSection:(NSInteger)sectionTag;
-- (NSArray *)dataModelArrayForSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
-/// 列表所有的数据源（如添加cell时未指定或传nil，则表现为[NSNull null]）
-- (NSArray *)allDataModelArray;
-
-#pragma mark - # 滚动操作
 - (void)scrollToTop:(BOOL)animated;
 - (void)scrollToBottom:(BOOL)animated;
 - (void)scrollToSection:(NSInteger)sectionTag position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
@@ -208,3 +174,4 @@ ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addSeperatorCell)(CGSize size, UIC
 - (void)scrollToIndexPath:(NSIndexPath *)indexPath position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
 
 @end
+

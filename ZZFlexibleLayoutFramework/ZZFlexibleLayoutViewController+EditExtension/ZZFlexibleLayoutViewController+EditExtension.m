@@ -15,7 +15,7 @@ NSString *const ZZFLEXEditErrorDomain = @"AsyncSocketErrorDomain";
 
 - (NSError *)checkInputlegitimacy
 {
-    for (NSArray *section in self.allDataModelArray) {
+    for (NSArray *section in self.dataModel.allCellsModelArray) {
         for (id<ZZFLEXEditModelProtocol> model in section) {
             if ([model respondsToSelector:@selector(checkInputlegitimacy)]) {
                 NSError *error = [model checkInputlegitimacy];
@@ -30,7 +30,7 @@ NSString *const ZZFLEXEditErrorDomain = @"AsyncSocketErrorDomain";
 
 - (void)executeRelationalMapping
 {
-    for (NSArray *section in self.allDataModelArray) {
+    for (NSArray *section in self.dataModel.allCellsModelArray) {
         for (id<ZZFLEXEditModelProtocol> model in section) {
             if ([model respondsToSelector:@selector(executeRelationalMapping)]) {
                 [model executeRelationalMapping];

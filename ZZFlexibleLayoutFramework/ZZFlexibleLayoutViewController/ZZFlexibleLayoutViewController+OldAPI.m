@@ -128,6 +128,12 @@
     return NO;
 }
 
+- (id)dataModelForSectionHeader:(NSInteger)sectionTag
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    return sectionModel.headerViewModel.dataModel;
+}
+
 - (BOOL)setSectionFooterViewWithModel:(id)model forSection:(NSInteger)sectionTag className:(NSString *)className
 {
     RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionFooter, className);
@@ -139,6 +145,12 @@
     }
     NSLog(@"!!!!! section不存在: %ld", (long)sectionTag);
     return NO;
+}
+
+- (id)dataModelForSectionFooter:(NSInteger)sectionTag
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    return sectionModel.footerViewModel.dataModel;
 }
 
 #pragma mark - # Cell 操作
@@ -232,6 +244,319 @@
     }
     return nil;
 }
+
+/// 根据indexPath删除cell
+- (BOOL)deleteCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    if (sectionModel && sectionModel.count > indexPath.row) {
+        [sectionModel removeObjectAtIndex:indexPath.row];
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)deleteCellsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+{
+    if (indexPaths.count > 0) {
+        BOOL ok = NO;
+        NSArray *deleteModels = [self viewModelsAtIndexPaths:indexPaths];
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+            NSArray *items = [sectionModel.itemsArray copy];
+            for (ZZFlexibleLayoutViewModel *viewModel in items) {
+                if ([deleteModels containsObject:viewModel]) {
+                    [sectionModel removeObject:viewModel];
+                    ok = YES;
+                }
+            }
+        }
+        return ok;
+    }
+    return NO;
+}
+
+/// 根据cellTag删除cell
+- (BOOL)deleteCellByCellTag:(NSInteger)tag
+{
+    NSArray<NSIndexPath *> *indexPaths = [self cellIndexPathForCellTag:tag];
+    if (indexPaths.count > 0) {
+        return [self deleteCellAtIndexPath:indexPaths[0]];
+    }
+    return NO;
+}
+
+- (BOOL)deleteCellForSection:(NSInteger)sectionTag tag:(NSInteger)tag
+{
+    NSArray<NSIndexPath *> *indexPaths = [self cellIndexPathForSectionTag:sectionTag cellTag:tag];
+    if (indexPaths.count > 0) {
+        return [self deleteCellAtIndexPath:indexPaths[0]];
+    }
+    return NO;
+}
+
+/// 根据cellTag批量删除cell
+- (BOOL)deleteAllCellsByCellTag:(NSInteger)tag
+{
+    NSArray *indexPaths = [self cellIndexPathForCellTag:tag];
+    return [self deleteCellsAtIndexPaths:indexPaths];
+}
+
+- (BOOL)deleteAllCellsForSection:(NSInteger)sectionTag tag:(NSInteger)tag
+{
+    NSArray *indexPaths = [self cellIndexPathForSectionTag:sectionTag cellTag:tag];
+    return [self deleteCellsAtIndexPaths:indexPaths];
+}
+
+/// 根据数据源删除cell
+- (BOOL)deleteCellByModel:(id)model
+{
+    BOOL ok = NO;
+    for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+        if ([self p_deleteCellForSection:sectionModel model:model deleteAll:NO]) {
+            return YES;
+        }
+    }
+    return ok;
+}
+
+- (BOOL)deleteCellForSection:(NSInteger)sectionTag model:(id)model
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    return [self p_deleteCellForSection:sectionModel model:model deleteAll:NO];
+}
+
+/// 根据数据源删除找到的所有cell
+- (BOOL)deleteAllCellsByModel:(id)model
+{
+    BOOL ok = NO;
+    for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+        if ([self p_deleteCellForSection:sectionModel model:model deleteAll:YES]) {
+            return YES;
+        }
+    }
+    return ok;
+}
+
+- (BOOL)deleteAllCellsForSection:(NSInteger)sectionTag model:(id)model
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    return [self p_deleteCellForSection:sectionModel model:model deleteAll:YES];
+}
+
+- (BOOL)p_deleteCellForSection:(ZZFlexibleLayoutSectionModel *)sectionModel model:(id)model deleteAll:(BOOL)all
+{
+    BOOL ok = NO;
+    if (sectionModel) {
+        NSArray *data = sectionModel.itemsArray.mutableCopy;
+        for (ZZFlexibleLayoutViewModel *viewMdoel in data) {
+            if (viewMdoel.dataModel == model) {
+                [sectionModel removeObject:viewMdoel];
+                ok = YES;
+                if (!all) {
+                    break;
+                }
+            }
+        }
+    }
+    return ok;
+}
+
+/// 根据类名删除cell
+- (BOOL)deleteCellsByClassName:(NSString *)className
+{
+    BOOL ok = NO;
+    for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+        if ([self p_deleteCellForSection:sectionModel className:className]) {
+            ok = YES;
+        }
+    }
+    return ok;
+}
+
+- (BOOL)deleteCellsForSection:(NSInteger)sectionTag className:(NSString *)className
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    return [self p_deleteCellForSection:sectionModel className:className];
+}
+
+- (BOOL)p_deleteCellForSection:(ZZFlexibleLayoutSectionModel *)sectionModel className:(NSString *)className
+{
+    BOOL ok = NO;
+    if (sectionModel) {
+        NSArray *data = sectionModel.itemsArray.mutableCopy;
+        for (ZZFlexibleLayoutViewModel *viewMdoel in data) {
+            if ([viewMdoel.className isEqualToString:className]) {
+                [sectionModel removeObject:viewMdoel];
+                ok = YES;
+            }
+        }
+    }
+    return ok;
+}
+
+- (void)updateSectionForTag:(NSInteger)sectionTag
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    [sectionModel.headerViewModel updateViewHeight];
+    [sectionModel.footerViewModel updateViewHeight];
+    for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+        [viewModel updateViewHeight];
+    }
+}
+
+- (void)updateCellsForCellTag:(NSInteger)cellTag
+{
+    NSArray *indexPaths = [self cellIndexPathForCellTag:cellTag];
+    [self updateCellsAtIndexPaths:indexPaths];
+}
+
+- (void)updateCellsForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag
+{
+    NSArray *indexPaths = [self cellIndexPathForSectionTag:sectionTag cellTag:cellTag];
+    [self updateCellsAtIndexPaths:indexPaths];
+}
+
+- (void)updateCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath) {
+        [self updateCellsAtIndexPaths:@[indexPath]];
+    }
+}
+
+- (void)updateCellsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+{
+    NSArray<ZZFlexibleLayoutViewModel *> *viewModels = [self viewModelsAtIndexPaths:indexPaths];
+    for (ZZFlexibleLayoutViewModel *viewModel in viewModels) {
+        [viewModel updateViewHeight];
+    }
+}
+
+/// 是否存在cell
+- (BOOL)hasCell:(NSInteger)tag
+{
+    return [self cellIndexPathForCellTag:tag].count > 0;
+}
+
+- (BOOL)hasCellWithDataModel:(id)dataModel
+{
+    for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+        for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+            if (viewModel == dataModel) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+- (BOOL)hasCellAtSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag
+{
+    return [self cellIndexPathForSectionTag:sectionTag cellTag:cellTag].count > 0;
+}
+
+- (BOOL)hasCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    if (sectionModel && sectionModel.count > indexPath.row) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSArray<NSIndexPath *> *)cellIndexPathForCellTag:(NSInteger)cellTag
+{
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    for (int section = 0; section < self.data.count; section++) {
+        ZZFlexibleLayoutSectionModel *sectionModel = self.data[section];
+        for (int row = 0; row < sectionModel.itemsArray.count; row++) {
+            ZZFlexibleLayoutViewModel *viewModel = [sectionModel objectAtIndex:row];
+            if (viewModel.viewTag == cellTag) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:row inSection:section];
+                [data addObject:indexPath];
+            }
+        }
+    }
+    return data.count > 0 ? data : nil;
+}
+
+- (NSArray<NSIndexPath *> *)cellIndexPathForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag
+{
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    NSInteger sectionIndex = [self sectionIndexForTag:sectionTag];
+    ZZFlexibleLayoutSectionModel *sectionModel = self.data[sectionIndex];
+    for (int row = 0; row < sectionModel.itemsArray.count; row++) {
+        ZZFlexibleLayoutViewModel *viewModel = [sectionModel objectAtIndex:row];
+        if (viewModel.viewTag == cellTag) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:row inSection:sectionIndex];
+            [data addObject:indexPath];
+        }
+    }
+    return data.count > 0 ? data : nil;
+}
+
+
+#pragma mark 数据操作
+- (id)dataModelAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
+    return viewModel ? viewModel.dataModel : nil;
+}
+
+- (id)dataModelForSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag
+{
+    NSArray<NSIndexPath *> *indexPaths = [self cellIndexPathForSectionTag:sectionTag cellTag:cellTag];
+    if (indexPaths.count > 0) {
+        return [self dataModelAtIndexPath:indexPaths[0]];
+    }
+    return nil;
+}
+
+- (id)dataModelForSection:(NSInteger)sectionTag className:(NSString *)className
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+        if ([viewModel.className isEqualToString:className]) {
+            return viewModel.dataModel;
+        }
+    }
+    return nil;
+}
+
+- (NSArray *)dataModelArrayForSection:(NSInteger)sectionTag
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+        [data addObject:viewModel.dataModel];
+    }
+    return data;
+}
+
+- (NSArray *)dataModelArrayForSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+        if (viewModel.viewTag == cellTag) {
+            [data addObject:viewModel.dataModel];
+        }
+    }
+    return data;
+}
+
+- (NSArray *)allDataModelArray
+{
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+        NSMutableArray *sectionData = [[NSMutableArray alloc] init];
+        for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+            [sectionData addObject:viewModel.dataModel];
+        }
+        [data addObject:sectionData];
+    }
+    return data;
+}
+
 
 @end
 

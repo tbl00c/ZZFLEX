@@ -26,7 +26,7 @@
 /// backgrounColor
 - (ZZFLEXReturnType (^)(UIColor *backgrounColor))backgrounColor;
 
-/// 框架内部使用
+#pragma mark - 框架内部使用
 - (instancetype)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel;
 
 @end
