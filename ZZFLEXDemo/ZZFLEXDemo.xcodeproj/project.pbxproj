@@ -16,7 +16,6 @@
 		C2268CAC1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C7F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m */; };
 		C2268CAD1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C801FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m */; };
 		C2268CAE1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C811FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m */; };
-		C2268CAF1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C831FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m */; };
 		C2268CCB1FCC3F3500C98EA7 /* ZZFLEXEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CC61FCC3F3500C98EA7 /* ZZFLEXEditModel.m */; };
 		C2268CCC1FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CC71FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m */; };
 		C2268CD21FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268CCE1FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m */; };
@@ -58,6 +57,7 @@
 		C2863AA61FCD022B008BC3C0 /* ZZFDMainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863AA51FCD022B008BC3C0 /* ZZFDMainMenuCell.m */; };
 		C2863AA91FCD0B9D008BC3C0 /* ZZFDMainIntroduceHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863AA81FCD0B9D008BC3C0 /* ZZFDMainIntroduceHeader.m */; };
 		C2863AAC1FCD7436008BC3C0 /* ZZFDADCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863AAB1FCD7436008BC3C0 /* ZZFDADCell.m */; };
+		C2F8C83B1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C83A1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m */; };
 		C4CA8820EC31BF20D47A333A /* libPods-ZZFLEXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3B3E00F40C25E980C181EA /* libPods-ZZFLEXDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +70,6 @@
 		C2268C6B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutViewController.m; sourceTree = "<group>"; };
 		C2268C6D1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutSeperatorCell.m; sourceTree = "<group>"; };
 		C2268C6E1FCC3CFF00C98EA7 /* ZZFlexibleLayoutSeperatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutSeperatorCell.h; sourceTree = "<group>"; };
-		C2268C6F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZZFlexibleLayoutViewController+OldAPI.h"; sourceTree = "<group>"; };
 		C2268C721FCC3CFF00C98EA7 /* ZZFLEXChainSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainSectionModel.m; sourceTree = "<group>"; };
 		C2268C731FCC3CFF00C98EA7 /* ZZFLEXChainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainViewModel.h; sourceTree = "<group>"; };
 		C2268C741FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainViewArrayModel.m; sourceTree = "<group>"; };
@@ -85,7 +84,6 @@
 		C2268C7F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutFlowLayout.m; sourceTree = "<group>"; };
 		C2268C801FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutViewModel.m; sourceTree = "<group>"; };
 		C2268C811FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZZFlexibleLayoutViewController+Kernel.m"; sourceTree = "<group>"; };
-		C2268C831FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZZFlexibleLayoutViewController+OldAPI.m"; sourceTree = "<group>"; };
 		C2268C841FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutViewController.h; sourceTree = "<group>"; };
 		C2268CBD1FCC3D7B00C98EA7 /* ZZFLEXMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFLEXMacros.h; sourceTree = "<group>"; };
 		C2268CC61FCC3F3500C98EA7 /* ZZFLEXEditModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXEditModel.m; sourceTree = "<group>"; };
@@ -170,6 +168,8 @@
 		C2863AB11FCD830E008BC3C0 /* ZZFDMainTitles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDMainTitles.h; sourceTree = "<group>"; };
 		C2D788DD1FCC396D00778993 /* ZZFLEXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZFLEXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D788EE1FCC396D00778993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2F8C8391FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZZFlexibleLayoutViewController+OldAPI.h"; sourceTree = "<group>"; };
+		C2F8C83A1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZZFlexibleLayoutViewController+OldAPI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +223,8 @@
 				C2268C6A1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewProtocol.h */,
 				C2268C841FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.h */,
 				C2268C6B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m */,
-				C2268C6F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.h */,
-				C2268C831FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m */,
+				C2F8C8391FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.h */,
+				C2F8C83A1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m */,
 			);
 			path = ZZFlexibleLayoutViewController;
 			sourceTree = "<group>";
@@ -701,7 +701,6 @@
 				C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */,
 				C27E9F6B1FCE61840062C896 /* TLUser.m in Sources */,
 				C2268CA81FCC3CFF00C98EA7 /* ZZFLEXChainViewArrayModel.m in Sources */,
-				C2268CAF1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */,
 				C2268CF51FCC3FF500C98EA7 /* ZZSwitchChainModel.m in Sources */,
 				C2268CA41FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m in Sources */,
 				C2268CF01FCC3FF500C98EA7 /* ZZButtonChainModel.m in Sources */,
@@ -709,6 +708,7 @@
 				C2863A9E1FCCFD52008BC3C0 /* ZZFDMainViewController.m in Sources */,
 				C2268CAC1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m in Sources */,
 				C2268CD21FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m in Sources */,
+				C2F8C83B1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */,
 				C27E9F4E1FCE609C0062C896 /* ZZFDGoodListModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -53,9 +53,11 @@
         .masonry(^ (MASConstraintMaker *make) {
             make.left.top.mas_equalTo(15);
             make.bottom.mas_equalTo(-15);
-            make.width.mas_equalTo(self.imageView.mas_height);
         })
         .view;
+        [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(self.imageView.mas_height);
+        }];
         
         self.titleLabel = self.contentView.addLabel(1002)
         .numberOfLines(2)

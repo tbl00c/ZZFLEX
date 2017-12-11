@@ -26,7 +26,7 @@ ZZFLEXRequestQueue设计用来保证这种业务场景下，按既定顺序依�
 "
 
 #define     TITLE_ZZFLEX_VE                 @"\
-UIView+ZZFLEX 是使用链式API实现的快速编写UI代码的拓展，旨在实现View级别的模块化。\
+UIView+ZZFLEX 是一个提供链式API快速实现UI编写与布局的拓展，旨在实现View级别的模块化。\
 "
 
 #endif /* ZZFDMainTitles_h */

@@ -75,6 +75,45 @@
     return self.data.count - 1;
 }
 
+- (NSInteger)insertSectionWithTag:(NSInteger)tag toIndex:(NSInteger)index
+{
+    return [self insertSectionWithTag:tag toIndex:index minimumInteritemSpacing:0 minimumLineSpacing:0 sectionInsets:UIEdgeInsetsMake(0, 0, 0, 0) backgroundColor:nil];
+}
+
+- (NSInteger)insertSectionWithTag:(NSInteger)tag toIndex:(NSInteger)index minimumInteritemSpacing:(CGFloat)minimumInteritemSpacing minimumLineSpacing:(CGFloat)minimumLineSpacing sectionInsets:(UIEdgeInsets)sectionInsets backgroundColor:(UIColor *)backgroundColor
+{
+    if ([self hasSection:tag]) {
+        NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+    }
+    if (index > self.data.count) {
+        NSLog(@"!!!!! 插入section：index越界");
+        return -1;
+    }
+    ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
+    sectionModel.sectionTag = tag;
+    sectionModel.minimumInteritemSpacing = minimumInteritemSpacing;
+    sectionModel.minimumLineSpacing = minimumLineSpacing;
+    sectionModel.sectionInsets = sectionInsets;
+    sectionModel.backgroundColor = backgroundColor;
+    [self.data insertObject:sectionModel atIndex:index];
+    return index;
+}
+
+- (BOOL)hasSection:(NSInteger)tag
+{
+    return [self sectionModelForTag:tag] ? YES : NO;
+}
+
+- (BOOL)deleteSection:(NSInteger)tag
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:tag];
+    if (sectionModel) {
+        [self.data removeObject:sectionModel];
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - # Header Footer
 - (BOOL)setSectionHeaderViewWithModel:(id)model forSection:(NSInteger)sectionTag className:(NSString *)className
 {
@@ -146,6 +185,52 @@
         [indexPaths addObject:[NSIndexPath indexPathForItem:row++ inSection:section]];
     }
     return indexPaths.count > 0 ? indexPaths : nil;
+}
+
+/// 为指定section插入cell（失败返回nil）
+- (NSIndexPath *)insertCellWithModel:(id)model forSection:(NSInteger)sectionTag className:(NSString *)className pos:(NSInteger)pos
+{
+    return [self insertCellWithModel:model forSection:sectionTag className:className tag:TAG_CELL_NONE pos:pos];
+}
+
+- (NSIndexPath *)insertCellWithModel:(id)model forSection:(NSInteger)sectionTag className:(NSString *)className tag:(NSInteger)tag pos:(NSInteger)pos
+{
+    NSArray *indexPaths = [self insertCellsWithModelArray:@[(model ? model : [NSNull null])] forSection:sectionTag className:className tag:tag pos:pos];
+    return indexPaths.count > 0 ? indexPaths[0] : nil;
+}
+
+/// 为指定section批量添加
+- (NSArray<NSIndexPath *> *)insertCellsWithModelArray:(NSArray *)modelArray forSection:(NSInteger)sectionTag className:(NSString *)className pos:(NSInteger)pos
+{
+    return [self insertCellsWithModelArray:modelArray forSection:sectionTag className:className tag:TAG_CELL_NONE pos:pos];
+}
+
+- (NSArray<NSIndexPath *> *)insertCellsWithModelArray:(NSArray *)modelArray forSection:(NSInteger)sectionTag className:(NSString *)className tag:(NSInteger)tag pos:(NSInteger)pos
+{
+    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
+    if (sectionModel && pos <= sectionModel.itemsArray.count) {
+        return [self p_insertCellsWithModelArray:modelArray forSection:sectionModel className:className tag:tag pos:pos];
+    }
+    return nil;
+}
+
+- (NSArray<NSIndexPath *> *)p_insertCellsWithModelArray:(NSArray *)modelArray forSection:(ZZFlexibleLayoutSectionModel *)sectionModel className:(NSString *)className tag:(NSInteger)tag pos:(NSInteger)pos
+{
+    RegisterCollectionViewCell(self.collectionView, className);
+    if (modelArray.count == 0 || !sectionModel) {
+        return nil;
+    }
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    NSInteger section = [self.data indexOfObject:sectionModel];
+    if (pos <= sectionModel.count) {
+        for (id model in modelArray) {
+            ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithClassName:className andDataModel:model viewTag:tag];
+            [sectionModel insertObject:viewModel atIndex:pos];
+            [indexPaths addObject:[NSIndexPath indexPathForItem:pos++ inSection:section]];
+        }
+        return indexPaths.count > 0 ? indexPaths : nil;
+    }
+    return nil;
 }
 
 @end

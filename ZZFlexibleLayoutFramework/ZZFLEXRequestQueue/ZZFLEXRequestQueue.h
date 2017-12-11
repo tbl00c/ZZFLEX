@@ -16,8 +16,10 @@
  */
 @interface ZZFLEXRequestQueue : NSObject
 
+/// 是否正在请求中
 @property (nonatomic, assign, readonly) BOOL isRuning;
 
+/// 请求队列元素个数
 @property (nonatomic, assign, readonly) NSInteger requestCount;
 
 - (void)addRequestModel:(ZZFLEXRequestModel *)model;

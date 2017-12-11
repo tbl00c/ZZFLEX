@@ -13,6 +13,7 @@
 #import "ZZImageViewChainModel.h"
 
 #import "ZZControlChainModel.h"
+#import "ZZTextFieldChainModel.h"
 #import "ZZButtonChainModel.h"
 #import "ZZSwitchChainModel.h"
 
@@ -36,6 +37,9 @@ ZZFLEX_VIEW_CHAIN_TYPE ZZImageViewChainModel *(^ addImageView)(NSInteger tag);
 #pragma mark - # 按钮类
 /// 添加Control
 ZZFLEX_VIEW_CHAIN_TYPE ZZControlChainModel *(^ addControl)(NSInteger tag);
+
+/// 添加TextField
+ZZFLEX_VIEW_CHAIN_TYPE ZZTextFieldChainModel *(^ addTextField)(NSInteger tag);
 
 /// 添加Button
 ZZFLEX_VIEW_CHAIN_TYPE ZZButtonChainModel *(^ addButton)(NSInteger tag);

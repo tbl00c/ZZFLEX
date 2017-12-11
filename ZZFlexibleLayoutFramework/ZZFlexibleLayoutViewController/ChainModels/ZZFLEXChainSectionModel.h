@@ -13,19 +13,69 @@
 #import <UIKit/UIKit.h>
 
 @class ZZFlexibleLayoutSectionModel;
-@interface ZZFLEXChainSectionModel : NSObject
+
+#pragma mark - ## ZZFLEXChainSectionBaseModel (基类)
+@interface ZZFLEXChainSectionBaseModel<ZZFLEXReturnType> : NSObject
 
 /// 最小行间距
-- (ZZFLEXChainSectionModel *(^)(CGFloat minimumLineSpacing))minimumLineSpacing;
+- (ZZFLEXReturnType (^)(CGFloat minimumLineSpacing))minimumLineSpacing;
 /// 最小元素间距
-- (ZZFLEXChainSectionModel *(^)(CGFloat minimumInteritemSpacing))minimumInteritemSpacing;
+- (ZZFLEXReturnType (^)(CGFloat minimumInteritemSpacing))minimumInteritemSpacing;
 /// sectionInsets
-- (ZZFLEXChainSectionModel *(^)(UIEdgeInsets sectionInsets))sectionInsets;
+- (ZZFLEXReturnType (^)(UIEdgeInsets sectionInsets))sectionInsets;
 /// backgrounColor
-- (ZZFLEXChainSectionModel *(^)(UIColor *backgrounColor))backgrounColor;
+- (ZZFLEXReturnType (^)(UIColor *backgrounColor))backgrounColor;
 
-
-#pragma mark - 框架内部使用
-- (id)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel;
+/// 框架内部使用
+- (instancetype)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel;
 
 @end
+
+#pragma mark - ## ZZFLEXChainSectionModel （添加）
+@class ZZFLEXChainSectionModel;
+@interface ZZFLEXChainSectionModel : ZZFLEXChainSectionBaseModel <ZZFLEXChainSectionModel *>
+
+@end
+
+#pragma mark - ## ZZFLEXChainSectionEditModel （编辑）
+@class ZZFLEXChainSectionEditModel;
+@interface ZZFLEXChainSectionEditModel : ZZFLEXChainSectionBaseModel <ZZFLEXChainSectionEditModel *>
+
+/// 清空所有视图和cell
+- (ZZFLEXChainSectionEditModel *(^)(void))clear;
+
+/// 清空所有cell
+- (ZZFLEXChainSectionEditModel *(^)(void))clearAllCells;
+
+/// 删除指定tag的cell（所有该tag的cell）
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteCellsForTag;
+
+/// 更新视图和cell高度
+- (ZZFLEXChainSectionEditModel *(^)(void))update;
+
+/// 更新cell高度
+- (ZZFLEXChainSectionEditModel *(^)(void))updateAllCells;
+
+/// 更新指定tag的cell高度（所有该tag的cell）
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateCellsForTag;
+
+@end
+
+#pragma mark - ## ZZFLEXChainSectionInsertModel （插入）
+@class ZZFLEXChainSectionInsertModel;
+@interface ZZFLEXChainSectionInsertModel : ZZFLEXChainSectionBaseModel <ZZFLEXChainSectionInsertModel *>
+
+/// 插入到指定Index
+- (ZZFLEXChainSectionInsertModel *(^)(NSInteger index))toIndex;
+
+/// 插入到某个section前
+- (ZZFLEXChainSectionInsertModel *(^)(NSInteger sectionTag))beforeSection;
+
+/// 插入到某个section后
+- (ZZFLEXChainSectionInsertModel *(^)(NSInteger sectionTag))afterSection;
+
+/// 框架内部使用
+- (instancetype)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel listData:(NSMutableArray *)listData;
+
+@end
+

@@ -13,6 +13,7 @@
 - (id)init
 {
     if (self = [super init]) {
+        _itemsArray = [[NSMutableArray alloc] init];
         self.minimumLineSpacing = 0.0f;
         self.minimumInteritemSpacing = 0.0f;
         self.sectionInsets = UIEdgeInsetsZero;
@@ -33,14 +34,6 @@
 }
 
 #pragma mark - # Items
-- (NSMutableArray *)itemsArray
-{
-    if (!_itemsArray) {
-        _itemsArray = [[NSMutableArray alloc] init];
-    }
-    return _itemsArray;
-}
-
 - (NSUInteger)count
 {
     return self.itemsArray.count;
@@ -49,7 +42,7 @@
 - (void)addObject:(ZZFlexibleLayoutViewModel *)object
 {
     if (!object) {
-        object = [NSNull null];
+        object = (ZZFlexibleLayoutViewModel *)[NSNull null];
     }
     [self.itemsArray addObject:object];
 }
@@ -62,6 +55,11 @@
 - (void)insertObject:(ZZFlexibleLayoutViewModel *)object atIndex:(NSUInteger)objectIndex;
 {
     [self.itemsArray insertObject:object atIndex:objectIndex];
+}
+
+- (void)insertObjects:(NSArray<ZZFlexibleLayoutViewModel *> *)objects atIndexes:(NSIndexSet *)indexes
+{
+    [self.itemsArray insertObjects:objects atIndexes:indexes];
 }
 
 - (id)objectAtIndex:(NSUInteger)index

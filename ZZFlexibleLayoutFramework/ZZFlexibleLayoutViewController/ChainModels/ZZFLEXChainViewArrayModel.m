@@ -9,22 +9,22 @@
 #import "ZZFLEXChainViewArrayModel.h"
 #import "ZZFlexibleLayoutSectionModel.h"
 
-@interface ZZFLEXChainViewArrayModel()
-
-@property (nonatomic, assign) BOOL hasSectionValue;
+#pragma mark - ## ZZFLEXChainViewArrayBaseModel
+@interface ZZFLEXChainViewArrayBaseModel()
 
 @property (nonatomic, strong) NSString *className;
 @property (nonatomic, strong) NSMutableArray *listData;
+
 @property (nonatomic, strong) NSMutableArray *viewModelArray;
+@property (nonatomic, strong) ZZFlexibleLayoutSectionModel *sectionModel;
 @property (nonatomic, weak) id itemsDelegate;
 @property (nonatomic, copy) id (^itemsEventAction)(NSInteger actionType, id data);
 @property (nonatomic, copy) void (^itemsSelectedAction)(id data);
 @property (nonatomic, assign) NSInteger tag;
-@property (nonatomic, assign) NSInteger section;
 
 @end
 
-@implementation ZZFLEXChainViewArrayModel
+@implementation ZZFLEXChainViewArrayBaseModel
 
 - (id)initWithClassName:(NSString *)className listData:(NSMutableArray *)listData
 {
@@ -36,14 +36,15 @@
     return self;
 }
 
-- (ZZFLEXChainViewArrayModel *(^)(NSInteger section))toSection
+- (id (^)(NSInteger section))toSection
 {
-    self.hasSectionValue = YES;
     return ^(NSInteger section) {
-        self.section = section;
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
             if (sectionModel.sectionTag == section) {
-                [sectionModel addObjectsFromArray:self.viewModelArray];
+                self.sectionModel = sectionModel;
+                if (self.viewModelArray.count > 0) {
+                    [sectionModel addObjectsFromArray:self.viewModelArray];
+                }
                 break;
             }
         }
@@ -51,7 +52,7 @@
     };
 }
 
-- (ZZFLEXChainViewArrayModel *(^)(NSArray *dataModelArray))withDataModelArray
+- (id (^)(NSArray *dataModelArray))withDataModelArray
 {
     return ^(NSArray *dataModelArray) {
         for (id model in dataModelArray) {
@@ -64,14 +65,14 @@
             [viewModel setSelectedAction:self.itemsSelectedAction];
             [self.viewModelArray addObject:viewModel];
         }
-        if (self.hasSectionValue) {
-            self.toSection(self.section);
+        if (self.sectionModel) {
+            [self.sectionModel addObjectsFromArray:self.viewModelArray];
         }
         return self;
     };
 }
 
-- (ZZFLEXChainViewArrayModel *(^)(id delegate))delegate
+- (id (^)(id delegate))delegate
 {
     return ^(id delegate) {
         [self setItemsDelegate:delegate];
@@ -79,7 +80,7 @@
     };
 }
 
-- (ZZFLEXChainViewArrayModel *(^)(id ((^)(NSInteger actionType, id data))))eventAction
+- (id (^)(id ((^)(NSInteger actionType, id data))))eventAction
 {
     return ^(id ((^eventAction)(NSInteger actionType, id data))) {
         [self setItemsEventAction:eventAction];
@@ -87,7 +88,7 @@
     };
 }
 
-- (ZZFLEXChainViewArrayModel *(^)(void ((^)(id data))))selectedAction
+- (id (^)(void ((^)(id data))))selectedAction
 {
     return ^(void ((^selectedAction)(id data))) {
         [self setItemsSelectedAction:selectedAction];
@@ -95,7 +96,7 @@
     };
 }
 
-- (ZZFLEXChainViewArrayModel *(^)(NSInteger viewTag))viewTag
+- (id (^)(NSInteger viewTag))viewTag
 {
     return ^(NSInteger viewTag) {
         [self setTag:viewTag];
@@ -135,5 +136,125 @@
         [viewModel setViewTag:tag];
     }
 }
+
+@end
+
+#pragma mark - ## ZZFLEXChainViewArrayModel
+@implementation ZZFLEXChainViewArrayModel
+
+@end
+
+#pragma mark - ## ZZFLEXChainViewArrayInsertModel
+typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
+    ZZFLEXInsertArrayDataStatusIndex = 1 << 0,
+    ZZFLEXInsertArrayDataStatusBefore = 1 << 1,
+    ZZFLEXInsertArrayDataStatusAfter = 1 << 2,
+};
+
+@interface ZZFLEXChainViewArrayInsertModel ()
+
+@property (nonatomic, assign) ZZFLEXInsertArrayDataStatus status;
+
+@property (nonatomic, assign) NSInteger insertTag;
+
+@end
+
+@implementation ZZFLEXChainViewArrayInsertModel
+
+- (id (^)(NSArray *dataModelArray))withDataModelArray
+{
+    return ^(NSArray *dataModelArray) {
+        for (id model in dataModelArray) {
+            ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
+            [viewModel setClassName:self.className];
+            [viewModel setDataModel:model];
+            [viewModel setViewTag:self.tag];
+            [viewModel setDelegate:self.itemsDelegate];
+            [viewModel setEventAction:self.itemsEventAction];
+            [viewModel setSelectedAction:self.itemsSelectedAction];
+            [self.viewModelArray addObject:viewModel];
+        }
+        
+        [self p_tryInsertCells];
+        return self;
+    };
+}
+
+- (id (^)(NSInteger section))toSection
+{
+    return ^(NSInteger section) {
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
+            if (sectionModel.sectionTag == section) {
+                self.sectionModel = sectionModel;
+                break;
+            }
+        }
+        
+        [self p_tryInsertCells];
+        return self;
+    };
+}
+
+
+- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger index))atIndex
+{
+    return ^(NSInteger index) {
+        self.status |= ZZFLEXInsertArrayDataStatusIndex;
+        self.insertTag = index;
+        
+        [self p_tryInsertCells];
+        return self;
+    };
+}
+
+- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger sectionTag))beforeCell
+{
+    return ^(NSInteger sectionTag) {
+        self.status |= ZZFLEXInsertArrayDataStatusBefore;
+        self.insertTag = sectionTag;
+        
+        [self p_tryInsertCells];
+        return self;
+    };
+}
+
+- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger sectionTag))afterCell
+{
+    return ^(NSInteger sectionTag) {
+        self.status |= ZZFLEXInsertArrayDataStatusAfter;
+        self.insertTag = sectionTag;
+        
+        [self p_tryInsertCells];
+        return self;
+    };
+}
+
+- (void)p_tryInsertCells
+{
+    if (!self.sectionModel || self.viewModelArray.count == 0) {
+        return;
+    }
+    NSInteger index = -1;
+    if (self.status & ZZFLEXInsertArrayDataStatusIndex) {
+        index = self.insertTag;
+    }
+    else if ((self.status & ZZFLEXInsertArrayDataStatusBefore)|| (self.status & ZZFLEXInsertArrayDataStatusAfter)) {
+        for (NSInteger i = 0; i < self.sectionModel.itemsArray.count; i++) {
+            ZZFlexibleLayoutViewModel *viewModel = [self.sectionModel objectAtIndex:i];
+            if (viewModel.viewTag == self.insertTag) {
+                index = (self.status & ZZFLEXInsertArrayDataStatusBefore) ? i : i + 1;
+                break;
+            }
+        }
+    }
+    
+    if (index >= 0 && index < self.sectionModel.count) {
+        NSRange range = NSMakeRange(index, [self.viewModelArray count]);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.sectionModel insertObjects:self.viewModelArray atIndexes:indexSet];
+        self.status = 0;
+    }
+}
+
 
 @end

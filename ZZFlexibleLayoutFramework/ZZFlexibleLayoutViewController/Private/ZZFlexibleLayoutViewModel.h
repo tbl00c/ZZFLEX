@@ -46,8 +46,8 @@
 - (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewTag:(NSInteger)viewTag;
 
 /**
- *  重新计算cell高度
+ *  重新计算视图高度
  */
-- (void)updateCellHeight;
+- (void)updateViewHeight;
 
 @end

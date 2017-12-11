@@ -12,26 +12,50 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZZFLEXChainViewArrayModel : NSObject
+#pragma mark - ## ZZFLEXChainViewArrayBaseModel
+@interface ZZFLEXChainViewArrayBaseModel<ZZFLEXReturnType> : NSObject
 
 /// 将cells添加到某个section
-- (ZZFLEXChainViewArrayModel *(^)(NSInteger section))toSection;
+- (ZZFLEXReturnType (^)(NSInteger section))toSection;
 
 /// cells的数据源
-- (ZZFLEXChainViewArrayModel *(^)(NSArray *dataModelArray))withDataModelArray;
+- (ZZFLEXReturnType (^)(NSArray *dataModelArray))withDataModelArray;
 
 /// cells内部事件deledate，与blcok二选一即可
-- (ZZFLEXChainViewArrayModel *(^)(id delegate))delegate;
+- (ZZFLEXReturnType (^)(id delegate))delegate;
 /// cells内部事件block，与deledate二选一即可
-- (ZZFLEXChainViewArrayModel *(^)(id ((^)(NSInteger actionType, id data))))eventAction;
+- (ZZFLEXReturnType (^)(id ((^)(NSInteger actionType, id data))))eventAction;
 
 /// cells selected事件
-- (ZZFLEXChainViewArrayModel *(^)(void ((^)(id data))))selectedAction;
+- (ZZFLEXReturnType (^)(void ((^)(id data))))selectedAction;
 
 /// cells tag
-- (ZZFLEXChainViewArrayModel *(^)(NSInteger viewTag))viewTag;
+- (ZZFLEXReturnType (^)(NSInteger viewTag))viewTag;
 
 #pragma mark - 框架内部使用
 - (id)initWithClassName:(NSString *)className listData:(NSMutableArray *)listData;
+
+@end
+
+#pragma mark - ## ZZFLEXChainViewArrayModel
+@class ZZFLEXChainViewArrayModel;
+@interface ZZFLEXChainViewArrayModel : ZZFLEXChainViewArrayBaseModel<ZZFLEXChainViewArrayModel *>
+
+
+@end
+
+#pragma mark - ## ZZFLEXChainViewArrayInsertModel
+@class ZZFLEXChainViewArrayInsertModel;
+@interface ZZFLEXChainViewArrayInsertModel : ZZFLEXChainViewArrayBaseModel<ZZFLEXChainViewArrayInsertModel *>
+
+/// 插入到指定Index
+- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger index))atIndex;
+
+/// 插入到某个cell前
+- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger sectionTag))beforeCell;
+
+/// 插入到某个cell后
+- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger sectionTag))afterCell;
+
 
 @end

@@ -27,7 +27,7 @@
         if (className.length > 0) {
             _viewClass = NSClassFromString(className);
         }
-        [self updateCellHeight];
+        [self updateViewHeight];
     }
     return self;
 }
@@ -35,7 +35,7 @@
 - (void)setDataModel:(id)dataModel
 {
     _dataModel = dataModel;
-    [self updateCellHeight];
+    [self updateViewHeight];
 }
 
 - (id)dataModel
@@ -52,10 +52,10 @@
     if (className.length > 0) {
         _viewClass = NSClassFromString(className);
     }
-    [self updateCellHeight];
+    [self updateViewHeight];
 }
 
-- (void)updateCellHeight
+- (void)updateViewHeight
 {
     if (self.viewClass && [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewSizeByDataModel:)]) {
         id dataModel = [self.dataModel isKindOfClass:[NSNull class]] ? nil : self.dataModel;

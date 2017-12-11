@@ -27,6 +27,7 @@ ZZFLEX_VE_API(addImageView, ZZImageViewChainModel, UIImageView);
 
 #pragma mark - # 按钮类
 ZZFLEX_VE_API(addControl, ZZControlChainModel, UIControl);
+ZZFLEX_VE_API(addTextField, ZZTextFieldChainModel, UITextField);
 ZZFLEX_VE_API(addButton, ZZButtonChainModel, UIButton);
 ZZFLEX_VE_API(addSwitch, ZZSwitchChainModel, UISwitch);
 

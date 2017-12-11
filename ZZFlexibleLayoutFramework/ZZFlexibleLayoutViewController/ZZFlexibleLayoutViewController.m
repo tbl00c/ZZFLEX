@@ -88,10 +88,10 @@
 - (void)updateSectionForTag:(NSInteger)sectionTag
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
-    [sectionModel.headerViewModel updateCellHeight];
-    [sectionModel.footerViewModel updateCellHeight];
+    [sectionModel.headerViewModel updateViewHeight];
+    [sectionModel.footerViewModel updateViewHeight];
     for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
-        [viewModel updateCellHeight];
+        [viewModel updateViewHeight];
     }
 }
 
@@ -118,7 +118,7 @@
 {
     NSArray<ZZFlexibleLayoutViewModel *> *viewModels = [self viewModelsAtIndexPaths:indexPaths];
     for (ZZFlexibleLayoutViewModel *viewModel in viewModels) {
-        [viewModel updateCellHeight];
+        [viewModel updateViewHeight];
     }
 }
 
@@ -185,11 +185,16 @@
 }
 
 #pragma mark - # Section操作
+/// 添加section
 - (ZZFLEXChainSectionModel *(^)(NSInteger tag))addSection
 {
     @weakify(self);
     return ^(NSInteger tag){
         @strongify(self);
+        if (self.hasSection(tag)) {
+            NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+        }
+        
         ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
         sectionModel.sectionTag = tag;
         
@@ -199,7 +204,25 @@
     };
 }
 
-- (ZZFLEXChainSectionModel *(^)(NSInteger tag))sectionForTag
+- (ZZFLEXChainSectionInsertModel *(^)(NSInteger tag))insertSection
+{
+    @weakify(self);
+    return ^(NSInteger tag){
+        @strongify(self);
+        if (self.hasSection(tag)) {
+            NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+        }
+        
+        ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
+        sectionModel.sectionTag = tag;
+
+        ZZFLEXChainSectionInsertModel *chainSectionModel = [[ZZFLEXChainSectionInsertModel alloc] initWithSectionModel:sectionModel listData:self.data];
+        return chainSectionModel;
+    };
+}
+
+/// 获取section
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))sectionForTag
 {
     @weakify(self);
     return ^(NSInteger tag){
@@ -207,46 +230,38 @@
         ZZFlexibleLayoutSectionModel *sectionModel = nil;
         for (sectionModel in self.data) {
             if (sectionModel.sectionTag == tag) {
-                ZZFLEXChainSectionModel *chainSectionModel = [[ZZFLEXChainSectionModel alloc] initWithSectionModel:sectionModel];
+                ZZFLEXChainSectionEditModel *chainSectionModel = [[ZZFLEXChainSectionEditModel alloc] initWithSectionModel:sectionModel];
                 return chainSectionModel;
             }
         }
-        return self.addSection(tag);
+        return [[ZZFLEXChainSectionEditModel alloc] initWithSectionModel:nil];
     };
 }
 
-- (NSInteger)insertSectionWithTag:(NSInteger)tag toIndex:(NSInteger)index
+/// 删除section
+- (BOOL (^)(NSInteger tag))deleteSection
 {
-    return [self insertSectionWithTag:tag toIndex:index minimumInteritemSpacing:0 minimumLineSpacing:0 sectionInsets:UIEdgeInsetsMake(0, 0, 0, 0) backgroundColor:nil];
+    @weakify(self);
+    return ^(NSInteger tag) {
+        @strongify(self);
+        ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:tag];
+        if (sectionModel) {
+            [self.data removeObject:sectionModel];
+            return YES;
+        }
+        return NO;
+    };
 }
 
-- (NSInteger)insertSectionWithTag:(NSInteger)tag toIndex:(NSInteger)index minimumInteritemSpacing:(CGFloat)minimumInteritemSpacing minimumLineSpacing:(CGFloat)minimumLineSpacing sectionInsets:(UIEdgeInsets)sectionInsets backgroundColor:(UIColor *)backgroundColor
+/// 判断section是否存在
+- (BOOL (^)(NSInteger tag))hasSection
 {
-    if ([self hasSection:tag]) {
-        NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
-    }
-    if (index > self.data.count) {
-        NSLog(@"!!!!! 插入section：index越界");
-        return -1;
-    }
-    ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
-    sectionModel.sectionTag = tag;
-    sectionModel.minimumInteritemSpacing = minimumInteritemSpacing;
-    sectionModel.minimumLineSpacing = minimumLineSpacing;
-    sectionModel.sectionInsets = sectionInsets;
-    sectionModel.backgroundColor = backgroundColor;
-    [self.data insertObject:sectionModel atIndex:index];
-    return index;
-}
-
-- (BOOL)deleteSection:(NSInteger)tag
-{
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:tag];
-    if (sectionModel) {
-        [self.data removeObject:sectionModel];
-        return YES;
-    }
-    return NO;
+    @weakify(self);
+    return ^(NSInteger tag) {
+        @strongify(self);
+        BOOL hasSection = [self sectionModelForTag:tag] ? YES : NO;
+        return hasSection;
+    };
 }
 
 - (BOOL)deleteAllItemsForSection:(NSInteger)tag
@@ -255,7 +270,7 @@
     if (sectionModel) {
         sectionModel.headerViewModel = nil;
         sectionModel.footerViewModel = nil;
-        sectionModel.itemsArray = nil;
+        [sectionModel.itemsArray removeAllObjects];
         return YES;
     }
     return NO;
@@ -264,7 +279,7 @@
 - (BOOL)deleteAllCellsForSection:(NSInteger)tag {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:tag];
     if (sectionModel) {
-        sectionModel.itemsArray = nil;
+        [sectionModel.itemsArray removeAllObjects];
         return YES;
     }
     return NO;
@@ -276,16 +291,6 @@
     return YES;
 }
 
-- (BOOL)hasSection:(NSInteger)tag
-{
-    return [self sectionModelForTag:tag] != nil;
-}
-
-- (BOOL)hasSectionAtIndex:(NSInteger)sectionIndex
-{
-    return sectionIndex < self.data.count;
-}
-
 #pragma mark - # Section View 操作
 //MARK: Header
 - (ZZFLEXChainViewModel *(^)(NSString *className))setHeader
@@ -293,8 +298,11 @@
     @weakify(self);
     return ^(NSString *className) {
         @strongify(self);
-        ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-        viewModel.className = className;
+        ZZFlexibleLayoutViewModel *viewModel;
+        if (className) {
+            viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
+            viewModel.className = className;
+        }
         RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionHeader, className);
         ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeHeader];
         return chainViewModel;
@@ -307,24 +315,17 @@
     return sectionModel.headerViewModel.dataModel;
 }
 
-- (BOOL)deleteSectionHeaderView:(NSInteger)sectionTag
-{
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
-    if (sectionModel) {
-        sectionModel.headerViewModel = nil;
-        return YES;
-    }
-    return NO;
-}
-
 //MARK: Footer
 - (ZZFLEXChainViewModel *(^)(NSString *className))setFooter
 {
     @weakify(self);
     return ^(NSString *className) {
         @strongify(self);
-        ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-        viewModel.className = className;
+        ZZFlexibleLayoutViewModel *viewModel;
+        if (className) {
+            viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
+            viewModel.className = className;
+        }
         RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionFooter, className);
         ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeFooter];
         return chainViewModel;
@@ -335,16 +336,6 @@
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
     return sectionModel.footerViewModel.dataModel;
-}
-
-- (BOOL)deleteSectionFooterView:(NSInteger)sectionTag
-{
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
-    if (sectionModel) {
-        sectionModel.footerViewModel = nil;
-        return YES;
-    }
-    return NO;
 }
 
 #pragma mark - # Cell 操作
@@ -363,7 +354,7 @@
 }
 
 /// 批量添加cell
-- (ZZFLEXChainViewArrayModel *(^)(NSString *className))addCells;
+- (ZZFLEXChainViewArrayModel *(^)(NSString *className))addCells
 {
     @weakify(self);
     return ^(NSString *className) {
@@ -388,51 +379,30 @@
     };
 }
 
-
-/// 为指定section插入cell（失败返回nil）
-- (NSIndexPath *)insertCellWithModel:(id)model forSection:(NSInteger)sectionTag className:(NSString *)className pos:(NSInteger)pos
+/// 插入cell
+- (ZZFLEXChainViewInsertModel *(^)(NSString *className))insertCell
 {
-    return [self insertCellWithModel:model forSection:sectionTag className:className tag:TAG_CELL_NONE pos:pos];
+    @weakify(self);
+    return ^(NSString *className) {
+        @strongify(self);
+        RegisterCollectionViewCell(self.collectionView, className);
+        ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
+        viewModel.className = className;
+        ZZFLEXChainViewInsertModel *chainViewModel = [[ZZFLEXChainViewInsertModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
+        return chainViewModel;
+    };
 }
 
-- (NSIndexPath *)insertCellWithModel:(id)model forSection:(NSInteger)sectionTag className:(NSString *)className tag:(NSInteger)tag pos:(NSInteger)pos
+/// 批量插入cells
+- (ZZFLEXChainViewArrayInsertModel *(^)(NSString *className))insertCells
 {
-    NSArray *indexPaths = [self insertCellsWithModelArray:@[(model ? model : [NSNull null])] forSection:sectionTag className:className tag:tag pos:pos];
-    return indexPaths.count > 0 ? indexPaths[0] : nil;
-}
-
-/// 为指定section批量添加
-- (NSArray<NSIndexPath *> *)insertCellsWithModelArray:(NSArray *)modelArray forSection:(NSInteger)sectionTag className:(NSString *)className pos:(NSInteger)pos
-{
-    return [self insertCellsWithModelArray:modelArray forSection:sectionTag className:className tag:TAG_CELL_NONE pos:pos];
-}
-
-- (NSArray<NSIndexPath *> *)insertCellsWithModelArray:(NSArray *)modelArray forSection:(NSInteger)sectionTag className:(NSString *)className tag:(NSInteger)tag pos:(NSInteger)pos
-{
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
-    if (sectionModel && pos <= sectionModel.itemsArray.count) {
-        return [self p_insertCellsWithModelArray:modelArray forSection:sectionModel className:className tag:tag pos:pos];
-    }
-    return nil;
-}
-
-- (NSArray<NSIndexPath *> *)p_insertCellsWithModelArray:(NSArray *)modelArray forSection:(ZZFlexibleLayoutSectionModel *)sectionModel className:(NSString *)className tag:(NSInteger)tag pos:(NSInteger)pos
-{
-    RegisterCollectionViewCell(self.collectionView, className);
-    if (modelArray.count == 0 || !sectionModel) {
-        return nil;
-    }
-    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-    NSInteger section = [self.data indexOfObject:sectionModel];
-    if (pos <= sectionModel.count) {
-        for (id model in modelArray) {
-            ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithClassName:className andDataModel:model viewTag:tag];
-            [sectionModel insertObject:viewModel atIndex:pos];
-            [indexPaths addObject:[NSIndexPath indexPathForItem:pos++ inSection:section]];
-        }
-        return indexPaths.count > 0 ? indexPaths : nil;
-    }
-    return nil;
+    @weakify(self);
+    return ^(NSString *className) {
+        @strongify(self);
+        RegisterCollectionViewCell(self.collectionView, className);
+        ZZFLEXChainViewArrayInsertModel *viewModel = [[ZZFLEXChainViewArrayInsertModel alloc] initWithClassName:className listData:self.data];
+        return viewModel;
+    };
 }
 
 /// 根据indexPath删除cell
@@ -679,13 +649,21 @@
             [self scrollToSection:sectionTag position:scrollPosition animated:animated];
         });
     }
-    else if ([self hasSection:sectionTag]) {
+    else if (self.hasSection(sectionTag)) {
         NSInteger section = [self sectionIndexForTag:sectionTag];
         NSUInteger sectionCount = [self.collectionView numberOfSections];
         if (sectionCount > section) {
             NSUInteger itemCount = [self.collectionView numberOfItemsInSection:section];
             if (itemCount > 0) {
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section] atScrollPosition:scrollPosition animated:animated];
+                NSInteger index = 0;
+                if (scrollPosition == UICollectionViewScrollPositionBottom || scrollPosition == UICollectionViewScrollPositionRight) {
+                    scrollPosition = itemCount - 1;
+                }
+                else if (scrollPosition == UICollectionViewScrollPositionCenteredVertically || scrollPosition == UICollectionViewScrollPositionCenteredHorizontally) {
+                    scrollPosition = itemCount / 2.0;
+                }
+                
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:section] atScrollPosition:scrollPosition animated:animated];
             }
         }
     }
@@ -711,7 +689,7 @@
 
 - (void)scrollToSectionIndex:(NSInteger)sectionIndex position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated
 {
-    if ([self hasSectionAtIndex:sectionIndex]) {
+    if (sectionIndex < self.data.count) {
         [self scrollToIndexPath:[NSIndexPath indexPathForItem:0 inSection:sectionIndex] position:scrollPosition animated:animated];
     }
 }

@@ -10,7 +10,6 @@
 #define ZZFlexibleLayoutFramework_h
 
 #import "ZZFlexibleLayoutViewController.h"
-#import "ZZFlexibleLayoutViewController+OldAPI.h"
 
 #import "ZZFlexibleLayoutViewController+EditExtension.h"
 

@@ -12,7 +12,7 @@
 #import "ZZFLEXChainViewArrayModel.h"
 
 /**
- *  动态布局页面框架类 2.0
+ *  动态布局页面框架类 3.0
  *
  *  对UICollectionView的二次封装
  *
@@ -24,6 +24,10 @@
  *  1、优化框架代码结构，此类只保留核心代码，将API、OldAPI拆分到分类中；
  *  2、主要API改为链式，使用更加灵活，原API已经移动到OldAPI分类中
  *  3、Cell模块化支持，使用eventAction代替delegate
+ *
+ *  3.0更新：
+ *  1、加入UIView+ZZFLEX模块
+ *  2、ZZFLEX主要API优化
  */
 
 #define     TAG_CELL_NONE                   0                                               // 默认cell Tag，在未指定时使用
@@ -70,84 +74,76 @@ ZZFlexibleLayoutViewControllerProtocol
 
 @end
 
+
 #pragma mark - ## ZZFlexibleLayoutViewController (API)
 @interface ZZFlexibleLayoutViewController (API)
 
-#pragma mark # 页面刷新
+#pragma mark - # 页面
 /// 刷新页面
 - (void)reloadView;
 
 /// 删除所有元素
 - (BOOL)deleteAllItems;
 
-#pragma mark - # 页面重新布局
-/// 更新section信息
-- (void)updateSectionForTag:(NSInteger)sectionTag;
-/// 更新cell信息，将重新计算高度，但不会reload
-- (void)updateCellsForCellTag:(NSInteger)cellTag;
-- (void)updateCellsForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
-- (void)updateCellAtIndexPath:(NSIndexPath *)indexPath;
-- (void)updateCellsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
-
-#pragma mark - # 数据获取操作
-/// 获取指定单个数据源
-- (id)dataModelAtIndexPath:(NSIndexPath *)indexPath;
-- (id)dataModelForSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
-- (id)dataModelForSection:(NSInteger)sectionTag className:(NSString *)className;
-- (NSArray *)dataModelArrayForSection:(NSInteger)sectionTag;
-- (NSArray *)dataModelArrayForSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
-/// 列表所有的数据源（如添加cell时未指定或传nil，则表现为[NSNull null]）
-- (NSArray *)allDataModelArray;
-
 #pragma mark - # Section操作
 /// 添加section
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainSectionModel *(^addSection)(NSInteger tag);
 
-/// 编辑section属性，若section不存在将自动创建
-ZZFLEX_CHAINAPI_TYPE ZZFLEXChainSectionModel *(^sectionForTag)(NSInteger tag);
-
 /// 插入section
-- (NSInteger)insertSectionWithTag:(NSInteger)tag toIndex:(NSInteger)index;
-- (NSInteger)insertSectionWithTag:(NSInteger)tag toIndex:(NSInteger)index minimumInteritemSpacing:(CGFloat)minimumInteritemSpacing minimumLineSpacing:(CGFloat)minimumLineSpacing sectionInsets:(UIEdgeInsets)sectionInsets backgroundColor:(UIColor *)backgroundColor;
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainSectionInsertModel *(^insertSection)(NSInteger tag);
+
+/// 获取section
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainSectionEditModel *(^sectionForTag)(NSInteger tag);
 
 /// 删除section
-- (BOOL)deleteSection:(NSInteger)tag;
-/// 删除section的所有元素（cell,header,footer）
-- (BOOL)deleteAllItemsForSection:(NSInteger)tag;
-/// 删除section的所有cell（不包括header,footer）
-- (BOOL)deleteAllCellsForSection:(NSInteger)tag;
+ZZFLEX_CHAINAPI_TYPE BOOL (^deleteSection)(NSInteger tag);
 
 /// 判断section是否存在
-- (BOOL)hasSection:(NSInteger)tag;
-/// 判断section index是否存在
-- (BOOL)hasSectionAtIndex:(NSInteger)sectionIndex;
+ZZFLEX_CHAINAPI_TYPE BOOL (^hasSection)(NSInteger tag);
 
-#pragma mark - # Section View 操作
-/// 为section添加headerView
+/// 删除section的所有元素（cell,header,footer），也可使用 self.sectionFotTag(tag).clear();
+- (BOOL)deleteAllItemsForSection:(NSInteger)tag;
+
+/// 删除section的所有cell,也可使用 self.sectionFotTag(tag).clearAllCells()
+- (BOOL)deleteAllCellsForSection:(NSInteger)tag;
+
+/// 更新section信息，也可使用 self.sectionFotTag(tag).update()
+- (void)updateSectionForTag:(NSInteger)sectionTag;
+
+/// 获取section index
+- (NSInteger)sectionIndexForTag:(NSInteger)sectionTag;
+
+#pragma mark - # Section HeaderFooter 操作
+/// 为section添加headerView，传入nil将删除header
 - (ZZFLEXChainViewModel *(^)(NSString *className))setHeader;
-- (id)dataModelForSectionHeader:(NSInteger)sectionTag;
-- (BOOL)deleteSectionHeaderView:(NSInteger)sectionTag;
 
-/// 为section添加footerView
+/// 获取header数据源
+- (id)dataModelForSectionHeader:(NSInteger)sectionTag;
+
+/// 为section添加footerView，传入nil将删除footer
 - (ZZFLEXChainViewModel *(^)(NSString *className))setFooter;
+
+/// 获取footer数据源
 - (id)dataModelForSectionFooter:(NSInteger)sectionTag;
-- (BOOL)deleteSectionFooterView:(NSInteger)sectionTag;
+
 
 #pragma mark - # Section Cell 操作
 /// 添加cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addCell)(NSString *className);
+
 /// 批量添加cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewArrayModel *(^ addCells)(NSString *className);
+
+/// 插入cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewInsertModel *(^ insertCell)(NSString *className);
+
+/// 批量插入cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewArrayInsertModel *(^ insertCells)(NSString *className);
+
+
 /// 添加空白cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addSeperatorCell)(CGSize size, UIColor *color);
 
-/// 为指定section插入cell，非必须不建议使用，建议单独section+addCell代替（失败返回nil）
-- (NSIndexPath *)insertCellWithModel:(id)model forSection:(NSInteger)sectionTag className:(NSString *)className pos:(NSInteger)pos;
-- (NSIndexPath *)insertCellWithModel:(id)model forSection:(NSInteger)sectionTag className:(NSString *)className tag:(NSInteger)tag pos:(NSInteger)pos;
-
-/// 为指定section批量添加，非必须不建议使用，建议单独section+addCell代替（失败返回nil）
-- (NSArray<NSIndexPath *> *)insertCellsWithModelArray:(NSArray *)modelArray forSection:(NSInteger)sectionTag className:(NSString *)className pos:(NSInteger)pos;
-- (NSArray<NSIndexPath *> *)insertCellsWithModelArray:(NSArray *)modelArray forSection:(NSInteger)sectionTag className:(NSString *)className tag:(NSInteger)tag pos:(NSInteger)pos;
 
 /// 根据indexPath删除cell
 - (BOOL)deleteCellAtIndexPath:(NSIndexPath *)indexPath;
@@ -179,13 +175,28 @@ ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addSeperatorCell)(CGSize size, UIC
 - (BOOL)hasCellAtSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
 - (BOOL)hasCellAtIndexPath:(NSIndexPath *)indexPath;
 
+/// 更新cell信息，将重新计算高度，但不会reload
+- (void)updateCellsForCellTag:(NSInteger)cellTag;
+- (void)updateCellsForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
+- (void)updateCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void)updateCellsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+
+
 #pragma mark - # Index获取
-/// 获取section index
-- (NSInteger)sectionIndexForTag:(NSInteger)sectionTag;
 
 /// 获取cell的IndexPaths
 - (NSArray<NSIndexPath *> *)cellIndexPathForCellTag:(NSInteger)cellTag;
 - (NSArray<NSIndexPath *> *)cellIndexPathForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
+
+#pragma mark - # 数据获取操作
+/// 获取指定单个数据源
+- (id)dataModelAtIndexPath:(NSIndexPath *)indexPath;
+- (id)dataModelForSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
+- (id)dataModelForSection:(NSInteger)sectionTag className:(NSString *)className;
+- (NSArray *)dataModelArrayForSection:(NSInteger)sectionTag;
+- (NSArray *)dataModelArrayForSection:(NSInteger)sectionTag cellTag:(NSInteger)cellTag;
+/// 列表所有的数据源（如添加cell时未指定或传nil，则表现为[NSNull null]）
+- (NSArray *)allDataModelArray;
 
 #pragma mark - # 滚动操作
 - (void)scrollToTop:(BOOL)animated;

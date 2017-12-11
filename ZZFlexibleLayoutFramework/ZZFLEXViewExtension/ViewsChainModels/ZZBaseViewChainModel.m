@@ -16,12 +16,16 @@
 {   \
     return ^id ( void (^constraints)(MASConstraintMaker *) ) {  \
         if (self.view.superview) { \
-            dispatch_async(dispatch_get_main_queue(), ^{    \
-                [self.view masonryMethod:constraints];    \
-            });\
+            [self.view masonryMethod:constraints];    \
         }   \
         return self;    \
     };  \
+}
+
+#define     ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(methodName, masonryMethod) \
+- (id (^)( void (^constraints)(MASConstraintMaker *)) )methodName    \
+{   \
+    return self;    \
 }
 
 #define     ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(methodName, ZZParamType) \
@@ -71,6 +75,10 @@ ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(right, CGFloat);
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(masonry, mas_makeConstraints);
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(updateMasonry, mas_updateConstraints);
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(remakeMasonry, mas_remakeConstraints);
+#else
+ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(masonry, mas_makeConstraints);
+ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(updateMasonry, mas_updateConstraints);
+ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(remakeMasonry, mas_remakeConstraints);
 #endif
 
 #pragma mark - # Color
