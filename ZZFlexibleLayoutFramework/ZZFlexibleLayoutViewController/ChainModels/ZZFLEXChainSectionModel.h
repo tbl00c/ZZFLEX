@@ -47,8 +47,11 @@
 /// 清空所有cell
 - (ZZFLEXChainSectionEditModel *(^)(void))clearAllCells;
 
-/// 删除指定tag的cell（所有该tag的cell）
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteCellsForTag;
+/// 删除指定tag的cell
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteCellForTag;
+
+/// 批量删除指定tag的cell（所有该tag的cell）
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteAllCellsForTag;
 
 /// 更新视图和cell高度
 - (ZZFLEXChainSectionEditModel *(^)(void))update;
@@ -56,8 +59,11 @@
 /// 更新cell高度
 - (ZZFLEXChainSectionEditModel *(^)(void))updateAllCells;
 
-/// 更新指定tag的cell高度（所有该tag的cell）
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateCellsForTag;
+/// 更新指定tag的cell高度
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateCellForTag;
+
+/// 批量更新指定tag的cell高度（所有该tag的cell）
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateAllCellsForTag;
 
 @end
 

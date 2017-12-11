@@ -87,7 +87,20 @@
     };
 }
 
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteCellsForTag
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteCellForTag
+{
+    return ^(NSInteger tag) {
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.viewTag == tag) {
+                [self.sectionModel removeObject:viewModel];
+                break;
+            }
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteAllCellsForTag
 {
     return ^(NSInteger tag) {
         NSMutableArray *deleteData = @[].mutableCopy;
@@ -125,7 +138,20 @@
     };
 }
 
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateCellsForTag
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateCellForTag
+{
+    return ^(NSInteger tag) {
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.viewTag == tag) {
+                [viewModel updateViewHeight];
+                break;
+            }
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateAllCellsForTag
 {
     return ^(NSInteger tag) {
         for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {

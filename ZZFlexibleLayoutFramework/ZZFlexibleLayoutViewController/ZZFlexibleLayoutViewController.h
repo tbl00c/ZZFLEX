@@ -95,7 +95,7 @@ ZZFLEX_CHAINAPI_TYPE ZZFLEXChainSectionModel *(^addSection)(NSInteger tag);
 /// 插入section
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainSectionInsertModel *(^insertSection)(NSInteger tag);
 
-/// 获取section
+/// 获取/编辑section
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainSectionEditModel *(^sectionForTag)(NSInteger tag);
 
 /// 删除section
