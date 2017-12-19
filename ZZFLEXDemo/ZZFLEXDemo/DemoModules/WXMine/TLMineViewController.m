@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, TLMineCellTag) {
 #pragma mark - # Private Methods
 - (void)loadMenus
 {
-    [self deleteAllItems];
+    [self clear];
     
     // 用户信息
     TLUser *user = [self defaultUser];

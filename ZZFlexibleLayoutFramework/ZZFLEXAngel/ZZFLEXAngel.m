@@ -30,11 +30,15 @@ void RegisterHostViewCell(__kindof UIScrollView *hostView, NSString *cellName)
 /*
  *  注册ReusableView 到 hostView
  */
-void RegisterHostViewReusableView(UICollectionView *hostView, NSString *kind, NSString *viewName)
+void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kind, NSString *viewName)
 {
-    [hostView registerClass:NSClassFromString(viewName) forSupplementaryViewOfKind:kind withReuseIdentifier:viewName];
+    if ([hostView isKindOfClass:[UITableView class]]) {
+        [(UITableView *)hostView registerClass:NSClassFromString(viewName) forHeaderFooterViewReuseIdentifier:viewName];
+    }
+    else if ([hostView isKindOfClass:[UICollectionView class]]) {
+        [(UICollectionView *)hostView registerClass:NSClassFromString(viewName) forSupplementaryViewOfKind:kind withReuseIdentifier:viewName];
+    }
 }
-
 
 @implementation ZZFLEXAngel
 
@@ -65,11 +69,28 @@ void RegisterHostViewReusableView(UICollectionView *hostView, NSString *kind, NS
 #pragma mark - ## ZZFLEXAngel (API)
 @implementation ZZFLEXAngel (API)
 
-#pragma mark 页面刷新
-- (BOOL)deleteAllItems
+#pragma mark - # 整体
+- (BOOL (^)(void))clear
 {
-    [self.data removeAllObjects];
-    return YES;
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        [self.data removeAllObjects];
+        return YES;
+    };
+}
+
+
+- (BOOL (^)(void))clearAllCells
+{
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+            [sectionModel.itemsArray removeAllObjects];
+        }
+        return YES;
+    };
 }
 
 #pragma mark - # Section操作

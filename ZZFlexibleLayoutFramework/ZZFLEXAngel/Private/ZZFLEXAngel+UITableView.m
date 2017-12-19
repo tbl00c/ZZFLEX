@@ -33,7 +33,7 @@
     
     UITableViewCell<ZZFlexibleLayoutViewProtocol> *cell;
     if (!model || !model.viewClass) {
-        NSLog(@"!!!!! CollectionViewCell不存在，将使用空白Cell：%@", model.className);
+        NSLog(@"!!!!! tableViewCell不存在，将使用空白Cell：%@", model.className);
         cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZZFLEXTableViewEmptyCell class]) forIndexPath:indexPath];
         [cell setTag:model.viewTag];
         return cell;

@@ -108,7 +108,7 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
         // Intro
         {
             NSArray *intro = @[@"ZZFlexibleLayoutViewController 是一个页面级别的实现，这在某些业务场景下还是不够灵活的。",
-                               @"ZZFLEXAngel是ZZFLEXVC核心思想和设计的提炼。我们只需把任意collectionView或者tableView的DataSource和Delegate指向它或它子类的实例，就可以和在ZZFLEXVC中一样使用那些好用的API。"];
+                               @"ZZFLEXAngel是ZZFLEXVC核心思想和设计的提炼。我们只需把任意collectionView/tableView的DataSource和Delegate指向它或它子类的实例，就可以和在ZZFLEXVC中一样使用那些好用的API。"];
             addIntroduceSection(ZZFDMainSectionTypeAgent, @"ZZFLEXAngel", intro);
         }
         
@@ -169,9 +169,8 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
         // Demo
         {
             NSInteger sectionTag = ZZFDMainSectionTypeRQDemo;
-            self.addSection(sectionTag).sectionInsets(demoSectionInset);
+            self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 100, 0));
             self.addCell(menuCell).withDataModel(@"多接口页面 Demo").toSection(sectionTag);
-            self.addCell(menuCell).withDataModel(@"多接口页面 - 接口失败重试 Demo").toSection(sectionTag);
         }
     }
     

@@ -13,6 +13,12 @@
 
 @implementation ZZFlexibleLayoutViewController (OldAPI)
 
+- (BOOL)deleteAllItems
+{
+    [self.data removeAllObjects];
+    return YES;
+}
+
 #pragma mark - # section 操作
 - (NSInteger)addSectionWithTag:(NSInteger)tag
 {

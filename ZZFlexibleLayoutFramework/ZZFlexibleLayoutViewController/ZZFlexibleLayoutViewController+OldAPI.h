@@ -10,6 +10,10 @@
 
 @interface ZZFlexibleLayoutViewController (OldAPI)
 
+
+/// 删除所有元素
+- (BOOL)deleteAllItems;
+
 /// 添加section
 - (NSInteger)addSectionWithTag:(NSInteger)tag;
 - (NSInteger)addSectionWithTag:(NSInteger)tag minimumLineSpacing:(CGFloat)minimumLineSpacing;

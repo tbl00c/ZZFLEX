@@ -37,7 +37,10 @@
 
 #pragma mark - # 整体
 /// 删除所有元素
-- (BOOL)deleteAllItems;
+ZZFLEX_CHAINAPI_TYPE BOOL (^clear)(void);
+
+/// 删除所有Cell
+ZZFLEX_CHAINAPI_TYPE BOOL (^clearAllCells)(void);
 
 #pragma mark - # Section操作
 /// 添加section

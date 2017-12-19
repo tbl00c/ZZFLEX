@@ -9,7 +9,10 @@
 #ifndef ZZFlexibleLayoutFramework_h
 #define ZZFlexibleLayoutFramework_h
 
+#import "ZZFLEXAngel.h"
+
 #import "ZZFlexibleLayoutViewController.h"
+#import "ZZFlexibleLayoutViewController+OldAPI.h"
 
 #import "ZZFlexibleLayoutViewController+EditExtension.h"
 

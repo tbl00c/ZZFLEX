@@ -65,10 +65,28 @@
     }];
 }
 
-- (BOOL)deleteAllItems
+#pragma mark - # 整体
+- (BOOL (^)(void))clear
 {
-    [self.data removeAllObjects];
-    return YES;
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        [self.data removeAllObjects];
+        return YES;
+    };
+}
+
+
+- (BOOL (^)(void))clearAllCells
+{
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+            [sectionModel.itemsArray removeAllObjects];
+        }
+        return YES;
+    };
 }
 
 #pragma mark - # Section操作
