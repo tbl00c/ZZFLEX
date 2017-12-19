@@ -145,13 +145,13 @@ ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addSeperatorCell)(CGSize size, UIC
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainCellEditModel *deleteCell;
 
 /// 删除所有符合条件的cell
-ZZFLEX_CHAINAPI_TYPE ZZFLEXChainAllCellsEditModel *deleteAllCells;
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainAllCellsEditModel *deleteCells;
 
 /// 更新第一个符合条件的cell高度
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainCellEditModel *updateCell;
 
 /// 更新所有符合条件的cell高度
-ZZFLEX_CHAINAPI_TYPE ZZFLEXChainAllCellsEditModel *updateAllCells;
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainAllCellsEditModel *updateCells;
 
 /// 是否包含cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainCellEditModel *hasCell;

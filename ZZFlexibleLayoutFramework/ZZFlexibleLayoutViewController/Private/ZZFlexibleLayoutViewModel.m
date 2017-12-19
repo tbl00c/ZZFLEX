@@ -57,9 +57,15 @@
 
 - (void)updateViewHeight
 {
-    if (self.viewClass && [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewSizeByDataModel:)]) {
+    if (self.viewClass) {
         id dataModel = [self.dataModel isKindOfClass:[NSNull class]] ? nil : self.dataModel;
-        _viewSize = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewSizeByDataModel:dataModel];
+        if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewSizeByDataModel:)]) {
+            _viewSize = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewSizeByDataModel:dataModel];
+        }
+        else if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewHeightByDataModel:)]) {
+            CGFloat height = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewHeightByDataModel:dataModel];
+            _viewSize = CGSizeMake(0, height);
+        }
     }
     else {
         _viewSize = CGSizeZero;

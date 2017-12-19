@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
 - (void)loadView
 {
     [super loadView];
-    [self setTitle:@"转转"];
+    [self setTitle:@"商品列表"];
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
     self.addSection(ZZFDGoodListSectionTypeGood);
 }

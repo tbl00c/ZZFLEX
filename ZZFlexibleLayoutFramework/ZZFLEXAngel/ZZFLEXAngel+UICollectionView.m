@@ -1,33 +1,18 @@
 //
-//  ZZFlexibleLayoutViewController+Kernel.m
-//  zhuanzhuan
+//  ZZFLEXAngel+UICollectionView.m
+//  ZZFLEXDemo
 //
-//  Created by 李伯坤 on 2017/8/15.
-//  Copyright © 2017年 转转. All rights reserved.
+//  Created by 李伯坤 on 2017/12/14.
+//  Copyright © 2017年 李伯坤. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController+Kernel.h"
-#import "ZZFlexibleLayoutViewProtocol.h"
+#import "ZZFLEXAngel+UICollectionView.h"
+#import "ZZFLEXAngel+Private.h"
+#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFlexibleLayoutSeperatorCell.h"
 
-/*
- *  注册cells 到 UICollectionView
- */
-void RegisterCollectionViewCell(UICollectionView *collectionView, NSString *cellName)
-{
-    [collectionView registerClass:NSClassFromString(cellName) forCellWithReuseIdentifier:cellName];
-}
+@implementation ZZFLEXAngel (UICollectionView)
 
-/*
- *  注册ReusableView 到 UICollectionView
- */
-void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSString *kind, NSString *viewName)
-{
-    [collectionView registerClass:NSClassFromString(viewName) forSupplementaryViewOfKind:kind withReuseIdentifier:viewName];
-}
-
-@implementation ZZFlexibleLayoutViewController (Kernel)
-
-#pragma mark - # Kernal
 //MARK: UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -48,7 +33,7 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
     UICollectionViewCell<ZZFlexibleLayoutViewProtocol> *cell;
     if (!model || !model.viewClass) {
         NSLog(@"!!!!! CollectionViewCell不存在，将使用空白Cell：%@", model.className);
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_SEPEARTOR forIndexPath:indexPath];
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZZFlexibleLayoutSeperatorCell class]) forIndexPath:indexPath];
         [cell setTag:model.viewTag];
         return cell;
     }
@@ -78,7 +63,7 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
     if([kind isEqual:UICollectionElementKindSectionHeader]) {
         if (sectionModel.headerViewModel && sectionModel.headerViewModel.viewClass) {
             view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.headerViewModel.className forIndexPath:indexPath];
-
+            
             if ([view respondsToSelector:@selector(setViewDataModel:)]) {
                 [view setViewDataModel:sectionModel.headerViewModel.dataModel];
             }
@@ -94,7 +79,7 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
     else {
         if (sectionModel.footerViewModel && sectionModel.footerViewModel.viewClass) {
             view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.footerViewModel.className forIndexPath:indexPath];
-    
+            
             if ([view respondsToSelector:@selector(setViewDataModel:)]) {
                 [view setViewDataModel:sectionModel.footerViewModel.dataModel];
             }
@@ -123,7 +108,6 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
     id dataModel = viewModel.dataModel;
     if ([viewModel.dataModel isKindOfClass:[NSNull class]]) {
@@ -131,9 +115,6 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
     }
     if (viewModel.selectedAction) {
         viewModel.selectedAction(dataModel);
-    }
-    if (indexPath.section < self.data.count && [self respondsToSelector:@selector(collectionViewDidSelectItem:sectionTag:cellTag:className:indexPath:)]) {
-        [self collectionViewDidSelectItem:dataModel sectionTag:sectionModel.sectionTag cellTag:viewModel.viewTag className:viewModel.className indexPath:indexPath];
     }
 }
 
@@ -179,60 +160,7 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
 - (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout colorForSectionAtIndex:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    return sectionModel.backgroundColor ? sectionModel.backgroundColor : self.collectionView.backgroundColor;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionHeaderPinToVisibleBounds:(NSInteger)section
-{
-    if (self.sectionHeadersPinToVisibleBounds) {
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionFooterPinToVisibleBounds:(NSInteger)section
-{
-    if (self.sectionFootersPinToVisibleBounds) {
-        return YES;
-    }
-    return NO;
-}
-
-#pragma mark - # Private API
-- (ZZFlexibleLayoutSectionModel *)sectionModelAtIndex:(NSInteger)section
-{
-    return section < self.data.count ? self.data[section] : nil;
-}
-
-- (ZZFlexibleLayoutSectionModel *)sectionModelForTag:(NSInteger)sectionTag
-{
-    for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
-        if (sectionModel.sectionTag == sectionTag) {
-            return sectionModel;
-        }
-    }
-    return nil;
-}
-
-- (ZZFlexibleLayoutViewModel *)viewModelAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!indexPath) {
-        return nil;
-    }
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
-    return [sectionModel objectAtIndex:indexPath.row];
-}
-
-- (NSArray<ZZFlexibleLayoutViewModel *> *)viewModelsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
-{
-    NSMutableArray *data = [[NSMutableArray alloc] init];
-    for (NSIndexPath *indexPath in indexPaths) {
-        ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
-        if (viewModel) {
-            [data addObject:viewModel];
-        }
-    }
-    return data;
+    return sectionModel.backgroundColor ? sectionModel.backgroundColor : collectionView.backgroundColor;
 }
 
 @end
