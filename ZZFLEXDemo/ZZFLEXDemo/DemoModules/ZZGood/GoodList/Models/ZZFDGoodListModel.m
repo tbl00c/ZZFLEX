@@ -192,7 +192,7 @@ ZZFDGoodCommitModel *createCommitModel(NSString *name, NSString *avatar, NSStrin
         model.position = @"山东 | 滨州";
         model.lastLoginIn = @"上周来过";
         model.price = @"328";
-        model.goodImages = @[@"good6", @"good6", @"good6", @"good6", @"good6", @"good6", @"good6"];
+        model.goodImages = @[@"good6", @"6-1", @"6-2", @"good6", @"6-1", @"6-2", @"good6"];
         model.avatar = @"avatar1";
         model.username = @"张心心";
         model.goodCount = 2;

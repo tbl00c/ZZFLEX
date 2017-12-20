@@ -25,7 +25,6 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
     ZZFDMainSectionTypeVCEdit,              // ZZFlexibleLayoutViewController 编辑拓展
     ZZFDMainSectionTypeVCEditDemo,
     ZZFDMainSectionTypeVE,                  // ZZFLEX View拓展
-    ZZFDMainSectionTypeVEDemo,
     ZZFDMainSectionTypeRQ,                  // ZZFLEX事件响应队列
     ZZFDMainSectionTypeRQDemo,
 };
@@ -143,18 +142,11 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
 
     // ZZFLEX View拓展
     {
-        // Intro
-        {
-            NSArray *intro = @[@"UIView+ZZFLEX 是一个常用UI组件提供链式API的拓展，使用它可以更加方便快捷的进行UI的编写、布局和事件处理。"];
-            addIntroduceSection(ZZFDMainSectionTypeVE, @"UIView+ZZFLEX", intro);
-        }
-        
-        // Demo
-        {
-            NSInteger sectionTag = ZZFDMainSectionTypeVEDemo;
-            self.addSection(sectionTag).sectionInsets(demoSectionInset);
-            self.addCell(menuCell).withDataModel(@"UIView+ZZFLEX Demo").toSection(sectionTag);
-        }
+        self.addSection(ZZFDMainSectionTypeVE).minimumLineSpacing(8).sectionInsets(UIEdgeInsetsMake(8, 0, 35, 0));
+        self.setHeader(NSStringFromClass([ZZFDMainSectionTitleView class])).toSection(ZZFDMainSectionTypeVE).withDataModel(@"UIView+ZZFLEX");
+        NSArray *intro = @[@"UIView+ZZFLEX 是一个常用UI组件提供链式API的拓展，使用它可以更加方便快捷的进行UI的编写、布局和事件处理。",
+                           @"上述Demo中多有使用此拓展，详见代码。"];
+        self.addCells(NSStringFromClass([ZZFDMainIntroduceCell class])).toSection(ZZFDMainSectionTypeVE).withDataModelArray(intro);
     }
 
     // ZZFLEX事件响应队列
