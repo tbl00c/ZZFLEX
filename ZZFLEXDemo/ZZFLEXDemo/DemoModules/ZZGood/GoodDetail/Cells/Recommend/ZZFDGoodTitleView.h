@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZZFlexibleLayoutViewProtocol.h"
 
-@interface ZZFDGoodTitleView : UICollectionReusableView
+@interface ZZFDGoodTitleView : UICollectionReusableView <ZZFlexibleLayoutViewProtocol>
 
 @end

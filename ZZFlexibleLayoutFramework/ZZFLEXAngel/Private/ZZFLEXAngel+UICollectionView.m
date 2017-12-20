@@ -122,21 +122,27 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ZZFlexibleLayoutViewModel *model = [self viewModelAtIndexPath:indexPath];
-    return model ? model.viewSize : CGSizeZero;
+    CGSize size = model ? model.viewSize : CGSizeZero;
+    size.width = (size.width < 0 && size.width >= -1) ? collectionView.width * -size.width : size.width;
+    return size;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *model = sectionModel.headerViewModel;
-    return model ? model.viewSize : CGSizeZero;
+    CGSize size = model ? model.viewSize : CGSizeZero;
+    size.width = (size.width < 0 && size.width >= -1) ? collectionView.width * -size.width : size.width;
+    return size;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *model = sectionModel.footerViewModel;
-    return model ? model.viewSize : CGSizeZero;
+    CGSize size = model ? model.viewSize : CGSizeZero;
+    size.width = (size.width < 0 && size.width >= -1) ? collectionView.width * -size.width : size.width;
+    return size;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section

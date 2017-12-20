@@ -1,25 +1,29 @@
 //
-//  ZZFDGoodSectionTitleCell.m
+//  ZZFDGoodTitleCell.m
 //  ZZFLEXDemo
 //
-//  Created by 李伯坤 on 2017/12/20.
+//  Created by 李伯坤 on 2017/12/19.
 //  Copyright © 2017年 李伯坤. All rights reserved.
 //
 
-#import "ZZFDGoodSectionTitleCell.h"
+#import "ZZFDGoodTitleCell.h"
 #import "UIView+ZZFLEX.h"
+#import "ZZFDGoodListModel.h"
 
-@interface ZZFDGoodSectionTitleCell ()
+#define     GOOD_TITLE_FONT     [UIFont boldSystemFontOfSize:18]
+
+@interface ZZFDGoodTitleCell ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
-@implementation ZZFDGoodSectionTitleCell
+@implementation ZZFDGoodTitleCell
 
 + (CGSize)viewSizeByDataModel:(NSString *)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 40);
+    CGFloat height = [dataModel tt_sizeWithFont:GOOD_TITLE_FONT constrainedToWidth:SCREEN_WIDTH - 30].height + 20;
+    return CGSizeMake(SCREEN_WIDTH, height);
 }
 
 - (void)setViewDataModel:(NSString *)dataModel
@@ -33,7 +37,7 @@
         [self setBackgroundColor:[UIColor whiteColor]];
         self.titleLabel = self.addLabel(1)
         .numberOfLines(0)
-        .font([UIFont boldSystemFontOfSize:15])
+        .font(GOOD_TITLE_FONT)
         .masonry(^ (MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(15);
@@ -45,4 +49,3 @@
 }
 
 @end
-

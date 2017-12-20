@@ -64,7 +64,7 @@
         }
         else if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewHeightByDataModel:)]) {
             CGFloat height = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewHeightByDataModel:dataModel];
-            _viewSize = CGSizeMake(0, height);
+            _viewSize = CGSizeMake(-1, height);
         }
     }
     else {

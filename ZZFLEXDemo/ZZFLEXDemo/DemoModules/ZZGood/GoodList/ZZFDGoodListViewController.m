@@ -99,7 +99,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
 #pragma mark - # Delegate
 - (void)collectionViewDidSelectItem:(id)itemModel sectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag className:(NSString *)className indexPath:(NSIndexPath *)indexPath
 {
-    ZZFDGoodDetailViewController *detailVC = [[ZZFDGoodDetailViewController alloc] init];
+    ZZFDGoodDetailViewController *detailVC = [[ZZFDGoodDetailViewController alloc] initWithListModel:itemModel];
     PushVC(detailVC);
 }
 

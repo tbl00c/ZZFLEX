@@ -7,6 +7,7 @@
 //
 
 #import "ZZFDCateMenuCell.h"
+#import "ZZFDCateModel.h"
 
 @implementation ZZFDCateMenuCell
 
@@ -15,10 +16,31 @@
     return 50;
 }
 
-- (void)setViewDataModel:(id)dataModel
+- (void)setViewDataModel:(ZZFDCateModel *)dataModel
 {
-    [self.textLabel setText:dataModel];
+    [self.textLabel setText:dataModel.cateName];
+    if (dataModel.selected) {
+        [self setBackgroundColor:[UIColor whiteColor]];
+    }
+    else {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
 }
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    }
+    return self;
+}
+
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    self.addSeparator(TLSeparatorPositionBottom).beginAt(15);
+}
 
 @end

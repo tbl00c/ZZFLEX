@@ -80,7 +80,6 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
     };
 }
 
-
 - (BOOL (^)(void))clearAllCells
 {
     @weakify(self);

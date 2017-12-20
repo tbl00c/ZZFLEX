@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZZFlexibleLayoutViewProtocol.h"
 
-@interface ZZFDCateSectionView : UICollectionReusableView
+@interface ZZFDCateSectionView : UICollectionReusableView <ZZFlexibleLayoutViewProtocol>
 
 @end

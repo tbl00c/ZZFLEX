@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
     @weakify(self);
     
     NSString *menuCell = NSStringFromClass([ZZFDMainMenuCell class]);
-    UIEdgeInsets demoSectionInset = UIEdgeInsetsMake(0, 0, 50, 0);
+    UIEdgeInsets demoSectionInset = UIEdgeInsetsMake(0, 0, 35, 0);
     
     void (^addIntroduceSection)(NSInteger, NSString *, NSArray *) = ^(NSInteger sectionTag, NSString *title, NSArray *intro) {
         self.addSection(sectionTag).minimumLineSpacing(8).sectionInsets(UIEdgeInsetsMake(8, 0, 8, 0));

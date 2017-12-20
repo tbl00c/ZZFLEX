@@ -1,5 +1,5 @@
 //
-//  ZZFDGoodPriceCell.h
+//  ZZFDGoodAreaCell.h
 //  ZZFLEXDemo
 //
 //  Created by 李伯坤 on 2017/12/20.
@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZZFlexibleLayoutViewProtocol.h"
 
-@interface ZZFDGoodPriceCell : UICollectionViewCell
+@interface ZZFDGoodAreaCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
 
 @end

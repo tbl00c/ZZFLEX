@@ -1,43 +1,43 @@
 //
-//  ZZFDGoodSectionTitleCell.m
+//  ZZFDGoodReadCell.m
 //  ZZFLEXDemo
 //
 //  Created by 李伯坤 on 2017/12/20.
 //  Copyright © 2017年 李伯坤. All rights reserved.
 //
 
-#import "ZZFDGoodSectionTitleCell.h"
+#import "ZZFDGoodReadCell.h"
 #import "UIView+ZZFLEX.h"
 
-@interface ZZFDGoodSectionTitleCell ()
+@interface ZZFDGoodReadCell ()
 
-@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *readLabel;
 
 @end
 
-@implementation ZZFDGoodSectionTitleCell
+@implementation ZZFDGoodReadCell
 
 + (CGSize)viewSizeByDataModel:(NSString *)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 40);
+    return CGSizeMake(SCREEN_WIDTH / 2.0, 40);
 }
 
 - (void)setViewDataModel:(NSString *)dataModel
 {
-    [self.titleLabel setText:dataModel];
+    [self.readLabel setText:dataModel];
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
-        self.titleLabel = self.addLabel(1)
-        .numberOfLines(0)
-        .font([UIFont boldSystemFontOfSize:15])
+        
+        self.readLabel = self.addLabel(3)
+        .font([UIFont systemFontOfSize:12])
+        .textColor([UIColor lightGrayColor])
         .masonry(^ (MASConstraintMaker *make) {
-            make.left.mas_equalTo(15);
-            make.top.mas_equalTo(15);
             make.right.mas_equalTo(-15);
+            make.centerY.mas_equalTo(0);
         })
         .view;
     }
@@ -45,4 +45,3 @@
 }
 
 @end
-

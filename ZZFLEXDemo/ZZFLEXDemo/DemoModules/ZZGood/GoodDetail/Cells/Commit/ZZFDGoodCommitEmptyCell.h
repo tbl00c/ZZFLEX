@@ -1,5 +1,5 @@
 //
-//  ZZFDGoodParamCell.h
+//  ZZFDGoodCommitEmptyCell.h
 //  ZZFLEXDemo
 //
 //  Created by 李伯坤 on 2017/12/20.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ZZFlexibleLayoutViewProtocol.h"
 
-@interface ZZFDGoodParamCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
+@interface ZZFDGoodCommitEmptyCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
 
 @end

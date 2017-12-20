@@ -7,7 +7,44 @@
 //
 
 #import "ZZFDGoodDetailCell.h"
+#import "UIView+ZZFLEX.h"
+
+@interface ZZFDGoodDetailCell ()
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@end
 
 @implementation ZZFDGoodDetailCell
 
++ (CGSize)viewSizeByDataModel:(NSAttributedString *)dataModel
+{
+    CGFloat height = [dataModel boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 30, MAXFLOAT)
+                                             options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
+                                             context:nil].size.height + 15;
+    return CGSizeMake(SCREEN_WIDTH, height);
+}
+
+- (void)setViewDataModel:(NSAttributedString *)dataModel
+{
+    [self.titleLabel setAttributedText:dataModel];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setBackgroundColor:[UIColor whiteColor]];
+        self.titleLabel = self.addLabel(1)
+        .numberOfLines(0)
+        .masonry(^ (MASConstraintMaker *make) {
+            make.left.mas_equalTo(15);
+            make.top.mas_equalTo(5);
+            make.right.mas_equalTo(-15);
+        })
+        .view;
+    }
+    return self;
+}
+
 @end
+

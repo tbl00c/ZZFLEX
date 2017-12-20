@@ -13,6 +13,5 @@
 + (UIColor *)colorGrayBG;           // 浅灰色默认背景
 + (UIColor *)colorGrayLine;
 
-+ (UIColor *)colorBlackForNavBar;
 
 @end

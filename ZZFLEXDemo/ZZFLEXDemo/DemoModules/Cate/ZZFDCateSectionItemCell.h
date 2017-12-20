@@ -1,5 +1,5 @@
 //
-//  ZZFDCateItemCell.h
+//  ZZFDCateSectionItemCell.h
 //  ZZFLEXDemo
 //
 //  Created by 李伯坤 on 2017/12/19.
@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZZFlexibleLayoutViewProtocol.h"
 
-@interface ZZFDCateSectionItemCell : UICollectionViewCell
+@interface ZZFDCateSectionItemCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
 
 @end
