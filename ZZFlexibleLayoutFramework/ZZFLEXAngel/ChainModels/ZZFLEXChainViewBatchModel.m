@@ -1,16 +1,16 @@
 //
-//  ZZFLEXChainViewArrayModel.m
+//  ZZFLEXChainViewBatchModel.m
 //  zhuanzhuan
 //
 //  Created by 李伯坤 on 2017/8/15.
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#import "ZZFLEXChainViewArrayModel.h"
+#import "ZZFLEXChainViewBatchModel.h"
 #import "ZZFlexibleLayoutSectionModel.h"
 
-#pragma mark - ## ZZFLEXChainViewArrayBaseModel
-@interface ZZFLEXChainViewArrayBaseModel()
+#pragma mark - ## ZZFLEXChainViewBatchBaseModel （批量，基类）
+@interface ZZFLEXChainViewBatchBaseModel()
 
 @property (nonatomic, strong) NSString *className;
 @property (nonatomic, strong) NSMutableArray *listData;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation ZZFLEXChainViewArrayBaseModel
+@implementation ZZFLEXChainViewBatchBaseModel
 
 - (id)initWithClassName:(NSString *)className listData:(NSMutableArray *)listData
 {
@@ -139,19 +139,19 @@
 
 @end
 
-#pragma mark - ## ZZFLEXChainViewArrayModel
-@implementation ZZFLEXChainViewArrayModel
+#pragma mark - ## ZZFLEXChainViewBatchModel （批量，添加）
+@implementation ZZFLEXChainViewBatchModel
 
 @end
 
-#pragma mark - ## ZZFLEXChainViewArrayInsertModel
+#pragma mark - ## ZZFLEXChainViewBatchInsertModel （批量，插入）
 typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     ZZFLEXInsertArrayDataStatusIndex = 1 << 0,
     ZZFLEXInsertArrayDataStatusBefore = 1 << 1,
     ZZFLEXInsertArrayDataStatusAfter = 1 << 2,
 };
 
-@interface ZZFLEXChainViewArrayInsertModel ()
+@interface ZZFLEXChainViewBatchInsertModel ()
 
 @property (nonatomic, assign) ZZFLEXInsertArrayDataStatus status;
 
@@ -159,7 +159,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
 
 @end
 
-@implementation ZZFLEXChainViewArrayInsertModel
+@implementation ZZFLEXChainViewBatchInsertModel
 
 - (id (^)(NSArray *dataModelArray))withDataModelArray
 {
@@ -196,7 +196,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
 }
 
 
-- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger index))atIndex
+- (ZZFLEXChainViewBatchInsertModel *(^)(NSInteger index))atIndex
 {
     return ^(NSInteger index) {
         self.status |= ZZFLEXInsertArrayDataStatusIndex;
@@ -207,7 +207,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     };
 }
 
-- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger sectionTag))beforeCell
+- (ZZFLEXChainViewBatchInsertModel *(^)(NSInteger sectionTag))beforeCell
 {
     return ^(NSInteger sectionTag) {
         self.status |= ZZFLEXInsertArrayDataStatusBefore;
@@ -218,7 +218,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     };
 }
 
-- (ZZFLEXChainViewArrayInsertModel *(^)(NSInteger sectionTag))afterCell
+- (ZZFLEXChainViewBatchInsertModel *(^)(NSInteger sectionTag))afterCell
 {
     return ^(NSInteger sectionTag) {
         self.status |= ZZFLEXInsertArrayDataStatusAfter;
@@ -256,5 +256,5 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     }
 }
 
-
 @end
+

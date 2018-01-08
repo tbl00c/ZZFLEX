@@ -71,8 +71,11 @@
 - (void)setData:(NSArray *)data
 {
     _data = data;
+    // 清空列表
     self.tableViewAngel.clear();
+    // 添加section
     self.tableViewAngel.addSection(1001);
+    // 往section批量添加cells
     @weakify(self);
     self.tableViewAngel.addCells(@"ZZFDCateMenuCell").withDataModelArray(data).toSection(1001).selectedAction(^(id item){
         @strongify(self);
@@ -91,7 +94,7 @@
     self.collectionViewAngel.clear();
     @weakify(self);
     for (int i = 0; i < cate.cateSectionItems.count; i++) {
-        self.collectionViewAngel.addSection(i);
+        self.collectionViewAngel.addSection(i).sectionInsets(UIEdgeInsetsMake(0, 15, 0, 15));
         ZZFDCateSectionModel *section = cate.cateSectionItems[i];
         self.collectionViewAngel.setHeader(@"ZZFDCateSectionView").toSection(i).withDataModel(section);
         self.collectionViewAngel.addCells(@"ZZFDCateSectionItemCell").toSection(i).withDataModelArray(section.cateSectionItems).selectedAction(^ (ZZFDCateItemModel *model) {

@@ -25,7 +25,12 @@
 
 - (void)setViewDataModel:(ZZFDGoodParamModel *)dataModel
 {
-    [self.titleLabel setText:[NSString stringWithFormat:@"%@：%@", dataModel.key, dataModel.value]];
+    if (dataModel) {
+        [self.titleLabel setText:[NSString stringWithFormat:@"%@：%@", dataModel.key, dataModel.value]];
+    }
+    else {
+        [self.titleLabel setText:@""];
+    }
 }
 
 - (id)initWithFrame:(CGRect)frame

@@ -9,7 +9,7 @@
 #import "ZZFLEXChainViewModel.h"
 #import "ZZFlexibleLayoutSectionModel.h"
 
-#pragma mark - ## ZZFLEXChainViewBaseModel
+#pragma mark - ## ZZFLEXChainViewBaseModel （单个，基类）
 @interface ZZFLEXChainViewBaseModel()
 
 @property (nonatomic, strong) NSMutableArray *listData;
@@ -92,12 +92,12 @@
 
 @end
 
-#pragma mark - ## ZZFLEXChainViewModel（添加）
+#pragma mark - ## ZZFLEXChainViewModel（单个，添加）
 @implementation ZZFLEXChainViewModel
 
 @end
 
-#pragma mark - ## ZZFLEXChainViewInsertModel （插入）
+#pragma mark - ## ZZFLEXChainViewInsertModel（单个，插入）
 typedef NS_OPTIONS(NSInteger, ZZFLEXInsertDataStatus) {
     ZZFLEXInsertDataStatusIndex = 1 << 0,
     ZZFLEXInsertDataStatusBefore = 1 << 1,
@@ -188,4 +188,3 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertDataStatus) {
 }
 
 @end
-

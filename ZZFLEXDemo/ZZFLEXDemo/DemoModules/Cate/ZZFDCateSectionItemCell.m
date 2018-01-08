@@ -23,7 +23,7 @@
 
 + (CGSize)viewSizeByDataModel:(id)dataModel
 {
-    return CGSizeMake(-0.33, 95);
+    return CGSizeMake(70, 95);
 }
 
 - (void)setViewDataModel:(ZZFDCateItemModel *)dataModel

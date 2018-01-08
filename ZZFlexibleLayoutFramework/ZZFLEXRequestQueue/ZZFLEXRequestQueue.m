@@ -85,7 +85,13 @@
 
 - (void)addRequestModel:(ZZFLEXRequestModel *)model
 {
+#if DEBUG
     NSAssert(_isRuning == NO, @"请求队列正在运行期间，不能追加model。");
+#else
+    if (_isRuning) {
+        return;
+    }
+#endif
     model.queueTarget = self;
     model.queueMethod = @selector(requestCompleteWithResultModel:);
     [self.queueData addObject:model];
@@ -150,7 +156,7 @@
         }
     }
     
-    if (self.queueData.count == 0 && self.completeAction) {
+    if (self.queueData.count == 0) {
         if (self.successCount + self.failureCount != self.recData.count) {
             NSLog(@"ZZFLEX request count error");
         }
@@ -158,7 +164,9 @@
         self.completeDic = nil;
         NSArray *data = self.recData;
         self.recData = nil;
-        self.completeAction(data, self.successCount, self.failureCount);
+        if (self.completeAction) {
+            self.completeAction(data, self.successCount, self.failureCount);
+        }
     }
 }
 
@@ -172,3 +180,4 @@
 }
 
 @end
+

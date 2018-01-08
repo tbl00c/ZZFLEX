@@ -37,7 +37,6 @@
 {
     [super loadView];
     
-    [self.collectionView setFrame:self.view.bounds];
     [self.view addSubview:self.collectionView];
     RegisterCollectionViewCell(self.collectionView, CELL_SEPEARTOR);        // 注册空白cell
     RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionHeader, @"ZZFlexibleLayoutEmptyHeaderFooterView");
@@ -47,6 +46,17 @@
 - (void)dealloc
 {
     NSLog(@"dealloc");
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    if (!CGRectEqualToRect(self.view.bounds, self.collectionView.frame)) {
+        [self.collectionView setFrame:self.view.bounds];
+        self.updateCells.all();
+        [self reloadView];
+    }
 }
 
 #pragma mark - # API
@@ -252,13 +262,13 @@
 }
 
 /// 批量添加cell
-- (ZZFLEXChainViewArrayModel *(^)(NSString *className))addCells
+- (ZZFLEXChainViewBatchModel *(^)(NSString *className))addCells
 {
     @weakify(self);
     return ^(NSString *className) {
         @strongify(self);
         RegisterCollectionViewCell(self.collectionView, className);
-        ZZFLEXChainViewArrayModel *viewModel = [[ZZFLEXChainViewArrayModel alloc] initWithClassName:className listData:self.data];
+        ZZFLEXChainViewBatchModel *viewModel = [[ZZFLEXChainViewBatchModel alloc] initWithClassName:className listData:self.data];
         return viewModel;
     };
 }
@@ -292,57 +302,64 @@
 }
 
 /// 批量插入cells
-- (ZZFLEXChainViewArrayInsertModel *(^)(NSString *className))insertCells
+- (ZZFLEXChainViewBatchInsertModel *(^)(NSString *className))insertCells
 {
     @weakify(self);
     return ^(NSString *className) {
         @strongify(self);
         RegisterCollectionViewCell(self.collectionView, className);
-        ZZFLEXChainViewArrayInsertModel *viewModel = [[ZZFLEXChainViewArrayInsertModel alloc] initWithClassName:className listData:self.data];
+        ZZFLEXChainViewBatchInsertModel *viewModel = [[ZZFLEXChainViewBatchInsertModel alloc] initWithClassName:className listData:self.data];
         return viewModel;
     };
 }
 
 /// 删除cell
-- (ZZFLEXChainCellEditModel *)deleteCell
+- (ZZFLEXChainViewEditModel *)deleteCell
 {
-    ZZFLEXChainCellEditModel *deleteModel = [[ZZFLEXChainCellEditModel alloc] initWithType:ZZFLEXChainCellEditTypeDelete andListData:self.data];
+    ZZFLEXChainViewEditModel *deleteModel = [[ZZFLEXChainViewEditModel alloc] initWithType:ZZFLEXChainViewEditTypeDelete andListData:self.data];
     return deleteModel;
 }
 
 /// 批量删除cell
-- (ZZFLEXChainAllCellsEditModel *)deleteCells
+- (ZZFLEXChainViewBatchEditModel *)deleteCells
 {
-    ZZFLEXChainAllCellsEditModel *deleteModel = [[ZZFLEXChainAllCellsEditModel alloc] initWithType:ZZFLEXChainAllCellsEditTypeDelete andListData:self.data];
+    ZZFLEXChainViewBatchEditModel *deleteModel = [[ZZFLEXChainViewBatchEditModel alloc] initWithType:ZZFLEXChainViewEditTypeDelete andListData:self.data];
     return deleteModel;
 }
 
 /// 更新cell
-- (ZZFLEXChainCellEditModel *)updateCell
+- (ZZFLEXChainViewEditModel *)updateCell
 {
-    ZZFLEXChainCellEditModel *deleteModel = [[ZZFLEXChainCellEditModel alloc] initWithType:ZZFLEXChainCellEditTypeUpdate andListData:self.data];
+    ZZFLEXChainViewEditModel *deleteModel = [[ZZFLEXChainViewEditModel alloc] initWithType:ZZFLEXChainViewEditTypeUpdate andListData:self.data];
     return deleteModel;
 }
 
 /// 批量更新cell
-- (ZZFLEXChainAllCellsEditModel *)updateCells
+- (ZZFLEXChainViewBatchEditModel *)updateCells
 {
-    ZZFLEXChainAllCellsEditModel *deleteModel = [[ZZFLEXChainAllCellsEditModel alloc] initWithType:ZZFLEXChainAllCellsEditTypeUpdate andListData:self.data];
+    ZZFLEXChainViewBatchEditModel *deleteModel = [[ZZFLEXChainViewBatchEditModel alloc] initWithType:ZZFLEXChainViewEditTypeUpdate andListData:self.data];
     return deleteModel;
 }
 
 /// 包含cell
-- (ZZFLEXChainCellEditModel *)hasCell
+- (ZZFLEXChainViewEditModel *)hasCell
 {
-    ZZFLEXChainCellEditModel *deleteModel = [[ZZFLEXChainCellEditModel alloc] initWithType:ZZFLEXChainCellEditTypeHas andListData:self.data];
+    ZZFLEXChainViewEditModel *deleteModel = [[ZZFLEXChainViewEditModel alloc] initWithType:ZZFLEXChainViewEditTypeHas andListData:self.data];
     return deleteModel;
 }
 
 #pragma mark - # DataModel 数据源获取
 /// 数据源获取
-- (ZZFLEXChainDataModel *)dataModel
+- (ZZFLEXChainViewEditModel *)dataModel
 {
-    ZZFLEXChainDataModel *dataModel = [[ZZFLEXChainDataModel alloc] initWithListData:self.data];
+    ZZFLEXChainViewEditModel *dataModel = [[ZZFLEXChainViewEditModel alloc] initWithType:ZZFLEXChainViewEditTypeDataModel andListData:self.data];
+    return dataModel;
+}
+
+/// 批量获取数据源
+- (ZZFLEXChainViewBatchEditModel *)dataModelArray
+{
+    ZZFLEXChainViewBatchEditModel *dataModel = [[ZZFLEXChainViewBatchEditModel alloc] initWithType:ZZFLEXChainViewEditTypeDataModel andListData:self.data];
     return dataModel;
 }
 

@@ -65,106 +65,6 @@
 
 @end
 
-
-#pragma mark - ## ZZFLEXChainSectionEditModel （编辑）
-@implementation ZZFLEXChainSectionEditModel
-
-- (ZZFLEXChainSectionEditModel *(^)(void))clear
-{
-    return ^(void) {
-        self.sectionModel.headerViewModel = nil;
-        self.sectionModel.footerViewModel = nil;
-        [self.sectionModel.itemsArray removeAllObjects];
-        return self;
-    };
-}
-
-- (ZZFLEXChainSectionEditModel *(^)(void))clearAllCells
-{
-    return ^(void) {
-        [self.sectionModel.itemsArray removeAllObjects];
-        return self;
-    };
-}
-
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteCellForTag
-{
-    return ^(NSInteger tag) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
-            if (viewModel.viewTag == tag) {
-                [self.sectionModel removeObject:viewModel];
-                break;
-            }
-        }
-        return self;
-    };
-}
-
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteAllCellsForTag
-{
-    return ^(NSInteger tag) {
-        NSMutableArray *deleteData = @[].mutableCopy;
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
-            if (viewModel.viewTag == tag) {
-                [deleteData addObject:viewModel];
-            }
-        }
-        for (ZZFlexibleLayoutViewModel *viewModel in deleteData) {
-            [self.sectionModel removeObject:viewModel];
-        }
-        return self;
-    };
-}
-
-- (ZZFLEXChainSectionEditModel *(^)(void))update
-{
-    return ^(void) {
-        [self.sectionModel.headerViewModel updateViewHeight];
-        [self.sectionModel.footerViewModel updateViewHeight];
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
-            [viewModel updateViewHeight];
-        }
-        return self;
-    };
-}
-
-- (ZZFLEXChainSectionEditModel *(^)(void))updateAllCells
-{
-    return ^(void) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
-            [viewModel updateViewHeight];
-        }
-        return self;
-    };
-}
-
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateCellForTag
-{
-    return ^(NSInteger tag) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
-            if (viewModel.viewTag == tag) {
-                [viewModel updateViewHeight];
-                break;
-            }
-        }
-        return self;
-    };
-}
-
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateAllCellsForTag
-{
-    return ^(NSInteger tag) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
-            if (viewModel.viewTag == tag) {
-                [viewModel updateViewHeight];
-            }
-        }
-        return self;
-    };
-}
-
-@end
-
 #pragma mark - ## ZZFLEXChainSectionInsertModel （插入）
 @interface ZZFLEXChainSectionInsertModel()
 
@@ -231,8 +131,193 @@
 
 @end
 
+#pragma mark - ## ZZFLEXChainSectionEditModel （编辑）
+@implementation ZZFLEXChainSectionEditModel
 
+#pragma mark 获取数据源
+- (NSArray *)dataModelArray
+{
+    return self.sectionModel.itemsArray;
+}
 
+- (id)dataModelForHeader
+{
+    return self.sectionModel.headerViewModel;
+}
 
+- (id)dataModelForFooter
+{
+    return self.sectionModel.footerViewModel;
+}
 
+/// 根据viewTag获取数据源
+- (id (^)(NSInteger viewTag))dataModelByViewTag
+{
+    return ^(NSInteger viewTag) {
+        id dataModel;
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.viewTag == viewTag) {
+                dataModel = [viewModel.dataModel isKindOfClass:[NSNull class]] ? nil : viewModel.dataModel;
+                break;
+            }
+        }
+        if (self.sectionModel.headerViewModel.viewTag == viewTag) {
+            dataModel = self.sectionModel.headerViewModel;
+        }
+        else if (self.sectionModel.footerViewModel.viewTag == viewTag) {
+            dataModel = self.sectionModel.footerViewModel;
+        }
+        return dataModel;
+    };
+}
 
+/// 根据viewTag批量获取数据源
+- (NSArray *(^)(NSInteger viewTag))dataModelArrayByViewTag
+{
+    return ^(NSInteger viewTag) {
+        NSMutableArray *data = [[NSMutableArray alloc] init];
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.viewTag == viewTag) {
+                id dataModel = [viewModel.dataModel isKindOfClass:[NSNull class]] ? nil : viewModel.dataModel;
+                [data addObject:dataModel];
+            }
+        }
+        if (self.sectionModel.headerViewModel.viewTag == viewTag) {
+            [data addObject:self.sectionModel.headerViewModel];
+        }
+        if (self.sectionModel.footerViewModel.viewTag == viewTag) {
+            [data addObject:self.sectionModel.footerViewModel];
+        }
+        return data;
+    };
+}
+
+#pragma mark 删除
+- (ZZFLEXChainSectionEditModel *(^)(void))clear
+{
+    return ^(void) {
+        self.sectionModel.headerViewModel = nil;
+        self.sectionModel.footerViewModel = nil;
+        [self.sectionModel.itemsArray removeAllObjects];
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(void))clearCells
+{
+    return ^(void) {
+        [self.sectionModel.itemsArray removeAllObjects];
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(void))deleteHeader
+{
+    return ^(void) {
+        self.sectionModel.headerViewModel = nil;
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(void))deleteFooter
+{
+    return ^(void) {
+        self.sectionModel.footerViewModel = nil;
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteCellByTag
+{
+    return ^(NSInteger tag) {
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.viewTag == tag) {
+                [self.sectionModel removeObject:viewModel];
+                break;
+            }
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))deleteAllCellsByTag
+{
+    return ^(NSInteger tag) {
+        NSMutableArray *deleteData = @[].mutableCopy;
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.viewTag == tag) {
+                [deleteData addObject:viewModel];
+            }
+        }
+        for (ZZFlexibleLayoutViewModel *viewModel in deleteData) {
+            [self.sectionModel removeObject:viewModel];
+        }
+        return self;
+    };
+}
+
+#pragma mark 刷新
+- (ZZFLEXChainSectionEditModel *(^)(void))update
+{
+    return ^(void) {
+        [self.sectionModel.headerViewModel updateViewHeight];
+        [self.sectionModel.footerViewModel updateViewHeight];
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            [viewModel updateViewHeight];
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(void))updateCells
+{
+    return ^(void) {
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            [viewModel updateViewHeight];
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(void))updateHeader
+{
+    return ^(void) {
+        [self.sectionModel.headerViewModel updateViewHeight];
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(void))updateFooter
+{
+    return ^(void) {
+        [self.sectionModel.footerViewModel updateViewHeight];
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateCellByTag
+{
+    return ^(NSInteger tag) {
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.viewTag == tag) {
+                [viewModel updateViewHeight];
+                break;
+            }
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))updateAllCellsByTag
+{
+    return ^(NSInteger tag) {
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.viewTag == tag) {
+                [viewModel updateViewHeight];
+            }
+        }
+        return self;
+    };
+}
+
+@end

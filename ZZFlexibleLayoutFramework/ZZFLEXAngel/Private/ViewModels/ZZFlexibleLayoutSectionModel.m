@@ -49,17 +49,24 @@
 
 - (void)addObjectsFromArray:(NSArray<ZZFlexibleLayoutViewModel *> *)otherArray
 {
-    [self.itemsArray addObjectsFromArray:otherArray];
+    if (otherArray) {
+        [self.itemsArray addObjectsFromArray:otherArray];
+    }
 }
 
 - (void)insertObject:(ZZFlexibleLayoutViewModel *)object atIndex:(NSUInteger)objectIndex;
 {
+    if (!object) {
+        object = (ZZFlexibleLayoutViewModel *)[NSNull null];
+    }
     [self.itemsArray insertObject:object atIndex:objectIndex];
 }
 
 - (void)insertObjects:(NSArray<ZZFlexibleLayoutViewModel *> *)objects atIndexes:(NSIndexSet *)indexes
 {
-    [self.itemsArray insertObjects:objects atIndexes:indexes];
+    if (objects) {
+        [self.itemsArray insertObjects:objects atIndexes:indexes];
+    }
 }
 
 - (id)objectAtIndex:(NSUInteger)index
@@ -80,3 +87,4 @@
 }
 
 @end
+

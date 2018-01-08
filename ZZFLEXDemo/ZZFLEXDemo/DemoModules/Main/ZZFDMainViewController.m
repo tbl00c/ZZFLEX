@@ -128,7 +128,8 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
         // Intro
         {
             NSArray *intro = @[@"ZZFlexibleLayoutViewController+EditExtension，是使ZZFLEXVC具有处理编辑页面能力的一种解决方案。",
-                               @"其主要原理是将数据模型的属性与UI控件对应属性进行关联映射。"];
+                               @"其主要原理是将数据模型的属性与UI控件对应属性进行关联映射。",
+                               @"如果你的项目中使用了RAC，那么你大可无视这个拓展。"];
             addIntroduceSection(ZZFDMainSectionTypeVCEdit, @"ZZFLEXVC+EditExtension", intro);
         }
         

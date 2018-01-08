@@ -80,9 +80,10 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     if (listModel.params.count > 0) {
         self.addCells(@"ZZFDGoodParamCell").toSection(ZZFDGoodSectionTypeDetail).withDataModelArray(listModel.params);
         if (listModel.params.count % 2 == 1) {
-            self.addSeperatorCell(CGSizeMake(SCREEN_WIDTH / 2.0, 22), [UIColor whiteColor]).toSection(ZZFDGoodSectionTypeDetail);
+            self.addCell(@"ZZFDGoodParamCell").toSection(ZZFDGoodSectionTypeDetail);
         }
-        self.addSeperatorCell(CGSizeMake(SCREEN_WIDTH, 8), [UIColor whiteColor]).toSection(ZZFDGoodSectionTypeDetail);
+        CGFloat maxWidth = MAX(SCREEN_WIDTH, SCREEN_HEIGHT);
+        self.addSeperatorCell(CGSizeMake(maxWidth, 8), [UIColor whiteColor]).toSection(ZZFDGoodSectionTypeDetail);
     }
     // 详细描述
     if (listModel.attrGoodDetail) {
@@ -107,7 +108,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
                 self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, 6)]);
                 self.addCell(@"ZZFDImageMoreCell").toSection(ZZFDGoodSectionTypeImage).selectedAction(^(id data) {
                     @strongify(self);
-                    self.deleteCell.byCellTag(100101);
+                    self.deleteCell.byViewTag(100101);
                     self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage)
                     .withDataModelArray([self.listModel.goodImages subarrayWithRange:NSMakeRange(9, self.listModel.goodImages.count - 9)]);
                     if (self.listModel.goodImages.count % 2 == 0) {

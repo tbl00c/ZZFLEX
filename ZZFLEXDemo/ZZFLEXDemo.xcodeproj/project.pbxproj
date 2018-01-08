@@ -38,11 +38,8 @@
 		C26312081FE8B5CC0022B2F8 /* ZZFlexibleLayoutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C26312061FE8B5CC0022B2F8 /* ZZFlexibleLayoutViewModel.m */; };
 		C263120D1FE8B5ED0022B2F8 /* ZZFlexibleLayoutEmptyHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26312091FE8B5EC0022B2F8 /* ZZFlexibleLayoutEmptyHeaderFooterView.m */; };
 		C263120E1FE8B5ED0022B2F8 /* ZZFlexibleLayoutSeperatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C263120A1FE8B5ED0022B2F8 /* ZZFlexibleLayoutSeperatorCell.m */; };
-		C263122F1FE8B62A0022B2F8 /* ZZFLEXChainCellEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C26312231FE8B62A0022B2F8 /* ZZFLEXChainCellEditModel.m */; };
+		C263122F1FE8B62A0022B2F8 /* ZZFLEXChainViewEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C26312231FE8B62A0022B2F8 /* ZZFLEXChainViewEditModel.m */; };
 		C26312301FE8B62A0022B2F8 /* ZZFLEXChainSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C26312241FE8B62A0022B2F8 /* ZZFLEXChainSectionModel.m */; };
-		C26312311FE8B62A0022B2F8 /* ZZFLEXChainViewArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C26312271FE8B62A0022B2F8 /* ZZFLEXChainViewArrayModel.m */; };
-		C26312321FE8B62A0022B2F8 /* ZZFLEXChainAllCellsEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C26312281FE8B62A0022B2F8 /* ZZFLEXChainAllCellsEditModel.m */; };
-		C26312331FE8B62A0022B2F8 /* ZZFLEXChainDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C263122A1FE8B62A0022B2F8 /* ZZFLEXChainDataModel.m */; };
 		C26312341FE8B62A0022B2F8 /* ZZFLEXChainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C263122E1FE8B62A0022B2F8 /* ZZFLEXChainViewModel.m */; };
 		C26312391FE8BB360022B2F8 /* ZZFDCateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C26312381FE8BB360022B2F8 /* ZZFDCateModel.m */; };
 		C263123C1FE8E7230022B2F8 /* ZZFDCateSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C263123B1FE8E7230022B2F8 /* ZZFDCateSectionView.m */; };
@@ -84,6 +81,7 @@
 		C2863AA61FCD022B008BC3C0 /* ZZFDMainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863AA51FCD022B008BC3C0 /* ZZFDMainMenuCell.m */; };
 		C29D37141FE7AFBA007236D8 /* ZZFDCateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */; };
 		C29D37171FE7B381007236D8 /* ZZFDCateMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D37161FE7B381007236D8 /* ZZFDCateMenuCell.m */; };
+		C2A262C020032FDE00CAC35C /* ZZFLEXChainViewBatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A262BF20032FDE00CAC35C /* ZZFLEXChainViewBatchModel.m */; };
 		C2AC73311FE516DA00DABA11 /* ZZFDMainTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73301FE516DA00DABA11 /* ZZFDMainTitleView.m */; };
 		C2AC73341FE51B2D00DABA11 /* ZZFDMainIntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73331FE51B2D00DABA11 /* ZZFDMainIntroduceCell.m */; };
 		C2AC73371FE51FD400DABA11 /* ZZFDMainSectionTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73361FE51FD400DABA11 /* ZZFDMainSectionTitleView.m */; };
@@ -159,17 +157,11 @@
 		C263120A1FE8B5ED0022B2F8 /* ZZFlexibleLayoutSeperatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutSeperatorCell.m; sourceTree = "<group>"; };
 		C263120B1FE8B5ED0022B2F8 /* ZZFlexibleLayoutEmptyHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutEmptyHeaderFooterView.h; sourceTree = "<group>"; };
 		C263120C1FE8B5ED0022B2F8 /* ZZFlexibleLayoutSeperatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutSeperatorCell.h; sourceTree = "<group>"; };
-		C26312231FE8B62A0022B2F8 /* ZZFLEXChainCellEditModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainCellEditModel.m; sourceTree = "<group>"; };
+		C26312231FE8B62A0022B2F8 /* ZZFLEXChainViewEditModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainViewEditModel.m; sourceTree = "<group>"; };
 		C26312241FE8B62A0022B2F8 /* ZZFLEXChainSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainSectionModel.m; sourceTree = "<group>"; };
-		C26312251FE8B62A0022B2F8 /* ZZFLEXChainDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainDataModel.h; sourceTree = "<group>"; };
 		C26312261FE8B62A0022B2F8 /* ZZFLEXChainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainViewModel.h; sourceTree = "<group>"; };
-		C26312271FE8B62A0022B2F8 /* ZZFLEXChainViewArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainViewArrayModel.m; sourceTree = "<group>"; };
-		C26312281FE8B62A0022B2F8 /* ZZFLEXChainAllCellsEditModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainAllCellsEditModel.m; sourceTree = "<group>"; };
-		C26312291FE8B62A0022B2F8 /* ZZFLEXChainCellEditModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainCellEditModel.h; sourceTree = "<group>"; };
-		C263122A1FE8B62A0022B2F8 /* ZZFLEXChainDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainDataModel.m; sourceTree = "<group>"; };
+		C26312291FE8B62A0022B2F8 /* ZZFLEXChainViewEditModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainViewEditModel.h; sourceTree = "<group>"; };
 		C263122B1FE8B62A0022B2F8 /* ZZFLEXChainSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainSectionModel.h; sourceTree = "<group>"; };
-		C263122C1FE8B62A0022B2F8 /* ZZFLEXChainAllCellsEditModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainAllCellsEditModel.h; sourceTree = "<group>"; };
-		C263122D1FE8B62A0022B2F8 /* ZZFLEXChainViewArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainViewArrayModel.h; sourceTree = "<group>"; };
 		C263122E1FE8B62A0022B2F8 /* ZZFLEXChainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainViewModel.m; sourceTree = "<group>"; };
 		C26312351FE8B67C0022B2F8 /* ZZFLEXMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFLEXMacros.h; sourceTree = "<group>"; };
 		C26312361FE8B6BB0022B2F8 /* ZZFlexibleLayoutViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutViewProtocol.h; sourceTree = "<group>"; };
@@ -249,6 +241,8 @@
 		C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDCateViewController.m; sourceTree = "<group>"; };
 		C29D37151FE7B381007236D8 /* ZZFDCateMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDCateMenuCell.h; sourceTree = "<group>"; };
 		C29D37161FE7B381007236D8 /* ZZFDCateMenuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDCateMenuCell.m; sourceTree = "<group>"; };
+		C2A262BE20032FDD00CAC35C /* ZZFLEXChainViewBatchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainViewBatchModel.h; sourceTree = "<group>"; };
+		C2A262BF20032FDE00CAC35C /* ZZFLEXChainViewBatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXChainViewBatchModel.m; sourceTree = "<group>"; };
 		C2AC732F1FE516DA00DABA11 /* ZZFDMainTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDMainTitleView.h; sourceTree = "<group>"; };
 		C2AC73301FE516DA00DABA11 /* ZZFDMainTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDMainTitleView.m; sourceTree = "<group>"; };
 		C2AC73321FE51B2D00DABA11 /* ZZFDMainIntroduceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDMainIntroduceCell.h; sourceTree = "<group>"; };
@@ -462,14 +456,10 @@
 				C26312241FE8B62A0022B2F8 /* ZZFLEXChainSectionModel.m */,
 				C26312261FE8B62A0022B2F8 /* ZZFLEXChainViewModel.h */,
 				C263122E1FE8B62A0022B2F8 /* ZZFLEXChainViewModel.m */,
-				C263122D1FE8B62A0022B2F8 /* ZZFLEXChainViewArrayModel.h */,
-				C26312271FE8B62A0022B2F8 /* ZZFLEXChainViewArrayModel.m */,
-				C26312291FE8B62A0022B2F8 /* ZZFLEXChainCellEditModel.h */,
-				C26312231FE8B62A0022B2F8 /* ZZFLEXChainCellEditModel.m */,
-				C263122C1FE8B62A0022B2F8 /* ZZFLEXChainAllCellsEditModel.h */,
-				C26312281FE8B62A0022B2F8 /* ZZFLEXChainAllCellsEditModel.m */,
-				C26312251FE8B62A0022B2F8 /* ZZFLEXChainDataModel.h */,
-				C263122A1FE8B62A0022B2F8 /* ZZFLEXChainDataModel.m */,
+				C2A262BE20032FDD00CAC35C /* ZZFLEXChainViewBatchModel.h */,
+				C2A262BF20032FDE00CAC35C /* ZZFLEXChainViewBatchModel.m */,
+				C26312291FE8B62A0022B2F8 /* ZZFLEXChainViewEditModel.h */,
+				C26312231FE8B62A0022B2F8 /* ZZFLEXChainViewEditModel.m */,
 			);
 			path = ChainModels;
 			sourceTree = "<group>";
@@ -914,7 +904,6 @@
 				C2268CF31FCC3FF500C98EA7 /* ZZImageViewChainModel.m in Sources */,
 				C27E9F4F1FCE609C0062C896 /* ZZFDGoodListViewController.m in Sources */,
 				C26312071FE8B5CC0022B2F8 /* ZZFlexibleLayoutSectionModel.m in Sources */,
-				C26312321FE8B62A0022B2F8 /* ZZFLEXChainAllCellsEditModel.m in Sources */,
 				C2351DC91FDBC2A400CFDE5B /* ZZTextFieldChainModel.m in Sources */,
 				C27E9F5A1FCE60E70062C896 /* TLMineHeaderCell.m in Sources */,
 				C26312001FE8B50D0022B2F8 /* ZZFLEXAngel+Private.m in Sources */,
@@ -927,7 +916,6 @@
 				C2268D001FCC413800C98EA7 /* UIView+ZZFrame.m in Sources */,
 				C2863A931FCCFB76008BC3C0 /* main.m in Sources */,
 				C2AC73341FE51B2D00DABA11 /* ZZFDMainIntroduceCell.m in Sources */,
-				C26312311FE8B62A0022B2F8 /* ZZFLEXChainViewArrayModel.m in Sources */,
 				C26312081FE8B5CC0022B2F8 /* ZZFlexibleLayoutViewModel.m in Sources */,
 				C282D0B61FEA0E0A00559705 /* ZZFDGoodSectionTitleCell.m in Sources */,
 				C27E9F681FCE615F0062C896 /* TLMenuItemCell.m in Sources */,
@@ -941,7 +929,6 @@
 				C2268CEE1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m in Sources */,
 				C26312341FE8B62A0022B2F8 /* ZZFLEXChainViewModel.m in Sources */,
 				C2268CEF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m in Sources */,
-				C26312331FE8B62A0022B2F8 /* ZZFLEXChainDataModel.m in Sources */,
 				C2268D031FCC439A00C98EA7 /* UIButton+ZZExtension.m in Sources */,
 				C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */,
 				C282D0AF1FEA0C0700559705 /* ZZFDGoodAreaCell.m in Sources */,
@@ -953,7 +940,7 @@
 				C26311F71FE8AF460022B2F8 /* ZZFLEXTableViewEmptyCell.m in Sources */,
 				C282D0AC1FEA0C0700559705 /* ZZFDGoodTitleCell.m in Sources */,
 				C282D0C51FEA281000559705 /* ZZFDImageMoreCell.m in Sources */,
-				C263122F1FE8B62A0022B2F8 /* ZZFLEXChainCellEditModel.m in Sources */,
+				C263122F1FE8B62A0022B2F8 /* ZZFLEXChainViewEditModel.m in Sources */,
 				C2268CED1FCC3FF500C98EA7 /* ZZLabelChainModel.m in Sources */,
 				C26312391FE8BB360022B2F8 /* ZZFDCateModel.m in Sources */,
 				C2863A9E1FCCFD52008BC3C0 /* ZZFDMainViewController.m in Sources */,
@@ -964,6 +951,7 @@
 				C26312301FE8B62A0022B2F8 /* ZZFLEXChainSectionModel.m in Sources */,
 				C263123F1FE8E9990022B2F8 /* ZZFDCateSectionItemCell.m in Sources */,
 				C29D37171FE7B381007236D8 /* ZZFDCateMenuCell.m in Sources */,
+				C2A262C020032FDE00CAC35C /* ZZFLEXChainViewBatchModel.m in Sources */,
 				C282D1091FEA5D9A00559705 /* ZZFDGoodCommitCell.m in Sources */,
 				C27E9F4E1FCE609C0062C896 /* ZZFDGoodListModel.m in Sources */,
 				C2AC73311FE516DA00DABA11 /* ZZFDMainTitleView.m in Sources */,
