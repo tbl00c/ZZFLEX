@@ -99,6 +99,38 @@
     };
 }
 
+/// 更新所有元素
+- (BOOL (^)(void))upadte
+{
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+            [sectionModel.headerViewModel updateViewHeight];
+            [sectionModel.footerViewModel updateViewHeight];
+            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+                [viewModel updateViewHeight];
+            }
+        }
+        return YES;
+    };
+}
+
+/// 更新所有Cell
+- (BOOL (^)(void))upadteAllCells
+{
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+                [viewModel updateViewHeight];
+            }
+        }
+        return YES;
+    };
+}
+
 #pragma mark - # Section操作
 /// 添加section
 - (ZZFLEXChainSectionModel *(^)(NSInteger tag))addSection

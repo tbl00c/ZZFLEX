@@ -137,7 +137,14 @@
 #pragma mark 获取数据源
 - (NSArray *)dataModelArray
 {
-    return self.sectionModel.itemsArray;
+    NSArray *viewModelArray = self.sectionModel.itemsArray;
+    NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
+    for (ZZFlexibleLayoutViewModel *viewModel in data) {
+        if (viewModel.dataModel && ![viewModel.dataModel isKindOfClass:[NSNull class]]) {
+            [data addObject:viewModel.dataModel];
+        }
+    }
+    return data;
 }
 
 - (id)dataModelForHeader

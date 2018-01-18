@@ -43,7 +43,7 @@
     };
 }
 
-- (id (^)(id dataModel))byViewDataModel
+- (id (^)(id dataModel))byDataModel
 {
     return ^id(id dataModel) {
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
@@ -171,7 +171,7 @@
     };
 }
 
-- (NSArray *(^)(id dataModel))byViewDataModel
+- (NSArray *(^)(id dataModel))byDataModel
 {
     return ^NSArray *(id dataModel) {
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {

@@ -124,21 +124,27 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZZFlexibleLayoutViewModel *model = [self viewModelAtIndexPath:indexPath];
-    return model ? model.viewSize.height : 0;
+    CGFloat height = model ? model.viewSize.height : 0;
+    height = height < 0 ? tableView.frame.size.height * -height : height;
+    return height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *model = sectionModel.headerViewModel;
-    return model ? model.viewSize.height : 0;
+    CGFloat height = model ? model.viewSize.height : 0;
+    height = height < 0 ? tableView.frame.size.height * -height : height;
+    return height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *model = sectionModel.footerViewModel;
-    return model ? model.viewSize.height : 0;
+    CGFloat height = model ? model.viewSize.height : 0;
+    height = height < 0 ? tableView.frame.size.height * -height : height;
+    return height;
 }
 
 @end

@@ -123,7 +123,8 @@
 {
     ZZFlexibleLayoutViewModel *model = [self viewModelAtIndexPath:indexPath];
     CGSize size = model ? model.viewSize : CGSizeZero;
-    size.width = (size.width < 0 && size.width >= -1) ? collectionView.width * -size.width : size.width;
+    size.width = size.width < 0 ? collectionView.frame.size.width * -size.width : size.width;
+    size.height = size.height < 0 ? collectionView.frame.size.height * -size.height : size.height;
     return size;
 }
 
@@ -132,7 +133,8 @@
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *model = sectionModel.headerViewModel;
     CGSize size = model ? model.viewSize : CGSizeZero;
-    size.width = (size.width < 0 && size.width >= -1) ? collectionView.width * -size.width : size.width;
+    size.width = size.width < 0 ? collectionView.frame.size.width * -size.width : size.width;
+    size.height = size.height < 0 ? collectionView.frame.size.height * -size.height : size.height;
     return size;
 }
 
@@ -141,7 +143,8 @@
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *model = sectionModel.footerViewModel;
     CGSize size = model ? model.viewSize : CGSizeZero;
-    size.width = (size.width < 0 && size.width >= -1) ? collectionView.width * -size.width : size.width;
+    size.width = size.width < 0 ? collectionView.frame.size.width * -size.width : size.width;
+    size.height = size.height < 0 ? collectionView.frame.size.height * -size.height : size.height;
     return size;
 }
 
