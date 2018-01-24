@@ -41,6 +41,8 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
 
     [self setTitle:@"ZZFlexibleLayoutFramework"];
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
+    
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain actionBlick:nil]];
 }
 
 - (void)viewDidLoad

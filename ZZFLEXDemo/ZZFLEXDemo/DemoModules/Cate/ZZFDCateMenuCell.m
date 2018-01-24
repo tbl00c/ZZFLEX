@@ -8,6 +8,7 @@
 
 #import "ZZFDCateMenuCell.h"
 #import "ZZFDCateModel.h"
+#import "UIView+ZZFLEX.h"
 
 @implementation ZZFDCateMenuCell
 
@@ -40,7 +41,7 @@
 {
     [super layoutSubviews];
     
-    self.addSeparator(TLSeparatorPositionBottom).beginAt(15);
+    self.addSeparator(ZZSeparatorPositionBottom).beginAt(15);
 }
 
 @end

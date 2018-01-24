@@ -85,6 +85,7 @@
 		C2AC73311FE516DA00DABA11 /* ZZFDMainTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73301FE516DA00DABA11 /* ZZFDMainTitleView.m */; };
 		C2AC73341FE51B2D00DABA11 /* ZZFDMainIntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73331FE51B2D00DABA11 /* ZZFDMainIntroduceCell.m */; };
 		C2AC73371FE51FD400DABA11 /* ZZFDMainSectionTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73361FE51FD400DABA11 /* ZZFDMainSectionTitleView.m */; };
+		C2F2F94920186590003D53F7 /* UIView+ZZSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F94820186590003D53F7 /* UIView+ZZSeparator.m */; };
 		C2F8C83B1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C83A1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m */; };
 		C4CA8820EC31BF20D47A333A /* libPods-ZZFLEXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3B3E00F40C25E980C181EA /* libPods-ZZFLEXDemo.a */; };
 /* End PBXBuildFile section */
@@ -251,6 +252,8 @@
 		C2AC73361FE51FD400DABA11 /* ZZFDMainSectionTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDMainSectionTitleView.m; sourceTree = "<group>"; };
 		C2D788DD1FCC396D00778993 /* ZZFLEXDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZZFLEXDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D788EE1FCC396D00778993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2F2F9472018658F003D53F7 /* UIView+ZZSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZZSeparator.h"; sourceTree = "<group>"; };
+		C2F2F94820186590003D53F7 /* UIView+ZZSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZSeparator.m"; sourceTree = "<group>"; };
 		C2F8C8391FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZZFlexibleLayoutViewController+OldAPI.h"; sourceTree = "<group>"; };
 		C2F8C83A1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZZFlexibleLayoutViewController+OldAPI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -400,6 +403,8 @@
 		C2268CF71FCC400E00C98EA7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C2F2F9472018658F003D53F7 /* UIView+ZZSeparator.h */,
+				C2F2F94820186590003D53F7 /* UIView+ZZSeparator.m */,
 				C2268CFB1FCC40AE00C98EA7 /* UIControl+ZZEvent.h */,
 				C2268CFC1FCC40AE00C98EA7 /* UIControl+ZZEvent.m */,
 				C2268CFE1FCC413800C98EA7 /* UIView+ZZFrame.h */,
@@ -949,6 +954,7 @@
 				C2268CD21FCC3FDF00C98EA7 /* ZZFLEXRequestModel.m in Sources */,
 				C2F8C83B1FDE6A1E0007B564 /* ZZFlexibleLayoutViewController+OldAPI.m in Sources */,
 				C26312301FE8B62A0022B2F8 /* ZZFLEXChainSectionModel.m in Sources */,
+				C2F2F94920186590003D53F7 /* UIView+ZZSeparator.m in Sources */,
 				C263123F1FE8E9990022B2F8 /* ZZFDCateSectionItemCell.m in Sources */,
 				C29D37171FE7B381007236D8 /* ZZFDCateMenuCell.m in Sources */,
 				C2A262C020032FDE00CAC35C /* ZZFLEXChainViewBatchModel.m in Sources */,

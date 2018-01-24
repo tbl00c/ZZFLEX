@@ -41,7 +41,7 @@
 {
     if (indexPath.row == count - 1) {
         showSeperator = NO;
-        self.removeSeparator(TLSeparatorPositionBottom);
+        self.removeSeparator(ZZSeparatorPositionBottom);
     }
     else {
         showSeperator = YES;
@@ -111,10 +111,10 @@
     [super layoutSubviews];
     
     if (showSeperator) {
-        self.addSeparator(TLSeparatorPositionBottom).beginAt(25 + GOOD_AVATAR_WIDTH).endAt(-15);
+        self.addSeparator(ZZSeparatorPositionBottom).beginAt(25 + GOOD_AVATAR_WIDTH).endAt(-15);
     }
     else {
-        self.removeSeparator(TLSeparatorPositionBottom);
+        self.removeSeparator(ZZSeparatorPositionBottom);
     }
 }
 

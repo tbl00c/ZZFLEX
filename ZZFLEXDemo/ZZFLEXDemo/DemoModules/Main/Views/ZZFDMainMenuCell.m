@@ -31,17 +31,17 @@
 - (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
     if (indexPath.row == 0) {       // 顶部分割线
-        self.contentView.addSeparator(TLSeparatorPositionTop).length(SCREEN_WIDTH);
+        self.contentView.addSeparator(ZZSeparatorPositionTop).length(SCREEN_WIDTH);
     }
     else {
-        self.contentView.removeSeparator(TLSeparatorPositionTop);
+        self.contentView.removeSeparator(ZZSeparatorPositionTop);
     }
     
     if (indexPath.row == count - 1) {       // 底部分割线
-        self.contentView.addSeparator(TLSeparatorPositionBottom).length(SCREEN_WIDTH);
+        self.contentView.addSeparator(ZZSeparatorPositionBottom).length(SCREEN_WIDTH);
     }
     else {
-        self.contentView.addSeparator(TLSeparatorPositionBottom).beginAt(15).length(SCREEN_WIDTH - 15);
+        self.contentView.addSeparator(ZZSeparatorPositionBottom).beginAt(15).length(SCREEN_WIDTH - 15);
     }
 }
 

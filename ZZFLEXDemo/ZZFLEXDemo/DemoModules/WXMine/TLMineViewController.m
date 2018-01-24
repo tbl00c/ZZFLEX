@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, TLMineCellTag) {
 
     [self.navigationItem setTitle:LOCSTR(@"我")];
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
-    
+
     [self loadMenus];
 }
 

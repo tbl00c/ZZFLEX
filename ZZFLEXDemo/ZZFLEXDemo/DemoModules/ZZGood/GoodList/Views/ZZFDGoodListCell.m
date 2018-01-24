@@ -101,7 +101,7 @@
 {
     [super layoutSubviews];
     
-    self.addSeparator(TLSeparatorPositionBottom).beginAt(15).endAt(-15);
+    self.addSeparator(ZZSeparatorPositionBottom).beginAt(15).endAt(-15);
 }
 
 @end

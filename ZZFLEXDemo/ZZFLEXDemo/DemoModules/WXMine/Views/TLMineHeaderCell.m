@@ -7,6 +7,7 @@
 //
 
 #import "TLMineHeaderCell.h"
+#import "UIView+ZZFLEX.h"
 
 #define     MINE_SPACE_X        14.0f
 #define     MINE_SPACE_Y        12.0f
@@ -42,16 +43,16 @@
 - (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
     if (indexPath.row == 0) {
-        self.addSeparator(TLSeparatorPositionTop);
+        self.addSeparator(ZZSeparatorPositionTop);
     }
     else {
-        self.removeSeparator(TLSeparatorPositionTop);
+        self.removeSeparator(ZZSeparatorPositionTop);
     }
     if (indexPath.row == count - 1) {
-        self.addSeparator(TLSeparatorPositionBottom);
+        self.addSeparator(ZZSeparatorPositionBottom);
     }
     else {
-        self.addSeparator(TLSeparatorPositionBottom).beginAt(15);
+        self.addSeparator(ZZSeparatorPositionBottom).beginAt(15);
     }
 }
 

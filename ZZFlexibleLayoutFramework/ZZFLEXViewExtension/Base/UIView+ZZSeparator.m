@@ -1,23 +1,23 @@
 //
-//  UIView+Separator.m
+//  UIView+ZZSeparator.m
 //  TLChat
 //
 //  Created by 李伯坤 on 2017/7/5.
 //  Copyright © 2017年 李伯坤. All rights reserved.
 //
 
-#import "UIView+Separator.h"
+#import "UIView+ZZSeparator.h"
 #import "NSObject+Association.h"
 #import <objc/runtime.h>
-#import "TLShortcutMacros.h"
+#import "UIColor+Extensions.h"
 
-#define     BORDER_WIDTH_1PX            ([[UIScreen mainScreen] scale] > 0.0 ? 1.0 / [[UIScreen mainScreen] scale] : 1.0)
+#define     TLSEPERATOR_DEFAULT_COLOR       [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0]
 
-#pragma mark - ## TLSeparatorModel
-@interface TLSeparatorModel : NSObject
+#pragma mark - ## ZZSeparatorModel
+@interface ZZSeparatorModel : NSObject
 
 @property (nonatomic, strong) UIColor *color;
-@property (nonatomic, assign) TLSeparatorPosition position;
+@property (nonatomic, assign) ZZSeparatorPosition position;
 
 @property (nonatomic, assign) CGFloat borderWidth;
 
@@ -31,13 +31,13 @@
 
 @end
 
-@implementation TLSeparatorModel
+@implementation ZZSeparatorModel
 @synthesize layer = _layer;
 
 - (id)init
 {
     if (self = [super init]) {
-        [self setPosition:TLSeparatorPositionBottom];
+        [self setPosition:ZZSeparatorPositionBottom];
         [self setColor:TLSEPERATOR_DEFAULT_COLOR];
         [self setBegin:0];
         [self setEnd:0];
@@ -57,19 +57,19 @@
 
 @end
 
-#pragma mark - ## TLSeparatorChainModel
+#pragma mark - ## ZZSeparatorChainModel
 
-@interface TLSeparatorChainModel ()
+@interface ZZSeparatorChainModel ()
 
 @property (nonatomic, weak, readonly) UIView *view;
-@property (nonatomic, strong, readonly) TLSeparatorModel *SeparatorModel;
+@property (nonatomic, strong, readonly) ZZSeparatorModel *SeparatorModel;
 
 @end
 
-@implementation TLSeparatorChainModel
+@implementation ZZSeparatorChainModel
 @synthesize SeparatorModel = _SeparatorModel;
 
-- (id)initWithView:(UIView *)view andPosition:(TLSeparatorPosition)position
+- (id)initWithView:(UIView *)view andPosition:(ZZSeparatorPosition)position
 {
     if (self = [super init]) {
         _view = view;
@@ -79,7 +79,7 @@
 }
 
 /// 偏移量
-- (TLSeparatorChainModel *(^)(CGFloat offset))offset
+- (ZZSeparatorChainModel *(^)(CGFloat offset))offset
 {
     @weakify(self);
     return ^(CGFloat offset) {
@@ -91,7 +91,7 @@
 }
 
 /// 位置
-- (TLSeparatorChainModel *(^)(UIColor *color))color
+- (ZZSeparatorChainModel *(^)(UIColor *color))color
 {
     @weakify(self);
     return ^(UIColor *color) {
@@ -102,7 +102,7 @@
     };
 }
 /// 起点
-- (TLSeparatorChainModel *(^)(CGFloat begin))beginAt
+- (ZZSeparatorChainModel *(^)(CGFloat begin))beginAt
 {
     @weakify(self);
     return ^(CGFloat begin) {
@@ -113,7 +113,7 @@
     };
 }
 /// 长度
-- (TLSeparatorChainModel *(^)(CGFloat length))length
+- (ZZSeparatorChainModel *(^)(CGFloat length))length
 {
     @weakify(self);
     return ^(CGFloat length) {
@@ -124,7 +124,7 @@
     };
 }
 /// 终点
-- (TLSeparatorChainModel *(^)(CGFloat end))endAt
+- (ZZSeparatorChainModel *(^)(CGFloat end))endAt
 {
     @weakify(self);
     return ^(CGFloat end) {
@@ -135,7 +135,7 @@
     };
 }
 /// 线粗
-- (TLSeparatorChainModel *(^)(CGFloat borderWidth))borderWidth;
+- (ZZSeparatorChainModel *(^)(CGFloat borderWidth))borderWidth;
 {
     @weakify(self);
     return ^(CGFloat borderWidth) {
@@ -147,25 +147,25 @@
 }
 
 #pragma mark - # Getters
-- (TLSeparatorModel *)SeparatorModel
+- (ZZSeparatorModel *)SeparatorModel
 {
     if (!_SeparatorModel) {
-        _SeparatorModel = [[TLSeparatorModel alloc] init];
+        _SeparatorModel = [[ZZSeparatorModel alloc] init];
     }
     return _SeparatorModel;
 }
 
 @end
 
-#pragma mark - ## UIView (Separator)
-@implementation UIView (Separator)
+#pragma mark - ## UIView (ZZSeparator)
+@implementation UIView (ZZSeparator)
 
-- (TLSeparatorChainModel *(^)(TLSeparatorPosition position))addSeparator;
+- (ZZSeparatorChainModel *(^)(ZZSeparatorPosition position))addSeparator;
 {
     @weakify(self);
-    return ^(TLSeparatorPosition position) {
+    return ^(ZZSeparatorPosition position) {
         @strongify(self);
-        TLSeparatorChainModel *chainModel = [[TLSeparatorChainModel alloc] initWithView:self andPosition:position];
+        ZZSeparatorChainModel *chainModel = [[ZZSeparatorChainModel alloc] initWithView:self andPosition:position];
         self.removeSeparator(position);
         [self.SeparatorArray addObject:chainModel.SeparatorModel];
         [self updateSeparator];
@@ -173,12 +173,12 @@
     };
 }
 
-- (void (^)(TLSeparatorPosition position))removeSeparator
+- (void (^)(ZZSeparatorPosition position))removeSeparator
 {
     @weakify(self);
-    return ^(TLSeparatorPosition position) {
+    return ^(ZZSeparatorPosition position) {
         @strongify(self);
-        TLSeparatorModel *model = [self SeparatorModelForPosition:position];
+        ZZSeparatorModel *model = [self SeparatorModelForPosition:position];
         if (model) {
             [model.layer removeFromSuperlayer];
             [self.SeparatorArray removeObject:model];
@@ -188,15 +188,15 @@
 
 - (void)updateSeparator
 {
-    for (TLSeparatorModel *model in self.SeparatorArray) {
+    for (ZZSeparatorModel *model in self.SeparatorArray) {
         [self updateSeparatorWithModel:model];
     }
 }
 
 #pragma mark - # Private Methods
-- (TLSeparatorModel *)SeparatorModelForPosition:(TLSeparatorPosition)position
+- (ZZSeparatorModel *)SeparatorModelForPosition:(ZZSeparatorPosition)position
 {
-    for (TLSeparatorModel *model in self.SeparatorArray) {
+    for (ZZSeparatorModel *model in self.SeparatorArray) {
         if (model.position == position) {
             return model;
         }
@@ -204,12 +204,12 @@
     return nil;
 }
 
-- (void)updateSeparatorWithModel:(TLSeparatorModel *)separatorModel
+- (void)updateSeparatorWithModel:(ZZSeparatorModel *)separatorModel
 {
     CGFloat startX = 0, startY = 0, endX = 0, endY = 0, offset = separatorModel.offset;
     CGFloat borderWidth = separatorModel.borderWidth;
     UIColor *color = separatorModel.color;
-    if (separatorModel.position == TLSeparatorPositionTop) {
+    if (separatorModel.position == ZZSeparatorPositionTop) {
         startY = endY = borderWidth / 2.0 + offset;
         startX = separatorModel.begin;
         if (separatorModel.length > 0) {
@@ -219,7 +219,7 @@
             endX = self.frame.size.width + separatorModel.end;
         }
     }
-    else if (separatorModel.position == TLSeparatorPositionBottom) {
+    else if (separatorModel.position == ZZSeparatorPositionBottom) {
         startY = endY = self.frame.size.height - borderWidth / 2.0 + offset;
         startX = separatorModel.begin;
         if (separatorModel.length > 0) {
@@ -229,7 +229,7 @@
             endX = self.frame.size.width + separatorModel.end;
         }
     }
-    else if (separatorModel.position == TLSeparatorPositionLeft) {
+    else if (separatorModel.position == ZZSeparatorPositionLeft) {
         startX = endX = borderWidth / 2.0 + offset;
         startY = separatorModel.begin;
         if (separatorModel.length > 0) {
@@ -239,7 +239,7 @@
             endY = self.frame.size.height + separatorModel.end;
         }
     }
-    else if (separatorModel.position == TLSeparatorPositionRight) {
+    else if (separatorModel.position == ZZSeparatorPositionRight) {
         startX = endX = self.frame.size.width - borderWidth / 2.0 + offset;
         startY = separatorModel.begin;
         if (separatorModel.length > 0) {
@@ -265,14 +265,15 @@
 }
 
 #pragma mark - # Getters
+static NSString *__zz_sepataror_key = @"";
 - (NSMutableArray *)SeparatorArray
 {
-    NSMutableArray *SeparatorArray = [self associatedObjectForKey:@"SeparatorArray"];
-    if (!SeparatorArray) {
-        SeparatorArray = [[NSMutableArray alloc] init];
-        [self setAssociatedObject:SeparatorArray forKey:@"SeparatorArray" association:TLAssociationStrong isAtomic:NO];
+    NSMutableArray *separatorArray = objc_getAssociatedObject(self, &__zz_sepataror_key);
+    if (!separatorArray) {
+        separatorArray = [[NSMutableArray alloc] init];
+        objc_setAssociatedObject(self, &__zz_sepataror_key, separatorArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    return SeparatorArray;
+    return separatorArray;
 }
 
 @end

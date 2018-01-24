@@ -164,7 +164,7 @@
 {
     [super layoutSubviews];
     
-    self.cardView.addSeparator(TLSeparatorPositionTop).offset(70).beginAt(15).length(SCREEN_WIDTH - 60);
+    self.cardView.addSeparator(ZZSeparatorPositionTop).offset(70).beginAt(15).length(SCREEN_WIDTH - 60);
 }
 
 @end
