@@ -30,11 +30,11 @@
 
 @implementation ZZFDGoodCommitCell
 
-+ (CGSize)viewSizeByDataModel:(ZZFDGoodCommitModel *)dataModel
++ (CGFloat)viewHeightByDataModel:(ZZFDGoodCommitModel *)dataModel
 {
     CGFloat height = [dataModel.detail tt_sizeWithFont:GOOD_FONT_COMMIT_DETAIL constrainedToSize:CGSizeMake(SCREEN_WIDTH - GOOD_AVATAR_WIDTH - 50, MAXFLOAT)].height;
     height += 50;
-    return CGSizeMake(SCREEN_WIDTH, height);
+    return height;
 }
 
 - (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count

@@ -34,6 +34,8 @@ ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ separatorColor)(UIColor *separat
 ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ tableHeaderView)(UIView * tableHeaderView);
 ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ tableFooterView)(UIView * separatorStyle);
 
+ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ sectionIndexBackgroundColor)(UIColor *sectionIndexBackgroundColor);
+ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ sectionIndexColor)(UIColor *sectionIndexColor);
 
 #pragma mark - UIScrollView
 ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ contentSize)(CGSize contentSize);

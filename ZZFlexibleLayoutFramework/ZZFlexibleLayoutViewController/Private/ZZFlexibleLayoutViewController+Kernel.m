@@ -8,6 +8,7 @@
 
 #import "ZZFlexibleLayoutViewController+Kernel.h"
 #import "ZZFlexibleLayoutViewProtocol.h"
+#import "ZZFLEXMacros.h"
 
 /*
  *  注册cells 到 UICollectionView
@@ -47,7 +48,7 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
     
     UICollectionViewCell<ZZFlexibleLayoutViewProtocol> *cell;
     if (!model || !model.viewClass) {
-        NSLog(@"!!!!! CollectionViewCell不存在，将使用空白Cell：%@", model.className);
+        ZZFLEXLog(@"!!!!! CollectionViewCell不存在，将使用空白Cell：%@", model.className);
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_SEPEARTOR forIndexPath:indexPath];
         [cell setTag:model.viewTag];
         return cell;
@@ -56,7 +57,7 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:model.className forIndexPath:indexPath];
     
     if ([cell respondsToSelector:@selector(setViewDataModel:)]) {
-        [cell setViewDataModel:([model.dataModel isKindOfClass:[NSNull class]] ? nil : model.dataModel)];
+        [cell setViewDataModel:model.dataModel];
     }
     if ([cell respondsToSelector:@selector(setViewDelegate:)]) {
         [cell setViewDelegate:model.delegate ? model.delegate : self];
@@ -125,15 +126,11 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
-    id dataModel = viewModel.dataModel;
-    if ([viewModel.dataModel isKindOfClass:[NSNull class]]) {
-        dataModel = nil;
-    }
     if (viewModel.selectedAction) {
-        viewModel.selectedAction(dataModel);
+        viewModel.selectedAction(viewModel.dataModel);
     }
     if (indexPath.section < self.data.count && [self respondsToSelector:@selector(collectionViewDidSelectItem:sectionTag:cellTag:className:indexPath:)]) {
-        [self collectionViewDidSelectItem:dataModel sectionTag:sectionModel.sectionTag cellTag:viewModel.viewTag className:viewModel.className indexPath:indexPath];
+        [self collectionViewDidSelectItem:viewModel.dataModel sectionTag:sectionModel.sectionTag cellTag:viewModel.viewTag className:viewModel.className indexPath:indexPath];
     }
 }
 

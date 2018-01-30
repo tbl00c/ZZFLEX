@@ -32,6 +32,7 @@
 //MARK: UIScrollView
 #import "UIScrollView+Extensions.h"             // UIScrollView contentOffset、contentSize、滚动方法拓展等
 #import "UIScrollView+Pages.h"                  // UIScrollView 分页拓展
+#import "UIScrollView+iOS11Fixed.h"             // UIScrollView iOS11
 
 //MARK: UITextField
 #import "UITextField+LengthLimit.h"             // UITextField 长度限制

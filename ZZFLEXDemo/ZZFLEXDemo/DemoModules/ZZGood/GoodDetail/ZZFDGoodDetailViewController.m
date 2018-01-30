@@ -82,8 +82,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         if (listModel.params.count % 2 == 1) {
             self.addCell(@"ZZFDGoodParamCell").toSection(ZZFDGoodSectionTypeDetail);
         }
-        CGFloat maxWidth = MAX(SCREEN_WIDTH, SCREEN_HEIGHT);
-        self.addSeperatorCell(CGSizeMake(maxWidth, 8), [UIColor whiteColor]).toSection(ZZFDGoodSectionTypeDetail);
+        self.addSeperatorCell(CGSizeMake(-1, 8), [UIColor whiteColor]).toSection(ZZFDGoodSectionTypeDetail);
     }
     // 详细描述
     if (listModel.attrGoodDetail) {
@@ -121,7 +120,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         }
     }
     else {
-        self.addSeperatorCell(CGSizeMake(SCREEN_WIDTH, 8), [UIColor whiteColor]).toSection(ZZFDGoodSectionTypeDetail);
+        self.addSeperatorCell(CGSizeMake(-1, 8), [UIColor whiteColor]).toSection(ZZFDGoodSectionTypeDetail);
     }
     
     /// User

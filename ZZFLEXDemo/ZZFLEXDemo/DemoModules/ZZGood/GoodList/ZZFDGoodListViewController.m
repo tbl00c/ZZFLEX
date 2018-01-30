@@ -10,6 +10,7 @@
 #import "ZZFDGoodDetailViewController.h"
 #import "ZZFDGoodListModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "ZZFDGoodListCell.h"
 
 typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
     ZZFDGoodListSectionTypeGood,
@@ -28,7 +29,6 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
     [super loadView];
     [self setTitle:@"商品列表"];
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
-    self.addSection(ZZFDGoodListSectionTypeGood);
 }
 
 - (void)viewDidLoad
@@ -51,18 +51,15 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
     @weakify(self);
     [ZZFDGoodListModel requestHomePageDataWithOffset:offset success:^(NSArray *data) {
         @strongify(self);
-        
         // 很重要
         if (!self) {
             return ;
         }
         
-        self.offset = offset + data.count;
         [TLUIUtility hiddenLoading];
         [self.collectionView.mj_header endRefreshing];
         
         if (offset == 0) {
-            [self deleteAllItemsForSection:ZZFDGoodListSectionTypeGood];
             if (!self.collectionView.mj_footer) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.collectionView setMj_footer:[MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -75,18 +72,16 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
                 [self.collectionView.mj_footer resetNoMoreData];
             }
         }
+
+        if (data.count < 20) {
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }
         else {
-            if (data.count == 20) {
-                [self.collectionView.mj_footer endRefreshing];
-            }
-            else {
-                [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-            }
+            [self.collectionView.mj_footer endRefreshing];
         }
         
-        // 批量添加cell
-        self.addCells(@"ZZFDGoodListCell").toSection(ZZFDGoodListSectionTypeGood).withDataModelArray(data);
-        [self reloadView];
+        [self ui_loadUIWithData:data clear:offset == 0];
+        self.offset = offset + data.count;
     } failure:^(NSString *errMsg) {
         [TLUIUtility hiddenLoading];
         [self.collectionView.mj_header endRefreshing];
@@ -94,6 +89,28 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
         
         [TLUIUtility showErrorHint:errMsg];
     }];
+}
+
+#pragma mark - # UI
+- (void)ui_loadUIWithData:(NSArray *)data clear:(BOOL)clear
+{
+    if (clear) {
+        self.clear();
+        self.addSection(ZZFDGoodListSectionTypeGood);
+    }
+    // 批量添加cell
+    self.addCells(NSStringFromClass([ZZFDGoodListCell class])).toSection(ZZFDGoodListSectionTypeGood).withDataModelArray(data).eventAction(^ id(ZZFDGoodListCellEventType eventType, id data) {
+        if (eventType == ZZFDGoodListCellEventTypeClose) {
+            [TLUIUtility showAlertWithTitle:@"不喜欢这个商品？" message:@"我们以后将减少此类商品的推荐" cancelButtonTitle:@"取消" otherButtonTitles:@[@"不喜欢"] actionHandler:^(NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    self.deleteCell.byDataModel(data);
+                    [self reloadView];
+                }
+            }];
+        }
+        return nil;
+    });
+    [self reloadView];
 }
 
 #pragma mark - # Delegate

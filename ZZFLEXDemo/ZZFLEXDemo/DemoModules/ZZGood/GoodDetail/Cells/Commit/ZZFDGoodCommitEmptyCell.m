@@ -20,9 +20,9 @@
 
 @implementation ZZFDGoodCommitEmptyCell
 
-+ (CGSize)viewSizeByDataModel:(id)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 180);
+    return 180;
 }
 
 - (void)setViewEventAction:(id (^)(NSInteger, id))eventAction

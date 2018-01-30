@@ -18,9 +18,9 @@
 @implementation ZZFDMainTitleView
 
 #pragma mark - # ZZFlexibleLayoutViewProtocol
-+ (CGSize)viewSizeByDataModel:(NSString *)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 55);
+    return 55;
 }
 
 - (void)setViewDataModel:(id)dataModel

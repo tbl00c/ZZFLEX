@@ -9,6 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ZZFlexibleLayoutViewProtocol.h"
 
+typedef NS_ENUM(NSInteger, ZZFDGoodListCellEventType) {
+    ZZFDGoodListCellEventTypeClose,
+};
+
+@class ZZFDGoodListModel;
 @interface ZZFDGoodListCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
+
+@property (nonatomic, strong) ZZFDGoodListModel *dataModel;
+
+@property (nonatomic, copy) id (^eventAction)(ZZFDGoodListCellEventType, id data);
 
 @end

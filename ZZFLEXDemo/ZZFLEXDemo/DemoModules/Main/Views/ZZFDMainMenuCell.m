@@ -18,9 +18,9 @@
 @implementation ZZFDMainMenuCell
 
 #pragma mark - # ZZFlexibleLayoutViewProtocol
-+ (CGSize)viewSizeByDataModel:(id)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 46);
+    return 46;
 }
 
 - (void)setViewDataModel:(id)dataModel

@@ -19,6 +19,7 @@
 #import "ZZSwitchChainModel.h"
 
 #import "ZZScrollViewChainModel.h"
+#import "ZZTextViewChainModel.h"
 #import "ZZTableViewChainModel.h"
 #import "ZZCollectionViewChainModel.h"
 
@@ -51,6 +52,9 @@ ZZFLEX_VIEW_CHAIN_TYPE ZZSwitchChainModel *(^ addSwitch)(NSInteger tag);
 #pragma mark - # 滚动视图类
 /// 添加ScrollView
 ZZFLEX_VIEW_CHAIN_TYPE ZZScrollViewChainModel *(^ addScrollView)(NSInteger tag);
+
+/// 添加TextView
+ZZFLEX_VIEW_CHAIN_TYPE ZZTextViewChainModel *(^ addTextView)(NSInteger tag);
 
 /// 添加TableView
 ZZFLEX_VIEW_CHAIN_TYPE ZZTableViewChainModel *(^ addTableView)(NSInteger tag);

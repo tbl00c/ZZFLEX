@@ -9,6 +9,8 @@
 #ifndef ZZFLEXMacros_h
 #define ZZFLEXMacros_h
 
+#define ZZFLEXLog(fmt, ...)     NSLog((@"【ZZFLEX】" fmt), ##__VA_ARGS__)
+
 /// 快捷解决循环引用
 #ifndef weakify
 #if DEBUG

@@ -8,17 +8,39 @@
 
 #import "TLMenuItemCell.h"
 #import "UIView+ZZFLEX.h"
+#import "TLMenuItem.h"
+#import "TLBadge.h"
 
 #define     WIDTH_ICON_RIGHT        31
 #define     EGDE_RIGHT_IMAGE        13
 #define     EGDE_SUB_TITLE          8
 
+@interface TLMenuItemCell ()
+
+/// 左侧icon
+@property (nonatomic, strong) UIImageView *iconView;
+/// 左侧标题
+@property (nonatomic, strong) UILabel *titleLabel;
+/// 红点
+@property (nonatomic, strong) TLBadge *badgeView;
+
+/// 右侧副标题
+@property (nonatomic, strong) UILabel *detailLabel;
+/// 右侧广告图
+@property (nonatomic, strong) UIImageView *rightImageView;
+/// 右侧广告图红点
+@property (nonatomic, strong) TLBadge *rightBadgeView;
+/// 右箭头
+@property (nonatomic, strong) UIImageView *arrowView;
+
+@end
+
 @implementation TLMenuItemCell
 
 #pragma mark - # Protocol
-+ (CGSize)viewSizeByDataModel:(id)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 44.0f);
+    return 44.0f;
 }
 
 - (void)setViewDataModel:(id)dataModel

@@ -10,6 +10,7 @@
 #import "ZZFlexibleLayoutViewController+Kernel.h"
 #import "ZZFlexibleLayoutSectionModel.h"
 #import "ZZFlexibleLayoutSeperatorCell.h"
+#import "ZZFLEXMacros.h"
 
 @implementation ZZFlexibleLayoutViewController (OldAPI)
 
@@ -69,7 +70,7 @@
 - (NSInteger)addSectionWithTag:(NSInteger)tag minimumInteritemSpacing:(CGFloat)minimumInteritemSpacing minimumLineSpacing:(CGFloat)minimumLineSpacing sectionInsets:(UIEdgeInsets)sectionInsets backgroundColor:(UIColor *)backgroundColor
 {
     if ([self hasSection:tag]) {
-        NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+        ZZFLEXLog(@"!!!!! 重复添加Section：%ld", (long)tag);
     }
     ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
     sectionModel.sectionTag = tag;
@@ -89,10 +90,10 @@
 - (NSInteger)insertSectionWithTag:(NSInteger)tag toIndex:(NSInteger)index minimumInteritemSpacing:(CGFloat)minimumInteritemSpacing minimumLineSpacing:(CGFloat)minimumLineSpacing sectionInsets:(UIEdgeInsets)sectionInsets backgroundColor:(UIColor *)backgroundColor
 {
     if ([self hasSection:tag]) {
-        NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+        ZZFLEXLog(@"!!!!! 重复添加Section：%ld", (long)tag);
     }
     if (index > self.data.count) {
-        NSLog(@"!!!!! 插入section：index越界");
+        ZZFLEXLog(@"!!!!! 插入section：index越界");
         return -1;
     }
     ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
@@ -130,7 +131,7 @@
         sectionModel.headerViewModel = viewModel;
         return YES;
     }
-    NSLog(@"!!!!! section不存在: %ld", (long)sectionTag);
+    ZZFLEXLog(@"!!!!! section不存在: %ld", (long)sectionTag);
     return NO;
 }
 
@@ -149,7 +150,7 @@
         sectionModel.footerViewModel = viewModel;
         return YES;
     }
-    NSLog(@"!!!!! section不存在: %ld", (long)sectionTag);
+    ZZFLEXLog(@"!!!!! section不存在: %ld", (long)sectionTag);
     return NO;
 }
 

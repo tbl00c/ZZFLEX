@@ -30,9 +30,9 @@
 @implementation TLMineHeaderCell
 
 #pragma mark - # Protocol
-+ (CGSize)viewSizeByDataModel:(id)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 90);
+    return 90;
 }
 
 - (void)setViewDataModel:(id)dataModel
@@ -78,8 +78,8 @@
     _user = user;
     [self.avatarImageView setImage:[UIImage imageNamed:user.avatar]];
 
-    [self.nikenameLabel setText:user.nikeName];
-    [self.wechatIDLabel setText:user.username ? [LOCSTR(@"微信号：") stringByAppendingString:user.username] : @""];
+    [self.nikenameLabel setText:user.username];
+    [self.wechatIDLabel setText:user.userID ? [LOCSTR(@"微信号：") stringByAppendingString:user.userID] : @""];
 }
 
 #pragma mark - # Private Methods
@@ -121,7 +121,6 @@
 {
     if (_avatarImageView == nil) {
         _avatarImageView = [[UIImageView alloc] init];
-//        [_avatarImageView setImage:DEFAULT_HEAD];
         [_avatarImageView.layer setMasksToBounds:YES];
         [_avatarImageView.layer setCornerRadius:5.0f];
         [_avatarImageView.layer setBorderWidth:BORDER_WIDTH_1PX];

@@ -16,13 +16,13 @@
 /// 用户名
 @property (nonatomic, strong) NSString *username;
 
-/// 昵称
-@property (nonatomic, strong) NSString *nikeName;
-
 /// 头像
 @property (nonatomic, strong) NSString *avatar;
 
-/// 备注名
-@property (nonatomic, strong) NSString *remarkName;
+
+/// 拼音
+@property (nonatomic, strong, readonly) NSString *pinyin;
+@property (nonatomic, strong, readonly) NSString *pinyinInitial;
+
 
 @end

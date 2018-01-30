@@ -38,14 +38,6 @@
     [self updateViewHeight];
 }
 
-- (id)dataModel
-{
-    if (!_dataModel) {
-        return [NSNull null];
-    }
-    return _dataModel;
-}
-
 - (void)setClassName:(NSString *)className
 {
     _className = className;
@@ -58,7 +50,7 @@
 - (void)updateViewHeight
 {
     if (self.viewClass) {
-        id dataModel = [self.dataModel isKindOfClass:[NSNull class]] ? nil : self.dataModel;
+        id dataModel = _dataModel;
         if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewSizeByDataModel:)]) {
             _viewSize = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewSizeByDataModel:dataModel];
         }

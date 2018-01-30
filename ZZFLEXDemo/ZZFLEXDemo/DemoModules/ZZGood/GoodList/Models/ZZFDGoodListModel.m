@@ -222,13 +222,35 @@ ZZFDGoodCommitModel *createCommitModel(NSString *name, NSString *avatar, NSStrin
     
     NSMutableArray *data = @[].mutableCopy;
     for (int i = 0; i < (offset < 40 ? 20 : 10); i++) {
-        [data addObject:list[i % list.count]];
+        [data addObject:[list[i % list.count] mutableCopy]];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (success) {
             success(data);
         }
     });
+}
+
+- (id)mutableCopyWithZone:(nullable NSZone *)zone
+{
+    ZZFDGoodListModel *model = [[ZZFDGoodListModel alloc] init];
+    model.goodId = self.goodId;
+    model.goodTitle = self.goodTitle;
+    model.goodDetail = self.goodDetail;
+    model.goodFirstImage = self.goodFirstImage;
+    model.position = self.position;
+    model.lastLoginIn = self.lastLoginIn;
+    model.price = self.price;
+    model.goodImages = self.goodImages.mutableCopy;
+    model.avatar = self.avatar;
+    model.username = self.username;
+    model.commitData = self.commitData.mutableCopy;
+    model.zhimaCount = self.zhimaCount;
+    model.commitCount = self.commitCount;
+    model.tradeCount = self.tradeCount;
+    model.goodCount = self.goodCount;
+    model.params = self.params.mutableCopy;
+    return model;
 }
 
 @end

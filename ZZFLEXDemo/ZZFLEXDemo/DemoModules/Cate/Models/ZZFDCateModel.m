@@ -67,7 +67,6 @@ ZZFDCateModel *createCateModel(NSString *title, NSArray *items) {
                   ];
         ZZFDCateSectionModel *section2 = createSection(@"热门型号", items);
         
-        
         ZZFDCateModel *model = createCateModel(@"手机", @[section1, section2]);
         [data addObject:model];
     }
@@ -94,7 +93,6 @@ ZZFDCateModel *createCateModel(NSString *title, NSArray *items) {
                   createItem(@"其他", @""),
                   ];
         ZZFDCateSectionModel *section2 = createSection(@"全部母婴用品", items);
-        
         
         ZZFDCateModel *model = createCateModel(@"母婴", @[section1, section2]);
         [data addObject:model];

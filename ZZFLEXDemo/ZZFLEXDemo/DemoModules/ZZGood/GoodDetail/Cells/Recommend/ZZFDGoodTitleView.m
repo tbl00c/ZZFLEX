@@ -17,9 +17,9 @@
 
 @implementation ZZFDGoodTitleView
 
-+ (CGSize)viewSizeByDataModel:(NSString *)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 50);
+    return 50;
 }
 
 - (id)initWithFrame:(CGRect)frame

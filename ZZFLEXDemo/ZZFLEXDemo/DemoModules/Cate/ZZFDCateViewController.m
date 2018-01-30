@@ -31,6 +31,7 @@
     [super loadView];
     [self setTitle:@"分类"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
     self.tableView = self.view.addTableView(1)
     .backgroundColor([UIColor colorGrayBG])
@@ -54,6 +55,9 @@
     })
     .view;
     self.collectionViewAngel = [[ZZFLEXAngel alloc] initWithHostView:self.collectionView];
+    
+    [self.tableView setNeverAdjustmentContentInset:YES];
+    [self.collectionView setNeverAdjustmentContentInset:YES];
 }
 
 - (void)viewDidLoad
@@ -66,6 +70,19 @@
         self.data = data;
         [self didSelectedCate:data.firstObject];
     } failure:nil];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGFloat top = [UIApplication sharedApplication].statusBarFrame.size.height + self.navigationController.navigationBar.frame.size.height;
+    [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(top);
+    }];
+    [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(top);
+    }];
 }
 
 - (void)setData:(NSArray *)data

@@ -19,7 +19,7 @@
 
 + (CGSize)viewSizeByDataModel:(NSString *)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH / 2.0, 40);
+    return CGSizeMake(-0.5, 40);
 }
 
 - (void)setViewDataModel:(NSString *)dataModel

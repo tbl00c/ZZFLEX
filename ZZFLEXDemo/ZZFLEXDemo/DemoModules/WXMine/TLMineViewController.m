@@ -112,8 +112,8 @@ typedef NS_ENUM(NSInteger, TLMineCellTag) {
 {
     TLUser *user = [[TLUser alloc] init];
     user.avatar = @"avatar";
-    user.nikeName = @"李伯坤";
-    user.username = @"li-bokun";
+    user.username = @"李伯坤";
+    user.userID = @"li-bokun";
     return user;
 }
 

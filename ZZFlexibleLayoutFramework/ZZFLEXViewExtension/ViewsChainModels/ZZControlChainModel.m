@@ -25,6 +25,9 @@ ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(highlighted, BOOL);
     };
 }
 
+ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(contentVerticalAlignment, UIControlContentVerticalAlignment);
+ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(contentHorizontalAlignment, UIControlContentHorizontalAlignment);
+
 @end
 
 ZZFLEX_EX_IMPLEMENTATION(UIControl, ZZControlChainModel)

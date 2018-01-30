@@ -15,6 +15,8 @@
  * 实际给cell\view传递的仍然是dataModel
  */
 
+@class ZZFlexibleLayoutViewModel;
+
 @interface ZZFlexibleLayoutViewModel : NSObject
 
 /// view/cell类名

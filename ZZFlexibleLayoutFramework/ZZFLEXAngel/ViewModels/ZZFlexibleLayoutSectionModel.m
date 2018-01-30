@@ -42,7 +42,7 @@
 - (void)addObject:(ZZFlexibleLayoutViewModel *)object
 {
     if (!object) {
-        object = (ZZFlexibleLayoutViewModel *)[NSNull null];
+        return;
     }
     [self.itemsArray addObject:object];
 }
@@ -57,7 +57,7 @@
 - (void)insertObject:(ZZFlexibleLayoutViewModel *)object atIndex:(NSUInteger)objectIndex;
 {
     if (!object) {
-        object = (ZZFlexibleLayoutViewModel *)[NSNull null];
+        return;
     }
     [self.itemsArray insertObject:object atIndex:objectIndex];
 }
@@ -84,6 +84,12 @@
     if ([self.itemsArray containsObject:object]) {
         [self.itemsArray removeObject:object];
     }
+}
+
+- (id)dataModelAtIndex:(NSUInteger)index
+{
+    ZZFlexibleLayoutViewModel *viewModel = [self objectAtIndex:index];
+    return viewModel.dataModel;
 }
 
 @end

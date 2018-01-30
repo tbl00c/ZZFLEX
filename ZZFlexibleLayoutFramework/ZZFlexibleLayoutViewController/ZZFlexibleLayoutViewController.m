@@ -45,7 +45,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"dealloc");
+    ZZFLEXLog(@"Dealloc: %@", NSStringFromClass([self class]));
 }
 
 - (void)viewWillLayoutSubviews
@@ -139,7 +139,7 @@
     return ^(NSInteger tag){
         @strongify(self);
         if (self.hasSection(tag)) {
-            NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+            ZZFLEXLog(@"!!!!! 重复添加Section：%ld", (long)tag);
         }
         
         ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
@@ -157,7 +157,7 @@
     return ^(NSInteger tag){
         @strongify(self);
         if (self.hasSection(tag)) {
-            NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+            ZZFLEXLog(@"!!!!! 重复添加Section：%ld", (long)tag);
         }
         
         ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];

@@ -116,7 +116,7 @@
         return viewModel.dataModel;
     }
     else if (self.editType == ZZFLEXChainViewEditTypeHas) {
-        return nil;
+        return viewModel.dataModel;
     }
     return nil;
 }
@@ -240,8 +240,11 @@
     else if (self.editType == ZZFLEXChainViewEditTypeDataModel) {
         NSMutableArray *data = [[NSMutableArray alloc] init];
         for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
-            if (![viewModel.dataModel isKindOfClass:[NSNull class]]) {
+            if (viewModel.dataModel) {
                 [data addObject:viewModel.dataModel];
+            }
+            else {
+                [data addObject:[NSNull null]];
             }
         }
         return data;
@@ -250,7 +253,7 @@
         for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
             [viewModel updateViewHeight];
         }
-        return nil;
+        return viewModelArray;
     }
     return nil;
 }

@@ -17,6 +17,10 @@ ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ highlighted)(BOOL highlighted);
 
 ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
 
+ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ contentVerticalAlignment)(UIControlContentVerticalAlignment contentVerticalAlignment);
+ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ contentHorizontalAlignment)(UIControlContentHorizontalAlignment contentHorizontalAlignment);
+
+
 @end
 
 ZZFLEX_EX_INTERFACE(UIControl, ZZControlChainModel)

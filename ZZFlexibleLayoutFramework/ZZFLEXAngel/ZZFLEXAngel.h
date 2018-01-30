@@ -104,7 +104,7 @@ ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewEditModel *hasCell;
 
 /// cell数据源获取
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewEditModel *dataModel;
-/// 批量cell数据源获取
+/// 批量cell数据源获取(注意，dataModel为nil的元素，在数组中以NSNull存在)
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewBatchEditModel *dataModelArray;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "ZZFLEXChainSectionModel.h"
 #import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXMacros.h"
 
 #pragma mark - ## ZZFLEXChainSectionBaseModel (基类)
 @interface ZZFLEXChainSectionBaseModel ()
@@ -125,7 +126,7 @@
         self.listData = nil;
         return YES;
     }
-    NSLog(@"!!!!! ZZFLEX, section插入失败");
+    ZZFLEXLog(@"!!!!! section插入失败");
     return NO;
 }
 
@@ -140,8 +141,11 @@
     NSArray *viewModelArray = self.sectionModel.itemsArray;
     NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
     for (ZZFlexibleLayoutViewModel *viewModel in data) {
-        if (viewModel.dataModel && ![viewModel.dataModel isKindOfClass:[NSNull class]]) {
+        if (viewModel.dataModel) {
             [data addObject:viewModel.dataModel];
+        }
+        else {
+            [data addObject:[NSNull null]];
         }
     }
     return data;
@@ -149,32 +153,30 @@
 
 - (id)dataModelForHeader
 {
-    return self.sectionModel.headerViewModel;
+    return self.sectionModel.headerViewModel.dataModel;
 }
 
 - (id)dataModelForFooter
 {
-    return self.sectionModel.footerViewModel;
+    return self.sectionModel.footerViewModel.dataModel;
 }
 
 /// 根据viewTag获取数据源
 - (id (^)(NSInteger viewTag))dataModelByViewTag
 {
     return ^(NSInteger viewTag) {
-        id dataModel;
         for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == viewTag) {
-                dataModel = [viewModel.dataModel isKindOfClass:[NSNull class]] ? nil : viewModel.dataModel;
-                break;
+                return viewModel.dataModel;
             }
         }
         if (self.sectionModel.headerViewModel.viewTag == viewTag) {
-            dataModel = self.sectionModel.headerViewModel;
+            return self.sectionModel.headerViewModel.dataModel;
         }
         else if (self.sectionModel.footerViewModel.viewTag == viewTag) {
-            dataModel = self.sectionModel.footerViewModel;
+            return self.sectionModel.footerViewModel.dataModel;
         }
-        return dataModel;
+        return (id)nil;
     };
 }
 
@@ -185,15 +187,29 @@
         NSMutableArray *data = [[NSMutableArray alloc] init];
         for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == viewTag) {
-                id dataModel = [viewModel.dataModel isKindOfClass:[NSNull class]] ? nil : viewModel.dataModel;
-                [data addObject:dataModel];
+                if (viewModel.dataModel) {
+                    [data addObject:viewModel.dataModel];
+                }
+                else {
+                    [data addObject:[NSNull null]];
+                }
             }
         }
         if (self.sectionModel.headerViewModel.viewTag == viewTag) {
-            [data addObject:self.sectionModel.headerViewModel];
+            if (self.sectionModel.headerViewModel.dataModel) {
+                [data addObject:self.sectionModel.headerViewModel.dataModel];
+            }
+            else {
+                [data addObject:[NSNull null]];
+            }
         }
         if (self.sectionModel.footerViewModel.viewTag == viewTag) {
-            [data addObject:self.sectionModel.footerViewModel];
+            if (self.sectionModel.footerViewModel.dataModel) {
+                [data addObject:self.sectionModel.footerViewModel.dataModel];
+            }
+            else {
+                [data addObject:[NSNull null]];
+            }
         }
         return data;
     };

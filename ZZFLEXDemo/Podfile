@@ -3,7 +3,7 @@ inhibit_all_warnings!
 
 target 'ZZFLEXDemo' do
 
-pod 'TLKit', :git => 'https://github.com/tbl00c/TLKit.git', :tag => '0.0.20'
+pod 'TLKit', :git => 'https://github.com/tbl00c/TLKit.git', :tag => '0.0.21'
 
 pod 'Masonry', '~> 1.1.0'
 pod 'MJRefresh', '~> 3.1.15'

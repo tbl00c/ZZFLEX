@@ -17,9 +17,9 @@
 
 @implementation ZZFDGoodCommitInputCell
 
-+ (CGSize)viewSizeByDataModel:(id)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 56);
+    return 56;
 }
 
 - (void)setViewEventAction:(id (^)(NSInteger, id))eventAction

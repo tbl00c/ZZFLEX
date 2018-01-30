@@ -17,9 +17,9 @@
 
 @implementation ZZFDMainSectionTitleView
 
-+ (CGSize)viewSizeByDataModel:(NSString *)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 35);
+    return 35;
 }
 
 - (void)setViewDataModel:(id)dataModel

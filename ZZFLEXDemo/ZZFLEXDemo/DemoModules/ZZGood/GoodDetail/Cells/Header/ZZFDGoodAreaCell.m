@@ -23,9 +23,9 @@
 
 @implementation ZZFDGoodAreaCell
 
-+ (CGSize)viewSizeByDataModel:(NSString *)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 36);
+    return 36;
 }
 
 - (void)setViewDataModel:(NSString *)dataModel

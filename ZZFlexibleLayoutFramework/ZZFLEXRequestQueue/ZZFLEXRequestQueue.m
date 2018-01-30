@@ -7,6 +7,7 @@
 //
 
 #import "ZZFLEXRequestQueue.h"
+#import "ZZFLEXMacros.h"
 
 #pragma mark - ## ZZFLEXRequestModel
 @interface ZZFLEXRequestModel (ZZFLEXRequestQueue)
@@ -158,7 +159,7 @@
     
     if (self.queueData.count == 0) {
         if (self.successCount + self.failureCount != self.recData.count) {
-            NSLog(@"ZZFLEX request count error");
+            ZZFLEXLog(@"ZZFLEX request count error");
         }
         _isRuning = NO;
         self.completeDic = nil;

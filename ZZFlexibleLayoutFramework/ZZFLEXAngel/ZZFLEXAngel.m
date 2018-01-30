@@ -133,7 +133,7 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
     return ^(NSInteger tag){
         @strongify(self);
         if (self.hasSection(tag)) {
-            NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+            ZZFLEXLog(@"!!!!! 重复添加Section：%ld", (long)tag);
         }
         
         ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
@@ -151,7 +151,7 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
     return ^(NSInteger tag){
         @strongify(self);
         if (self.hasSection(tag)) {
-            NSLog(@"!!!!! 重复添加Section：%ld", (long)tag);
+            ZZFLEXLog(@"!!!!! 重复添加Section：%ld", (long)tag);
         }
         
         ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];

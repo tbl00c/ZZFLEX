@@ -11,5 +11,11 @@
 
 @implementation TLUser
 
+- (void)setUsername:(NSString *)username
+{
+    _username = username;
+    _pinyin = username.pinyin;
+    _pinyinInitial = username.pinyinInitial;
+}
 
 @end

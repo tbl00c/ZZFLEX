@@ -13,7 +13,7 @@
 
 ZZFDGoodCommitModel *createCommitModel(NSString *name, NSString *avatar, NSString *date, NSString *detail);
 
-@interface ZZFDGoodListModel : NSObject
+@interface ZZFDGoodListModel : NSObject <NSMutableCopying>
 
 @property (nonatomic, strong) NSString *avatar;
 @property (nonatomic, strong) NSString *username;

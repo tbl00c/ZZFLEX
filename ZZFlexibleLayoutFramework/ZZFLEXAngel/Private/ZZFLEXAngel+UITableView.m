@@ -11,6 +11,7 @@
 #import "ZZFlexibleLayoutSectionModel.h"
 #import "ZZFlexibleLayoutViewProtocol.h"
 #import "ZZFLEXTableViewEmptyCell.h"
+#import "ZZFLEXMacros.h"
 
 @implementation ZZFLEXAngel (UITableView)
 
@@ -33,7 +34,7 @@
     
     UITableViewCell<ZZFlexibleLayoutViewProtocol> *cell;
     if (!model || !model.viewClass) {
-        NSLog(@"!!!!! tableViewCell不存在，将使用空白Cell：%@", model.className);
+        ZZFLEXLog(@"!!!!! tableViewCell不存在，将使用空白Cell：%@", model.className);
         cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZZFLEXTableViewEmptyCell class]) forIndexPath:indexPath];
         [cell setTag:model.viewTag];
         return cell;
@@ -42,7 +43,7 @@
     cell = [tableView dequeueReusableCellWithIdentifier:model.className forIndexPath:indexPath];
     
     if ([cell respondsToSelector:@selector(setViewDataModel:)]) {
-        [cell setViewDataModel:([model.dataModel isKindOfClass:[NSNull class]] ? nil : model.dataModel)];
+        [cell setViewDataModel:model.dataModel];
     }
     if ([cell respondsToSelector:@selector(setViewDelegate:)]) {
         [cell setViewDelegate:model.delegate ? model.delegate : self];
@@ -111,12 +112,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
-    id dataModel = viewModel.dataModel;
-    if ([viewModel.dataModel isKindOfClass:[NSNull class]]) {
-        dataModel = nil;
-    }
     if (viewModel.selectedAction) {
-        viewModel.selectedAction(dataModel);
+        viewModel.selectedAction(viewModel.dataModel);
     }
 }
 

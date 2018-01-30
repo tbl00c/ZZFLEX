@@ -44,26 +44,26 @@ ZZFLEX_CHAIN_BUTTON_TITLECOLOR_IMPLEMENTATION(titleColorDisabled, UIControlState
 ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColor, UIControlStateNormal);
 ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColorHL, UIControlStateHighlighted);
 ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColorSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColorDisabled, UIControlStateHighlighted);
+ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColorDisabled, UIControlStateDisabled);
 
 ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(image, UIControlStateNormal);
 ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(imageHL, UIControlStateHighlighted);
 ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(imageSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(imageDisabled, UIControlStateHighlighted);
+ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(imageDisabled, UIControlStateDisabled);
 
 ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImage, UIControlStateNormal);
 ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImageHL, UIControlStateHighlighted);
 ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImageSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImageDisabled, UIControlStateHighlighted);
+ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImageDisabled, UIControlStateDisabled);
 
 ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitle, UIControlStateNormal);
 ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitleHL, UIControlStateHighlighted);
 ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitleSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitleDisabled, UIControlStateHighlighted);
+ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitleDisabled, UIControlStateDisabled);
 
 ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(backgroundColorHL, UIControlStateHighlighted);
 ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(backgroundColorSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(backgroundColorDisabled, UIControlStateHighlighted);
+ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(backgroundColorDisabled, UIControlStateDisabled);
 
 - (ZZButtonChainModel *(^)(UIFont *titleFont))titleFont
 {
@@ -90,6 +90,9 @@ ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(highlighted, BOOL);
         return self;
     };
 }
+
+ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(contentVerticalAlignment, UIControlContentVerticalAlignment);
+ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(contentHorizontalAlignment, UIControlContentHorizontalAlignment);
 
 @end
 

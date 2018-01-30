@@ -17,9 +17,9 @@
 
 @implementation ZZFDGoodSectionTitleCell
 
-+ (CGSize)viewSizeByDataModel:(NSString *)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH, 40);
+    return 40;
 }
 
 - (void)setViewDataModel:(NSString *)dataModel

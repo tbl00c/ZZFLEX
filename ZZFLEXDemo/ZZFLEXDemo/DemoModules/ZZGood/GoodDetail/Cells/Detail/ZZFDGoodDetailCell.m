@@ -17,12 +17,12 @@
 
 @implementation ZZFDGoodDetailCell
 
-+ (CGSize)viewSizeByDataModel:(NSAttributedString *)dataModel
++ (CGFloat)viewHeightByDataModel:(id)dataModel
 {
     CGFloat height = [dataModel boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 30, MAXFLOAT)
                                              options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
                                              context:nil].size.height + 15;
-    return CGSizeMake(SCREEN_WIDTH, height);
+    return height;
 }
 
 - (void)setViewDataModel:(NSAttributedString *)dataModel

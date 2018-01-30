@@ -6,6 +6,10 @@
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
+/**
+ * 已淘汰的API，不再建议使用
+ */
+
 #import "ZZFlexibleLayoutViewController.h"
 
 @interface ZZFlexibleLayoutViewController (OldAPI)

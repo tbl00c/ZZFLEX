@@ -76,4 +76,10 @@
  */
 - (void)removeObject:(ZZFlexibleLayoutViewModel *)object;
 
+/*
+ * 获取section的第index个元素的dataModel
+ */
+- (id)dataModelAtIndex:(NSUInteger)index;
+
+
 @end

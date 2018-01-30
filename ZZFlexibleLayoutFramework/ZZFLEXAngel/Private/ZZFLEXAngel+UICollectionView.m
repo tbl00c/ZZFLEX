@@ -10,6 +10,7 @@
 #import "ZZFLEXAngel+Private.h"
 #import "ZZFlexibleLayoutSectionModel.h"
 #import "ZZFlexibleLayoutSeperatorCell.h"
+#import "ZZFLEXMacros.h"
 
 @implementation ZZFLEXAngel (UICollectionView)
 
@@ -32,7 +33,7 @@
     
     UICollectionViewCell<ZZFlexibleLayoutViewProtocol> *cell;
     if (!model || !model.viewClass) {
-        NSLog(@"!!!!! CollectionViewCell不存在，将使用空白Cell：%@", model.className);
+        ZZFLEXLog(@"!!!!! CollectionViewCell不存在，将使用空白Cell：%@", model.className);
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZZFlexibleLayoutSeperatorCell class]) forIndexPath:indexPath];
         [cell setTag:model.viewTag];
         return cell;
@@ -41,7 +42,7 @@
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:model.className forIndexPath:indexPath];
     
     if ([cell respondsToSelector:@selector(setViewDataModel:)]) {
-        [cell setViewDataModel:([model.dataModel isKindOfClass:[NSNull class]] ? nil : model.dataModel)];
+        [cell setViewDataModel:model.dataModel];
     }
     if ([cell respondsToSelector:@selector(setViewDelegate:)]) {
         [cell setViewDelegate:model.delegate ? model.delegate : self];
@@ -109,12 +110,8 @@
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
-    id dataModel = viewModel.dataModel;
-    if ([viewModel.dataModel isKindOfClass:[NSNull class]]) {
-        dataModel = nil;
-    }
     if (viewModel.selectedAction) {
-        viewModel.selectedAction(dataModel);
+        viewModel.selectedAction(viewModel.dataModel);
     }
 }
 

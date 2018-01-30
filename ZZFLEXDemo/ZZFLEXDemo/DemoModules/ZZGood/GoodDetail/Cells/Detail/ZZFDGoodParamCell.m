@@ -20,7 +20,7 @@
 
 + (CGSize)viewSizeByDataModel:(id)dataModel
 {
-    return CGSizeMake(SCREEN_WIDTH / 2.0, 22);
+    return CGSizeMake(-0.5, 22);
 }
 
 - (void)setViewDataModel:(ZZFDGoodParamModel *)dataModel
@@ -39,7 +39,7 @@
         [self setBackgroundColor:[UIColor whiteColor]];
         self.titleLabel = self.addLabel(1)
         .font([UIFont systemFontOfSize:13])
-        .textColor([UIColor lightGrayColor])
+        .textColor([UIColor grayColor])
         .masonry(^ (MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(5);
