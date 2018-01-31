@@ -31,8 +31,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
-        self.titleLabel = self.addLabel(1)
-        .numberOfLines(0)
+        self.titleLabel = self.addLabel(1).numberOfLines(0)
         .font([UIFont boldSystemFontOfSize:15])
         .masonry(^ (MASConstraintMaker *make) {
             make.left.mas_equalTo(15);

@@ -34,6 +34,8 @@ TLContactsItemModel *createContactsItemModelWithTag(NSInteger tag, NSString *pat
 
 @property (nonatomic, strong) UILabel *subTitleLabel;
 
+@property (nonatomic, assign) BOOL showSeperator;
+
 @end
 
 @implementation TLContactsItemCell
@@ -50,12 +52,7 @@ TLContactsItemModel *createContactsItemModelWithTag(NSInteger tag, NSString *pat
 
 - (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
-    if (indexPath.row == count - 1) {
-        self.removeSeparator(ZZSeparatorPositionBottom);
-    }
-    else {
-        self.addSeparator(ZZSeparatorPositionBottom).beginAt(10);
-    }
+    self.showSeperator = (indexPath.row != count - 1);
 }
 
 #pragma mark - # Cell
@@ -90,6 +87,18 @@ TLContactsItemModel *createContactsItemModelWithTag(NSInteger tag, NSString *pat
         [self.nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.avatarView);
         }];
+    }
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (!self.showSeperator) {
+        self.removeSeparator(ZZSeparatorPositionBottom);
+    }
+    else {
+        self.addSeparator(ZZSeparatorPositionBottom).beginAt(10);
     }
 }
 

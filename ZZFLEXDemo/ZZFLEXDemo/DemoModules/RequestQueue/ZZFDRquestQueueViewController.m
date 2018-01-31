@@ -43,6 +43,8 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
 {
     [super loadView];
     [self setTitle:@"请求队列"];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
     self.textView = self.view.addTextView(1)
     .backgroundColor([UIColor blackColor]).editable(NO)
@@ -57,9 +59,10 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     .backgroundColor([UIColor colorGrayBG])
     .masonry(^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(-200);
+        make.bottom.mas_equalTo(self.textView.mas_top);
     })
     .view;
+    [self.collectionView setNeverAdjustmentContentInset:YES];
     self.angel = [[ZZFLEXAngel alloc] initWithHostView:self.collectionView];
     
     @weakify(self);
@@ -76,6 +79,30 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     [self refreshData];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [TLUIUtility hiddenLoading];
+    [self.requestQueue cancelAllRequests];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGFloat top = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(top);
+    }];
+    CGFloat height = MIN(200, SCREEN_HEIGHT * 0.35);
+    [self.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(height);
+    }];
+    [self.collectionView reloadData];
+}
+
+#pragma mark - # Request
 - (void)refreshData
 {
     [self.textView setText:nil];
