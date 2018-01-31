@@ -17,31 +17,29 @@
 
 @implementation ZZFDMainSectionTitleView
 
-+ (CGFloat)viewHeightByDataModel:(id)dataModel
++ (CGFloat)viewHeightByDataModel:(NSAttributedString *)dataModel
 {
-    return 35;
+    CGFloat height = [dataModel boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 30, MAXFLOAT)
+                                             options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                             context:nil].size.height;
+    return height + 35;
 }
 
 - (void)setViewDataModel:(id)dataModel
 {
-    if ([dataModel isKindOfClass:[NSString class]]) {
-        [self.titleLabel setText:dataModel];
-    }
-    else {
-        [self.titleLabel setText:@""];
-    }
+    [self.titleLabel setAttributedText:dataModel];
 }
 
 #pragma mark - # Cell Init
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.titleLabel = self.addLabel(1)
-        .font([UIFont systemFontOfSize:16])
-        .textColor([UIColor darkGrayColor])
+        self.titleLabel = self.addLabel(1).numberOfLines(0)
+        .font([UIFont systemFontOfSize:16]).textColor([UIColor darkGrayColor])
         .masonry(^ (MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
-            make.bottom.mas_equalTo(-5);
+            make.right.mas_lessThanOrEqualTo(-15);
+            make.top.mas_equalTo(20);
         })
         .view;
     }
