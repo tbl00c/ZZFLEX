@@ -8,6 +8,7 @@
 
 #import "ZZFDAppDelegate.h"
 #import "ZZFDMainViewController.h"
+#import "TLFriendHelper.h"
 
 @interface ZZFDAppDelegate ()
 
@@ -24,6 +25,10 @@
     [self.window setRootViewController:navC];
     [self.window addSubview:navC.view];
     [self.window makeKeyAndVisible];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [TLFriendHelper sharedFriendHelper];
+    });
     
     return YES;
 }

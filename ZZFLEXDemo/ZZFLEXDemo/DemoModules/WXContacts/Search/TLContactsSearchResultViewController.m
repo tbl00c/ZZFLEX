@@ -13,8 +13,6 @@
 
 @interface TLContactsSearchResultViewController ()
 
-@property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) ZZFLEXAngel *tableViewAngel;
 
 @property (nonatomic, strong) NSMutableArray *friendsData;

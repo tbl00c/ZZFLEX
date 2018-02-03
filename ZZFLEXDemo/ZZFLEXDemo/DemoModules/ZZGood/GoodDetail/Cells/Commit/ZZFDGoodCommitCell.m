@@ -32,7 +32,7 @@
 
 + (CGFloat)viewHeightByDataModel:(ZZFDGoodCommitModel *)dataModel
 {
-    CGFloat height = [dataModel.detail tt_sizeWithFont:GOOD_FONT_COMMIT_DETAIL constrainedToSize:CGSizeMake(SCREEN_WIDTH - GOOD_AVATAR_WIDTH - 50, MAXFLOAT)].height;
+    CGFloat height = [dataModel.detail tt_sizeWithFont:GOOD_FONT_COMMIT_DETAIL constrainedToSize:CGSizeMake(SCREEN_WIDTH - GOOD_AVATAR_WIDTH - 40, MAXFLOAT)].height;
     height += 50;
     return height;
 }

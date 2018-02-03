@@ -8,6 +8,7 @@
 
 #import "ZZFDGoodDetailViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import <XLPhotoBrowser+CoderXL/XLPhotoBrowser.h>
 
 typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     ZZFDGoodSectionTypeHeader,
@@ -91,25 +92,37 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     
     /// Image
     if (listModel.goodImages.count > 0) {
+        @weakify(self);
+        void (^selecteAction)(id data) = ^(id data) {
+            @strongify(self);
+            NSMutableArray *imagesData = @[].mutableCopy;
+            for (NSString *imageName in self.listModel.goodImages) {
+                UIImage *image = [UIImage imageNamed:imageName];
+                [imagesData addObject:image];
+            }
+            NSInteger index = [self.listModel.goodImages indexOfObject:data];
+            [XLPhotoBrowser showPhotoBrowserWithImages:imagesData currentImageIndex:index];
+        };
+        
         self.addSection(ZZFDGoodSectionTypeImage).sectionInsets(UIEdgeInsetsMake(8, 15, 20, 15)).minimumLineSpacing(10).minimumInteritemSpacing(10).backgrounColor([UIColor whiteColor]);
         if (listModel.goodImages.count <= 4) {
-            self.addCells(@"ZZFDGoodBigImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray(listModel.goodImages);
+            self.addCells(@"ZZFDGoodBigImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray(listModel.goodImages).selectedAction(selecteAction);
         }
         else {
-            self.addCells(@"ZZFDGoodBigImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(0, 3)]);
+            self.addCells(@"ZZFDGoodBigImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(0, 3)]).selectedAction(selecteAction);
             if (listModel.goodImages.count <= 9) {
-                self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, listModel.goodImages.count - 3)]);
+                self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, listModel.goodImages.count - 3)]).selectedAction(selecteAction);
                 if (listModel.goodImages.count % 2 == 0) {
                     self.addCell(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage);
                 }
             }
             else {
-                self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, 6)]);
+                self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, 6)]).selectedAction(selecteAction);
                 self.addCell(@"ZZFDImageMoreCell").toSection(ZZFDGoodSectionTypeImage).selectedAction(^(id data) {
                     @strongify(self);
                     self.deleteCell.byViewTag(100101);
                     self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage)
-                    .withDataModelArray([self.listModel.goodImages subarrayWithRange:NSMakeRange(9, self.listModel.goodImages.count - 9)]);
+                    .withDataModelArray([self.listModel.goodImages subarrayWithRange:NSMakeRange(9, self.listModel.goodImages.count - 9)]).selectedAction(selecteAction);
                     if (self.listModel.goodImages.count % 2 == 0) {
                         self.addCell(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage);
                     }

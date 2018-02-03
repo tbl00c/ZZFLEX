@@ -17,21 +17,23 @@
 #import "TLContactsViewController.h"
 #import "ZZFDRquestQueueViewController.h"
 
+#define     FDMAIN_FONT_SIZE_DETAIL         14
+
 typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
     ZZFDMainSectionTypeHello,               // Hello
+    ZZFDMainSectionTypeVE,                  // ZZFLEX View拓展
     ZZFDMainSectionTypeVC,                  // ZZFlexibleLayoutViewController
     ZZFDMainSectionTypeAgent,               // ZZFLEXAgent
     ZZFDMainSectionTypeVCEdit,              // ZZFlexibleLayoutViewController 编辑拓展
-    ZZFDMainSectionTypeVE,                  // ZZFLEX View拓展
     ZZFDMainSectionTypeRQ,                  // ZZFLEX事件响应队列
 };
 
-NSAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
+NSMutableAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
 {
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] init];
     if (title) {
         NSAttributedString *attrTitle = [[NSAttributedString alloc] initWithString:[title stringByAppendingString:@"\n"]
-                                                                        attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:15],
+                                                                        attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:16],
                                                                                      NSForegroundColorAttributeName : [UIColor darkGrayColor]
                                                                                      }];
         [attrStr appendAttributedString:attrTitle];
@@ -40,7 +42,7 @@ NSAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         [paragraphStyle setLineSpacing:5];
         NSAttributedString *attrDetail = [[NSAttributedString alloc] initWithString:detail
-                                                                         attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],
+                                                                         attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:FDMAIN_FONT_SIZE_DETAIL],
                                                                                       NSForegroundColorAttributeName : [UIColor grayColor],
                                                                                       NSParagraphStyleAttributeName : paragraphStyle,
                                                                                       }];
@@ -55,6 +57,12 @@ NSAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
     return attrStr;
 }
 
+void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
+    NSRange range = [attrStr.string rangeOfString:text];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:range];
+    [attrStr addAttribute:NSFontAttributeName value:[UIFont italicSystemFontOfSize:FDMAIN_FONT_SIZE_DETAIL] range:range];
+}
+
 
 @interface ZZFDMainViewController ()
 
@@ -66,11 +74,7 @@ NSAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
 {
     [super loadView];
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
-
-    [self setTitle:@"ZZFlexibleLayoutFramework"];
-//    [self setTitle:@"欢迎使用ZZFLEX全家桶"];
-//    [self.navigationItem setTitle:@"ZZFLEX"];
-    
+        
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain actionBlick:nil]];
 }
 
@@ -112,14 +116,24 @@ NSAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
         NSInteger sectionTag = ZZFDMainSectionTypeHello;
         self.addSection(sectionTag);
         NSAttributedString *attrTitle;
+        NSString *detail = @"ZZFlexibleLayoutFramework（下称ZZFLEX），是对UIKit的二次封装，助力于UI界面的快速开发，其主要设计思想为“UI的模块化”。\nZZFLEX目前包含以下5个部分:";
         if (@available(iOS 11.0, *)) {
-            attrTitle = __zz_create_introduce(nil,
-                                              @"ZZFlexibleLayoutFramework(下简称ZZFLEX框架)是对UIKit的二次封装，设计思想为“UI的模块化”，使用它可以帮助你更快速更优雅的进行UI开发。\nZZFLEX目前包含以下5个部分:");
+            [self setTitle:@"欢迎使用ZZFLEX全家桶"];
+            attrTitle = __zz_create_introduce(nil, detail);
         }
         else {
-            attrTitle = __zz_create_introduce(@"欢迎使用ZZFLEX全家桶",
-                                              @"ZZFlexibleLayoutFramework(下简称ZZFLEX框架)是对UIKit的二次封装，设计思想为“UI的模块化”，使用它可以帮助你更快速更优雅的进行UI开发。\nZZFLEX目前包含以下5个部分:");
+            [self setTitle:@"ZZFlexibleLayoutFramework"];
+            attrTitle = __zz_create_introduce(@"欢迎使用ZZFLEX全家桶", detail);
         }
+        self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
+    }
+    
+    // ZZFLEX View拓展
+    {
+        NSInteger sectionTag = ZZFDMainSectionTypeVE;
+        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 15, 0));
+        NSAttributedString *attrTitle = __zz_create_introduce(@"UIView+ZZFLEX",
+                                                              @"UIView+ZZFLEX 为常用的UI控件提供了链式调用方法，使用链式API可以更加连贯快捷的进行控件的属性设置、Masonry布局和事件处理。\n下述Demo中多有使用此拓展，详见代码。");
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
     }
     
@@ -127,8 +141,9 @@ NSAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
     {
         NSInteger sectionTag = ZZFDMainSectionTypeVC;
         self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 30, 0));
-        NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFlexibleLayoutViewController",
-                                                              @"ZZFlexibleLayoutViewController 是一个基于UICollectionView实现的数据驱动的列表页框架，可大幅降低复杂列表界面实现和维护的难度。\n使用它我们无需再关心collectionView的各种代理方法，只需潜心实现我们需要的列表元素。\n它使得一个复杂界面的构建就如同拼图一般，我们只需一件件的add需要的模块，即可绘制出我们想要的界面。");
+        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFlexibleLayoutViewController",
+                                                                     @"ZZFlexibleLayoutViewController（下称ZZFLEXVC） 是一个基于collectionView实现的数据驱动的列表页框架，可大幅降低复杂列表界面实现和维护的难度。\n使用它我们无需再关心collectionView的各种代理方法，只需潜心实现我们需要的列表元素。\n它使得一个复杂界面的构建就如同拼图一般，我们只需一件件的add需要的模块，即可绘制出我们想要的界面。");
+        __zz_attr_string_bold(attrTitle, @"数据驱动的列表页框架");
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
         self.addCell(menuCell).withDataModel(@"商品列表&详情页").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
@@ -146,8 +161,9 @@ NSAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
     {
         NSInteger sectionTag = ZZFDMainSectionTypeAgent;
         self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 30, 0));
-        NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXAngel",
-                                                              @"ZZFlexibleLayoutViewController是一个页面级别的实现，这在某些业务场景下还是不够灵活的。\nZZFLEXAngel是ZZFLEXVC核心思想和设计的提炼。我们只需把任意collectionView/tableView的DataSource和Delegate指向它或它子类的实例，就可以和在ZZFLEXVC中一样使用那些好用的API。");
+        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXAngel",
+                                                                     @"ZZFLEXVC为列表页的开发带来的优异的拓展性和可维护性，但它是一个VC级别的实现，在一些业务场景下还是不够灵活的。\nZZFLEXAngel是ZZFLEXVC核心思想和设计提炼而成的一个“列表控制中心”，它与页面和列表控件是完全解耦的。\n使用它我们只需把任意collectionView或tableView的dataSource和delegate指向它或它子类的实例，就可以通过这个实例、使用和ZZFLEXVC中一样的那些好用的API了。");
+        __zz_attr_string_bold(attrTitle, @"列表控制中心");
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
         
         self.addCell(menuCell).withDataModel(@"电商分类页").toSection(sectionTag).selectedAction(^(id model){
@@ -166,27 +182,19 @@ NSAttributedString *__zz_create_introduce(NSString *title, NSString *detail)
     {
         NSInteger sectionTag = ZZFDMainSectionTypeVCEdit;
         self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 30, 0));
-        NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXVC+EditExtension",
-                                                              @"ZZFlexibleLayoutViewController+EditExtension，是使ZZFLEXVC具有处理编辑页面能力的一种解决方案。\n其主要原理是将数据模型的属性与UI控件对应属性进行关联映射。\n如果你的项目中使用了RAC，那么你大可无视这个拓展。");
+        NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEX+EditExtension",
+                                                              @"此拓展使得ZZFLEXVC和ZZFLEXAngel具有了处理编辑页面的能力，其主要原理是将数据模型的属性与列表编辑控件对应属性进行关联映射。");
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
         self.addCell(menuCell).withDataModel(@"信息编辑页 Demo").toSection(sectionTag);
-    }
-
-    // ZZFLEX View拓展
-    {
-        NSInteger sectionTag = ZZFDMainSectionTypeVE;
-        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 15, 0));
-        NSAttributedString *attrTitle = __zz_create_introduce(@"UIView+ZZFLEX",
-                                                              @"UIView+ZZFLEX 是一个常用UI组件提供链式API的拓展，使用它可以更加方便快捷的进行UI的编写、布局和事件处理。\n上述Demo中多有使用此拓展，详见代码。");
-        self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
     }
 
     // ZZFLEX事件响应队列
     {
         NSInteger sectionTag = ZZFDMainSectionTypeRQ;
         self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 100, 0));
-        NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXVC+EditExtension",
-                                                              @"某些复杂页面可能存在多个数据请求（Net、DB、文件等），然而同时发起的请求，其结果返回顺序是不确定的。\nZZFLEXRequestQueue的核心思想是“将一次数据请求的过程封装成对象（即队列元素）”，如此以保证此业务场景下，可按既定顺序加载展示UI。");
+        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXRequestQueue",
+                                                                     @"一些复杂的页面中会存在多个异步数据请求（net、db等），然而同时发起的异步请求，其结果的返回顺序是不确定的，这样会导致UI展示顺序的不确定性，很多情况下这是我们不希望看到的。\nZZFLEXRequestQueue的核心思想是“将一次数据请求的过程封装成对象”，他可以保证在此业务场景下，按队列顺序加载展示UI。");
+        __zz_attr_string_bold(attrTitle, @"将一次数据请求的过程封装成对象");
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
         self.addCell(menuCell).withDataModel(@"多接口页面 Demo").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);

@@ -10,6 +10,7 @@
 #import "ZZFDRQRequest.h"
 #import "ZZFDRQFailedCell.h"
 #import "ZZFDRQTitleCell.h"
+#import "ZZFDRQNavTilteView.h"
 
 typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     ZZFDRquestQueueVCSectionType1 = 1,
@@ -21,6 +22,7 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
 
 @interface ZZFDRquestQueueViewController ()
 
+@property (nonatomic, strong) ZZFDRQNavTilteView *titleView;
 @property (nonatomic, strong) ZZFLEXRequestQueue *requestQueue;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -42,9 +44,11 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
 - (void)loadView
 {
     [super loadView];
-    [self setTitle:@"请求队列"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    
+    self.titleView = [[ZZFDRQNavTilteView alloc] init];
+    [self.navigationItem setTitleView:self.titleView];
     
     self.textView = self.view.addTextView(1)
     .backgroundColor([UIColor blackColor]).editable(NO)
@@ -83,7 +87,7 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
 {
     [super viewWillDisappear:animated];
     
-    [TLUIUtility hiddenLoading];
+    [self p_showLoading:YES];
     [self.requestQueue cancelAllRequests];
 }
 
@@ -120,21 +124,21 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     [self.requestQueue addRequestModel:[self createRequestModelWithType:ZZFDRquestQueueVCSectionType4]];
     [self.requestQueue addRequestModel:[self createRequestModelWithType:ZZFDRquestQueueVCSectionType5]];
     
-    [TLUIUtility showLoading:nil];
-    [self addLog:[NSString stringWithFormat:@"==> 请求队列开始执行，共%ld个请求", self.requestQueue.requestCount] color:[UIColor whiteColor]];
+    [self p_showLoading:YES];
+    [self p_addLog:[NSString stringWithFormat:@"==> 请求队列开始执行，共%ld个请求", self.requestQueue.requestCount] color:[UIColor whiteColor]];
     
     @weakify(self);
     [self.requestQueue runAllRequestsWithCompleteAction:^(NSArray *data, NSInteger successCount, NSInteger failureCount) {
         @strongify(self);
-        [TLUIUtility hiddenLoading];
-        [self addLog:[NSString stringWithFormat:@"==> 所有请求完成，成功%ld个，失败%ld个", successCount, failureCount]  color:[UIColor whiteColor]];
+        [self p_showLoading:NO];
+        [self p_addLog:[NSString stringWithFormat:@"==> 所有请求完成，成功%ld个，失败%ld个", successCount, failureCount]  color:[UIColor whiteColor]];
     }];
 }
 
 #pragma mark - # UI
 - (void)loadSectionUIWithType:(ZZFDRquestQueueVCSectionType)type success:(BOOL)success data:(id)data
 {
-    [self addLog:[NSString stringWithFormat:@"开始刷新模块：%ld", type] color:[UIColor orangeColor]];
+    [self p_addLog:[NSString stringWithFormat:@"开始刷新模块：%ld", type] color:[UIColor orangeColor]];
     
     if (self.angel.hasSection(type)) {
         self.angel.sectionForTag(type).clear();
@@ -152,7 +156,7 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
             self.angel.addCell(@"ZZFDRQFailedCell").toSection(type).withDataModel([ZZFDRQFailedModel createModelWithLoading:YES]);
             [self.collectionView reloadData];
                         
-            [self addLog:@"=> 开始局部刷新" color:[UIColor whiteColor]];
+            [self p_addLog:@"=> 开始局部刷新" color:[UIColor whiteColor]];
             [[self createRequestModelWithType:type] executeRequestMethod];
 
             return nil;
@@ -162,7 +166,7 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     else {
         self.angel.addCell(@"ZZFDRQFailedCell").toSection(type).withDataModel([ZZFDRQFailedModel createModelWithLoading:NO]).eventAction(^ id(NSInteger eventType, ZZFDRQFailedModel *data) {
             @strongify(self);
-            [self addLog:@"=> 开始局部刷新" color:[UIColor whiteColor]];
+            [self p_addLog:@"=> 开始局部刷新" color:[UIColor whiteColor]];
             [[self createRequestModelWithType:type] executeRequestMethod];
             return nil;
         });
@@ -177,14 +181,14 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     @weakify(self);
     ZZFLEXRequestModel *requestModel = [ZZFLEXRequestModel requestModelWithTag:type requestAction:^(ZZFLEXRequestModel *requestModel) {
         @strongify(self);
-        [self addLog:[NSString stringWithFormat:@"开始接口请求：%ld", type] color:[UIColor whiteColor]];
+        [self p_addLog:[NSString stringWithFormat:@"开始接口请求：%ld", type] color:[UIColor whiteColor]];
         [ZZFDRQRequest requestWithType:type success:^(id data) {
             @strongify(self);
-            [self addLog:[NSString stringWithFormat:@"接口%ld请求成功", type] color:[UIColor cyanColor]];
+            [self p_addLog:[NSString stringWithFormat:@"接口%ld请求成功", type] color:[UIColor cyanColor]];
             [requestModel executeRequestCompleteMethodWithSuccess:YES data:data];
         } failure:^(id errMsg) {
             @strongify(self);
-            [self addLog:[NSString stringWithFormat:@"接口%ld请求失败", type] color:[UIColor cyanColor]];
+            [self p_addLog:[NSString stringWithFormat:@"接口%ld请求失败", type] color:[UIColor cyanColor]];
             [requestModel executeRequestCompleteMethodWithSuccess:NO data:errMsg];
         }];
     } requestCompleteAction:^(ZZFLEXRequestModel *requestModel) {
@@ -194,7 +198,19 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     return requestModel;
 }
 
-- (void)addLog:(NSString *)log color:(UIColor *)color
+- (void)p_showLoading:(BOOL)show
+{
+    if (show) {
+        [self.titleView setTitle:@"加载中..."];
+        [self.titleView setShowActivity:YES];
+    }
+    else {
+        [self.titleView setTitle:@"请求队列"];
+        [self.titleView setShowActivity:NO];
+    }
+}
+
+- (void)p_addLog:(NSString *)log color:(UIColor *)color
 {
     NSMutableAttributedString *attrStr = self.textView.attributedText.mutableCopy;
     

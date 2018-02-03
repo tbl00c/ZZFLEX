@@ -74,6 +74,9 @@
 		C2863A9B1FCCFBA7008BC3C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2863A991FCCFBA7008BC3C0 /* LaunchScreen.storyboard */; };
 		C2863A9E1FCCFD52008BC3C0 /* ZZFDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863A9D1FCCFD52008BC3C0 /* ZZFDMainViewController.m */; };
 		C2863AA61FCD022B008BC3C0 /* ZZFDMainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2863AA51FCD022B008BC3C0 /* ZZFDMainMenuCell.m */; };
+		C2951B2E202609C100A56643 /* TLContactsSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2951B2D202609C100A56643 /* TLContactsSearchResultViewController.m */; };
+		C2951B34202609F100A56643 /* TLSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2951B33202609F100A56643 /* TLSearchController.m */; };
+		C2951B3720260C2500A56643 /* ZZFDRQNavTilteView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2951B3620260C2500A56643 /* ZZFDRQNavTilteView.m */; };
 		C29D37141FE7AFBA007236D8 /* ZZFDCateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */; };
 		C2A262C020032FDE00CAC35C /* ZZFLEXChainViewBatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A262BF20032FDE00CAC35C /* ZZFLEXChainViewBatchModel.m */; };
 		C2AC73311FE516DA00DABA11 /* ZZFDMainTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73301FE516DA00DABA11 /* ZZFDMainTitleView.m */; };
@@ -91,7 +94,6 @@
 		C2F2F96520188DA1003D53F7 /* TLContactsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F96120188DA1003D53F7 /* TLContactsItemCell.m */; };
 		C2F2F96920188FEF003D53F7 /* TLUserGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F96720188FEF003D53F7 /* TLUserGroup.m */; };
 		C2F2F96F2018900D003D53F7 /* TLFriendHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F96E2018900D003D53F7 /* TLFriendHelper.m */; };
-		C2F2F9722018917E003D53F7 /* TLContactsSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F9712018917E003D53F7 /* TLContactsSearchResultViewController.m */; };
 		C2F2F97820189577003D53F7 /* ZZFlexibleLayoutSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F97620189577003D53F7 /* ZZFlexibleLayoutSectionModel.m */; };
 		C2F2F97920189577003D53F7 /* ZZFlexibleLayoutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F97720189577003D53F7 /* ZZFlexibleLayoutViewModel.m */; };
 		C2F2F97E2018962F003D53F7 /* Contacts.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2F2F97D2018962F003D53F7 /* Contacts.xcassets */; };
@@ -242,6 +244,12 @@
 		C2863AA21FCD0056008BC3C0 /* ZZFDPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDPrefixHeader.pch; sourceTree = "<group>"; };
 		C2863AA41FCD022B008BC3C0 /* ZZFDMainMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDMainMenuCell.h; sourceTree = "<group>"; };
 		C2863AA51FCD022B008BC3C0 /* ZZFDMainMenuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDMainMenuCell.m; sourceTree = "<group>"; };
+		C2951B2C202609C100A56643 /* TLContactsSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLContactsSearchResultViewController.h; sourceTree = "<group>"; };
+		C2951B2D202609C100A56643 /* TLContactsSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLContactsSearchResultViewController.m; sourceTree = "<group>"; };
+		C2951B32202609F100A56643 /* TLSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLSearchController.h; sourceTree = "<group>"; };
+		C2951B33202609F100A56643 /* TLSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLSearchController.m; sourceTree = "<group>"; };
+		C2951B3520260C2500A56643 /* ZZFDRQNavTilteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDRQNavTilteView.h; sourceTree = "<group>"; };
+		C2951B3620260C2500A56643 /* ZZFDRQNavTilteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDRQNavTilteView.m; sourceTree = "<group>"; };
 		C29D37121FE7AFBA007236D8 /* ZZFDCateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDCateViewController.h; sourceTree = "<group>"; };
 		C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDCateViewController.m; sourceTree = "<group>"; };
 		C2A262BE20032FDD00CAC35C /* ZZFLEXChainViewBatchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFLEXChainViewBatchModel.h; sourceTree = "<group>"; };
@@ -277,8 +285,6 @@
 		C2F2F96820188FEF003D53F7 /* TLUserGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLUserGroup.h; sourceTree = "<group>"; };
 		C2F2F96D2018900C003D53F7 /* TLFriendHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFriendHelper.h; sourceTree = "<group>"; };
 		C2F2F96E2018900D003D53F7 /* TLFriendHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFriendHelper.m; sourceTree = "<group>"; };
-		C2F2F9702018917E003D53F7 /* TLContactsSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLContactsSearchResultViewController.h; sourceTree = "<group>"; };
-		C2F2F9712018917E003D53F7 /* TLContactsSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLContactsSearchResultViewController.m; sourceTree = "<group>"; };
 		C2F2F97420189577003D53F7 /* ZZFlexibleLayoutSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutSectionModel.h; sourceTree = "<group>"; };
 		C2F2F97520189577003D53F7 /* ZZFlexibleLayoutViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutViewModel.h; sourceTree = "<group>"; };
 		C2F2F97620189577003D53F7 /* ZZFlexibleLayoutSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutSectionModel.m; sourceTree = "<group>"; };
@@ -748,6 +754,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C2951B2B202609C100A56643 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C2951B2C202609C100A56643 /* TLContactsSearchResultViewController.h */,
+				C2951B2D202609C100A56643 /* TLContactsSearchResultViewController.m */,
+				C2951B32202609F100A56643 /* TLSearchController.h */,
+				C2951B33202609F100A56643 /* TLSearchController.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		C29D37111FE7AFA2007236D8 /* Cate */ = {
 			isa = PBXGroup;
 			children = (
@@ -820,6 +837,7 @@
 		C2F2F95820188AD9003D53F7 /* WXContacts */ = {
 			isa = PBXGroup;
 			children = (
+				C2951B2B202609C100A56643 /* Search */,
 				C2F2F96620188FDC003D53F7 /* Models */,
 				C2F2F95F20188DA1003D53F7 /* Views */,
 				C2F2F97A201895F6003D53F7 /* Resources */,
@@ -827,8 +845,6 @@
 				C2F2F95A20188D99003D53F7 /* TLContactsAngel.m */,
 				C2F2F95B20188D99003D53F7 /* TLContactsViewController.h */,
 				C2F2F95920188D99003D53F7 /* TLContactsViewController.m */,
-				C2F2F9702018917E003D53F7 /* TLContactsSearchResultViewController.h */,
-				C2F2F9712018917E003D53F7 /* TLContactsSearchResultViewController.m */,
 			);
 			path = WXContacts;
 			sourceTree = "<group>";
@@ -895,6 +911,8 @@
 				C2F2F9882018A509003D53F7 /* ZZFDRQSuccessCell.m */,
 				C2F2F9842018A4FA003D53F7 /* ZZFDRQFailedCell.h */,
 				C2F2F9852018A4FA003D53F7 /* ZZFDRQFailedCell.m */,
+				C2951B3520260C2500A56643 /* ZZFDRQNavTilteView.h */,
+				C2951B3620260C2500A56643 /* ZZFDRQNavTilteView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1038,6 +1056,7 @@
 				C26312011FE8B50D0022B2F8 /* ZZFLEXAngel+UITableView.m in Sources */,
 				C282D0D71FEA3FE900559705 /* ZZFDGoodTitleView.m in Sources */,
 				C2268CF41FCC3FF500C98EA7 /* ZZControlChainModel.m in Sources */,
+				C2951B2E202609C100A56643 /* TLContactsSearchResultViewController.m in Sources */,
 				C2F2F9892018A509003D53F7 /* ZZFDRQSuccessCell.m in Sources */,
 				C282D0C91FEA2B2600559705 /* ZZFDGoodUserCell.m in Sources */,
 				C263120E1FE8B5ED0022B2F8 /* ZZFlexibleLayoutSeperatorCell.m in Sources */,
@@ -1060,12 +1079,12 @@
 				C282D0D41FEA3F5F00559705 /* ZZFDGoodRecCell.m in Sources */,
 				C2268CF31FCC3FF500C98EA7 /* ZZImageViewChainModel.m in Sources */,
 				C2F2F9902018A71F003D53F7 /* ZZTextViewChainModel.m in Sources */,
-				C2F2F9722018917E003D53F7 /* TLContactsSearchResultViewController.m in Sources */,
 				C27E9F4F1FCE609C0062C896 /* ZZFDGoodListViewController.m in Sources */,
 				C2351DC91FDBC2A400CFDE5B /* ZZTextFieldChainModel.m in Sources */,
 				C27E9F5A1FCE60E70062C896 /* TLMineHeaderCell.m in Sources */,
 				C26312001FE8B50D0022B2F8 /* ZZFLEXAngel+Private.m in Sources */,
 				C282D0C21FEA1BCB00559705 /* ZZFDGoodSmallImageCell.m in Sources */,
+				C2951B3720260C2500A56643 /* ZZFDRQNavTilteView.m in Sources */,
 				C27E9F721FCE63B40062C896 /* UIColor+ZZFD.m in Sources */,
 				C282D0B91FEA0E1600559705 /* ZZFDGoodDetailCell.m in Sources */,
 				C2268CFD1FCC40AE00C98EA7 /* UIControl+ZZEvent.m in Sources */,
@@ -1083,6 +1102,7 @@
 				C2F2F9822018A3C4003D53F7 /* ZZFDRquestQueueViewController.m in Sources */,
 				C2268CD31FCC3FDF00C98EA7 /* ZZFLEXRequestQueue.m in Sources */,
 				C282D0BF1FEA1BBE00559705 /* ZZFDGoodBigImageCell.m in Sources */,
+				C2951B34202609F100A56643 /* TLSearchController.m in Sources */,
 				C2268CCC1FCC3F3500C98EA7 /* ZZFlexibleLayoutViewController+EditExtension.m in Sources */,
 				C2268CF11FCC3FF500C98EA7 /* ZZViewChainModel.m in Sources */,
 				C2268CEE1FCC3FF500C98EA7 /* ZZCollectionViewChainModel.m in Sources */,
