@@ -42,21 +42,27 @@
 {
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self.contentView addSubview:self.imageView];
-        [self.contentView addSubview:self.titleLabel];
-        [self.contentView addSubview:self.indicatorView];
-        
-        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        self.imageView = self.contentView.addImageView(1)
+        .image([UIImage imageNamed:@"request_failed"])
+        .masonry(^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(-22);
             make.centerX.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
-        }];
-        
-        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        })
+        .view;
+
+        self.titleLabel = self.contentView.addLabel(2)
+        .text(@"加载失败，请点击重试！")
+        .font([UIFont systemFontOfSize:14]).textColor([UIColor lightGrayColor])
+        .masonry(^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.imageView.mas_bottom).mas_offset(18);
             make.centerX.mas_equalTo(0);
-        }];
+        })
+        .view;
         
+        self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [self.contentView addSubview:self.indicatorView];
         [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(50, 50));
@@ -92,35 +98,6 @@
         [self.titleLabel setHidden:NO];
         [self.indicatorView stopAnimating];
     }
-}
-
-#pragma mark - # Getter
-- (UIImageView *)imageView
-{
-    if (!_imageView) {
-        _imageView = [[UIImageView alloc] init];
-        [_imageView setImage:[UIImage imageNamed:@"request_failed"]];
-    }
-    return _imageView;
-}
-
-- (UILabel *)titleLabel
-{
-    if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] init];
-        [_titleLabel setText:@"加载失败，请点击重试！"];
-        [_titleLabel setTextColor:[UIColor lightGrayColor]];
-        [_titleLabel setFont:[UIFont systemFontOfSize:14]];
-    }
-    return _titleLabel;
-}
-
-- (UIActivityIndicatorView *)indicatorView
-{
-    if (_indicatorView == nil) {
-        _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    }
-    return _indicatorView;
 }
 
 @end

@@ -62,13 +62,8 @@
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
         [self setSelectedBackgrounColor:[UIColor colorGrayLine]];
-        [self.contentView addSubview:self.avatarImageView];
-        [self.contentView addSubview:self.nikenameLabel];
-        [self.contentView addSubview:self.wechatIDLabel];
-        [self.contentView addSubview:self.QRImageView];
-        [self.contentView addSubview:self.arrowView];
         
-        [self p_addMasonry];
+        [self p_initSubViews];
     }
     return self;
 }
@@ -83,87 +78,57 @@
 }
 
 #pragma mark - # Private Methods
-- (void)p_addMasonry
+- (void)p_initSubViews
 {
-    [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.avatarImageView = self.contentView.addImageView(1)
+    .cornerRadius(5.0f).border(BORDER_WIDTH_1PX, [UIColor lightGrayColor])
+    .masonry(^(MASConstraintMaker *make) {
         make.left.mas_equalTo(MINE_SPACE_X);
         make.top.mas_equalTo(MINE_SPACE_Y);
         make.bottom.mas_equalTo(- MINE_SPACE_Y);
+        
+    })
+    .view;
+    [self.avatarImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(self.avatarImageView.mas_height);
     }];
-    
-    [self.nikenameLabel setContentCompressionResistancePriority:100 forAxis:UILayoutConstraintAxisHorizontal];
-    [self.nikenameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    self.nikenameLabel = self.contentView.addLabel(2)
+    .text(@"用户昵称").font([UIFont systemFontOfSize:17])
+    .masonry(^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.avatarImageView.mas_right).mas_offset(MINE_SPACE_Y);
         make.bottom.mas_equalTo(self.avatarImageView.mas_centerY).mas_offset(-3.5);
-    }];
+    })
+    .view;
+    [self.nikenameLabel setContentCompressionResistancePriority:100 forAxis:UILayoutConstraintAxisHorizontal];
     
-    [self.wechatIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    self.wechatIDLabel = self.contentView.addLabel(3)
+    .text(@"微信号").font([UIFont systemFontOfSize:14])
+    .masonry(^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.nikenameLabel);
         make.top.mas_equalTo(self.avatarImageView.mas_centerY).mas_offset(5.0);
-    }];
+    })
+    .view;
     
-    [self.QRImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(-0.5);
-        make.right.mas_equalTo(self.arrowView.mas_left).mas_offset(-10);
-        make.height.and.width.mas_equalTo(18);
-    }];
-    
-    [self.arrowView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    self.arrowView = self.contentView.addImageView(4)
+    .image([UIImage imageNamed:@"right_arrow"])
+    .masonry(^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(8, 13));
         make.right.mas_equalTo(-15);
-    }];
-}
-
-#pragma mark - # Getters
-- (UIImageView *)avatarImageView
-{
-    if (_avatarImageView == nil) {
-        _avatarImageView = [[UIImageView alloc] init];
-        [_avatarImageView.layer setMasksToBounds:YES];
-        [_avatarImageView.layer setCornerRadius:5.0f];
-        [_avatarImageView.layer setBorderWidth:BORDER_WIDTH_1PX];
-        [_avatarImageView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    }
-    return _avatarImageView;
-}
-
-- (UILabel *)nikenameLabel
-{
-    if (_nikenameLabel == nil) {
-        _nikenameLabel = [[UILabel alloc] init];
-        [_nikenameLabel setText:@"用户昵称"];
-        [_nikenameLabel setFont:[UIFont systemFontOfSize:17]];
-    }
-    return _nikenameLabel;
-}
-
-- (UILabel *)wechatIDLabel
-{
-    if (_wechatIDLabel == nil) {
-        _wechatIDLabel = [[UILabel alloc] init];
-        [_wechatIDLabel setText:LOCSTR(@"微信号")];
-        [_wechatIDLabel setFont:[UIFont systemFontOfSize:14]];
-    }
-    return _wechatIDLabel;
-}
-
-- (UIImageView *)QRImageView
-{
-    if (_QRImageView == nil) {
-        _QRImageView = [[UIImageView alloc] init];
-        [_QRImageView setImage:[UIImage imageNamed:@"mine_cell_myQR"]];
-    }
-    return _QRImageView;
-}
-
-- (UIImageView *)arrowView
-{
-    if (!_arrowView) {
-        _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_arrow"]];
-    }
-    return _arrowView;
+    })
+    .view;
+    
+    self.QRImageView = self.contentView.addImageView(5)
+    .image([UIImage imageNamed:@"mine_cell_myQR"])
+    .masonry(^ (MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(-0.5);
+        make.right.mas_equalTo(self.arrowView.mas_left).mas_offset(-10);
+        make.height.and.width.mas_equalTo(18);
+    })
+    .view;
 }
 
 @end

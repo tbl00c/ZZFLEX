@@ -26,10 +26,6 @@
 
 /// 右侧副标题
 @property (nonatomic, strong) UILabel *detailLabel;
-/// 右侧广告图
-@property (nonatomic, strong) UIImageView *rightImageView;
-/// 右侧广告图红点
-@property (nonatomic, strong) TLBadge *rightBadgeView;
 /// 右箭头
 @property (nonatomic, strong) UIImageView *arrowView;
 
@@ -70,14 +66,8 @@
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
         [self setSelectedBackgrounColor:[UIColor colorGrayLine]];
-        [self.contentView addSubview:self.iconView];
-        [self.contentView addSubview:self.titleLabel];
-        [self.contentView addSubview:self.badgeView];
-        [self.contentView addSubview:self.detailLabel];
-        [self.contentView addSubview:self.rightImageView];
-        [self.contentView addSubview:self.arrowView];
         
-        [self p_addMasonry];
+        [self p_loadSubViews];
     }
     return self;
 }
@@ -112,90 +102,49 @@
 }
 
 #pragma mark - # Private Methods
-- (void)p_addMasonry
+- (void)p_loadSubViews
 {
-    [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.iconView = self.contentView.addImageView(0)
+    .masonry(^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15.0f);
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(25.0f);
-    }];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    })
+    .view;
+    
+    self.titleLabel = self.contentView.addLabel(1)
+    .masonry(^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.left.mas_equalTo(self.iconView.mas_right).mas_offset(15.0f);
-        make.right.mas_lessThanOrEqualTo(self.contentView).mas_offset(15.0f);
-    }];
+        make.right.mas_lessThanOrEqualTo(-15.0f);
+    })
+    .view;
+    
+    self.badgeView = [[TLBadge alloc] initWithFrame:CGRectMake(0, 0, 0, 18)];
+    [self.contentView addSubview:self.badgeView];
     [self.badgeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel.mas_right).mas_offset(15);
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(18);
     }];
-    [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.arrowView.mas_left).mas_offset(-EGDE_RIGHT_IMAGE);
-        make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(WIDTH_ICON_RIGHT);
-    }];
-    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_greaterThanOrEqualTo(self.badgeView.mas_right).mas_offset(15);
-        make.right.mas_equalTo(self.arrowView.mas_left).mas_offset(-WIDTH_ICON_RIGHT - EGDE_RIGHT_IMAGE - EGDE_SUB_TITLE);
-        make.centerY.mas_equalTo(self.iconView);
-    }];
-    [self.arrowView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    self.arrowView = self.contentView.addImageView(2)
+    .image([UIImage imageNamed:@"right_arrow"])
+    .masonry(^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(8, 13));
         make.right.mas_equalTo(-15);
-    }];
-}
-
-#pragma mark - # Getters
-- (UIImageView *)iconView
-{
-    if (_iconView == nil) {
-        _iconView = [[UIImageView alloc] init];
-    }
-    return _iconView;
-}
-
-- (UILabel *)titleLabel
-{
-    if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] init];
-    }
-    return _titleLabel;
-}
-
-- (TLBadge *)badgeView
-{
-    if (!_badgeView) {
-        _badgeView = [[TLBadge alloc] initWithFrame:CGRectMake(0, 0, 0, 18)];
-    }
-    return _badgeView;
-}
-
-- (UILabel *)detailLabel
-{
-    if (_detailLabel == nil) {
-        _detailLabel = [[UILabel alloc] init];
-        [_detailLabel setTextColor:[UIColor grayColor]];
-        [_detailLabel setFont:[UIFont systemFontOfSize:14.0f]];
-    }
-    return _detailLabel;
-}
-
-- (TLBadge *)rightBadgeView
-{
-    if (!_rightBadgeView) {
-        _rightBadgeView = [[TLBadge alloc] initWithFrame:CGRectMake(0, 0, 0, 18)];
-        [_rightBadgeView setBadgeValue:@""];
-    }
-    return _rightBadgeView;
-}
-
-- (UIImageView *)arrowView
-{
-    if (!_arrowView) {
-        _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_arrow"]];
-    }
-    return _arrowView;
+    })
+    .view;
+    
+    self.detailLabel = self.addLabel(4)
+    .font([UIFont systemFontOfSize:14.0f]).textColor([UIColor grayColor])
+    .masonry(^(MASConstraintMaker *make) {
+        make.left.mas_greaterThanOrEqualTo(self.badgeView.mas_right).mas_offset(15);
+        make.right.mas_equalTo(self.arrowView.mas_left).mas_offset(-EGDE_RIGHT_IMAGE);
+        make.centerY.mas_equalTo(self.iconView);
+    })
+    .view;
 }
 
 @end

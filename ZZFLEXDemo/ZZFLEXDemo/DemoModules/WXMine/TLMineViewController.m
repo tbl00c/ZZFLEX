@@ -60,6 +60,7 @@ typedef NS_ENUM(NSInteger, TLMineCellTag) {
     self.addSection(TLMineSectionTagWallet).sectionInsets(UIEdgeInsetsMake(20, 0, 0, 0));
     TLMenuItem *wallet = createMenuItem(@"mine_wallet", LOCSTR(@"钱包"));
     [wallet setBadge:@""];
+    [wallet setSubTitle:@"到账1024万元"];
     self.addCell(mineMenuCellName).toSection(TLMineSectionTagWallet).withDataModel(wallet).viewTag(TLMineCellTagWallet);
     
     // 功能
@@ -99,8 +100,9 @@ typedef NS_ENUM(NSInteger, TLMineCellTag) {
         [vc.view setBackgroundColor:[UIColor whiteColor]];
         PushVC(vc);
         
-        if (item.badge) {
+        if (item.badge || item.subTitle) {
             item.badge = nil;
+            item.subTitle = nil;
             [self reloadView];
         }
     }
