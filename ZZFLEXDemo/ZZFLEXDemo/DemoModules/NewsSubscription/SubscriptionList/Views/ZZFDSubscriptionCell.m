@@ -109,11 +109,10 @@
     [self.tableView reloadData];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithFrame:frame]) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self setSelectedBackgrounColor:[UIColor colorGrayLine]];
    
         self.tableView = self.contentView.addTableView(1)
         .backgroundColor([UIColor clearColor])

@@ -10,4 +10,24 @@
 
 @implementation ZZFLEXTableViewEmptyCell
 
++ (CGFloat)viewHeightByDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel
+{
+    return dataModel.size.height;
+}
+
+- (id)init
+{
+    if (self = [super init]) {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+    return self;
+}
+
+- (void)setViewDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel
+{
+    if (dataModel.color) {
+        [self setBackgroundColor:dataModel.color];
+    }
+}
+
 @end

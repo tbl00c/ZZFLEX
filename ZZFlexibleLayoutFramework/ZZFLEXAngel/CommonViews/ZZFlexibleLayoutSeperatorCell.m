@@ -23,9 +23,9 @@
 
 @implementation ZZFlexibleLayoutSeperatorCell
 
-+ (CGSize)viewSizeByDataModel:(id)dataModel
++ (CGSize)viewSizeByDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel
 {
-    return ((ZZFlexibleLayoutSeperatorModel *)dataModel).size;
+    return dataModel.size;
 }
 
 - (id)init
@@ -36,11 +36,10 @@
     return self;
 }
 
-- (void)setViewDataModel:(id)dataModel
+- (void)setViewDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel
 {
-    ZZFlexibleLayoutSeperatorModel *model = dataModel;
-    if (model.color) {
-        [self setBackgroundColor:model.color];
+    if (dataModel.color) {
+        [self setBackgroundColor:dataModel.color];
     }
 }
 

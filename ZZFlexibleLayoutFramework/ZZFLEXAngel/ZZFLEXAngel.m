@@ -11,8 +11,8 @@
 #import "ZZFLEXAngel+Private.h"
 #import "ZZFLEXAngel+UITableView.h"
 #import "ZZFLEXAngel+UICollectionView.h"
-#import "ZZFlexibleLayoutSectionModel.h"
 #import "ZZFlexibleLayoutSeperatorCell.h"
+#import "ZZFLEXTableViewEmptyCell.h"
 #import "ZZFLEXMacros.h"
 
 /*
@@ -274,7 +274,7 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
     return ^(CGSize size, UIColor *color) {
         @strongify(self);
         ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-        viewModel.className = NSStringFromClass([ZZFlexibleLayoutSeperatorCell class]);
+        viewModel.className = [self.hostView isKindOfClass:[UITableView class]] ? NSStringFromClass([ZZFLEXTableViewEmptyCell class]) : NSStringFromClass([ZZFlexibleLayoutSeperatorCell class]);
         viewModel.dataModel = [[ZZFlexibleLayoutSeperatorModel alloc] initWithSize:size andColor:color];
         ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
         return chainViewModel;

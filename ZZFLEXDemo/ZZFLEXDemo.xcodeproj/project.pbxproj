@@ -51,6 +51,8 @@
 		C26312341FE8B62A0022B2F8 /* ZZFLEXChainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C263122E1FE8B62A0022B2F8 /* ZZFLEXChainViewModel.m */; };
 		C26B6B4F202AD4F40058656E /* ZZFDAuthLevelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B6B4E202AD4F40058656E /* ZZFDAuthLevelCell.m */; };
 		C26B6B52202AE79C0058656E /* ZZFDSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B6B51202AE79C0058656E /* ZZFDSwitchCell.m */; };
+		C26B6B76202AF1040058656E /* ZZFDSubscriptionTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B6B75202AF1040058656E /* ZZFDSubscriptionTitleCell.m */; };
+		C26B6B79202AF53B0058656E /* ZZFDSubscriptionAngel.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B6B78202AF53B0058656E /* ZZFDSubscriptionAngel.m */; };
 		C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */; };
 		C27E9F4E1FCE609C0062C896 /* ZZFDGoodListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F471FCE609C0062C896 /* ZZFDGoodListModel.m */; };
 		C27E9F4F1FCE609C0062C896 /* ZZFDGoodListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F481FCE609C0062C896 /* ZZFDGoodListViewController.m */; };
@@ -219,6 +221,10 @@
 		C26B6B4E202AD4F40058656E /* ZZFDAuthLevelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDAuthLevelCell.m; sourceTree = "<group>"; };
 		C26B6B50202AE79C0058656E /* ZZFDSwitchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDSwitchCell.h; sourceTree = "<group>"; };
 		C26B6B51202AE79C0058656E /* ZZFDSwitchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDSwitchCell.m; sourceTree = "<group>"; };
+		C26B6B74202AF1040058656E /* ZZFDSubscriptionTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDSubscriptionTitleCell.h; sourceTree = "<group>"; };
+		C26B6B75202AF1040058656E /* ZZFDSubscriptionTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDSubscriptionTitleCell.m; sourceTree = "<group>"; };
+		C26B6B77202AF53B0058656E /* ZZFDSubscriptionAngel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDSubscriptionAngel.h; sourceTree = "<group>"; };
+		C26B6B78202AF53B0058656E /* ZZFDSubscriptionAngel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDSubscriptionAngel.m; sourceTree = "<group>"; };
 		C27E9F411FCE609C0062C896 /* ZZFDGoodDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFDGoodDetailViewController.m; sourceTree = "<group>"; };
 		C27E9F421FCE609C0062C896 /* ZZFDGoodDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodDetailViewController.h; sourceTree = "<group>"; };
 		C27E9F441FCE609C0062C896 /* ZZFDGoodListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodListViewController.h; sourceTree = "<group>"; };
@@ -602,6 +608,8 @@
 			children = (
 				C25C20FC2027547E003D3192 /* Models */,
 				C25C20FE2027547E003D3192 /* Views */,
+				C26B6B77202AF53B0058656E /* ZZFDSubscriptionAngel.h */,
+				C26B6B78202AF53B0058656E /* ZZFDSubscriptionAngel.m */,
 				C25C20FD2027547E003D3192 /* ZZFDSubscriptionViewController.h */,
 				C25C20FB2027547E003D3192 /* ZZFDSubscriptionViewController.m */,
 			);
@@ -622,6 +630,8 @@
 		C25C20FE2027547E003D3192 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C26B6B74202AF1040058656E /* ZZFDSubscriptionTitleCell.h */,
+				C26B6B75202AF1040058656E /* ZZFDSubscriptionTitleCell.m */,
 				C2C93AD3202815CB001582C3 /* ZZFDSubscriptionCell.h */,
 				C2C93AD4202815CB001582C3 /* ZZFDSubscriptionCell.m */,
 			);
@@ -1251,6 +1261,7 @@
 				C25C21022027547E003D3192 /* ZZFDSubscriptionViewController.m in Sources */,
 				C2863A941FCCFB76008BC3C0 /* ZZFDAppDelegate.m in Sources */,
 				C2863AA61FCD022B008BC3C0 /* ZZFDMainMenuCell.m in Sources */,
+				C26B6B79202AF53B0058656E /* ZZFDSubscriptionAngel.m in Sources */,
 				C2268CAE1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m in Sources */,
 				C20CB031202859A20088276C /* ZZFDLanguageSelectViewController.m in Sources */,
 				C2AC73371FE51FD400DABA11 /* ZZFDMainSectionTitleView.m in Sources */,
@@ -1320,6 +1331,7 @@
 				C2F2F97820189577003D53F7 /* ZZFlexibleLayoutSectionModel.m in Sources */,
 				C2863A9E1FCCFD52008BC3C0 /* ZZFDMainViewController.m in Sources */,
 				C2F2F97920189577003D53F7 /* ZZFlexibleLayoutViewModel.m in Sources */,
+				C26B6B76202AF1040058656E /* ZZFDSubscriptionTitleCell.m in Sources */,
 				C282D0AD1FEA0C0700559705 /* ZZFDGoodPriceCell.m in Sources */,
 				C2B70CFE202881D400B818CB /* ZZFDCateCell.m in Sources */,
 				C2268CAC1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m in Sources */,

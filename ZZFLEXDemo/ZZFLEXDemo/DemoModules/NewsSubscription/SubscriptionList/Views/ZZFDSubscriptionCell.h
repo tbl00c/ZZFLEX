@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ZZFlexibleLayoutViewProtocol.h"
 
-@interface ZZFDSubscriptionCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
+@interface ZZFDSubscriptionCell : UITableViewCell <ZZFlexibleLayoutViewProtocol>
 
 @end

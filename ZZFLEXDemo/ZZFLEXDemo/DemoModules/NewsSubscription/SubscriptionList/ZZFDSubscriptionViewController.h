@@ -6,8 +6,8 @@
 //  Copyright © 2018年 李伯坤. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface ZZFDSubscriptionViewController : ZZFlexibleLayoutViewController
+@interface ZZFDSubscriptionViewController : UITableViewController
 
 @end

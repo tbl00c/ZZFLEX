@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZZFlexibleLayoutSectionModel.h"
 #import "ZZFLEXChainSectionModel.h"
 #import "ZZFLEXChainViewModel.h"
 #import "ZZFLEXChainViewBatchModel.h"

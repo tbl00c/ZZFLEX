@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZZFlexibleLayoutSeperatorCell.h"
 
-@interface ZZFLEXTableViewEmptyCell : UITableViewCell
+@interface ZZFLEXTableViewEmptyCell : UITableViewCell <ZZFlexibleLayoutViewProtocol>
 
 @end
