@@ -80,8 +80,7 @@
     // 左侧商品图
     self.imageView = contentView.addImageView(1001)
     .contentMode(UIViewContentModeScaleAspectFill)
-    .clipsToBounds(YES)
-    .cornerRadius(5)
+    .clipsToBounds(YES).cornerRadius(5)
     .masonry(^ (MASConstraintMaker *make) {
         make.left.top.mas_equalTo(15);
         make.bottom.mas_equalTo(-15);
@@ -93,8 +92,7 @@
     
     // 商品标题
     self.titleLabel = contentView.addLabel(1002)
-    .numberOfLines(2)
-    .font([UIFont systemFontOfSize:14])
+    .numberOfLines(2).font([UIFont systemFontOfSize:14])
     .masonry(^ (MASConstraintMaker *make) {
         make.top.mas_equalTo(self.imageView);
         make.left.mas_equalTo(self.imageView.mas_right).mas_offset(10);
@@ -104,8 +102,7 @@
     
     // 商品位置
     self.positionLabel = contentView.addLabel(1010)
-    .font([UIFont systemFontOfSize:12])
-    .textColor([UIColor grayColor])
+    .font([UIFont systemFontOfSize:12]).textColor([UIColor grayColor])
     .masonry(^ (MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel);
         make.bottom.mas_equalTo(self.imageView);

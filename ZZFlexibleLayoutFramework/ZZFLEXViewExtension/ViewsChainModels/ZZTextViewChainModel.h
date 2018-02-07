@@ -23,6 +23,8 @@ ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ editable)(BOOL editable);
 ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ selectable)(BOOL selectable);
 ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ dataDetectorTypes)(UIDataDetectorTypes dataDetectorTypes);
 
+ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ keyboardType)(UIKeyboardType keyboardType);
+
 ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ allowsEditingTextAttributes)(BOOL allowsEditingTextAttributes);
 ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ attributedText)(NSAttributedString *attributedText);
 ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ typingAttributes)(NSDictionary *typingAttributes);
@@ -50,3 +52,5 @@ ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ showsVerticalScrollIndicator)(BOO
 ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ scrollsToTop)(BOOL scrollsToTop);
 
 @end
+
+ZZFLEX_EX_INTERFACE(UITextView, ZZTextViewChainModel)

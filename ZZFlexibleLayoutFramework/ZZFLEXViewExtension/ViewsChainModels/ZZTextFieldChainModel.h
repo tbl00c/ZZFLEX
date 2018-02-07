@@ -25,6 +25,8 @@ ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ defaultTextAttributes)(NSDiction
 ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ placeholder)(NSString *placeholder);
 ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ attributedPlaceholder)(NSAttributedString *attributedPlaceholder);
 
+ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ keyboardType)(UIKeyboardType keyboardType);
+
 ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ clearsOnBeginEditing)(BOOL clearsOnBeginEditing);
 ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ adjustsFontSizeToFitWidth)(BOOL adjustsFontSizeToFitWidth);
 ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ minimumFontSize)(CGFloat minimumFontSize);
@@ -46,4 +48,8 @@ ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ rightViewMode)(UITextFieldViewMo
 ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ inputView)(UIView *inputView);
 ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ inputAccessoryView)(UIView *inputAccessoryView);
 
+ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
+
 @end
+
+ZZFLEX_EX_INTERFACE(UITextField, ZZTextFieldChainModel)

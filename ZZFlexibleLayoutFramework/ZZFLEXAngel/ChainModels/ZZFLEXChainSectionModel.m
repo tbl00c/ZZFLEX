@@ -140,7 +140,7 @@
 {
     NSArray *viewModelArray = self.sectionModel.itemsArray;
     NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
-    for (ZZFlexibleLayoutViewModel *viewModel in data) {
+    for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
         if (viewModel.dataModel) {
             [data addObject:viewModel.dataModel];
         }

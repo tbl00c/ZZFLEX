@@ -85,22 +85,6 @@
     };
 }
 
-- (id (^)(NSInteger sectionTag, NSInteger viewTag))bySectionTagAndViewTag
-{
-    return ^id(NSInteger sectionTag, NSInteger viewTag) {
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            if (sectionModel.sectionTag == sectionTag) {
-                for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
-                    if (viewModel.viewTag == viewTag) {
-                        return [self p_executeWithSectionModel:sectionModel viewModel:viewModel];
-                    }
-                }
-            }
-        }
-        return nil;
-    };
-}
-
 #pragma mark - # Private Methods
 - (id)p_executeWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel viewModel:(ZZFlexibleLayoutViewModel *)viewModel
 {
@@ -146,26 +130,43 @@
 - (NSArray *(^)(void))all
 {
     return ^NSArray *(void) {
+        NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            if (sectionModel.itemsArray.count > 0) {
-                [self p_executeWithSectionModel:sectionModel viewModelArray:sectionModel.itemsArray];
+            if (self.editType == ZZFLEXChainViewEditTypeDelete) {       // 删除
+                [sectionModel.itemsArray removeAllObjects];
+            }
+            else if (self.editType == ZZFLEXChainViewEditTypeDataModel) {       // 获取
+                [viewModelArray addObjectsFromArray:sectionModel.itemsArray];
             }
         }
-        return nil;
+        if (self.editType == ZZFLEXChainViewEditTypeUpdate) {
+            [self p_updateViewModelArray:viewModelArray];
+        }
+        return [self dataModelArrayByViewModelArray:viewModelArray];
     };
 }
 
 - (NSArray *(^)(NSInteger viewTag))byViewTag
 {
     return ^NSArray *(NSInteger viewTag) {
+        NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            NSMutableArray *data = @[].mutableCopy;
+            NSMutableArray *data = [[NSMutableArray alloc] init];
             for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
                 if (viewModel.viewTag == viewTag) {
                     [data addObject:viewModel];
                 }
             }
-            return [self p_executeWithSectionModel:sectionModel viewModelArray:data];
+            if (self.editType == ZZFLEXChainViewEditTypeDelete) {
+                [self p_deleteWithSectionModel:sectionModel viewModelArray:data];
+            }
+            [viewModelArray addObjectsFromArray:data];
+        }
+        if (self.editType == ZZFLEXChainViewEditTypeUpdate) {
+            [self p_updateViewModelArray:viewModelArray];
+        }
+        if (self.editType == ZZFLEXChainViewEditTypeDataModel) {
+            return [self dataModelArrayByViewModelArray:viewModelArray];
         }
         return nil;
     };
@@ -174,14 +175,21 @@
 - (NSArray *(^)(id dataModel))byDataModel
 {
     return ^NSArray *(id dataModel) {
+        NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            NSMutableArray *data = @[].mutableCopy;
+            NSMutableArray *data = [[NSMutableArray alloc] init];
             for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
                 if (viewModel.dataModel == dataModel) {
                     [data addObject:viewModel];
                 }
             }
-            return [self p_executeWithSectionModel:sectionModel viewModelArray:data];
+            if (self.editType == ZZFLEXChainViewEditTypeDelete) {
+                [self p_deleteWithSectionModel:sectionModel viewModelArray:data];
+            }
+            [viewModelArray addObjectsFromArray:data];
+        }
+        if (self.editType == ZZFLEXChainViewEditTypeUpdate) {
+            [self p_updateViewModelArray:viewModelArray];
         }
         return nil;
     };
@@ -190,72 +198,59 @@
 - (NSArray *(^)(NSString *className))byViewClassName
 {
     return ^NSArray *(NSString *className) {
+        NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            NSMutableArray *data = @[].mutableCopy;
+            NSMutableArray *data = [[NSMutableArray alloc] init];
             for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
                 if ([viewModel.className isEqualToString:className]) {
                     [data addObject:viewModel];
                 }
             }
-            return [self p_executeWithSectionModel:sectionModel viewModelArray:data];
+            if (self.editType == ZZFLEXChainViewEditTypeDelete) {
+                [self p_deleteWithSectionModel:sectionModel viewModelArray:data];
+            }
+            [viewModelArray addObjectsFromArray:data];
+        }
+        if (self.editType == ZZFLEXChainViewEditTypeUpdate) {
+            [self p_updateViewModelArray:viewModelArray];
+        }
+        if (self.editType == ZZFLEXChainViewEditTypeDataModel) {
+            return [self dataModelArrayByViewModelArray:viewModelArray];
         }
         return nil;
     };
 }
 
-- (NSArray *(^)(NSInteger sectionTag, NSInteger viewTag))bySectionTagAndViewTag
+- (NSArray *)p_deleteWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel viewModelArray:(NSArray *)viewModelArray
 {
-    return ^NSArray *(NSInteger sectionTag, NSInteger viewTag) {
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            if (sectionModel.sectionTag == sectionTag) {
-                NSMutableArray *data = @[].mutableCopy;
-                for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
-                    if (viewModel.viewTag == viewTag) {
-                        [data addObject:viewModel];
-                    }
-                }
-                return [self p_executeWithSectionModel:sectionModel viewModelArray:data];
-            }
+    for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
+        if (viewModel == sectionModel.headerViewModel) {
+            sectionModel.headerViewModel = nil;
         }
-        return nil;
-    };
-}
-
-- (NSArray *)p_executeWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel viewModelArray:(NSArray *)viewModelArray
-{
-    if (self.editType == ZZFLEXChainViewEditTypeDelete) {
-        for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
-            if (viewModel == sectionModel.headerViewModel) {
-                sectionModel.headerViewModel = nil;
-            }
-            else if (viewModel == sectionModel.footerViewModel) {
-                sectionModel.footerViewModel = nil;
-            }
-            else {
-                [sectionModel.itemsArray removeObject:viewModel];
-            }
+        else if (viewModel == sectionModel.footerViewModel) {
+            sectionModel.footerViewModel = nil;
         }
-        return nil;
-    }
-    else if (self.editType == ZZFLEXChainViewEditTypeDataModel) {
-        NSMutableArray *data = [[NSMutableArray alloc] init];
-        for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
-            if (viewModel.dataModel) {
-                [data addObject:viewModel.dataModel];
-            }
-            else {
-                [data addObject:[NSNull null]];
-            }
+        else {
+            [sectionModel.itemsArray removeObject:viewModel];
         }
-        return data;
-    }
-    else if (self.editType == ZZFLEXChainViewEditTypeUpdate) {
-        for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
-            [viewModel updateViewHeight];
-        }
-        return viewModelArray;
     }
     return nil;
+}
+
+- (void)p_updateViewModelArray:(NSArray *)viewModelArray
+{
+    for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
+        [viewModel updateViewHeight];
+    }
+}
+
+- (NSArray *)dataModelArrayByViewModelArray:(NSArray *)viewModelArray
+{
+    NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
+    for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
+        [data addObject:viewModel.dataModel];
+    }
+    return data;
 }
 
 @end

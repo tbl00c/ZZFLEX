@@ -34,9 +34,6 @@ typedef NS_ENUM(NSInteger, ZZFLEXChainViewEditType) {
 /// 根据indexPath
 - (id (^)(NSIndexPath *indexPath))atIndexPath;
 
-/// 根据sectionTag和cellTag
-- (id (^)(NSInteger sectionTag, NSInteger viewTag))bySectionTagAndViewTag;
-
 /// 框架内部使用
 - (instancetype)initWithType:(ZZFLEXChainViewEditType)type andListData:(NSArray *)listData;
 
@@ -56,9 +53,6 @@ typedef NS_ENUM(NSInteger, ZZFLEXChainViewEditType) {
 
 /// 根据类名
 - (NSArray *(^)(NSString *className))byViewClassName;
-
-/// 根据sectionTag和cellTag
-- (NSArray *(^)(NSInteger sectionTag, NSInteger viewTag))bySectionTagAndViewTag;
 
 /// 框架内部使用
 - (instancetype)initWithType:(ZZFLEXChainViewEditType)type andListData:(NSArray *)listData;

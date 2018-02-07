@@ -12,6 +12,8 @@
 #import "ZZFDRQTitleCell.h"
 #import "ZZFDRQNavTilteView.h"
 
+#define     RQVC_HEIGHT_TEXTVIEW            MIN(200, SCREEN_HEIGHT * 0.35)
+
 typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     ZZFDRquestQueueVCSectionType1 = 1,
     ZZFDRquestQueueVCSectionType2,
@@ -49,13 +51,14 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     
     self.titleView = [[ZZFDRQNavTilteView alloc] init];
     [self.navigationItem setTitleView:self.titleView];
+    [self p_showLoading:NO];
     
     self.textView = self.view.addTextView(1)
     .backgroundColor([UIColor blackColor]).editable(NO)
     .textColor([UIColor whiteColor]).font([UIFont systemFontOfSize:15])
     .masonry(^(MASConstraintMaker *make) {
         make.bottom.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(200);
+        make.height.mas_equalTo(RQVC_HEIGHT_TEXTVIEW);
     })
     .view;
     
@@ -74,20 +77,20 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
         @strongify(self);
         [self refreshData];
     }];
+
+    UILabel *tipLabel = [[UILabel alloc] init];
+    tipLabel.zz_make.frame(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBAR_HEIGHT - STATUSBAR_HEIGHT - RQVC_HEIGHT_TEXTVIEW)).userInteractionEnabled(YES)
+    .text(@"点击开始\n队列请求模拟").numberOfLines(0).textAlignment(NSTextAlignmentCenter).textColor([UIColor grayColor]);
+    [self.collectionView showTipView:tipLabel retryAction:^(id userData) {
+        @strongify(self);
+        [self refreshData];
+    }];
 }
 
-- (void)viewDidLoad
+- (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewDidDisappear:animated];
     
-    [self refreshData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [self p_showLoading:YES];
     [self.requestQueue cancelAllRequests];
 }
 
@@ -99,9 +102,8 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(top);
     }];
-    CGFloat height = MIN(200, SCREEN_HEIGHT * 0.35);
     [self.textView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(height);
+        make.height.mas_equalTo(RQVC_HEIGHT_TEXTVIEW);
     }];
     [self.collectionView reloadData];
 }
@@ -109,6 +111,7 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
 #pragma mark - # Request
 - (void)refreshData
 {
+    [self.collectionView removeTipView];
     [self.textView setText:nil];
     self.angel.clear();
     [self.collectionView reloadData];

@@ -15,6 +15,7 @@
 #import "TLMineViewController.h"
 #import "ZZFDCateViewController.h"
 #import "TLContactsViewController.h"
+#import "ZZFDSubscriptionViewController.h"
 #import "ZZFDRquestQueueViewController.h"
 
 #define     FDMAIN_FONT_SIZE_DETAIL         14
@@ -24,7 +25,7 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
     ZZFDMainSectionTypeVE,                  // ZZFLEX View拓展
     ZZFDMainSectionTypeVC,                  // ZZFlexibleLayoutViewController
     ZZFDMainSectionTypeAgent,               // ZZFLEXAgent
-    ZZFDMainSectionTypeVCEdit,              // ZZFlexibleLayoutViewController 编辑拓展
+    ZZFDMainSectionTypeEdit,                // 编辑类页面处理Demo
     ZZFDMainSectionTypeRQ,                  // ZZFLEX事件响应队列
 };
 
@@ -178,14 +179,18 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         });
     }
 
-    // ZZFlexibleLayoutViewController + Edit
+    // ZZFLEXEditExtension
     {
-        NSInteger sectionTag = ZZFDMainSectionTypeVCEdit;
+        NSInteger sectionTag = ZZFDMainSectionTypeEdit;
         self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 30, 0));
-        NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEX+EditExtension",
+        NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXEditExtension",
                                                               @"此拓展使得ZZFLEXVC和ZZFLEXAngel具有了处理编辑页面的能力，其主要原理是将数据模型的属性与列表编辑控件对应属性进行关联映射。");
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
-        self.addCell(menuCell).withDataModel(@"信息编辑页 Demo").toSection(sectionTag);
+        self.addCell(menuCell).withDataModel(@"开发者信息订阅").toSection(sectionTag).selectedAction(^(id model){
+            @strongify(self);
+            ZZFDSubscriptionViewController *subVC = [[ZZFDSubscriptionViewController alloc] init];
+            PushVC(subVC);
+        });
     }
 
     // ZZFLEX事件响应队列
