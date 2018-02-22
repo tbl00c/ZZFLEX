@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * 所有要加入ZZFlexibleLayoutViewController的view/cell都要实现此协议
+ * 所有要加入ZZFlexibleLayoutViewController、ZZFLEXAngel的view/cell都要实现此协议
  */
 
 @protocol ZZFlexibleLayoutViewProtocol <NSObject>

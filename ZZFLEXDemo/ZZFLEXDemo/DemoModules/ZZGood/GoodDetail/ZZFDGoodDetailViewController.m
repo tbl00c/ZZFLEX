@@ -9,6 +9,7 @@
 #import "ZZFDGoodDetailViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import <XLPhotoBrowser+CoderXL/XLPhotoBrowser.h>
+#import "ZZFDGoodAreaCell.h"
 
 typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     ZZFDGoodSectionTypeHeader,

@@ -48,7 +48,7 @@
 @interface ZZFLEXChainViewBatchInsertModel : ZZFLEXChainViewBatchBaseModel<ZZFLEXChainViewBatchInsertModel *>
 
 /// 插入到指定Index
-- (ZZFLEXChainViewBatchInsertModel *(^)(NSInteger index))atIndex;
+- (ZZFLEXChainViewBatchInsertModel *(^)(NSInteger index))toIndex;
 
 /// 插入到某个cell前
 - (ZZFLEXChainViewBatchInsertModel *(^)(NSInteger sectionTag))beforeCell;

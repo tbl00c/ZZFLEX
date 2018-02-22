@@ -184,7 +184,7 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         NSInteger sectionTag = ZZFDMainSectionTypeEdit;
         self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 30, 0));
         NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXEditExtension",
-                                                              @"此拓展使得ZZFLEXVC和ZZFLEXAngel具有了处理编辑页面的能力，其主要原理是将数据模型的属性与列表编辑控件对应属性进行关联映射。");
+                                                              @"此拓展使得ZZFLEXVC和ZZFLEXAngel具有了处理编辑页面的能力，其主要原理为规范了编辑类页面处理流程，并使用一个额外的模型来控制它");
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
         self.addCell(menuCell).withDataModel(@"开发者信息订阅").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);

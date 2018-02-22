@@ -196,7 +196,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
 }
 
 
-- (ZZFLEXChainViewBatchInsertModel *(^)(NSInteger index))atIndex
+- (ZZFLEXChainViewBatchInsertModel *(^)(NSInteger index))toIndex
 {
     return ^(NSInteger index) {
         self.status |= ZZFLEXInsertArrayDataStatusIndex;
