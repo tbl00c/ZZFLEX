@@ -18,6 +18,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/tbl00c/ZZFLEX.git", :tag => s.version }
 
   s.requires_arc = true
-  s.source_files = "ZZFLEX/ZZFlexibleLayoutFramework/**/*.{h,m}"
+  s.source_files = "ZZFlexibleLayoutFramework/**/*.{h,m}"
 
 end

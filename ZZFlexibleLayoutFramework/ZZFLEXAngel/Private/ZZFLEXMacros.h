@@ -9,7 +9,10 @@
 #ifndef ZZFLEXMacros_h
 #define ZZFLEXMacros_h
 
-#define ZZFLEXLog(fmt, ...)     NSLog((@"【ZZFLEX】" fmt), ##__VA_ARGS__)
+#define     ZZFLEXLog(fmt, ...)     NSLog((@"【ZZFLEX】" fmt), ##__VA_ARGS__)
+
+#define     BORDER_WIDTH_1PX        ([[UIScreen mainScreen] scale] > 0.0 ? 1.0 / [[UIScreen mainScreen] scale] : 1.0)
+
 
 /// 快捷解决循环引用
 #ifndef weakify

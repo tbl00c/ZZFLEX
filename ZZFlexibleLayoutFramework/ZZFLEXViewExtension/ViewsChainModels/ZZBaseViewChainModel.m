@@ -25,7 +25,9 @@
 #define     ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(methodName, masonryMethod) \
 - (id (^)( void (^constraints)(MASConstraintMaker *)) )methodName    \
 {   \
-    return self;    \
+    return ^id ( void (^constraints)(MASConstraintMaker *) ) {  \
+        return self;    \
+    };  \
 }
 
 #define     ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(methodName, ZZParamType) \

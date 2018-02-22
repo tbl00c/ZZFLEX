@@ -7,9 +7,7 @@
 //
 
 #import "UIView+ZZSeparator.h"
-#import "NSObject+Association.h"
 #import <objc/runtime.h>
-#import "UIColor+Extensions.h"
 #import "ZZFLEXMacros.h"
 
 #define     TLSEPERATOR_DEFAULT_COLOR       [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0]
