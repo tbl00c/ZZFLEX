@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, TLMineCellTag) {
     self.addSection(TLMineSectionTagWallet).sectionInsets(UIEdgeInsetsMake(20, 0, 0, 0));
     TLMenuItem *wallet = createMenuItem(@"mine_wallet", LOCSTR(@"钱包"));
     [wallet setBadge:@""];
-    [wallet setSubTitle:@"到账1024万元"];
+    [wallet setSubTitle:@"新到账1024元"];
     self.addCell(mineMenuCellName).toSection(TLMineSectionTagWallet).withDataModel(wallet).viewTag(TLMineCellTagWallet);
     
     // 功能
