@@ -1,6 +1,8 @@
 # ZZFLEX
 一个iOS UI敏捷开发框架，基于UIKit实现，主要包含常用控件的链式API拓展、一个数据驱动的列表框架、一个事件处理队列。
 
+<img src="./Screenshot/1.gif" width = "375" height = "667" alt="screenshot1" align=center />
+
 ## 功能模块
 
 目前ZZFLEX主要包含以下5个功能模块：
@@ -232,6 +234,8 @@ ZZFLEXAngel是ZZFlexibleLayoutViewController核心思想和设计提炼而成的
 
 使用它，我们只需通过任意collectionView或tableView来初始化一个ZZFLEXAngel实例（本质是将列表页的dataSource和delegate指向ZZFLEXAngel或其子类的实例），然后就可以通过这个实例、和ZZFlexibleLayoutViewController中一样，使用那些好用的API了。
 
+<img src="./Screenshot/2.gif" width = "375" height = "667" alt="screenshot1" align=center />
+
 ```
 // 创建列表视图
 UITableView *tableView = self.view.addTableView(1)
@@ -258,6 +262,8 @@ angel.addCell(@"ACell").toSection(1);
 
 初始标准数据模型 -> 经ZZFLEXEditModel封装的数据 -> UI展现 -> 用户编辑 -> 输入合法性判断 -> 标准数据模型 -> 导出数据
 
+<img src="./Screenshot/3.gif" width = "375" height = "667" alt="screenshot1" align=center />
+
 详见Demo。
 
 ### ZZFLEXRequestQueue
@@ -265,6 +271,9 @@ angel.addCell(@"ACell").toSection(1);
 一些复杂的页面中会存在多个异步数据请求（net、db等），然而同时发起的异步请求，其结果的返回顺序是不确定的，这样会导致UI展示顺序的不确定性，很多情况下这是我们不希望看到的。
 
 ZZFLEXRequestQueue的核心思想是“将一次数据请求的过程封装成对象”，它可以保证在此业务场景下，按队列顺序加载展示UI。
+
+<img src="./Screenshot/4.gif" width = "375" height = "667" alt="screenshot1" align=center />
+
 
 详见Demo。
 
