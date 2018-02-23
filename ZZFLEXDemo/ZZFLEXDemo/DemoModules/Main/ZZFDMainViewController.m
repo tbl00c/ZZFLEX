@@ -211,4 +211,25 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
     [self reloadView];
 }
 
+-（void)hello
+{
+    // 创建列表视图
+    UITableView *tableView = self.view.addTableView(1)
+    .frame(self.view.bounds)
+    .backgroundColor([UIColor colorGrayBG])
+    .tableFooterView([UIView new])
+    .view;
+    
+    // 根据列表视图初始化angel，hostView支持UITableView和UICollectionView
+    ZZFLEXAngel *angel = [[ZZFLEXAngel alloc] initWithHostView:self.tableView];
+    
+    // 添加列表元素
+    angel.addSection(1);
+    angel.addCell(@"ACell").toSection(1);
+    
+    // 刷新列表
+    [tableView reloadData];
+
+}
+
 @end
