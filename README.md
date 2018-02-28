@@ -8,10 +8,12 @@
 <img src="./Screenshot/1.gif" width = "375" height = "667" alt="screenshot1" />  <img src="./Screenshot/2.gif" width = "375" height = "667" alt="screenshot1" />
 
 ## 如何使用
-### 1、直接导入方式
+
+##### 1、直接导入方式
+
 将项目下载到本地后，把ZZFlexibleLayoutFramework拖入到你的项目中，即可正常使用。
 
-### 2、CocoaPods方式
+##### 2、CocoaPods方式
 
 ```
 Pod 'ZZFLEX', :git => 'git@github.com:tbl00c/ZZFLEX.git'

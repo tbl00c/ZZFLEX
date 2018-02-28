@@ -159,27 +159,6 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     [self reloadView];
 }
 
-- (void)text
-{
-    
-    UIButton *button = self.view.addButton(1001)            // 设置tag，方便调试定位
-    .titleFont([UIFont systemFontOfSize:15])
-    .title(@"hello").titleColor([UIColor redColor]).backgroundColor([UIColor whiteColor])
-    .titleHL(@"world").titleColorHL([UIColor orangeColor]).backgroundColorHL([UIColor redColor])
-    .cornerRadius(5.0f).borderWidth(1.0f).borderColor([UIColor orangeColor].CGColor)        // 圆角边框
-    .masonry(^ (MASConstraintMaker *make) {                 // 约束
-        make.center.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(80, 35));
-    })
-    .eventBlock(UIControlEventTouchUpInside, ^(UIButton *sender) {      // 点击事件
-        NSLog(@"button touch up");
-    })
-    .view;
-    
-    
-    button;
-}
-
 - (void)resetCommitModule
 {
     self.sectionForTag(ZZFDGoodSectionTypeCommit).clear();
