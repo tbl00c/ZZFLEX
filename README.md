@@ -16,7 +16,7 @@
 ##### 2、CocoaPods方式
 
 ```
-Pod 'ZZFLEX', :git => 'git@github.com:tbl00c/ZZFLEX.git'
+pod 'ZZFLEX', :git => 'https://github.com/tbl00c/ZZFLEX.git'
 ```
 
 ## 功能模块
