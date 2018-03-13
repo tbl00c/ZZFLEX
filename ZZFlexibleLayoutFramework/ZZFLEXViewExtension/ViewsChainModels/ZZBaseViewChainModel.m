@@ -10,6 +10,8 @@
 #import "UIView+ZZFrame.h"
 #if __has_include(<Masonry.h>)
 #import <Masonry.h>
+#elif __has_include("Masonry.h")
+#import "Masonry.h"
 #endif
 
 #define     ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, id, UIView)
@@ -76,7 +78,7 @@ ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(right, CGFloat);
 
 
 #pragma mark - # Layout
-#if __has_include(<Masonry.h>)
+#if __has_include(<Masonry.h>) || __has_include("Masonry.h")
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(masonry, mas_makeConstraints);
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(updateMasonry, mas_updateConstraints);
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(remakeMasonry, mas_remakeConstraints);
