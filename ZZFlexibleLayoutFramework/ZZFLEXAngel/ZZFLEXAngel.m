@@ -46,22 +46,27 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
 - (instancetype)initWithHostView:(__kindof UIScrollView *)hostView
 {
     if (self = [super init]) {
-        _hostView = hostView;
         _data = [[NSMutableArray alloc] init];
-        if ([_hostView isKindOfClass:[UITableView class]]) {
-            [(UITableView *)_hostView setDataSource:self];
-            [(UITableView *)_hostView setDelegate:self];
-            RegisterHostViewCell(_hostView, @"ZZFLEXTableViewEmptyCell");
-        }
-        else if ([_hostView isKindOfClass:[UICollectionView class]]) {
-            [(UICollectionView *)_hostView setDataSource:self];
-            [(UICollectionView *)_hostView setDelegate:self];
-            RegisterHostViewCell(_hostView, @"ZZFlexibleLayoutSeperatorCell");        // 注册空白cell
-            RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionHeader, @"ZZFlexibleLayoutEmptyHeaderFooterView");
-            RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionFooter, @"ZZFlexibleLayoutEmptyHeaderFooterView");
-        }
+        [self setHostView:hostView];
     }
     return self;
+}
+
+- (void)setHostView:(__kindof UIScrollView *)hostView
+{
+    _hostView = hostView;
+    if ([_hostView isKindOfClass:[UITableView class]]) {
+        [(UITableView *)_hostView setDataSource:self];
+        [(UITableView *)_hostView setDelegate:self];
+        RegisterHostViewCell(_hostView, @"ZZFLEXTableViewEmptyCell");
+    }
+    else if ([_hostView isKindOfClass:[UICollectionView class]]) {
+        [(UICollectionView *)_hostView setDataSource:self];
+        [(UICollectionView *)_hostView setDelegate:self];
+        RegisterHostViewCell(_hostView, @"ZZFlexibleLayoutSeperatorCell");        // 注册空白cell
+        RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionHeader, @"ZZFlexibleLayoutEmptyHeaderFooterView");
+        RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionFooter, @"ZZFlexibleLayoutEmptyHeaderFooterView");
+    }
 }
 
 @end

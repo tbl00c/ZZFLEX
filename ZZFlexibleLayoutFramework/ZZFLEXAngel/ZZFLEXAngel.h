@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSMutableArray *data;
 
 /// 宿主，可以是tableView或者collectionView
-@property (nonatomic, weak, readonly) __kindof UIScrollView *hostView;
+@property (nonatomic, weak) __kindof UIScrollView *hostView;
 
 /**
  *  根据宿主View初始化
