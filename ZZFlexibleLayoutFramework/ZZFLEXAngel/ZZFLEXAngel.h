@@ -27,7 +27,6 @@
  *  根据宿主View初始化
  */
 - (instancetype)initWithHostView:(__kindof UIScrollView *)hostView;
-- (instancetype)init NS_UNAVAILABLE;
 
 @end
 

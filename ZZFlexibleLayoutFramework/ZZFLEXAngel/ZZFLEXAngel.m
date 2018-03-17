@@ -45,9 +45,16 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
 
 - (instancetype)initWithHostView:(__kindof UIScrollView *)hostView
 {
+    if (self = [self init]) {
+        [self setHostView:hostView];
+    }
+    return self;
+}
+
+- (instancetype)init
+{
     if (self = [super init]) {
         _data = [[NSMutableArray alloc] init];
-        [self setHostView:hostView];
     }
     return self;
 }
