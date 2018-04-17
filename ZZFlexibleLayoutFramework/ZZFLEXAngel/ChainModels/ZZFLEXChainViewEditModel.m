@@ -248,7 +248,9 @@
 {
     NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
     for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
-        [data addObject:viewModel.dataModel];
+        if (viewModel.dataModel) {
+            [data addObject:viewModel.dataModel];
+        }
     }
     return data;
 }
