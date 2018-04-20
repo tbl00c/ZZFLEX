@@ -14,7 +14,7 @@
 		C20CB02A202841A40088276C /* ZZFDPlatformItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB029202841A40088276C /* ZZFDPlatformItemCell.m */; };
 		C20CB02D202842170088276C /* ZZFDPlatformItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB02C202842170088276C /* ZZFDPlatformItemModel.m */; };
 		C20CB031202859A20088276C /* ZZFDLanguageSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */; };
-		C21DE3DA20899A9F00F64AF2 /* ZZFLEXEditModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = C21DE3D920899A9F00F64AF2 /* ZZFLEXEditModel.mm */; };
+		C21DE3DA20899A9F00F64AF2 /* ZZFLEXEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C21DE3D920899A9F00F64AF2 /* ZZFLEXEditModel.m */; };
 		C2268CA41FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C6B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m */; };
 		C2268CAC1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C7F1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.m */; };
 		C2268CAE1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2268C811FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController+Kernel.m */; };
@@ -146,7 +146,7 @@
 		C20CB02C202842170088276C /* ZZFDPlatformItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDPlatformItemModel.m; sourceTree = "<group>"; };
 		C20CB02F202859A20088276C /* ZZFDLanguageSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDLanguageSelectViewController.h; sourceTree = "<group>"; };
 		C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDLanguageSelectViewController.m; sourceTree = "<group>"; };
-		C21DE3D920899A9F00F64AF2 /* ZZFLEXEditModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZZFLEXEditModel.mm; sourceTree = "<group>"; };
+		C21DE3D920899A9F00F64AF2 /* ZZFLEXEditModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXEditModel.m; sourceTree = "<group>"; };
 		C2268C681FCC3CFF00C98EA7 /* ZZFlexibleLayoutFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutFramework.h; sourceTree = "<group>"; };
 		C2268C6B1FCC3CFF00C98EA7 /* ZZFlexibleLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFlexibleLayoutViewController.m; sourceTree = "<group>"; };
 		C2268C7A1FCC3CFF00C98EA7 /* ZZFlexibleLayoutFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFlexibleLayoutFlowLayout.h; sourceTree = "<group>"; };
@@ -411,7 +411,7 @@
 			children = (
 				C20CB01A202831CE0088276C /* ZZFLEXEditModelProtocol.h */,
 				C20CB01B202831D80088276C /* ZZFLEXEditModel.h */,
-				C21DE3D920899A9F00F64AF2 /* ZZFLEXEditModel.mm */,
+				C21DE3D920899A9F00F64AF2 /* ZZFLEXEditModel.m */,
 				C20CB01E202831E50088276C /* ZZFlexibleLayoutViewController+EditExtension.h */,
 				C20CB01F202831E50088276C /* ZZFlexibleLayoutViewController+EditExtension.m */,
 				C20CB021202831FD0088276C /* ZZFLEXAngel+EditExtension.h */,
@@ -1307,7 +1307,7 @@
 				C26312341FE8B62A0022B2F8 /* ZZFLEXChainViewModel.m in Sources */,
 				C2268CEF1FCC3FF500C98EA7 /* ZZTableViewChainModel.m in Sources */,
 				C2268D031FCC439A00C98EA7 /* UIButton+ZZExtension.m in Sources */,
-				C21DE3DA20899A9F00F64AF2 /* ZZFLEXEditModel.mm in Sources */,
+				C21DE3DA20899A9F00F64AF2 /* ZZFLEXEditModel.m in Sources */,
 				C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */,
 				C2C93AD5202815CC001582C3 /* ZZFDSubscriptionCell.m in Sources */,
 				C2F2F95720186DA8003D53F7 /* ZZFDCateModel.m in Sources */,
