@@ -28,7 +28,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithFrame:frame]) {/Users/libokun/Desktop/LCGO Project/LCGO/LCGO/LCKit/LCNetwork
+    if (self = [super initWithFrame:frame]) {
         [self.arrowView setHidden:YES];
         
         @weakify(self);
