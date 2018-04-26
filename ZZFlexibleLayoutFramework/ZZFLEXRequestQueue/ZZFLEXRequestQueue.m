@@ -9,6 +9,8 @@
 #import "ZZFLEXRequestQueue.h"
 #import "ZZFLEXMacros.h"
 
+static NSMutableArray *__zz_flex_req_array;
+
 #pragma mark - ## ZZFLEXRequestModel
 @interface ZZFLEXRequestModel (ZZFLEXRequestQueue)
 
@@ -75,9 +77,16 @@
 
 @property (nonatomic, assign) NSInteger failureCount;
 
+@property (nonatomic, assign) NSInteger pageIndex;
+
 @end
 
 @implementation ZZFLEXRequestQueue
+
++ (void)load
+{
+    __zz_flex_req_array = [[NSMutableArray alloc] init];
+}
 
 - (NSInteger)requestCount
 {
@@ -100,6 +109,10 @@
 
 - (void)runAllRequestsWithCompleteAction:(void (^)(NSArray *, NSInteger, NSInteger))completeAction
 {
+    if (_isRuning) {
+        NSLog(@"[ZZFLEX][WARNING]队列正在执行中...");
+        return;
+    }
     _isRuning = YES;
     self.successCount = 0;
     self.failureCount = 0;
@@ -107,9 +120,10 @@
     self.completeDic = [[NSMutableDictionary alloc] init];
     self.completeAction = completeAction;
     if (self.queueData.count > 0) {
-        for (ZZFLEXRequestModel *model in self.queueData) {
-            [model executeRequestMethod];
+        if (![__zz_flex_req_array containsObject:self]) {
+            [__zz_flex_req_array addObject:self];
         }
+        [self p_startRequestRunLoop];
     }
     else {
         if (completeAction) {
@@ -118,8 +132,26 @@
     }
 }
 
+- (void)p_startRequestRunLoop
+{
+//    if (self.maxRequestCount > 0 && self.queueData.count <= self.requestCount) {
+        for (ZZFLEXRequestModel *model in self.queueData) {
+            [model executeRequestMethod];
+        }
+//    }
+//    else {
+//        for (NSInteger i = 0; i < MIN(self.maxRequestCount, self.requestCount); i++) {
+//            ZZFLEXRequestModel *model = self.queueData[i];
+//            [model executeRequestMethod];
+//        }
+//    }
+}
+
 - (void)cancelAllRequests
 {
+    if ([__zz_flex_req_array containsObject:self]) {
+        [__zz_flex_req_array removeObject:self];
+    }
     _isRuning = NO;
     [self.queueData removeAllObjects];
     self.completeDic = nil;
@@ -158,6 +190,9 @@
     }
     
     if (self.queueData.count == 0) {
+        if ([__zz_flex_req_array containsObject:self]) {
+            [__zz_flex_req_array removeObject:self];
+        }
         if (self.successCount + self.failureCount != self.recData.count) {
             ZZFLEXLog(@"ZZFLEX request count error");
         }
