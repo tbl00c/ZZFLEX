@@ -6,7 +6,7 @@
 //  Copyright © 2017年 李伯坤. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutFramework.h"
+#import "ZZFLEX.h"
 
 @interface ZZFDMainViewController : ZZFlexibleLayoutViewController
 

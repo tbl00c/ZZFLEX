@@ -1,15 +1,16 @@
 //
-//  ZZFlexibleLayoutFramework.h
+//  ZZFLEX.h
 //  zhuanzhuan
 //
 //  Created by 李伯坤 on 2017/5/26.
 //  Copyright © 2017年 转转. All rights reserved.
 //
 
-#ifndef ZZFlexibleLayoutFramework_h
-#define ZZFlexibleLayoutFramework_h
+#ifndef ZZFLEX_h
+#define ZZFLEX_h
 
 #import "ZZFLEXAngel.h"
+#import "ZZFlexibleLayoutViewProtocol.h"
 
 #import "ZZFlexibleLayoutViewController.h"
 #import "ZZFlexibleLayoutViewController+OldAPI.h"
@@ -20,4 +21,4 @@
 
 #import "UIView+ZZFLEX.h"
 
-#endif /* ZZFlexibleLayoutFramework_h */
+#endif /* ZZFLEX_h */

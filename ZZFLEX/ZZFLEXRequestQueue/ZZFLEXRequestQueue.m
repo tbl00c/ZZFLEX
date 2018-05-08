@@ -63,10 +63,10 @@ static NSMutableArray *__zz_flex_req_array;
 @interface ZZFLEXRequestQueue ()
 
 /// 某次执行的全部请求数据的记录
-@property (nonatomic, strong) NSArray *recData;
+@property (nonatomic, strong) NSArray<ZZFLEXRequestModel *> *recData;
 
 /// 某次执行过程中队列中等待的请求
-@property (nonatomic, strong) NSMutableArray *queueData;
+@property (nonatomic, strong) NSMutableArray<ZZFLEXRequestModel *> *queueData;
 
 /// 某次执行过程中提前完成的请求
 @property (nonatomic, strong) NSMutableDictionary *completeDic;
@@ -134,17 +134,9 @@ static NSMutableArray *__zz_flex_req_array;
 
 - (void)p_startRequestRunLoop
 {
-//    if (self.maxRequestCount > 0 && self.queueData.count <= self.requestCount) {
-        for (ZZFLEXRequestModel *model in self.queueData) {
-            [model executeRequestMethod];
-        }
-//    }
-//    else {
-//        for (NSInteger i = 0; i < MIN(self.maxRequestCount, self.requestCount); i++) {
-//            ZZFLEXRequestModel *model = self.queueData[i];
-//            [model executeRequestMethod];
-//        }
-//    }
+    for (ZZFLEXRequestModel *model in self.queueData) {
+        [model executeRequestMethod];
+    }
 }
 
 - (void)cancelAllRequests
@@ -207,7 +199,7 @@ static NSMutableArray *__zz_flex_req_array;
 }
 
 #pragma mark - # Getter
-- (NSMutableArray *)queueData
+- (NSMutableArray<ZZFLEXRequestModel *> *)queueData
 {
     if (_queueData == nil) {
         _queueData = [[NSMutableArray alloc] init];

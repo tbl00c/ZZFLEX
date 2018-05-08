@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZZFLEX"
-  s.version      = "0.0.6"
+  s.version      = "0.1.0"
   s.platform     = :ios, "8.0"
   s.summary      = "一个iOS UI敏捷开发框架，基于UIKit实现，主要包含常用控件的链式API拓展、一个数据驱动的列表框架、一个事件处理队列。"
   s.description  = <<-DESC
@@ -11,13 +11,13 @@ Pod::Spec.new do |s|
 	ZZFLEXEditExtension：为ZZFLEXAngel和ZZFlexibleLayoutViewController增加了一种处理编辑类页面的能力；
 	ZZFLEXRequestQueue：一个事件处理队列，设计的初衷为解决复杂页面多接口请求UI刷新顺序的问题。
                    DESC
-  
+
   s.author       = { "libokun" => "libokun@126.com" }
   s.homepage     = "https://github.com/tbl00c/ZZFLEX"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.source       = { :git => "https://github.com/tbl00c/ZZFLEX.git", :tag => s.version }
 
   s.requires_arc = true
-  s.source_files = "ZZFlexibleLayoutFramework/**/*.{h,m,mm}"
+  s.source_files = "ZZFLEX/**/*.{h,m,mm}"
 
 end

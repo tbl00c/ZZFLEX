@@ -36,7 +36,7 @@
 - (void)loadView
 {
     [super loadView];
-    
+    [self.collectionView setFrame:self.view.bounds];
     [self.view addSubview:self.collectionView];
     RegisterCollectionViewCell(self.collectionView, CELL_SEPEARTOR);        // 注册空白cell
     RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionHeader, @"ZZFlexibleLayoutEmptyHeaderFooterView");
@@ -48,16 +48,16 @@
     ZZFLEXLog(@"Dealloc: %@", NSStringFromClass([self class]));
 }
 
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    if (!CGRectEqualToRect(self.view.bounds, self.collectionView.frame)) {
-        [self.collectionView setFrame:self.view.bounds];
-        self.updateCells.all();
-        [self reloadView];
-    }
-}
+//- (void)viewWillLayoutSubviews
+//{
+//    [super viewWillLayoutSubviews];
+//
+//    if (!CGRectEqualToRect(self.view.bounds, self.collectionView.frame)) {
+//        [self.collectionView setFrame:self.view.bounds];
+//        self.updateCells.all();
+//        [self reloadView];
+//    }
+//}
 
 #pragma mark - # API
 - (void)setScrollDirection:(UICollectionViewScrollDirection)scrollDirection

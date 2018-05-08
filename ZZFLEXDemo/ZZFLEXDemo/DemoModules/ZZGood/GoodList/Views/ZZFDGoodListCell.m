@@ -127,8 +127,7 @@
     
     // 上次登录时间
     self.lastLonginLabel = contentView.addLabel(1011)
-    .font([UIFont systemFontOfSize:12])
-    .textColor([UIColor grayColor])
+    .font([UIFont systemFontOfSize:12]).textColor([UIColor grayColor])
     .masonry(^ (MASConstraintMaker *make) {
         make.right.mas_equalTo(closeButton.mas_left);
         make.bottom.mas_equalTo(self.positionLabel);

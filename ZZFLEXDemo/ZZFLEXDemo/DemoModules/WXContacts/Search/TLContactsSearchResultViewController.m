@@ -7,7 +7,7 @@
 //
 
 #import "TLContactsSearchResultViewController.h"
-#import "ZZFlexibleLayoutFramework.h"
+#import "ZZFLEX.h"
 #import "TLContactsItemCell.h"
 #import "TLFriendHelper.h"
 
