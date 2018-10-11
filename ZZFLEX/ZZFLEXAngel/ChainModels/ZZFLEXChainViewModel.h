@@ -2,8 +2,8 @@
 //  ZZFLEXChainViewModel.h
 //  zhuanzhuan
 //
-//  Created by 李伯坤 on 2017/8/15.
-//  Copyright © 2017年 转转. All rights reserved.
+//  Created by lbk on 2017/8/15.
+//  Copyright © 2017年 zz. All rights reserved.
 //
 
 /**

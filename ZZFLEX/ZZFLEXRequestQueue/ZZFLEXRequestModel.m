@@ -2,8 +2,8 @@
 //  ZZFLEXRequestModel.m
 //  ZZFlexibleLayoutFrameworkDemo
 //
-//  Created by 李伯坤 on 2016/12/28.
-//  Copyright © 2016年 李伯坤. All rights reserved.
+//  Created by lbk on 2016/12/28.
+//  Copyright © 2016年 lbk. All rights reserved.
 //
 
 #import "ZZFLEXRequestModel.h"

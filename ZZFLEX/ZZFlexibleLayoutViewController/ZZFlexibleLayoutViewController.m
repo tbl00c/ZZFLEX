@@ -2,7 +2,7 @@
 //  ZZFlexibleLayoutViewController.m
 //  zhuanzhuan
 //
-//  Created by 李伯坤 on 2016/10/10.
+//  Created by lbk on 2016/10/10.
 //  Copyright © 2016年 wuba. All rights reserved.
 //
 
@@ -254,8 +254,8 @@
         if (className) {
             viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
             viewModel.className = className;
+            RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionHeader, className);
         }
-        RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionHeader, className);
         ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeHeader];
         return chainViewModel;
     };
@@ -271,8 +271,8 @@
         if (className) {
             viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
             viewModel.className = className;
+            RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionFooter, className);
         }
-        RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionFooter, className);
         ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeFooter];
         return chainViewModel;
     };

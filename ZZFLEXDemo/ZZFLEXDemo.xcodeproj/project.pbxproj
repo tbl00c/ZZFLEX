@@ -1475,12 +1475,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8ZE6MPGQ6N;
+				DEVELOPMENT_TEAM = QPLPPHZKSV;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZZFLEXDemo/ZZFDPrefixHeader.pch";
 				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1492,12 +1492,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8ZE6MPGQ6N;
+				DEVELOPMENT_TEAM = QPLPPHZKSV;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZZFLEXDemo/ZZFDPrefixHeader.pch";
 				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

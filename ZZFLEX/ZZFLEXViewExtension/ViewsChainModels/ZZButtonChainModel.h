@@ -2,8 +2,8 @@
 //  ZZButtonChainModel.h
 //  zhuanzhuan
 //
-//  Created by 李伯坤 on 2017/10/24.
-//  Copyright © 2017年 转转. All rights reserved.
+//  Created by lbk on 2017/10/24.
+//  Copyright © 2017年 zz. All rights reserved.
 //
 
 #import "ZZBaseViewChainModel.h"

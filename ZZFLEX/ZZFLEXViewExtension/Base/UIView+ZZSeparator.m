@@ -2,8 +2,8 @@
 //  UIView+ZZSeparator.m
 //  TLChat
 //
-//  Created by 李伯坤 on 2017/7/5.
-//  Copyright © 2017年 李伯坤. All rights reserved.
+//  Created by lbk on 2017/7/5.
+//  Copyright © 2017年 lbk. All rights reserved.
 //
 
 #import "UIView+ZZSeparator.h"
