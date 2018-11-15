@@ -62,22 +62,23 @@
 {
     UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = nil;
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    if (sectionModel.headerViewModel && sectionModel.headerViewModel.viewClass) {
-        view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionModel.headerViewModel.className];
+    ZZFlexibleLayoutViewModel *viewModel = sectionModel.headerViewModel;
+    if (viewModel && viewModel.viewClass) {
+        view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.className];
         
         if ([view respondsToSelector:@selector(setViewDataModel:)]) {
-            [view setViewDataModel:sectionModel.headerViewModel.dataModel];
+            [view setViewDataModel:viewModel.dataModel];
         }
         if ([view respondsToSelector:@selector(setViewEventAction:)]) {
-            [view setViewEventAction:sectionModel.headerViewModel.eventAction];
+            [view setViewEventAction:viewModel.eventAction];
         }
         if ([view respondsToSelector:@selector(setViewDelegate:)]) {
-            [view setViewDelegate:sectionModel.headerViewModel.delegate ? sectionModel.headerViewModel.delegate : self];
+            [view setViewDelegate:viewModel.delegate ? viewModel.delegate : self];
         }
         if ([view respondsToSelector:@selector(viewIndexPath:sectionItemCount:)]) {
             [view viewIndexPath:nil sectionItemCount:sectionModel.count];
         }
-        [view setTag:sectionModel.headerViewModel.viewTag];
+        [view setTag:viewModel.viewTag];
     }
     
     return view;
@@ -87,22 +88,23 @@
 {
     UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = nil;
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    if (sectionModel.footerViewModel && sectionModel.footerViewModel.viewClass) {
-        view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionModel.footerViewModel.className];
+    ZZFlexibleLayoutViewModel *viewModel = sectionModel.footerViewModel;
+    if (viewModel && viewModel.viewClass) {
+        view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.className];
         
         if ([view respondsToSelector:@selector(setViewDataModel:)]) {
-            [view setViewDataModel:sectionModel.footerViewModel.dataModel];
+            [view setViewDataModel:viewModel.dataModel];
         }
         if ([view respondsToSelector:@selector(setViewEventAction:)]) {
-            [view setViewEventAction:sectionModel.headerViewModel.eventAction];
+            [view setViewEventAction:viewModel.eventAction];
         }
         if ([view respondsToSelector:@selector(setViewDelegate:)]) {
-            [view setViewDelegate:sectionModel.footerViewModel.delegate ? sectionModel.footerViewModel.delegate : self];
+            [view setViewDelegate:viewModel.delegate ? viewModel.delegate : self];
         }
         if ([view respondsToSelector:@selector(viewIndexPath:sectionItemCount:)]) {
             [view viewIndexPath:nil sectionItemCount:sectionModel.count];
         }
-        [view setTag:sectionModel.footerViewModel.viewTag];
+        [view setTag:viewModel.viewTag];
     }
     
     return view;
