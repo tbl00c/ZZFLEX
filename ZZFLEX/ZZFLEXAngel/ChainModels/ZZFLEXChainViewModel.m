@@ -90,6 +90,14 @@
     };
 }
 
+- (id (^)(void ((^)(__kindof UIView *itemView, id dataModel))))configAction
+{
+    return ^(void ((^configAction)(__kindof UIView *itemView, id dataModel))) {
+        [self.viewModel setConfigAction:configAction];
+        return self;
+    };
+}
+
 @end
 
 #pragma mark - ## ZZFLEXChainViewModel（单个，添加）

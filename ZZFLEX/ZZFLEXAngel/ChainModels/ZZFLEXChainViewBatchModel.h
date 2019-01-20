@@ -35,6 +35,9 @@
 /// 框架内部使用
 - (id)initWithClassName:(NSString *)className listData:(NSMutableArray *)listData;
 
+/// 手动配置cell Action
+- (ZZFLEXReturnType (^)(void ((^)(__kindof UIView *itemView, id dataModel))))configAction;
+
 @end
 
 #pragma mark - ## ZZFLEXChainViewBatchModel (批量，添加)

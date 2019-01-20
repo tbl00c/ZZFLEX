@@ -8,6 +8,7 @@
 
 #import "ZZFLEXAngel+UITableView.h"
 #import "ZZFLEXAngel+Private.h"
+#import "ZZFlexibleLayoutViewModel+UITableView.h"
 #import "ZZFlexibleLayoutSectionModel.h"
 #import "ZZFlexibleLayoutViewProtocol.h"
 #import "ZZFLEXTableViewEmptyCell.h"
@@ -30,83 +31,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
-    ZZFlexibleLayoutViewModel *model = [sectionModel objectAtIndex:indexPath.row];
-    
-    UITableViewCell<ZZFlexibleLayoutViewProtocol> *cell;
-    if (!model || !model.viewClass) {
-        ZZFLEXLog(@"!!!!! tableViewCell不存在，将使用空白Cell：%@", model.className);
-        cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZZFLEXTableViewEmptyCell class]) forIndexPath:indexPath];
-        [cell setTag:model.viewTag];
-        return cell;
-    }
-    
-    cell = [tableView dequeueReusableCellWithIdentifier:model.className forIndexPath:indexPath];
-    
-    if ([cell respondsToSelector:@selector(setViewDataModel:)]) {
-        [cell setViewDataModel:model.dataModel];
-    }
-    if ([cell respondsToSelector:@selector(setViewDelegate:)]) {
-        [cell setViewDelegate:model.delegate ? model.delegate : self];
-    }
-    if ([cell respondsToSelector:@selector(setViewEventAction:)]) {
-        [cell setViewEventAction:model.eventAction];
-    }
-    if ([cell respondsToSelector:@selector(viewIndexPath:sectionItemCount:)]) {
-        [cell viewIndexPath:indexPath sectionItemCount:sectionModel.count];
-    }
-    [cell setTag:model.viewTag];
+    ZZFlexibleLayoutViewModel *viewModel = [sectionModel objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [viewModel tableViewCellForPageControler:self tableView:tableView sectionCount:sectionModel.count indexPath:indexPath];
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = nil;
+    
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *viewModel = sectionModel.headerViewModel;
-    if (viewModel && viewModel.viewClass) {
-        view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.className];
-        
-        if ([view respondsToSelector:@selector(setViewDataModel:)]) {
-            [view setViewDataModel:viewModel.dataModel];
-        }
-        if ([view respondsToSelector:@selector(setViewEventAction:)]) {
-            [view setViewEventAction:viewModel.eventAction];
-        }
-        if ([view respondsToSelector:@selector(setViewDelegate:)]) {
-            [view setViewDelegate:viewModel.delegate ? viewModel.delegate : self];
-        }
-        if ([view respondsToSelector:@selector(viewIndexPath:sectionItemCount:)]) {
-            [view viewIndexPath:nil sectionItemCount:sectionModel.count];
-        }
-        [view setTag:viewModel.viewTag];
-    }
-    
+    UITableViewHeaderFooterView *view = [viewModel tableViewHeaderFooterViewForPageControler:self tableView:tableView section:section];
     return view;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = nil;
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *viewModel = sectionModel.footerViewModel;
-    if (viewModel && viewModel.viewClass) {
-        view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.className];
-        
-        if ([view respondsToSelector:@selector(setViewDataModel:)]) {
-            [view setViewDataModel:viewModel.dataModel];
-        }
-        if ([view respondsToSelector:@selector(setViewEventAction:)]) {
-            [view setViewEventAction:viewModel.eventAction];
-        }
-        if ([view respondsToSelector:@selector(setViewDelegate:)]) {
-            [view setViewDelegate:viewModel.delegate ? viewModel.delegate : self];
-        }
-        if ([view respondsToSelector:@selector(viewIndexPath:sectionItemCount:)]) {
-            [view viewIndexPath:nil sectionItemCount:sectionModel.count];
-        }
-        [view setTag:viewModel.viewTag];
-    }
-    
+    UITableViewHeaderFooterView *view = [viewModel tableViewHeaderFooterViewForPageControler:self tableView:tableView section:section];
     return view;
 }
 //MARK: UICollectionViewDelegate
@@ -114,17 +57,14 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
-    if (viewModel.selectedAction) {
-        viewModel.selectedAction(viewModel.dataModel);
-    }
+    [viewModel excuteSelectedActionForHostView:tableView];
 }
 
 //MARK: ZZFlexibleLayoutFlowLayoutDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZZFlexibleLayoutViewModel *model = [self viewModelAtIndexPath:indexPath];
-    CGFloat height = model ? model.viewSize.height : 0;
-    height = height < 0 ? tableView.frame.size.height * -height : height;
+    CGFloat height = [model visableSizeForHostView:tableView].height;
     return height;
 }
 
@@ -132,8 +72,7 @@
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *model = sectionModel.headerViewModel;
-    CGFloat height = model ? model.viewSize.height : 0;
-    height = height < 0 ? tableView.frame.size.height * -height : height;
+    CGFloat height = [model visableSizeForHostView:tableView].height;
     return height;
 }
 
@@ -141,8 +80,7 @@
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFlexibleLayoutViewModel *model = sectionModel.footerViewModel;
-    CGFloat height = model ? model.viewSize.height : 0;
-    height = height < 0 ? tableView.frame.size.height * -height : height;
+    CGFloat height = [model visableSizeForHostView:tableView].height;
     return height;
 }
 

@@ -24,9 +24,14 @@
 @property (nonatomic, weak) __kindof UIScrollView *hostView;
 
 /**
- *  根据宿主View初始化
+ * 根据宿主View初始化
  */
 - (instancetype)initWithHostView:(__kindof UIScrollView *)hostView;
+
+/**
+ * 刷新宿主View
+ */
+- (void)reloadView;
 
 @end
 

@@ -76,6 +76,11 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
     }
 }
 
+- (void)reloadView
+{
+    [(UITableView *)self.hostView reloadData];
+}
+
 @end
 
 

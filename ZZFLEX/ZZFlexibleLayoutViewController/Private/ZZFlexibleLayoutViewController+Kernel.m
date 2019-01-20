@@ -7,6 +7,7 @@
 //
 
 #import "ZZFlexibleLayoutViewController+Kernel.h"
+#import "ZZFlexibleLayoutViewModel+UICollectionView.h"
 #import "ZZFlexibleLayoutViewProtocol.h"
 #import "ZZFLEXMacros.h"
 
@@ -44,74 +45,18 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
-    ZZFlexibleLayoutViewModel *model = [sectionModel objectAtIndex:indexPath.row];
-    
-    UICollectionViewCell<ZZFlexibleLayoutViewProtocol> *cell;
-    if (!model || !model.viewClass) {
-        ZZFLEXLog(@"!!!!! CollectionViewCell不存在，将使用空白Cell：%@", model.className);
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_SEPEARTOR forIndexPath:indexPath];
-        [cell setTag:model.viewTag];
-        return cell;
-    }
-    
-    cell = [collectionView dequeueReusableCellWithReuseIdentifier:model.className forIndexPath:indexPath];
-    
-    if ([cell respondsToSelector:@selector(setViewDataModel:)]) {
-        [cell setViewDataModel:model.dataModel];
-    }
-    if ([cell respondsToSelector:@selector(setViewDelegate:)]) {
-        [cell setViewDelegate:model.delegate ? model.delegate : self];
-    }
-    if ([cell respondsToSelector:@selector(setViewEventAction:)]) {
-        [cell setViewEventAction:model.eventAction];
-    }
-    if ([cell respondsToSelector:@selector(viewIndexPath:sectionItemCount:)]) {
-        [cell viewIndexPath:indexPath sectionItemCount:sectionModel.count];
-    }
-    [cell setTag:model.viewTag];
+    ZZFlexibleLayoutViewModel *viewModel = [sectionModel objectAtIndex:indexPath.row];
+    UICollectionViewCell *cell = [viewModel collectionViewCellForPageControler:self collectionView:collectionView sectionCount:sectionModel.count indexPath:indexPath];
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView<ZZFlexibleLayoutViewProtocol> *view = nil;
+    UICollectionReusableView *view = nil;
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
-    if([kind isEqual:UICollectionElementKindSectionHeader]) {
-        if (sectionModel.headerViewModel && sectionModel.headerViewModel.viewClass) {
-            view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.headerViewModel.className forIndexPath:indexPath];
-
-            if ([view respondsToSelector:@selector(setViewDataModel:)]) {
-                [view setViewDataModel:sectionModel.headerViewModel.dataModel];
-            }
-            if ([view respondsToSelector:@selector(setViewEventAction:)]) {
-                [view setViewEventAction:sectionModel.headerViewModel.eventAction];
-            }
-            if ([view respondsToSelector:@selector(setViewDelegate:)]) {
-                [view setViewDelegate:sectionModel.headerViewModel.delegate ? sectionModel.headerViewModel.delegate : self];
-            }
-            [view setTag:sectionModel.headerViewModel.viewTag];
-        }
-    }
-    else {
-        if (sectionModel.footerViewModel && sectionModel.footerViewModel.viewClass) {
-            view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:sectionModel.footerViewModel.className forIndexPath:indexPath];
-    
-            if ([view respondsToSelector:@selector(setViewDataModel:)]) {
-                [view setViewDataModel:sectionModel.footerViewModel.dataModel];
-            }
-            if ([view respondsToSelector:@selector(setViewEventAction:)]) {
-                [view setViewEventAction:sectionModel.headerViewModel.eventAction];
-            }
-            if ([view respondsToSelector:@selector(setViewDelegate:)]) {
-                [view setViewDelegate:sectionModel.footerViewModel.delegate ? sectionModel.footerViewModel.delegate : self];
-            }
-            [view setTag:sectionModel.footerViewModel.viewTag];
-        }
-    }
-    if (view) {
-        if ([view respondsToSelector:@selector(viewIndexPath:sectionItemCount:)]) {
-            [view viewIndexPath:indexPath sectionItemCount:sectionModel.count];
-        }
+    ZZFlexibleLayoutViewModel *viewModel = [kind isEqual:UICollectionElementKindSectionHeader] ? sectionModel.headerViewModel : sectionModel.footerViewModel;
+    if (viewModel) {
+        view = [viewModel collectionViewHeaderFooterViewForPageControler:self collectionView:collectionView kind:kind indexPath:indexPath];
     }
     else {
         view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ZZFlexibleLayoutEmptyHeaderFooterView" forIndexPath:indexPath];
@@ -124,12 +69,11 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
-    if (viewModel.selectedAction) {
-        viewModel.selectedAction(viewModel.dataModel);
-    }
+    [viewModel excuteSelectedActionForHostView:collectionView];
+    
     if (indexPath.section < self.data.count && [self respondsToSelector:@selector(collectionViewDidSelectItem:sectionTag:cellTag:className:indexPath:)]) {
+        ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
         [self collectionViewDidSelectItem:viewModel.dataModel sectionTag:sectionModel.sectionTag cellTag:viewModel.viewTag className:viewModel.className indexPath:indexPath];
     }
 }
@@ -137,30 +81,24 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
 //MARK: ZZFlexibleLayoutFlowLayoutDelegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZZFlexibleLayoutViewModel *model = [self viewModelAtIndexPath:indexPath];
-    CGSize size = model ? model.viewSize : CGSizeZero;
-    size.width = size.width < 0 ? collectionView.frame.size.width * -size.width : size.width;
-    size.height = size.height < 0 ? collectionView.frame.size.height * -size.height : size.height;
+    ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
+    CGSize size = [viewModel visableSizeForHostView:collectionView];
     return size;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    ZZFlexibleLayoutViewModel *model = sectionModel.headerViewModel;
-    CGSize size = model ? model.viewSize : CGSizeZero;
-    size.width = size.width < 0 ? collectionView.frame.size.width * -size.width : size.width;
-    size.height = size.height < 0 ? collectionView.frame.size.height * -size.height : size.height;
+    ZZFlexibleLayoutViewModel *viewModel = sectionModel.headerViewModel;
+    CGSize size = [viewModel visableSizeForHostView:collectionView];
     return size;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    ZZFlexibleLayoutViewModel *model = sectionModel.footerViewModel;
-    CGSize size = model ? model.viewSize : CGSizeZero;
-    size.width = size.width < 0 ? collectionView.frame.size.width * -size.width : size.width;
-    size.height = size.height < 0 ? collectionView.frame.size.height * -size.height : size.height;
+    ZZFlexibleLayoutViewModel *viewModel = sectionModel.footerViewModel;
+    CGSize size = [viewModel visableSizeForHostView:collectionView];
     return size;
 }
 
@@ -185,7 +123,7 @@ void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSStri
 - (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout colorForSectionAtIndex:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    return sectionModel.backgroundColor ? sectionModel.backgroundColor : self.collectionView.backgroundColor;
+    return sectionModel.backgroundColor ? sectionModel.backgroundColor : collectionView.backgroundColor;
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionHeaderPinToVisibleBounds:(NSInteger)section

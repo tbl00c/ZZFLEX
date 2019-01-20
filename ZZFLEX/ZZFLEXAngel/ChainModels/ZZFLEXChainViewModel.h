@@ -39,6 +39,9 @@ typedef NS_ENUM(NSInteger, ZZFLEXChainViewType) {
 /// cell tag
 - (ZZFLEXReturnType (^)(NSInteger viewTag))viewTag;
 
+/// 手动配置cell Action
+- (ZZFLEXReturnType (^)(void ((^)(__kindof UIView *itemView, id dataModel))))configAction;
+
 /// 框架内部使用
 @property (nonatomic, assign, readonly) ZZFLEXChainViewType type;
 - (id)initWithListData:(NSMutableArray *)listData viewModel:(ZZFlexibleLayoutViewModel *)viewModel andType:(ZZFLEXChainViewType)type;

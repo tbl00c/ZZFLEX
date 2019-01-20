@@ -20,6 +20,7 @@
 @property (nonatomic, weak) id itemsDelegate;
 @property (nonatomic, copy) id (^itemsEventAction)(NSInteger actionType, id data);
 @property (nonatomic, copy) void (^itemsSelectedAction)(id data);
+@property (nonatomic, copy) void (^itemsConfigAction)(__kindof UIView *itemView, id data);
 @property (nonatomic, assign) NSInteger tag;
 
 @end
@@ -63,6 +64,7 @@
             [viewModel setDelegate:self.itemsDelegate];
             [viewModel setEventAction:self.itemsEventAction];
             [viewModel setSelectedAction:self.itemsSelectedAction];
+            [viewModel setConfigAction:self.itemsConfigAction];
             [self.viewModelArray addObject:viewModel];
         }
         if (self.sectionModel) {
@@ -92,6 +94,14 @@
 {
     return ^(void ((^selectedAction)(id data))) {
         [self setItemsSelectedAction:selectedAction];
+        return self;
+    };
+}
+
+- (id (^)(void ((^)(__kindof UIView *itemView, id dataModel))))configAction
+{
+    return ^(void ((^configAction)(__kindof UIView *itemView, id dataModel))) {
+        [self setItemConfigAction:configAction];
         return self;
     };
 }
@@ -126,6 +136,14 @@
     _itemsSelectedAction = itemsSelectedAction;
     for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
         [viewModel setSelectedAction:itemsSelectedAction];
+    }
+}
+
+- (void)setItemConfigAction:(void (^)(__kindof UIView *view, id dataModel))itemConfigAction
+{
+    _itemsConfigAction = itemConfigAction;
+    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+        [viewModel setConfigAction:itemConfigAction];
     }
 }
 

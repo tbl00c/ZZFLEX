@@ -14,9 +14,6 @@
  * 是对dataModel的一层封装
  * 实际给cell\view传递的仍然是dataModel
  */
-
-@class ZZFlexibleLayoutViewModel;
-
 @interface ZZFlexibleLayoutViewModel : NSObject
 
 /// view/cell类名
@@ -27,7 +24,7 @@
 /// view/cell的数据Model
 @property (nonatomic, strong) id dataModel;
 
-/// view/cell的大小（只读、从dataModel中获取）
+/// view/cell的大小（用户设置值，只读、从dataModel中获取）
 @property (nonatomic, assign, readonly) CGSize viewSize;
 
 @property (nonatomic, assign) NSInteger viewTag;
@@ -40,6 +37,9 @@
 
 /// cell选中事件
 @property (nonatomic, copy) void (^selectedAction)(id data);
+
+/// cell配置事件
+@property (nonatomic, copy) void (^configAction)(__kindof UIView *itemView, id dataModel);
 
 /**
  *  根据类名和数据源初始化viewModel
