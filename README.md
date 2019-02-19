@@ -9,6 +9,20 @@
 
 <img src="./Screenshot/1.gif" width = "375" height = "667" alt="screenshot1" />  <img src="./Screenshot/2.gif" width = "375" height = "667" alt="screenshot1" />
 
+
+## 更新
+
+##### 0.2.0
+1、addCell新增```configAction(__kindof UIView *itemView, id dataModel)```方法，可以使用传统方式配置cell属性，示例：
+```
+self.addCell(@"ACell").toSection(sectionTag).configAction(^(UITableViewCell *cell, id model) {
+   [cell.textLabel setText:model.name];
+   [cell.detailTextLabel setText:model.phoneNumber];
+   [cell setBackgroundColor:model.bgColor];
+});
+```
+2、优化部分代码结构，修复已知bug
+
 ## 如何使用
 
 ##### 1、直接导入方式
@@ -84,7 +98,7 @@ cell/view实现这个协议的目的和好处有两个：
 ***
 
 目前主要支持的功能:
- 
+
 | | 添加 | 插入 | 获取 | 批量添加 | 批量插入 | 批量获取 | 编辑 | 删除 | 清空子数据 | 更新高度 |
 |:-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | section | ✔️ | ✔️ | ✔️ | | | | ✔️ | ✔️ | ✔️ | ✔️ |
