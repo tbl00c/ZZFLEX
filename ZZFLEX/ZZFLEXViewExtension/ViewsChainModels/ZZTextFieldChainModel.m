@@ -49,6 +49,8 @@ ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(rightViewMode, UITextFieldViewMode);
 ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(inputView, UIView *);
 ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(inputAccessoryView, UIView *);
 
+ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(enabled, BOOL);
+
 - (ZZTextFieldChainModel *(^)(UIControlEvents controlEvents, void (^eventBlock)(id sender)))eventBlock
 {
     return ^ZZTextFieldChainModel *(UIControlEvents controlEvents, void (^eventBlock)(id sender)) {

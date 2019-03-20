@@ -20,7 +20,13 @@
 
 - (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewTag:(NSInteger)viewTag
 {
+    return [self initWithClassName:className andDataModel:dataModel viewSize:CGSizeZero viewTag:viewTag];
+}
+
+- (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag
+{
     if (self = [super init]) {
+        _viewSize = viewSize;
         _dataModel = dataModel;
         _className = className;
         _viewTag = viewTag;
@@ -47,6 +53,13 @@
     [self updateViewHeight];
 }
 
+- (void)setViewSize:(CGSize)viewSize
+{
+    if (CGSizeEqualToSize(_viewSize, CGSizeZero)) {
+        _viewSize = viewSize;
+    }
+}
+
 - (void)updateViewHeight
 {
     if (self.viewClass) {
@@ -58,9 +71,6 @@
             CGFloat height = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewHeightByDataModel:dataModel];
             _viewSize = CGSizeMake(-1, height);
         }
-    }
-    else {
-        _viewSize = CGSizeZero;
     }
 }
 

@@ -17,6 +17,7 @@
 #import "TLContactsViewController.h"
 #import "ZZFDSubscriptionViewController.h"
 #import "ZZFDRquestQueueViewController.h"
+#import "ZZFDAlbumViewController.h"
 
 #define     FDMAIN_FONT_SIZE_DETAIL         14
 
@@ -24,6 +25,7 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
     ZZFDMainSectionTypeHello,               // Hello
     ZZFDMainSectionTypeVE,                  // ZZFLEX View拓展
     ZZFDMainSectionTypeVC,                  // ZZFlexibleLayoutViewController
+    ZZFDMainSectionTypeVCExtension,
     ZZFDMainSectionTypeAgent,               // ZZFLEXAgent
     ZZFDMainSectionTypeEdit,                // 编辑类页面处理Demo
     ZZFDMainSectionTypeRQ,                  // ZZFLEX事件响应队列
@@ -148,13 +150,13 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
         self.addCell(menuCell).withDataModel(@"商品列表&详情页").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
-            ZZFDGoodListViewController *goodDetailVC = [[ZZFDGoodListViewController alloc] init];
-            PushVC(goodDetailVC);
+            ZZFDGoodListViewController *vc = [[ZZFDGoodListViewController alloc] init];
+            PushVC(vc);
         });
         self.addCell(menuCell).withDataModel(@"微信“我的”").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
-            TLMineViewController *mineVC = [[TLMineViewController alloc] init];
-            PushVC(mineVC);
+            TLMineViewController *vc = [[TLMineViewController alloc] init];
+            PushVC(vc);
         });
     }
 
@@ -169,13 +171,27 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         
         self.addCell(menuCell).withDataModel(@"电商分类页").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
-            ZZFDCateViewController *goodDetailVC = [[ZZFDCateViewController alloc] init];
-            PushVC(goodDetailVC);
+            ZZFDCateViewController *vc = [[ZZFDCateViewController alloc] init];
+            PushVC(vc);
         });
         self.addCell(menuCell).withDataModel(@"微信“通讯录”").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
-            TLContactsViewController *contactsVC = [[TLContactsViewController alloc] init];
-            PushVC(contactsVC);
+            TLContactsViewController *vc = [[TLContactsViewController alloc] init];
+            PushVC(vc);
+        });
+    }
+    
+    {
+        NSInteger sectionTag = ZZFDMainSectionTypeVCExtension;
+        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 0, 30, 0));
+        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"低成本迁移至ZZFLEX列表页",
+                                                                     @"针对已存在的列表页，我们提供了一种无需修改Cell代码便可快速迁移至ZZFLEX列表页的方案，为后续的开发带来最大的便捷。");
+        __zz_attr_string_bold(attrTitle, @"无需修改Cell代码");
+        self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
+        self.addCell(menuCell).withDataModel(@"相册列表页").toSection(sectionTag).selectedAction(^(id model){
+            @strongify(self);
+            ZZFDAlbumViewController *vc = [[ZZFDAlbumViewController alloc] init];
+            PushVC(vc);
         });
     }
 
@@ -188,8 +204,8 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
         self.addCell(menuCell).withDataModel(@"开发者信息订阅").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
-            ZZFDSubscriptionViewController *subVC = [[ZZFDSubscriptionViewController alloc] init];
-            PushVC(subVC);
+            ZZFDSubscriptionViewController *vc = [[ZZFDSubscriptionViewController alloc] init];
+            PushVC(vc);
         });
     }
 
@@ -203,8 +219,8 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         self.setHeader(headerCell).toSection(sectionTag).withDataModel(attrTitle);
         self.addCell(menuCell).withDataModel(@"多接口页面 Demo").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
-            ZZFDRquestQueueViewController *rqVC = [[ZZFDRquestQueueViewController alloc] init];
-            PushVC(rqVC);
+            ZZFDRquestQueueViewController *vc = [[ZZFDRquestQueueViewController alloc] init];
+            PushVC(vc);
         });
     }
     

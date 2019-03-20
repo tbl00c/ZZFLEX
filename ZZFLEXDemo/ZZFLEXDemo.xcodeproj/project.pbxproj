@@ -106,6 +106,9 @@
 		C2C93AD5202815CC001582C3 /* ZZFDSubscriptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C93AD4202815CB001582C3 /* ZZFDSubscriptionCell.m */; };
 		C2DA6B612019BCFA005A747A /* RequestQueue.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2DA6B602019BCFA005A747A /* RequestQueue.xcassets */; };
 		C2DA6B642019C667005A747A /* ZZFDRQTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DA6B632019C667005A747A /* ZZFDRQTitleCell.m */; };
+		C2F21C4A2241E25200841F4C /* ZZFDAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F21C492241E25200841F4C /* ZZFDAlbumViewController.m */; };
+		C2F21C4E2241E2F300841F4C /* ZZFDAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F21C4D2241E2F300841F4C /* ZZFDAlbumCell.m */; };
+		C2F21C522241EBE100841F4C /* ZZFDAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F21C512241EBE100841F4C /* ZZFDAlbumModel.m */; };
 		C2F2F94920186590003D53F7 /* UIView+ZZSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F94820186590003D53F7 /* UIView+ZZSeparator.m */; };
 		C2F2F95420186DA8003D53F7 /* ZZFDCateSectionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F94D20186DA8003D53F7 /* ZZFDCateSectionItemCell.m */; };
 		C2F2F95520186DA8003D53F7 /* ZZFDCateSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F94E20186DA8003D53F7 /* ZZFDCateSectionView.m */; };
@@ -331,6 +334,12 @@
 		C2DA6B602019BCFA005A747A /* RequestQueue.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = RequestQueue.xcassets; sourceTree = "<group>"; };
 		C2DA6B622019C667005A747A /* ZZFDRQTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDRQTitleCell.h; sourceTree = "<group>"; };
 		C2DA6B632019C667005A747A /* ZZFDRQTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDRQTitleCell.m; sourceTree = "<group>"; };
+		C2F21C482241E25200841F4C /* ZZFDAlbumViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDAlbumViewController.h; sourceTree = "<group>"; };
+		C2F21C492241E25200841F4C /* ZZFDAlbumViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDAlbumViewController.m; sourceTree = "<group>"; };
+		C2F21C4C2241E2F300841F4C /* ZZFDAlbumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDAlbumCell.h; sourceTree = "<group>"; };
+		C2F21C4D2241E2F300841F4C /* ZZFDAlbumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDAlbumCell.m; sourceTree = "<group>"; };
+		C2F21C502241EBE100841F4C /* ZZFDAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDAlbumModel.h; sourceTree = "<group>"; };
+		C2F21C512241EBE100841F4C /* ZZFDAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDAlbumModel.m; sourceTree = "<group>"; };
 		C2F2F9472018658F003D53F7 /* UIView+ZZSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZZSeparator.h"; sourceTree = "<group>"; };
 		C2F2F94820186590003D53F7 /* UIView+ZZSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZSeparator.m"; sourceTree = "<group>"; };
 		C2F2F94B20186DA8003D53F7 /* ZZFDCateSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDCateSectionView.h; sourceTree = "<group>"; };
@@ -896,6 +905,7 @@
 		C2863A8B1FCCFB76008BC3C0 /* DemoModules */ = {
 			isa = PBXGroup;
 			children = (
+				C2F21C472241E1CE00841F4C /* Album */,
 				C27E9F6F1FCE63A20062C896 /* Common */,
 				C2863A8C1FCCFB76008BC3C0 /* Launcher */,
 				C2863A911FCCFB76008BC3C0 /* Main */,
@@ -1011,6 +1021,35 @@
 				C2DA6B602019BCFA005A747A /* RequestQueue.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C2F21C472241E1CE00841F4C /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				C2F21C4F2241EBD200841F4C /* Model */,
+				C2F21C4B2241E2DF00841F4C /* Views */,
+				C2F21C482241E25200841F4C /* ZZFDAlbumViewController.h */,
+				C2F21C492241E25200841F4C /* ZZFDAlbumViewController.m */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
+		C2F21C4B2241E2DF00841F4C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C2F21C4C2241E2F300841F4C /* ZZFDAlbumCell.h */,
+				C2F21C4D2241E2F300841F4C /* ZZFDAlbumCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C2F21C4F2241EBD200841F4C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C2F21C502241EBE100841F4C /* ZZFDAlbumModel.h */,
+				C2F21C512241EBE100841F4C /* ZZFDAlbumModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C2F2F94A20186DA8003D53F7 /* Views */ = {
@@ -1305,8 +1344,10 @@
 				C29D37141FE7AFBA007236D8 /* ZZFDCateViewController.m in Sources */,
 				C23B9C9421F44E5400464FD0 /* ZZFlexibleLayoutViewModel+HostView.m in Sources */,
 				C282D1061FEA5D8F00559705 /* ZZFDGoodCommitInputCell.m in Sources */,
+				C2F21C522241EBE100841F4C /* ZZFDAlbumModel.m in Sources */,
 				C2C93AC52028039E001582C3 /* ZZFDPageSelectCell.m in Sources */,
 				C2268D001FCC413800C98EA7 /* UIView+ZZFrame.m in Sources */,
+				C2F21C4A2241E25200841F4C /* ZZFDAlbumViewController.m in Sources */,
 				C23B9C9121F44C7A00464FD0 /* ZZFlexibleLayoutViewModel+UITableView.m in Sources */,
 				C2F2F96920188FEF003D53F7 /* TLUserGroup.m in Sources */,
 				C2863A931FCCFB76008BC3C0 /* main.m in Sources */,
@@ -1338,6 +1379,7 @@
 				C263120D1FE8B5ED0022B2F8 /* ZZFlexibleLayoutEmptyHeaderFooterView.m in Sources */,
 				C26311F71FE8AF460022B2F8 /* ZZFLEXTableViewEmptyCell.m in Sources */,
 				C2F2F96520188DA1003D53F7 /* TLContactsItemCell.m in Sources */,
+				C2F21C4E2241E2F300841F4C /* ZZFDAlbumCell.m in Sources */,
 				C20CB02A202841A40088276C /* ZZFDPlatformItemCell.m in Sources */,
 				C282D0AC1FEA0C0700559705 /* ZZFDGoodTitleCell.m in Sources */,
 				C2F2F95420186DA8003D53F7 /* ZZFDCateSectionItemCell.m in Sources */,

@@ -98,6 +98,22 @@
     };
 }
 
+- (id (^)(CGSize size))viewSize
+{
+    return ^(CGSize size) {
+        [self.viewModel setViewSize:size];
+        return self;
+    };
+}
+
+- (id (^)(CGFloat height))viewHeight
+{
+    return ^(CGFloat height) {
+        [self.viewModel setViewSize:CGSizeMake(-1, height)];
+        return self;
+    };
+}
+
 @end
 
 #pragma mark - ## ZZFLEXChainViewModel（单个，添加）

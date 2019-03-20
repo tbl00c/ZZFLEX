@@ -50,6 +50,8 @@ ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ inputAccessoryView)(UIView *inpu
 
 ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
 
+ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ enable)(BOOL enable);
+
 @end
 
 ZZFLEX_EX_INTERFACE(UITextField, ZZTextFieldChainModel)

@@ -38,6 +38,12 @@
 /// 手动配置cell Action
 - (ZZFLEXReturnType (^)(void ((^)(__kindof UIView *itemView, id dataModel))))configAction;
 
+/// 手动配置cell大小，cell实现viewSizeByDataModel:或viewHeightByDataModel:后此设置失效
+- (ZZFLEXReturnType (^)(CGSize size))viewSize;
+/// 手动配置cell高度，cell实现viewSizeByDataModel:或viewHeightByDataModel:后此设置失效
+- (ZZFLEXReturnType (^)(CGFloat height))viewHeight;
+
+
 @end
 
 #pragma mark - ## ZZFLEXChainViewBatchModel (批量，添加)

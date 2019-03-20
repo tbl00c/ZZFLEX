@@ -22,6 +22,7 @@
 @property (nonatomic, copy) void (^itemsSelectedAction)(id data);
 @property (nonatomic, copy) void (^itemsConfigAction)(__kindof UIView *itemView, id data);
 @property (nonatomic, assign) NSInteger tag;
+@property (nonatomic, assign) CGSize itemViewSize;
 
 @end
 
@@ -57,10 +58,7 @@
 {
     return ^(NSArray *dataModelArray) {
         for (id model in dataModelArray) {
-            ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-            [viewModel setClassName:self.className];
-            [viewModel setDataModel:model];
-            [viewModel setViewTag:self.tag];
+            ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithClassName:self.className andDataModel:model viewSize:self.itemViewSize viewTag:self.tag];
             [viewModel setDelegate:self.itemsDelegate];
             [viewModel setEventAction:self.itemsEventAction];
             [viewModel setSelectedAction:self.itemsSelectedAction];
@@ -114,6 +112,22 @@
     };
 }
 
+- (id (^)(CGSize size))viewSize
+{
+    return ^(CGSize size) {
+        [self setItemViewSize:size];
+        return self;
+    };
+}
+
+- (id (^)(CGFloat height))viewHeight
+{
+    return ^(CGFloat height) {
+        [self setItemViewSize:CGSizeMake(-1, height)];
+        return self;
+    };
+}
+
 #pragma mark - # Setters
 - (void)setItemsDelegate:(id)itemsDelegate
 {
@@ -152,6 +166,14 @@
     _tag = tag;
     for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
         [viewModel setViewTag:tag];
+    }
+}
+
+- (void)setItemViewSize:(CGSize)itemViewSize
+{
+    _itemViewSize = itemViewSize;
+    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+        [viewModel setViewSize:itemViewSize];
     }
 }
 

@@ -12,8 +12,25 @@
 
 ## 更新
 
-##### 0.2.0
+### 0.2.1
+1、新增已有列表页不修改cell代码、迁移至ZZFLEX列表页方案
+
+```
+ self.addCells(@"ZZFDAlbumCell").toSection(sectionType).withDataModelArray(data)
+.configAction(^(ZZFDAlbumCell *cell, ZZFDAlbumModel *model) {   // 配置cell，等价于cellForRowAtIndexPath时的配置逻辑
+    [cell setModel:model];
+})
+.viewSize(CGSizeMake(itemWidth, itemWidth))         // 设置大小
+.selectedAction(^ (ZZFDAlbumModel *model) {         // 点击事件，等价于didSelectRowAtIndexPath时的逻辑
+    [XLPhotoBrowser showPhotoBrowserWithImages:@[model.image] currentImageIndex:0];
+});
+```
+
+2、UITextFiled增加enable api
+
+### 0.2.0
 1、addCell新增```configAction(__kindof UIView *itemView, id dataModel)```方法，可以使用传统方式配置cell属性，示例：
+
 ```
 self.addCell(@"ACell").toSection(sectionTag).configAction(^(UITableViewCell *cell, id model) {
    [cell.textLabel setText:model.name];
@@ -21,6 +38,7 @@ self.addCell(@"ACell").toSection(sectionTag).configAction(^(UITableViewCell *cel
    [cell setBackgroundColor:model.bgColor];
 });
 ```
+
 2、优化部分代码结构，修复已知bug
 
 ## 如何使用

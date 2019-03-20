@@ -24,8 +24,8 @@
 /// view/cell的数据Model
 @property (nonatomic, strong) id dataModel;
 
-/// view/cell的大小（用户设置值，只读、从dataModel中获取）
-@property (nonatomic, assign, readonly) CGSize viewSize;
+/// view/cell的大小
+@property (nonatomic, assign) CGSize viewSize;
 
 @property (nonatomic, assign) NSInteger viewTag;
 
@@ -46,6 +46,7 @@
  */
 - (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel;
 - (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewTag:(NSInteger)viewTag;
+- (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag;
 
 /**
  *  重新计算视图高度
