@@ -11,11 +11,11 @@
 ```
 self.addCells(@"ZZFDAlbumCell").toSection(sectionType).withDataModelArray(data)
 .configAction(^(ZZFDAlbumCell *cell, ZZFDAlbumModel *model) {   // 配置cell，等价于cellForRowAtIndexPath时的配置逻辑
-[cell setModel:model];
+    [cell setModel:model];
 })
 .viewSize(CGSizeMake(itemWidth, itemWidth))         // 设置大小
 .selectedAction(^ (ZZFDAlbumModel *model) {         // 点击事件，等价于didSelectRowAtIndexPath时的逻辑
-[XLPhotoBrowser showPhotoBrowserWithImages:@[model.image] currentImageIndex:0];
+    [XLPhotoBrowser showPhotoBrowserWithImages:@[model.image] currentImageIndex:0];
 });
 ```
 
@@ -26,8 +26,8 @@ self.addCells(@"ZZFDAlbumCell").toSection(sectionType).withDataModelArray(data)
 
 ```
 self.addCell(@"ACell").toSection(sectionTag).configAction(^(UITableViewCell *cell, id model) {
-[cell.textLabel setText:model.name];
-[cell.detailTextLabel setText:model.phoneNumber];
-[cell setBackgroundColor:model.bgColor];
+    [cell.textLabel setText:model.name];
+    [cell.detailTextLabel setText:model.phoneNumber];
+    [cell setBackgroundColor:model.bgColor];
 });
 ```
