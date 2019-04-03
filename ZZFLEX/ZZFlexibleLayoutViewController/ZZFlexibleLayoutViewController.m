@@ -131,6 +131,20 @@
     };
 }
 
+- (BOOL (^)(void))isEmpty
+{
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+            if(sectionModel.itemsArray.count > 0) {
+                return NO;
+            }
+        }
+        return YES;
+    };
+}
+
 #pragma mark - # Section操作
 /// 添加section
 - (ZZFLEXChainSectionModel *(^)(NSInteger tag))addSection

@@ -97,6 +97,9 @@ ZZFLEX_CHAINAPI_TYPE BOOL (^upadte)(void);
 /// 更新所有Cell
 ZZFLEX_CHAINAPI_TYPE BOOL (^upadteAllCells)(void);
 
+/// 是不是空列表
+ZZFLEX_CHAINAPI_TYPE BOOL (^isEmpty)(void);
+
 #pragma mark - # Section操作
 /// 添加section
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainSectionModel *(^addSection)(NSInteger tag);

@@ -134,7 +134,8 @@ static NSMutableArray *__zz_flex_req_array;
 
 - (void)p_startRequestRunLoop
 {
-    for (ZZFLEXRequestModel *model in self.queueData) {
+    NSArray *data = self.queueData.copy;
+    for (ZZFLEXRequestModel *model in data) {
         [model executeRequestMethod];
     }
 }
@@ -160,7 +161,7 @@ static NSMutableArray *__zz_flex_req_array;
     self.successCount += model.success ? 1 : 0;
     self.failureCount += model.success ? 0 : 1;
     // 当前Model不在队头，加入等待队列
-    if (model.tag != [self.queueData.firstObject tag]) {
+    if (model != self.queueData.firstObject) {
         [self.completeDic setValue:@"1" forKey:@(model.hash).stringValue];
         return;
     }

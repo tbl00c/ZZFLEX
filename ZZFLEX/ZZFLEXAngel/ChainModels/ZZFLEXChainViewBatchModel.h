@@ -32,9 +32,6 @@
 /// cells tag
 - (ZZFLEXReturnType (^)(NSInteger viewTag))viewTag;
 
-/// 框架内部使用
-- (id)initWithClassName:(NSString *)className listData:(NSMutableArray *)listData;
-
 /// 手动配置cell Action
 - (ZZFLEXReturnType (^)(void ((^)(__kindof UIView *itemView, id dataModel))))configAction;
 
@@ -43,6 +40,8 @@
 /// 手动配置cell高度，cell实现viewSizeByDataModel:或viewHeightByDataModel:后此设置失效
 - (ZZFLEXReturnType (^)(CGFloat height))viewHeight;
 
+#pragma mark - 框架内部使用
+- (id)initWithClassName:(NSString *)className listData:(NSMutableArray *)listData;
 
 @end
 
