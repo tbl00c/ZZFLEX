@@ -94,12 +94,14 @@ PODS:
   - TLKit/TLShortcut (0.0.21)
   - XLPhotoBrowser+CoderXL (1.2.0):
     - SDWebImage
+  - ZZFLEX (0.2.1)
 
 DEPENDENCIES:
   - Masonry (~> 1.1.0)
   - MJRefresh (~> 3.1.15)
   - TLKit (from `https://github.com/tbl00c/TLKit.git`, tag `0.0.21`)
   - XLPhotoBrowser+CoderXL (from `https://github.com/tbl00c/XLPhotoBrowser.git`, tag `1.2.1`)
+  - ZZFLEX (from `../`)
 
 EXTERNAL SOURCES:
   TLKit:
@@ -108,6 +110,8 @@ EXTERNAL SOURCES:
   XLPhotoBrowser+CoderXL:
     :git: https://github.com/tbl00c/XLPhotoBrowser.git
     :tag: 1.2.1
+  ZZFLEX:
+    :path: ../
 
 CHECKOUT OPTIONS:
   TLKit:
@@ -124,7 +128,8 @@ SPEC CHECKSUMS:
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   TLKit: 413f6e5f9fa4b4d4dec3f4a39dcd8ee0c64174f9
   XLPhotoBrowser+CoderXL: 48f73020942c73ba3c3f44c46f7f2add86a98d00
+  ZZFLEX: 1227106070191aa8ffc3512d4464e333b699485a
 
-PODFILE CHECKSUM: ff0acbdbc99bd5c9313b2ef948cbbf5f88c10bf8
+PODFILE CHECKSUM: 1e59be26b0386ca700721100196ca7488a4dc9f6
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.4.0
