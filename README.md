@@ -23,7 +23,7 @@
 
 ##### 1、直接导入方式
 
-将项目下载到本地后，把ZZFlexibleLayoutFramework拖入到你的项目中，即可正常使用。
+将项目下载到本地后，把ZZFLEX拖入到你的项目中，即可正常使用。
 
 ##### 2、CocoaPods方式
 
