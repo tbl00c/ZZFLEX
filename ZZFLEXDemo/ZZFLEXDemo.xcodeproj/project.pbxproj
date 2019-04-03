@@ -14,6 +14,7 @@
 		C248E3AC225457F100CB74E9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AA225457F100CB74E9 /* README.md */; };
 		C248E3AD225457F100CB74E9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AB225457F100CB74E9 /* LICENSE */; };
 		C248E3AF2254580500CB74E9 /* ZZFLEX.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */; };
+		C248E3B322545B2800CB74E9 /* update.md in Resources */ = {isa = PBXBuildFile; fileRef = C248E3B222545B2800CB74E9 /* update.md */; };
 		C25C21002027547E003D3192 /* Subscription.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C25C20F42027547E003D3192 /* Subscription.xcassets */; };
 		C25C21012027547E003D3192 /* ZZFDSubscriptionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C20F62027547E003D3192 /* ZZFDSubscriptionEditViewController.m */; };
 		C25C21022027547E003D3192 /* ZZFDSubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C20FB2027547E003D3192 /* ZZFDSubscriptionViewController.m */; };
@@ -108,6 +109,7 @@
 		C248E3AA225457F100CB74E9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C248E3AB225457F100CB74E9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZZFLEX.podspec; path = ../ZZFLEX.podspec; sourceTree = "<group>"; };
+		C248E3B222545B2800CB74E9 /* update.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = update.md; path = ../update.md; sourceTree = "<group>"; };
 		C25C20F42027547E003D3192 /* Subscription.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Subscription.xcassets; sourceTree = "<group>"; };
 		C25C20F62027547E003D3192 /* ZZFDSubscriptionEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFDSubscriptionEditViewController.m; sourceTree = "<group>"; };
 		C25C20F72027547E003D3192 /* ZZFDSubscriptionEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDSubscriptionEditViewController.h; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 		C248E3A9225457D000CB74E9 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				C248E3B222545B2800CB74E9 /* update.md */,
 				C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */,
 				C248E3AB225457F100CB74E9 /* LICENSE */,
 				C248E3AA225457F100CB74E9 /* README.md */,
@@ -926,6 +929,7 @@
 				C248E3AF2254580500CB74E9 /* ZZFLEX.podspec in Resources */,
 				C2DA6B612019BCFA005A747A /* RequestQueue.xcassets in Resources */,
 				C27E9F781FCE84E40062C896 /* ZZGood.xcassets in Resources */,
+				C248E3B322545B2800CB74E9 /* update.md in Resources */,
 				C2863A921FCCFB76008BC3C0 /* Assets.xcassets in Resources */,
 				C25C21002027547E003D3192 /* Subscription.xcassets in Resources */,
 				C2863A9B1FCCFBA7008BC3C0 /* LaunchScreen.storyboard in Resources */,
