@@ -19,4 +19,5 @@ before_install:
 
 script:
     - set -o pipefail
+    - pod install --project-directory=ZZFLEXDemo
     - xcodebuild -workspace ZZFLEXDemo/ZZFLEXDemo.xcworkspace -scheme ZZFLEXDemo -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
