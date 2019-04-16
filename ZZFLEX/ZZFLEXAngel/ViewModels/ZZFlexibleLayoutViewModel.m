@@ -33,7 +33,7 @@
         if (className.length > 0) {
             _viewClass = NSClassFromString(className);
         }
-        [self updateViewHeight];
+        [self updateViewSize];
     }
     return self;
 }
@@ -41,7 +41,7 @@
 - (void)setDataModel:(id)dataModel
 {
     _dataModel = dataModel;
-    [self updateViewHeight];
+    [self updateViewSize];
 }
 
 - (void)setClassName:(NSString *)className
@@ -50,7 +50,7 @@
     if (className.length > 0) {
         _viewClass = NSClassFromString(className);
     }
-    [self updateViewHeight];
+    [self updateViewSize];
 }
 
 - (void)setViewSize:(CGSize)viewSize
@@ -60,7 +60,7 @@
     }
 }
 
-- (void)updateViewHeight
+- (void)updateViewSize
 {
     if (self.viewClass) {
         id dataModel = _dataModel;

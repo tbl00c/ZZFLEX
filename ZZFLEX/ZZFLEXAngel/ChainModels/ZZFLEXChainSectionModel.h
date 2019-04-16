@@ -75,6 +75,8 @@
 #pragma mark 删除
 /// 清空所有视图和cell
 - (ZZFLEXChainSectionEditModel *(^)(void))clear;
+/// 清空所有cell、header、fotter
+- (ZZFLEXChainSectionEditModel *(^)(void))clearItems;
 /// 清空所有cell
 - (ZZFLEXChainSectionEditModel *(^)(void))clearCells;
 
@@ -91,6 +93,8 @@
 #pragma mark 刷新
 /// 更新视图和cell高度
 - (ZZFLEXChainSectionEditModel *(^)(void))update;
+/// 更新cell、header、fotter高度
+- (ZZFLEXChainSectionEditModel *(^)(void))updateItems;
 /// 更新cell高度
 - (ZZFLEXChainSectionEditModel *(^)(void))updateCells;
 

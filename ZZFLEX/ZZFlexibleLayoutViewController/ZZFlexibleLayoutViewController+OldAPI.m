@@ -404,10 +404,10 @@
 - (void)updateSectionForTag:(NSInteger)sectionTag
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelForTag:sectionTag];
-    [sectionModel.headerViewModel updateViewHeight];
-    [sectionModel.footerViewModel updateViewHeight];
+    [sectionModel.headerViewModel updateViewSize];
+    [sectionModel.footerViewModel updateViewSize];
     for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
-        [viewModel updateViewHeight];
+        [viewModel updateViewSize];
     }
 }
 
@@ -434,7 +434,7 @@
 {
     NSArray<ZZFlexibleLayoutViewModel *> *viewModels = [self viewModelsAtIndexPaths:indexPaths];
     for (ZZFlexibleLayoutViewModel *viewModel in viewModels) {
-        [viewModel updateViewHeight];
+        [viewModel updateViewSize];
     }
 }
 

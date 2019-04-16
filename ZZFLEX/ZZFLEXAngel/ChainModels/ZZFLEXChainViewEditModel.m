@@ -93,7 +93,7 @@
         return nil;
     }
     else if (self.editType == ZZFLEXChainViewEditTypeUpdate) {
-        [viewModel updateViewHeight];
+        [viewModel updateViewSize];
         return nil;
     }
     else if (self.editType == ZZFLEXChainViewEditTypeDataModel) {
@@ -240,7 +240,7 @@
 - (void)p_updateViewModelArray:(NSArray *)viewModelArray
 {
     for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
-        [viewModel updateViewHeight];
+        [viewModel updateViewSize];
     }
 }
 

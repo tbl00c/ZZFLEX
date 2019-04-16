@@ -49,8 +49,8 @@
 - (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag;
 
 /**
- *  重新计算视图高度
+ *  重新计算视图大小
  */
-- (void)updateViewHeight;
+- (void)updateViewSize;
 
 @end

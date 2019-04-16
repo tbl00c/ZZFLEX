@@ -81,8 +81,8 @@
     return ^(void) {
         @strongify(self);
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
-            [sectionModel.itemsArray removeAllObjects];
             sectionModel.headerViewModel = nil;
+            [sectionModel.itemsArray removeAllObjects];
             sectionModel.footerViewModel = nil;
         }
         return YES;
@@ -108,10 +108,10 @@
     return ^(void) {
         @strongify(self);
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
-            [sectionModel.headerViewModel updateViewHeight];
-            [sectionModel.footerViewModel updateViewHeight];
+            [sectionModel.headerViewModel updateViewSize];
+            [sectionModel.footerViewModel updateViewSize];
             for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
-                [viewModel updateViewHeight];
+                [viewModel updateViewSize];
             }
         }
         return YES;
@@ -124,11 +124,11 @@
     return ^(void) {
         @strongify(self);
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
-            [sectionModel.headerViewModel updateViewHeight];
+            [sectionModel.headerViewModel updateViewSize];
             for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
-                [viewModel updateViewHeight];
+                [viewModel updateViewSize];
             }
-            [sectionModel.footerViewModel updateViewHeight];
+            [sectionModel.footerViewModel updateViewSize];
         }
         return YES;
     };
@@ -142,7 +142,7 @@
         @strongify(self);
         for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
             for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
-                [viewModel updateViewHeight];
+                [viewModel updateViewSize];
             }
         }
         return YES;

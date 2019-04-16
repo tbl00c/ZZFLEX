@@ -226,6 +226,16 @@
     };
 }
 
+- (ZZFLEXChainSectionEditModel *(^)(void))clearItems
+{
+    return ^(void) {
+        self.sectionModel.headerViewModel = nil;
+        [self.sectionModel.itemsArray removeAllObjects];
+        self.sectionModel.footerViewModel = nil;
+        return self;
+    };
+}
+
 - (ZZFLEXChainSectionEditModel *(^)(void))clearCells
 {
     return ^(void) {
@@ -283,11 +293,23 @@
 - (ZZFLEXChainSectionEditModel *(^)(void))update
 {
     return ^(void) {
-        [self.sectionModel.headerViewModel updateViewHeight];
-        [self.sectionModel.footerViewModel updateViewHeight];
+        [self.sectionModel.headerViewModel updateViewSize];
+        [self.sectionModel.footerViewModel updateViewSize];
         for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
-            [viewModel updateViewHeight];
+            [viewModel updateViewSize];
         }
+        return self;
+    };
+}
+
+- (ZZFLEXChainSectionEditModel *(^)(void))updateItems
+{
+    return ^(void) {
+        [self.sectionModel.headerViewModel updateViewSize];
+        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+            [viewModel updateViewSize];
+        }
+        [self.sectionModel.footerViewModel updateViewSize];
         return self;
     };
 }
@@ -296,7 +318,7 @@
 {
     return ^(void) {
         for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
-            [viewModel updateViewHeight];
+            [viewModel updateViewSize];
         }
         return self;
     };
@@ -305,7 +327,7 @@
 - (ZZFLEXChainSectionEditModel *(^)(void))updateHeader
 {
     return ^(void) {
-        [self.sectionModel.headerViewModel updateViewHeight];
+        [self.sectionModel.headerViewModel updateViewSize];
         return self;
     };
 }
@@ -313,7 +335,7 @@
 - (ZZFLEXChainSectionEditModel *(^)(void))updateFooter
 {
     return ^(void) {
-        [self.sectionModel.footerViewModel updateViewHeight];
+        [self.sectionModel.footerViewModel updateViewSize];
         return self;
     };
 }
@@ -323,7 +345,7 @@
     return ^(NSInteger tag) {
         for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {
-                [viewModel updateViewHeight];
+                [viewModel updateViewSize];
                 break;
             }
         }
@@ -336,7 +358,7 @@
     return ^(NSInteger tag) {
         for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {
-                [viewModel updateViewHeight];
+                [viewModel updateViewSize];
             }
         }
         return self;
