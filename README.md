@@ -12,10 +12,11 @@
 
 ## 更新
 
-### 0.2.2
-1、ZZFlexVC新增```isEmpty()```方法
+### 0.2.3
 
-2、ZZFLEXRequestQueue BUB修复
+1、ZZFlexVC、ZZFLEXAngel新增```clearAllItems()``` 方法，不删除section，仅清空section内容；
+
+2、ZZFlexVC、ZZFLEXAngel新增```updateAllItems()``` 方法。
 
 [更多更新记录](./update.md)
 
@@ -60,7 +61,7 @@ button.zz_make.frame(CGRectMake(0, 0, 100, 40)).title(@"hi").titleColor(@"how ar
 UIButton *button = UIButton.zz_create(1001).title(@"hello").titleHL(@"world").view;
 ```
 
-你可以能会发现，在添加视图的时候，ZZFLEX会强制为视图添加一个tag，这样做的初衷是方便定位，此外如果你需要做一些用户行为统计及类似的功能，你或许会更感谢这种做法。
+会发现，在添加视图的时候，ZZFLEX会强制为视图添加一个tag，这样做的初衷是方便定位，此外如果你需要做一些用户行为统计及类似的功能，你或许会更感谢这种做法。
 
 目前，UIView+ZZFLEX已添加链式API的控件有：
 

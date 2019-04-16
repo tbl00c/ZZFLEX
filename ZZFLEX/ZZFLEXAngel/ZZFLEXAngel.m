@@ -97,6 +97,20 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
     };
 }
 
+- (BOOL (^)(void))clearAllItems
+{
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+            [sectionModel.itemsArray removeAllObjects];
+            sectionModel.headerViewModel = nil;
+            sectionModel.footerViewModel = nil;
+        }
+        return YES;
+    };
+}
+
 - (BOOL (^)(void))clearAllCells
 {
     @weakify(self);
@@ -121,6 +135,22 @@ void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kin
             for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
                 [viewModel updateViewHeight];
             }
+        }
+        return YES;
+    };
+}
+
+- (BOOL (^)(void))upadteAllItems
+{
+    @weakify(self);
+    return ^(void) {
+        @strongify(self);
+        for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+            [sectionModel.headerViewModel updateViewHeight];
+            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+                [viewModel updateViewHeight];
+            }
+            [sectionModel.footerViewModel updateViewHeight];
         }
         return YES;
     };

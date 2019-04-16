@@ -42,11 +42,17 @@
 /// 删除所有元素
 ZZFLEX_CHAINAPI_TYPE BOOL (^clear)(void);
 
+/// 删除所有Cell、Header、Fotter
+ZZFLEX_CHAINAPI_TYPE BOOL (^clearAllItems)(void);
+
 /// 删除所有Cell
 ZZFLEX_CHAINAPI_TYPE BOOL (^clearAllCells)(void);
 
 /// 更新所有元素
 ZZFLEX_CHAINAPI_TYPE BOOL (^upadte)(void);
+
+/// 更新所有Cell、Header、Fotter
+ZZFLEX_CHAINAPI_TYPE BOOL (^upadteAllItems)(void);
 
 /// 更新所有Cell
 ZZFLEX_CHAINAPI_TYPE BOOL (^upadteAllCells)(void);

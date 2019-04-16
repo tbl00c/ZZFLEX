@@ -1,9 +1,13 @@
 ## ZZFLEX更新记录
 
+### 0.2.3
+1、ZZFlexVC、ZZFLEXAngel新增```clearAllItems()``` 方法，不删除section，仅清空section内容；
+2、ZZFlexVC、ZZFLEXAngel新增```updateAllItems()``` 方法。
+
 ### 0.2.2
 1、ZZFlexVC新增```isEmpty()```方法
 
-2、ZZFLEXRequestQueue BUB修复
+2、ZZFLEXRequestQueue BUG修复
 
 ### 0.2.1
 1、新增已有列表页不修改cell代码、迁移至ZZFLEX列表页方案
