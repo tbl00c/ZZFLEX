@@ -12,11 +12,19 @@
 #import "ZZFLEXMacros.h"
 
 /*
- *  注册cells 到 UICollectionView
+ *  注册cell 到 UICollectionView
  */
 void RegisterCollectionViewCell(UICollectionView *collectionView, NSString *cellName)
 {
     [collectionView registerClass:NSClassFromString(cellName) forCellWithReuseIdentifier:cellName];
+}
+
+/*
+ *  注册XibCell 到 UICollectionView
+ */
+void RegisterXibCollectionViewCell(UICollectionView *collectionView, NSString *cellName)
+{
+    [collectionView registerNib:[UINib nibWithNibName:cellName bundle:[NSBundle bundleForClass:NSClassFromString(cellName)]] forCellWithReuseIdentifier:cellName];
 }
 
 /*
@@ -25,6 +33,14 @@ void RegisterCollectionViewCell(UICollectionView *collectionView, NSString *cell
 void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSString *kind, NSString *viewName)
 {
     [collectionView registerClass:NSClassFromString(viewName) forSupplementaryViewOfKind:kind withReuseIdentifier:viewName];
+}
+
+/*
+ *  注册XibReusableView 到 UICollectionView
+ */
+void RegisterXibCollectionViewReusableView(UICollectionView *collectionView, NSString *kind, NSString *viewName)
+{
+    [collectionView registerNib:[UINib nibWithNibName:viewName bundle:[NSBundle bundleForClass:NSClassFromString(viewName)]] forSupplementaryViewOfKind:kind withReuseIdentifier:viewName];
 }
 
 @implementation ZZFlexibleLayoutViewController (Kernel)

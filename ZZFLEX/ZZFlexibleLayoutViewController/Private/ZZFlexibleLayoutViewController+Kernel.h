@@ -14,7 +14,9 @@
 #define     CELL_SEPEARTOR          @"ZZFlexibleLayoutSeperatorCell"
 
 void RegisterCollectionViewCell(UICollectionView *collectionView, NSString *cellName);
+void RegisterXibCollectionViewCell(UICollectionView *collectionView, NSString *cellName);
 void RegisterCollectionViewReusableView(UICollectionView *collectionView, NSString *kind, NSString *viewName);
+void RegisterXibCollectionViewReusableView(UICollectionView *collectionView, NSString *kind, NSString *viewName);
 
 @class ZZFlexibleLayoutSectionModel;
 @interface ZZFlexibleLayoutViewController (Kernel) <

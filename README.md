@@ -12,11 +12,9 @@
 
 ## 更新
 
-### 0.2.3
+### 0.3.0
 
-1、ZZFlexVC、ZZFLEXAngel新增```clearAllItems()``` 方法，不删除section，仅清空section内容；
-
-2、ZZFlexVC、ZZFLEXAngel新增```updateAllItems()``` 方法。
+1、增加XIB支持。
 
 [更多更新记录](./update.md)
 

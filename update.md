@@ -1,8 +1,16 @@
 ## ZZFLEX更新记录
 
-### 0.2.3
+### 0.3.0
+
+1、增加XIB支持。
+
+### 0.2.4
+
 1、ZZFlexVC、ZZFLEXAngel新增```clearAllItems()``` 方法，不删除section，仅清空section内容；
-2、ZZFlexVC、ZZFLEXAngel新增```updateAllItems()``` 方法。
+
+2、ZZFlexVC、ZZFLEXAngel新增```updateAllItems()``` 方法;
+
+3、Section管理新增clearItems、updateItems API。
 
 ### 0.2.2
 1、ZZFlexVC新增```isEmpty()```方法

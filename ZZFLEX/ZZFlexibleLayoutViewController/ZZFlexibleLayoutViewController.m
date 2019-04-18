@@ -279,62 +279,96 @@
 //MARK: Header
 - (ZZFLEXChainViewModel *(^)(NSString *className))setHeader
 {
-    @weakify(self);
     return ^(NSString *className) {
-        @strongify(self);
-        ZZFlexibleLayoutViewModel *viewModel;
-        if (className) {
-            viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-            viewModel.className = className;
-            RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionHeader, className);
-        }
-        ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeHeader];
-        return chainViewModel;
+        return [self _setHeaderWithClassName:className xib:NO];
     };
+}
+- (ZZFLEXChainViewModel *(^)(NSString *className))setXibHeader
+{
+    return ^(NSString *className) {
+        return [self _setHeaderWithClassName:className xib:YES];
+    };
+}
+- (ZZFLEXChainViewModel *)_setHeaderWithClassName:(NSString *)className xib:(BOOL)xib
+{
+    ZZFlexibleLayoutViewModel *viewModel;
+    if (className) {
+        xib ? RegisterXibCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionHeader, className) : RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionHeader, className);
+        viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
+        viewModel.className = className;
+    }
+    ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeHeader];
+    return chainViewModel;
 }
 
 //MARK: Footer
 - (ZZFLEXChainViewModel *(^)(NSString *className))setFooter
 {
-    @weakify(self);
     return ^(NSString *className) {
-        @strongify(self);
-        ZZFlexibleLayoutViewModel *viewModel;
-        if (className) {
-            viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-            viewModel.className = className;
-            RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionFooter, className);
-        }
-        ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeFooter];
-        return chainViewModel;
+        return [self _setFotterWithClassName:className xib:NO];
     };
+}
+- (ZZFLEXChainViewModel *(^)(NSString *className))setXibFooter
+{
+    return ^(NSString *className) {
+        return [self _setFotterWithClassName:className xib:YES];
+    };
+}
+- (ZZFLEXChainViewModel *)_setFotterWithClassName:(NSString *)className xib:(BOOL)xib
+{
+    ZZFlexibleLayoutViewModel *viewModel;
+    if (className) {
+        xib ? RegisterXibCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionFooter, className) : RegisterCollectionViewReusableView(self.collectionView, UICollectionElementKindSectionFooter, className);
+        viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
+        viewModel.className = className;
+    }
+    ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeFooter];
+    return chainViewModel;
 }
 
 #pragma mark - # Cell 操作
 /// 添加cell
 - (ZZFLEXChainViewModel *(^)(NSString *className))addCell
 {
-    @weakify(self);
     return ^(NSString *className) {
-        @strongify(self);
-        RegisterCollectionViewCell(self.collectionView, className);
-        ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-        viewModel.className = className;
-        ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
-        return chainViewModel;
+        return [self _addCellWithClassName:className xib:NO];
     };
 }
+/// 添加Xib Cell
+- (ZZFLEXChainViewModel *(^)(NSString *className))addXibCell
+{
+    return ^(NSString *className) {
+        return [self _addCellWithClassName:className xib:YES];
+    };
+}
+- (ZZFLEXChainViewModel *)_addCellWithClassName:(NSString *)className xib:(BOOL)xib
+{
+    xib ? RegisterXibCollectionViewCell(self.collectionView, className) : RegisterCollectionViewCell(self.collectionView, className);
+    ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
+    viewModel.className = className;
+    ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
+    return chainViewModel;
+}
 
-/// 批量添加cell
+/// 批量添加Cell
 - (ZZFLEXChainViewBatchModel *(^)(NSString *className))addCells
 {
-    @weakify(self);
     return ^(NSString *className) {
-        @strongify(self);
-        RegisterCollectionViewCell(self.collectionView, className);
-        ZZFLEXChainViewBatchModel *viewModel = [[ZZFLEXChainViewBatchModel alloc] initWithClassName:className listData:self.data];
-        return viewModel;
+        return [self _addCellsWithClassName:className xib:NO];
     };
+}
+/// 批量添加Xib Cell
+- (ZZFLEXChainViewBatchModel *(^)(NSString *className))addXibCells
+{
+    return ^(NSString *className) {
+        return [self _addCellsWithClassName:className xib:YES];
+    };
+}
+- (ZZFLEXChainViewBatchModel *)_addCellsWithClassName:(NSString *)className xib:(BOOL)xib
+{
+    xib ? RegisterXibCollectionViewCell(self.collectionView, className) : RegisterCollectionViewCell(self.collectionView, className);
+    ZZFLEXChainViewBatchModel *viewModel = [[ZZFLEXChainViewBatchModel alloc] initWithClassName:className listData:self.data];
+    return viewModel;
 }
 
 /// 添加空白cell
@@ -351,30 +385,47 @@
     };
 }
 
-/// 插入cell
+/// 插入XibCell
 - (ZZFLEXChainViewInsertModel *(^)(NSString *className))insertCell
 {
-    @weakify(self);
     return ^(NSString *className) {
-        @strongify(self);
-        RegisterCollectionViewCell(self.collectionView, className);
-        ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-        viewModel.className = className;
-        ZZFLEXChainViewInsertModel *chainViewModel = [[ZZFLEXChainViewInsertModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
-        return chainViewModel;
+        return [self _insertCellWithClassName:className xib:NO];
     };
+}
+/// 插入XibCell
+- (ZZFLEXChainViewInsertModel *(^)(NSString *className))insertXibCell
+{
+    return ^(NSString *className) {
+        return [self _insertCellWithClassName:className xib:YES];
+    };
+}
+- (ZZFLEXChainViewInsertModel *)_insertCellWithClassName:(NSString *)className xib:(BOOL)xib
+{
+    xib ? RegisterXibCollectionViewCell(self.collectionView, className) : RegisterCollectionViewCell(self.collectionView, className);
+    ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
+    viewModel.className = className;
+    ZZFLEXChainViewInsertModel *chainViewModel = [[ZZFLEXChainViewInsertModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
+    return chainViewModel;
 }
 
 /// 批量插入cells
 - (ZZFLEXChainViewBatchInsertModel *(^)(NSString *className))insertCells
 {
-    @weakify(self);
     return ^(NSString *className) {
-        @strongify(self);
-        RegisterCollectionViewCell(self.collectionView, className);
-        ZZFLEXChainViewBatchInsertModel *viewModel = [[ZZFLEXChainViewBatchInsertModel alloc] initWithClassName:className listData:self.data];
-        return viewModel;
+        return [self _insertCellsWithClassName:className xib:NO];
     };
+}
+- (ZZFLEXChainViewBatchInsertModel *(^)(NSString *className))insertXibCells
+{
+    return ^(NSString *className) {
+        return [self _insertCellsWithClassName:className xib:YES];
+    };
+}
+- (ZZFLEXChainViewBatchInsertModel *)_insertCellsWithClassName:(NSString *)className xib:(BOOL)xib
+{
+    xib ? RegisterXibCollectionViewCell(self.collectionView, className) : RegisterCollectionViewCell(self.collectionView, className);
+    ZZFLEXChainViewBatchInsertModel *viewModel = [[ZZFLEXChainViewBatchInsertModel alloc] initWithClassName:className listData:self.data];
+    return viewModel;
 }
 
 /// 删除cell

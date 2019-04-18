@@ -65,6 +65,11 @@
 		C29D37141FE7AFBA007236D8 /* ZZFDCateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */; };
 		C2AC73311FE516DA00DABA11 /* ZZFDMainTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73301FE516DA00DABA11 /* ZZFDMainTitleView.m */; };
 		C2AC73371FE51FD400DABA11 /* ZZFDMainSectionTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73361FE51FD400DABA11 /* ZZFDMainSectionTitleView.m */; };
+		C2AC94EA22681E150094366C /* WXSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC94E922681E150094366C /* WXSettingViewController.m */; };
+		C2AC94F7226825230094366C /* WXSettingItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC94F5226825230094366C /* WXSettingItemCell.m */; };
+		C2AC94F8226825230094366C /* WXSettingItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AC94F6226825230094366C /* WXSettingItemCell.xib */; };
+		C2AC94FC226829AF0094366C /* WXSettingButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC94FA226829AF0094366C /* WXSettingButtonCell.m */; };
+		C2AC94FD226829AF0094366C /* WXSettingButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AC94FB226829AF0094366C /* WXSettingButtonCell.xib */; };
 		C2B70CFE202881D400B818CB /* ZZFDCateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B70CFD202881D400B818CB /* ZZFDCateCell.m */; };
 		C2C93AC52028039E001582C3 /* ZZFDPageSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C93AC42028039E001582C3 /* ZZFDPageSelectCell.m */; };
 		C2C93ACC20280465001582C3 /* ZZFDBaseTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C93ACB20280465001582C3 /* ZZFDBaseTitleCell.m */; };
@@ -205,6 +210,14 @@
 		C2AC73301FE516DA00DABA11 /* ZZFDMainTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDMainTitleView.m; sourceTree = "<group>"; };
 		C2AC73351FE51FD400DABA11 /* ZZFDMainSectionTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDMainSectionTitleView.h; sourceTree = "<group>"; };
 		C2AC73361FE51FD400DABA11 /* ZZFDMainSectionTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDMainSectionTitleView.m; sourceTree = "<group>"; };
+		C2AC94E822681E150094366C /* WXSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXSettingViewController.h; sourceTree = "<group>"; };
+		C2AC94E922681E150094366C /* WXSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXSettingViewController.m; sourceTree = "<group>"; };
+		C2AC94F4226825230094366C /* WXSettingItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXSettingItemCell.h; sourceTree = "<group>"; };
+		C2AC94F5226825230094366C /* WXSettingItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXSettingItemCell.m; sourceTree = "<group>"; };
+		C2AC94F6226825230094366C /* WXSettingItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXSettingItemCell.xib; sourceTree = "<group>"; };
+		C2AC94F9226829AF0094366C /* WXSettingButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXSettingButtonCell.h; sourceTree = "<group>"; };
+		C2AC94FA226829AF0094366C /* WXSettingButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXSettingButtonCell.m; sourceTree = "<group>"; };
+		C2AC94FB226829AF0094366C /* WXSettingButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXSettingButtonCell.xib; sourceTree = "<group>"; };
 		C2B70CFC202881D400B818CB /* ZZFDCateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDCateCell.h; sourceTree = "<group>"; };
 		C2B70CFD202881D400B818CB /* ZZFDCateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDCateCell.m; sourceTree = "<group>"; };
 		C2C93AC32028039E001582C3 /* ZZFDPageSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDPageSelectCell.h; sourceTree = "<group>"; };
@@ -620,6 +633,7 @@
 				C27E9F3F1FCE609C0062C896 /* ZZGood */,
 				C27E9F4C1FCE609C0062C896 /* WXMine */,
 				C2F2F95820188AD9003D53F7 /* WXContacts */,
+				C2AC94E722681DEB0094366C /* WXSetting */,
 				C29D37111FE7AFA2007236D8 /* Cate */,
 				C25C20F22027547E003D3192 /* NewsSubscription */,
 				C2F2F97F2018A392003D53F7 /* RequestQueue */,
@@ -682,6 +696,29 @@
 				C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */,
 			);
 			path = Cate;
+			sourceTree = "<group>";
+		};
+		C2AC94E722681DEB0094366C /* WXSetting */ = {
+			isa = PBXGroup;
+			children = (
+				C2AC94EB22681E1A0094366C /* Views */,
+				C2AC94E822681E150094366C /* WXSettingViewController.h */,
+				C2AC94E922681E150094366C /* WXSettingViewController.m */,
+			);
+			path = WXSetting;
+			sourceTree = "<group>";
+		};
+		C2AC94EB22681E1A0094366C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C2AC94F4226825230094366C /* WXSettingItemCell.h */,
+				C2AC94F5226825230094366C /* WXSettingItemCell.m */,
+				C2AC94F6226825230094366C /* WXSettingItemCell.xib */,
+				C2AC94F9226829AF0094366C /* WXSettingButtonCell.h */,
+				C2AC94FA226829AF0094366C /* WXSettingButtonCell.m */,
+				C2AC94FB226829AF0094366C /* WXSettingButtonCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C2C93AC920280465001582C3 /* Base */ = {
@@ -927,6 +964,7 @@
 			files = (
 				C2F2F97E2018962F003D53F7 /* Contacts.xcassets in Resources */,
 				C248E3AF2254580500CB74E9 /* ZZFLEX.podspec in Resources */,
+				C2AC94F8226825230094366C /* WXSettingItemCell.xib in Resources */,
 				C2DA6B612019BCFA005A747A /* RequestQueue.xcassets in Resources */,
 				C27E9F781FCE84E40062C896 /* ZZGood.xcassets in Resources */,
 				C248E3B322545B2800CB74E9 /* update.md in Resources */,
@@ -934,6 +972,7 @@
 				C25C21002027547E003D3192 /* Subscription.xcassets in Resources */,
 				C2863A9B1FCCFBA7008BC3C0 /* LaunchScreen.storyboard in Resources */,
 				C248E3AD225457F100CB74E9 /* LICENSE in Resources */,
+				C2AC94FD226829AF0094366C /* WXSettingButtonCell.xib in Resources */,
 				C248E3AC225457F100CB74E9 /* README.md in Resources */,
 				C27E9F751FCE64C20062C896 /* Mine.xcassets in Resources */,
 			);
@@ -1051,6 +1090,8 @@
 				C2951B34202609F100A56643 /* TLSearchController.m in Sources */,
 				C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */,
 				C2C93AD5202815CC001582C3 /* ZZFDSubscriptionCell.m in Sources */,
+				C2AC94FC226829AF0094366C /* WXSettingButtonCell.m in Sources */,
+				C2AC94F7226825230094366C /* WXSettingItemCell.m in Sources */,
 				C2F2F95720186DA8003D53F7 /* ZZFDCateModel.m in Sources */,
 				C2F2F95520186DA8003D53F7 /* ZZFDCateSectionView.m in Sources */,
 				C282D0AF1FEA0C0700559705 /* ZZFDGoodAreaCell.m in Sources */,
@@ -1062,6 +1103,7 @@
 				C2F2F95420186DA8003D53F7 /* ZZFDCateSectionItemCell.m in Sources */,
 				C2F2F9862018A4FA003D53F7 /* ZZFDRQFailedCell.m in Sources */,
 				C282D0C51FEA281000559705 /* ZZFDImageMoreCell.m in Sources */,
+				C2AC94EA22681E150094366C /* WXSettingViewController.m in Sources */,
 				C26B6B4F202AD4F40058656E /* ZZFDAuthLevelCell.m in Sources */,
 				C2863A9E1FCCFD52008BC3C0 /* ZZFDMainViewController.m in Sources */,
 				C26B6B76202AF1040058656E /* ZZFDSubscriptionTitleCell.m in Sources */,

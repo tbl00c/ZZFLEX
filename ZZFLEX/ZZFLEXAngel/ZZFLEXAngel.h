@@ -80,31 +80,37 @@ ZZFLEX_CHAINAPI_TYPE BOOL (^hasSection)(NSInteger tag);
 #pragma mark - # Section HeaderFooter 操作
 /// 为section添加headerView，传入nil将删除header
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^setHeader)(NSString *className);
-
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^setXibHeader)(NSString *className);
 /// 为section添加footerView，传入nil将删除footer
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^setFooter)(NSString *className);
-
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^setXibFooter)(NSString *className);
 
 #pragma mark - # Section Cell 操作
-/// 添加cell
+/// 添加Cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addCell)(NSString *className);
-/// 批量添加cell
+/// 添加Xib Cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addXibCell)(NSString *className);
+/// 批量添加Cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewBatchModel *(^ addCells)(NSString *className);
-/// 添加空白cell
+/// 批量添加Xib Cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewBatchModel *(^ addXibCells)(NSString *className);
+
+/// 添加空白Cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewModel *(^ addSeperatorCell)(CGSize size, UIColor *color);
 
-
-/// 插入cell
+/// 插入Cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewInsertModel *(^ insertCell)(NSString *className);
-/// 批量插入cell
+/// 插入Xib Cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewInsertModel *(^ insertXibCell)(NSString *className);
+/// 批量插入Cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewBatchInsertModel *(^ insertCells)(NSString *className);
-
+/// 批量插入Xib Cell
+ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewBatchInsertModel *(^ insertXibCells)(NSString *className);
 
 /// 删除符合条件的cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewEditModel *deleteCell;
 /// 删除所有符合条件的cell
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewBatchEditModel *deleteCells;
-
 
 /// 更新符合条件的cell高度
 ZZFLEX_CHAINAPI_TYPE ZZFLEXChainViewEditModel *updateCell;

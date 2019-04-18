@@ -18,6 +18,7 @@
 #import "ZZFDSubscriptionViewController.h"
 #import "ZZFDRquestQueueViewController.h"
 #import "ZZFDAlbumViewController.h"
+#import "WXSettingViewController.h"
 
 #define     FDMAIN_FONT_SIZE_DETAIL         14
 
@@ -156,6 +157,11 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         self.addCell(menuCell).withDataModel(@"微信“我的”").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
             TLMineViewController *vc = [[TLMineViewController alloc] init];
+            PushVC(vc);
+        });
+        self.addCell(menuCell).withDataModel(@"新版微信“设置” (XIB)").toSection(sectionTag).selectedAction(^(id model){
+            @strongify(self);
+            WXSettingViewController *vc = [[WXSettingViewController alloc] init];
             PushVC(vc);
         });
     }
