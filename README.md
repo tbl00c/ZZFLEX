@@ -9,6 +9,11 @@
 
 <img src="./Screenshot/1.gif" width = "375" height = "667" alt="screenshot1" />  <img src="./Screenshot/2.gif" width = "375" height = "667" alt="screenshot1" />
 
+## ZZUIHelpler 已支持自动生成ZZFLEX代码
+
+<img src="./Screenshot/ZZUIHelper.png" alt="ZZUIHelper" /> 
+
+#### 详见 <https://github.com/tbl00c/ZZUIHelper>
 
 ## 更新
 
