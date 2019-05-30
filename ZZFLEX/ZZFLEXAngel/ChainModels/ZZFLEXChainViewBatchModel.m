@@ -288,7 +288,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
         }
     }
     
-    if (index >= 0 && index < self.sectionModel.count) {
+    if (index >= 0 && index <= self.sectionModel.count) {
         NSRange range = NSMakeRange(index, [self.viewModelArray count]);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.sectionModel insertObjects:self.viewModelArray atIndexes:indexSet];
