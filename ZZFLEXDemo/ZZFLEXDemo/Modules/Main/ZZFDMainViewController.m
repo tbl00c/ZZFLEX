@@ -78,8 +78,17 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
 {
     [super loadView];
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
-        
+
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain actionBlick:nil]];
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    [self addRightBarButtonWithTitle:[NSString stringWithFormat:@"%@", version] actionBlick:^{
+        TLActionSheet *actionSheet = [[TLActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"当前版本号：%@", version] clickAction:^(NSInteger buttonIndex) {
+            [[UIApplication sharedApplication] openURL:@"https://github.com/tbl00c/ZZFLEX".toURL];
+        } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"Github", nil];
+        [actionSheet show];
+    }];
 }
 
 - (void)viewDidLoad

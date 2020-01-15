@@ -911,7 +911,6 @@
 				C2D788D91FCC396D00778993 /* Sources */,
 				C2D788DA1FCC396D00778993 /* Frameworks */,
 				C2D788DB1FCC396D00778993 /* Resources */,
-				73F6318D69B8196D7F5389BB /* [CP] Embed Pods Frameworks */,
 				60A61B1BF6E15E45F6924B69 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1005,7 +1004,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
@@ -1016,22 +1015,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73F6318D69B8196D7F5389BB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1249,6 +1233,7 @@
 				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1266,6 +1251,7 @@
 				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

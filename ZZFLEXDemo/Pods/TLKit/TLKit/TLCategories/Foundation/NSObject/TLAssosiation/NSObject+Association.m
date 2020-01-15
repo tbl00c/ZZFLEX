@@ -19,12 +19,12 @@ static NSMutableDictionary *keyBuffer;  // 存储获取动态属性实际的key
 }
 
 #pragma mark - # Public Methods
-- (void)setAssociatedObject:(id)object forKey:(NSString *)key association:(TLAssociation)association
+- (void)tt_setAssociatedObject:(id)object forKey:(NSString *)key association:(TLAssociation)association
 {
-    [self setAssociatedObject:object forKey:key association:association isAtomic:NO];
+    [self tt_setAssociatedObject:object forKey:key association:association isAtomic:NO];
 }
 
-- (void)setAssociatedObject:(id)object forKey:(NSString *)key association:(TLAssociation)association isAtomic:(BOOL)isAtomic
+- (void)tt_setAssociatedObject:(id)object forKey:(NSString *)key association:(TLAssociation)association isAtomic:(BOOL)isAtomic
 {
     if (!key) {
         return;
@@ -48,7 +48,7 @@ static NSMutableDictionary *keyBuffer;  // 存储获取动态属性实际的key
     }
 }
 
-- (id)associatedObjectForKey:(NSString *)key {
+- (id)tt_associatedObjectForKey:(NSString *)key {
     const char *cKey = [keyBuffer[key] pointerValue];
     if (cKey) {
         return objc_getAssociatedObject(self, cKey);

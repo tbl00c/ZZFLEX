@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E06FCF21AC122C5AA7759E62FD773E59"
+               BlueprintIdentifier = "9555A9D468BDA26A0C92946E428CB11B"
+               BuildableName = "libTLKit.a"
                BlueprintName = "TLKit"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libTLKit.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -22,20 +22,20 @@
 
 - (void)set__tt_tipview_userData:(id)__tt_tipview_userData
 {
-    [self setAssociatedObject:__tt_tipview_userData forKey:@"__tt_tipview_userData" association:TLAssociationStrong isAtomic:NO];
+    [self tt_setAssociatedObject:__tt_tipview_userData forKey:@"__tt_tipview_userData" association:TLAssociationStrong isAtomic:NO];
 }
 - (id)__tt_tipview_userData
 {
-    return [self associatedObjectForKey:@"__tt_tipview_userData"];
+    return [self tt_associatedObjectForKey:@"__tt_tipview_userData"];
 }
 
 - (void)set__tt_tipview_retryAction:(void (^)(id))__tt_tipview_retryAction
 {
-    [self setAssociatedObject:__tt_tipview_retryAction forKey:@"__tt_tipview_retryAction" association:TLAssociationStrong isAtomic:NO];
+    [self tt_setAssociatedObject:__tt_tipview_retryAction forKey:@"__tt_tipview_retryAction" association:TLAssociationStrong isAtomic:NO];
 }
 - (void (^)(id))__tt_tipview_retryAction
 {
-    return [self associatedObjectForKey:@"__tt_tipview_retryAction"];
+    return [self tt_associatedObjectForKey:@"__tt_tipview_retryAction"];
 }
 
 @end
@@ -90,11 +90,11 @@
 
 - (void)setTt_tipView:(UIView *)tt_tipView
 {
-    [self setAssociatedObject:tt_tipView forKey:@"__tt_tipView" association:TLAssociationStrong isAtomic:NO];
+    [self tt_setAssociatedObject:tt_tipView forKey:@"__tt_tipView" association:TLAssociationStrong isAtomic:NO];
 }
 - (UIView *)tt_tipView
 {
-    return [self associatedObjectForKey:@"__tt_tipView"];
+    return [self tt_associatedObjectForKey:@"__tt_tipView"];
 }
 
 #pragma mark - # Event Response

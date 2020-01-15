@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZZFLEX"
-  s.version      = "0.3.1"
+  s.version      = "1.0"
   s.platform     = :ios, "8.0"
   s.summary      = "一个iOS UI敏捷开发框架，基于UIKit实现，主要包含常用控件的链式API拓展、一个数据驱动的列表框架、一个事件处理队列。"
   s.description  = <<-DESC

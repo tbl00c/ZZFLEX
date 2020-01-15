@@ -20,16 +20,16 @@ typedef NS_ENUM(NSUInteger, TLAssociation) {
 /**
  * 根据key添加动态属性，默认noatomic
  */
-- (void)setAssociatedObject:(id)object forKey:(NSString *)key association:(TLAssociation)association;
+- (void)tt_setAssociatedObject:(id)object forKey:(NSString *)key association:(TLAssociation)association;
 
 /**
  * 根据key添加动态属性
  */
-- (void)setAssociatedObject:(id)object forKey:(NSString *)key association:(TLAssociation)association isAtomic:(BOOL)isAtomic;
+- (void)tt_setAssociatedObject:(id)object forKey:(NSString *)key association:(TLAssociation)association isAtomic:(BOOL)isAtomic;
 
 /**
  * 根据key获取动态属性
  */
-- (id)associatedObjectForKey:(NSString *)key;
+- (id)tt_associatedObjectForKey:(NSString *)key;
 
 @end

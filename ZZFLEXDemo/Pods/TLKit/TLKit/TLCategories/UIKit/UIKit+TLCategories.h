@@ -52,9 +52,6 @@
 //MARK: UINavigationBar
 #import "UINavigationBar+Extensions.h"          // UINavigationBar 背景色，透明度等
 
-//MARK: UINavigationItem
-#import "UINavigationItem+Fixed.h"              // UINavigationItem 修复navBarButton偏移过大问题
-
 //MARK: UINavigationController
 #import "UINavigationController+Extensions.h"   // UINavigationController 获取rootVC，查找VC，pop到指定VC等
 

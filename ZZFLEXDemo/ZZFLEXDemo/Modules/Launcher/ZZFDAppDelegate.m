@@ -23,7 +23,12 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setRootViewController:navC];
-    [self.window addSubview:navC.view];
+    if (@available(iOS 13.0, *)) {
+        
+    }
+    else {
+        [self.window addSubview:navC.view];
+    }
     [self.window makeKeyAndVisible];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{

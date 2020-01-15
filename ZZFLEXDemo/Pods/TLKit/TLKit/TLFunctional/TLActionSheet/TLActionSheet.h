@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@class TLActionSheet;
-@protocol TLActionSheetDelegate <NSObject>
+@interface TLActionSheetItem : NSObject
 
-@optional;
-- (void)actionSheet:(TLActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+@property (nonatomic, assign) NSInteger index;
+
+@property (nonatomic, strong) NSString *title;
+
+@property (nonatomic, copy) void (^selectAction)(TLActionSheetItem *item);
 
 @end
 
 
 @interface TLActionSheet : UIView
+
+@property (nonatomic, strong) NSMutableArray *otherButtonTitles;
 
 /// 按钮个数
 @property (nonatomic, assign, readonly) NSInteger numberOfButtons;
@@ -28,17 +32,8 @@
 /// 高亮按钮index
 @property (nonatomic, assign, readonly) NSInteger destructiveButtonIndex;
 
-@property (nonatomic, weak) id<TLActionSheetDelegate> delegate;
-
 /// 点击事件响应block
 @property (nonatomic, copy) void (^clickAction)(NSInteger buttonIndex);
-
-- (id)initWithTitle:(NSString *)title
-           delegate:(id<TLActionSheetDelegate>)delegate
-  cancelButtonTitle:(NSString *)cancelButtonTitle
-destructiveButtonTitle:(NSString *)destructiveButtonTitle
-  otherButtonTitles:(NSString *)otherButtonTitles, ...;
-
 
 - (id)initWithTitle:(NSString *)title
         clickAction:(void (^)(NSInteger buttonIndex))clickAction
@@ -46,10 +41,18 @@ destructiveButtonTitle:(NSString *)destructiveButtonTitle
 destructiveButtonTitle:(NSString *)destructiveButtonTitle
   otherButtonTitles:(NSString *)otherButtonTitles, ...;
 
+@property (nonatomic, strong) UIView *customHeaderView;
+@property (nonatomic, copy) void (^cellConfigAction)(UITableViewCell *cell, id title);
+
 /**
  *  显示ActionSheet
  */
 - (void)show;
+
+/**
+ *  隐藏ActionSheet
+ */
+- (void)dismiss;
 
 /**
  *  根据index获取按钮标题

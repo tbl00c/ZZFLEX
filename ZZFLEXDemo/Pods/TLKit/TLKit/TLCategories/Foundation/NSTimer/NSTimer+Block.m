@@ -28,7 +28,7 @@
 {
     if([inTimer userInfo]) {
         void (^block)(NSTimer *timer) = (void (^)(NSTimer *timer))[inTimer userInfo];
-        block(self);
+        block(inTimer);
     }
 }
 

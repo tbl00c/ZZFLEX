@@ -32,7 +32,7 @@
 }
 - (void)setOffsetY:(CGFloat)offsetY
 {
-    [self setOffsetX:offsetY animated:NO];
+    [self setOffsetY:offsetY animated:NO];
 }
 - (void)setOffsetY:(CGFloat)offsetY animated:(BOOL)animated
 {

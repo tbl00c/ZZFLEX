@@ -10,37 +10,42 @@
 
 @implementation UIViewController (NavBar)
 
-- (void)addDismissBarButtonWithTitle:(NSString *)title
+- (UIBarButtonItem *)addDismissBarButtonWithTitle:(NSString *)title
 {
     __weak typeof(self) weakSelf = self;
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain actionBlick:^{
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     [self.navigationItem setLeftBarButtonItem:barButton];
+    return barButton;
 }
 
-- (void)addLeftBarButtonWithTitle:(NSString *)title actionBlick:(TLBarButtonActionBlock)actionBlock
+- (UIBarButtonItem *)addLeftBarButtonWithTitle:(NSString *)title actionBlick:(TLBarButtonActionBlock)actionBlock
 {
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain actionBlick:actionBlock];
     [self.navigationItem setLeftBarButtonItem:barButton];
+    return barButton;
 }
 
-- (void)addLeftBarButtonWithImage:(UIImage *)image actionBlick:(TLBarButtonActionBlock)actionBlock
+- (UIBarButtonItem *)addLeftBarButtonWithImage:(UIImage *)image actionBlick:(TLBarButtonActionBlock)actionBlock
 {
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain actionBlick:actionBlock];
     [self.navigationItem setLeftBarButtonItem:barButton];
+    return barButton;
 }
 
-- (void)addRightBarButtonWithTitle:(NSString *)title actionBlick:(TLBarButtonActionBlock)actionBlock
+- (UIBarButtonItem *)addRightBarButtonWithTitle:(NSString *)title actionBlick:(TLBarButtonActionBlock)actionBlock
 {
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain actionBlick:actionBlock];
     [self.navigationItem setRightBarButtonItem:barButton];
+    return barButton;
 }
 
-- (void)addRightBarButtonWithImage:(UIImage *)image actionBlick:(TLBarButtonActionBlock)actionBlock
+- (UIBarButtonItem *)addRightBarButtonWithImage:(UIImage *)image actionBlick:(TLBarButtonActionBlock)actionBlock
 {
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain actionBlick:actionBlock];
     [self.navigationItem setRightBarButtonItem:barButton];
+    return barButton;
 }
 
 
