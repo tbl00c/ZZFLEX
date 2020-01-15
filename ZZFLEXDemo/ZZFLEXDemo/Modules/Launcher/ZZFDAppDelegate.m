@@ -16,10 +16,11 @@
 
 @implementation ZZFDAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{    
     ZZFDMainViewController *mainVC = [[ZZFDMainViewController alloc] init];
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    [navC.navigationBar setShadowImage:[UIImage new]];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setRootViewController:navC];

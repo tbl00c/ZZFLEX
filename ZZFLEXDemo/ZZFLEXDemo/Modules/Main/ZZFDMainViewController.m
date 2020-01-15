@@ -37,7 +37,7 @@ NSMutableAttributedString *__zz_create_introduce(NSString *title, NSString *deta
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] init];
     if (title) {
         NSAttributedString *attrTitle = [[NSAttributedString alloc] initWithString:[title stringByAppendingString:@"\n"]
-                                                                        attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:16],
+                                                                        attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:17],
                                                                                      NSForegroundColorAttributeName : [UIColor darkGrayColor]
                                                                                      }];
         [attrStr appendAttributedString:attrTitle];
@@ -54,7 +54,7 @@ NSMutableAttributedString *__zz_create_introduce(NSString *title, NSString *deta
         
         if (title && detail.length > 1) {
             NSMutableParagraphStyle *titlePStyle = [[NSMutableParagraphStyle alloc] init];
-            [titlePStyle setLineSpacing:6];
+            [titlePStyle setLineSpacing:5];
             [attrStr addAttribute:NSParagraphStyleAttributeName value:titlePStyle range:NSMakeRange(0, title.length + 1)];
         }
     }
@@ -85,7 +85,9 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
     NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     [self addRightBarButtonWithTitle:[NSString stringWithFormat:@"%@", version] actionBlick:^{
         TLActionSheet *actionSheet = [[TLActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"当前版本号：%@", version] clickAction:^(NSInteger buttonIndex) {
-            [[UIApplication sharedApplication] openURL:@"https://github.com/tbl00c/ZZFLEX".toURL];
+            if (buttonIndex == 0) {
+                [[UIApplication sharedApplication] openURL:@"https://github.com/tbl00c/ZZFLEX".toURL];
+            }
         } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"Github", nil];
         [actionSheet show];
     }];

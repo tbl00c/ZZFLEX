@@ -20,29 +20,12 @@
 #pragma mark - # ZZFlexibleLayoutViewProtocol
 + (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return 46;
+    return 56;
 }
 
 - (void)setViewDataModel:(id)dataModel
 {
     [self.titleLabel setText:dataModel];
-}
-
-- (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
-{
-    if (indexPath.row == 0) {       // 顶部分割线
-        self.contentView.addSeparator(ZZSeparatorPositionTop).length(SCREEN_WIDTH);
-    }
-    else {
-        self.contentView.removeSeparator(ZZSeparatorPositionTop);
-    }
-    
-    if (indexPath.row == count - 1) {       // 底部分割线
-        self.contentView.addSeparator(ZZSeparatorPositionBottom).length(SCREEN_WIDTH);
-    }
-    else {
-        self.contentView.addSeparator(ZZSeparatorPositionBottom).beginAt(15).length(SCREEN_WIDTH - 15);
-    }
 }
 
 #pragma mark - # Cell Init
@@ -53,7 +36,7 @@
         [self setSelectedBackgrounColor:[UIColor colorGrayLine]];
         
         self.titleLabel = self.contentView.addLabel(1)
-        .font([UIFont systemFontOfSize:15])
+        .font([UIFont boldSystemFontOfSize:16])
         .textColor([UIColor blackColor])
         .masonry(^ (MASConstraintMaker *make) {
             make.left.mas_equalTo(15);

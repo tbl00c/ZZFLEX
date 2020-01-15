@@ -1233,7 +1233,7 @@
 				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "1.0 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1251,7 +1251,7 @@
 				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "1.0 beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
