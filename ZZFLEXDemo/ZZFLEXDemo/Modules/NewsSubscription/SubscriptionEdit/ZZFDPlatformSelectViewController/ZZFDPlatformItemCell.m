@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDPlatformItemCell.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDPlatformItemModel.h"
 
 @interface ZZFDPlatformItemCell ()
@@ -54,7 +53,7 @@
         
         self.titleLabel = self.addLabel(1)
         .font([UIFont systemFontOfSize:15])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.centerY.mas_equalTo(0);
             make.width.mas_greaterThanOrEqualTo(100);
@@ -64,7 +63,7 @@
         self.selectedView = self.addImageView(2)
         .image([UIImage imageNamed:@"selected"])
         .hidden(YES)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.centerY.mas_equalTo(0);
         })

@@ -8,7 +8,6 @@
 //
 
 #import "ZZFDGoodUserCell.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDGoodListModel.h"
 
 @interface ZZFDGoodUserCell ()
@@ -80,14 +79,14 @@
         self.cardView = self.contentView.addView(1)
         .backgroundColor([UIColor whiteColor])
         .cornerRadius(3)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(15, 15, 15, 15));
         })
         .view;
      
         self.avatarView = self.cardView.addImageView(2)
         .cornerRadius(21)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(18);
             make.size.mas_equalTo(42);
@@ -96,14 +95,14 @@
         
         self.cardView.addImageView(1111)
         .image([UIImage imageNamed:@"arrow"])
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.centerY.mas_equalTo(self.avatarView);
         });
         
         self.usernameLabel = self.cardView.addLabel(3)
         .font([UIFont boldSystemFontOfSize:15])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(self.avatarView.mas_right).mas_offset(12);
             make.top.mas_equalTo(self.avatarView).mas_offset(0.5);
             make.right.mas_lessThanOrEqualTo(-15);
@@ -113,7 +112,7 @@
         self.lastComeLabel = self.cardView.addLabel(4)
         .font([UIFont systemFontOfSize:13])
         .textColor([UIColor grayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(self.usernameLabel);
             make.bottom.mas_equalTo(self.avatarView).mas_offset(-1);
             make.right.mas_lessThanOrEqualTo(-15);
@@ -122,7 +121,7 @@
         
         self.goodLabel = self.cardView.addLabel(5)
         .numberOfLines(2)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.bottom.mas_equalTo(-15);
             make.left.mas_equalTo(0);
             make.height.mas_equalTo(60);
@@ -131,7 +130,7 @@
         
         self.tradeLabel = self.cardView.addLabel(6)
         .numberOfLines(2)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.goodLabel);
             make.left.mas_equalTo(self.goodLabel.mas_right);
             make.size.mas_equalTo(self.goodLabel);
@@ -140,7 +139,7 @@
         
         self.commitLabel = self.cardView.addLabel(7)
         .numberOfLines(2)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.goodLabel);
             make.left.mas_equalTo(self.tradeLabel.mas_right);
             make.size.mas_equalTo(self.tradeLabel);
@@ -149,7 +148,7 @@
         
         self.otherLabel = self.cardView.addLabel(8)
         .numberOfLines(2)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.goodLabel);
             make.left.mas_equalTo(self.commitLabel.mas_right);
             make.right.mas_equalTo(0);

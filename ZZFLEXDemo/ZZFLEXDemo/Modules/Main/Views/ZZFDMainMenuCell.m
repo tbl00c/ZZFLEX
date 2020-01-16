@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDMainMenuCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDMainMenuCell ()
 
@@ -28,6 +27,30 @@
     [self.titleLabel setText:dataModel];
 }
 
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
+{
+    if (indexPath.row < count - 1) {
+        self.addSeparator(ZZSeparatorPositionBottom).beginAt(15).endAt(-15);
+    }
+    else {
+        self.removeSeparator(ZZSeparatorPositionBottom);
+    }
+    
+    CGFloat cornorRadius = 6.0f;
+    if (indexPath.row == 0 && indexPath.row == count - 1) {
+        self.setCornor(ZZCornerPositionAll).radius(cornorRadius);
+    }
+    else if (indexPath.row == 0) {
+        self.setCornor(ZZCornerPositionTop).radius(cornorRadius);
+    }
+    else if (indexPath.row == count - 1) {
+        self.setCornor(ZZCornerPositionBottom).radius(cornorRadius);
+    }
+    else {
+        self.removeCornor();
+    }
+}
+
 #pragma mark - # Cell Init
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,7 +61,7 @@
         self.titleLabel = self.contentView.addLabel(1)
         .font([UIFont boldSystemFontOfSize:16])
         .textColor([UIColor blackColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.centerY.mas_equalTo(0);
             make.right.mas_lessThanOrEqualTo(-35);
@@ -47,7 +70,7 @@
         
         self.contentView.addImageView(2)
         .image([UIImage imageNamed:@"arrow"])
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.centerY.mas_equalTo(0);
         });

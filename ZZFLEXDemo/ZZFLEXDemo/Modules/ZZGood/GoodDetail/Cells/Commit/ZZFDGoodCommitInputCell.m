@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodCommitInputCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDGoodCommitInputCell ()
 
@@ -35,7 +34,7 @@
         UIButton *cardView = self.addButton(0)
         .cornerRadius(3)
         .clipsToBounds(YES)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.right.mas_equalTo(-15);
             make.top.mas_equalTo(10);
@@ -53,7 +52,7 @@
         .font([UIFont systemFontOfSize:14])
         .textColor([UIColor grayColor])
         .backgroundColor([UIColor colorGrayBG])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.left.bottom.mas_equalTo(0);
         })
         .view;
@@ -64,7 +63,7 @@
         .titleColor([UIColor whiteColor])
         .backgroundColor([UIColor redColor])
         .userInteractionEnabled(NO)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.right.bottom.mas_equalTo(0);
             make.width.mas_equalTo(80);
             make.left.mas_equalTo(label.mas_right);

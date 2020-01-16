@@ -7,7 +7,6 @@
 //
 
 #import "WXSettingItemCell.h"
-#import <ZZFLEX/ZZFLEX.h>
 
 @interface WXSettingItemCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

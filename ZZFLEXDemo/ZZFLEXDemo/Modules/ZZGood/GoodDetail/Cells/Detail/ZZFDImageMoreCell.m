@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDImageMoreCell.h"
-#import "UIView+ZZFLEX.h"
 
 @implementation ZZFDImageMoreCell
 
@@ -24,7 +23,7 @@
         self.addLabel(1)
         .text(@"点击查看更多")
         .font([UIFont boldSystemFontOfSize:14])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.bottom.mas_equalTo(0);
         });

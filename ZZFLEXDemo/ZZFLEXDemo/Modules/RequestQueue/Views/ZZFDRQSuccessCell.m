@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDRQSuccessCell.h"
-#import "UIView+ZZFLEX.h"
 
 @implementation ZZFDRQSuccessCell
 
@@ -28,7 +27,7 @@
         
         self.contentView.addLabel(1001)
         .text(@"请求成功").font([UIFont systemFontOfSize:15])
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
         });
     }

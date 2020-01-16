@@ -7,7 +7,6 @@
 //
 
 #import "WXSettingButtonCell.h"
-#import <ZZFLEX/ZZFLEX.h>
 
 @interface WXSettingButtonCell ()
 

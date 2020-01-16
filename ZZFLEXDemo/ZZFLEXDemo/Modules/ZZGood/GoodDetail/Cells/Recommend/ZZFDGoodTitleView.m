@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodTitleView.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDGoodTitleView ()
 
@@ -29,7 +28,7 @@
         .text(@"——  商品推荐  ——")
         .numberOfLines(0)
         .font([UIFont systemFontOfSize:16])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.bottom.mas_equalTo(-10);
         })

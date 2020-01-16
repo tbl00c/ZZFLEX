@@ -17,20 +17,22 @@
 #define     ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, id, UIView)
 
 #define     ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(methodName, masonryMethod) \
-- (id (^)( void (^constraints)(MASConstraintMaker *)) )methodName    \
+- (id (^)( void (^constraints)(__kindof UIView *, MASConstraintMaker *)) )methodName    \
 {   \
-return ^id ( void (^constraints)(MASConstraintMaker *) ) {  \
+return ^id ( void (^constraints)(__kindof UIView *, MASConstraintMaker *) ) {  \
 if (self.view.superview) { \
-[self.view masonryMethod:constraints];    \
+[self.view masonryMethod:^(MASConstraintMaker *make){   \
+constraints(self.view, make);   \
+}];    \
 }   \
 return self;    \
 };  \
 }
 
 #define     ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(methodName, masonryMethod) \
-- (id (^)( void (^constraints)(MASConstraintMaker *)) )methodName    \
+- (id (^)( void (^constraints)(__kindof UIView *, MASConstraintMaker *)) )methodName    \
 {   \
-return ^id ( void (^constraints)(MASConstraintMaker *) ) {  \
+return ^id ( void (^constraints)(__kindof UIView *, MASConstraintMaker *) ) {  \
 return self;    \
 };  \
 }

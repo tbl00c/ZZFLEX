@@ -45,6 +45,4 @@ typedef NS_ENUM(NSInteger, ZZSeparatorPosition) {
 
 - (void (^)(ZZSeparatorPosition position))removeSeparator;
 
-- (void)updateSeparator;
-
 @end

@@ -22,7 +22,7 @@
     if (self = [super initWithFrame:frame]) {
         self.titleLabel = self.addLabel(1)
         .font([UIFont systemFontOfSize:15])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.centerY.mas_equalTo(0);
             make.width.mas_equalTo(100);

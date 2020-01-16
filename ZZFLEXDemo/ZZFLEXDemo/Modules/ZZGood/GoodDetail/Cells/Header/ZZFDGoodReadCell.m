@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodReadCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDGoodReadCell ()
 
@@ -35,7 +34,7 @@
         self.readLabel = self.addLabel(3)
         .font([UIFont systemFontOfSize:12])
         .textColor([UIColor lightGrayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.centerY.mas_equalTo(0);
         })

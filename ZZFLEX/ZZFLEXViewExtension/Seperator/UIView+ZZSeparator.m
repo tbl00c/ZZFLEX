@@ -57,6 +57,11 @@
 @end
 
 #pragma mark - ## ZZSeparatorChainModel
+@interface UIView (ZZSeparatorChainModel)
+
+- (void)zz_updateSeparator;
+
+@end
 
 @interface ZZSeparatorChainModel ()
 
@@ -82,7 +87,7 @@
 {
     return ^(CGFloat offset) {
         [self.separatorModel setOffset:offset];
-        [self.view updateSeparator];
+        [self.view zz_updateSeparator];
         return self;
     };
 }
@@ -92,7 +97,7 @@
 {
     return ^(UIColor *color) {
         [self.separatorModel setColor:color];
-        [self.view updateSeparator];
+        [self.view zz_updateSeparator];
         return self;
     };
 }
@@ -101,7 +106,7 @@
 {
     return ^(CGFloat begin) {
         [self.separatorModel setBegin:begin];
-        [self.view updateSeparator];
+        [self.view zz_updateSeparator];
         return self;
     };
 }
@@ -110,7 +115,7 @@
 {
     return ^(CGFloat length) {
         [self.separatorModel setLength:length];
-        [self.view updateSeparator];
+        [self.view zz_updateSeparator];
         return self;
     };
 }
@@ -119,7 +124,7 @@
 {
     return ^(CGFloat end) {
         [self.separatorModel setEnd:end];
-        [self.view updateSeparator];
+        [self.view zz_updateSeparator];
         return self;
     };
 }
@@ -128,7 +133,7 @@
 {
     return ^(CGFloat borderWidth) {
         [self.separatorModel setBorderWidth:borderWidth];
-        [self.view updateSeparator];
+        [self.view zz_updateSeparator];
         return self;
     };
 }
@@ -143,8 +148,8 @@
     return ^(ZZSeparatorPosition position) {
         ZZSeparatorChainModel *chainModel = [[ZZSeparatorChainModel alloc] initWithView:self andPosition:position];
         self.removeSeparator(position);
-        [self.separatorArray addObject:chainModel.separatorModel];
-        [self updateSeparator];
+        [self.zz_separatorArray addObject:chainModel.separatorModel];
+        [self zz_updateSeparator];
         return chainModel;
     };
 }
@@ -152,25 +157,25 @@
 - (void (^)(ZZSeparatorPosition position))removeSeparator
 {
     return ^(ZZSeparatorPosition position) {
-        ZZSeparatorModel *model = [self SeparatorModelForPosition:position];
+        ZZSeparatorModel *model = [self separatorModelForPosition:position];
         if (model) {
             [model.layer removeFromSuperlayer];
-            [self.separatorArray removeObject:model];
+            [self.zz_separatorArray removeObject:model];
         }
     };
 }
 
-- (void)updateSeparator
+- (void)zz_updateSeparator
 {
-    for (ZZSeparatorModel *model in self.separatorArray) {
+    for (ZZSeparatorModel *model in self.zz_separatorArray) {
         [self updateSeparatorWithModel:model];
     }
 }
 
 #pragma mark - # Private Methods
-- (ZZSeparatorModel *)SeparatorModelForPosition:(ZZSeparatorPosition)position
+- (ZZSeparatorModel *)separatorModelForPosition:(ZZSeparatorPosition)position
 {
-    for (ZZSeparatorModel *model in self.separatorArray) {
+    for (ZZSeparatorModel *model in self.zz_separatorArray) {
         if (model.position == position) {
             return model;
         }
@@ -240,14 +245,14 @@
 
 #pragma mark - # Getters
 static NSString *__zz_sepataror_key = @"";
-- (NSMutableArray *)separatorArray
+- (NSMutableArray *)zz_separatorArray
 {
-    NSMutableArray *separatorArray = objc_getAssociatedObject(self, &__zz_sepataror_key);
-    if (!separatorArray) {
-        separatorArray = [[NSMutableArray alloc] init];
-        objc_setAssociatedObject(self, &__zz_sepataror_key, separatorArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    NSMutableArray *zz_separatorArray = objc_getAssociatedObject(self, &__zz_sepataror_key);
+    if (!zz_separatorArray) {
+        zz_separatorArray = [[NSMutableArray alloc] init];
+        objc_setAssociatedObject(self, &__zz_sepataror_key, zz_separatorArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    return separatorArray;
+    return zz_separatorArray;
 }
 
 @end

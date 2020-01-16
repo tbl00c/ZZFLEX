@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDRQFailedCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDRQFailedCell ()
 
@@ -45,7 +44,7 @@
 
         self.imageView = self.contentView.addImageView(1)
         .image([UIImage imageNamed:@"request_failed"])
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerY.mas_equalTo(-22);
             make.centerX.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
@@ -55,7 +54,7 @@
         self.titleLabel = self.contentView.addLabel(2)
         .text(@"加载失败，请点击重试！")
         .font([UIFont systemFontOfSize:14]).textColor([UIColor lightGrayColor])
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.mas_equalTo(self.imageView.mas_bottom).mas_offset(18);
             make.centerX.mas_equalTo(0);
         })

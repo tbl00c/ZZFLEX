@@ -22,7 +22,9 @@ typedef NS_ENUM(NSInteger, TLMineSectionTag) {
     TLMineSectionTagSetting,
 };
 
-@interface TLMineViewController () <ZZFlexibleLayoutViewControllerProtocol>
+@interface TLMineViewController () <ZZFlexibleLayoutViewControllerProtocol, UIScrollViewDelegate>
+
+@property (nonatomic, strong) UIView *topView;
 
 @end
 
@@ -31,9 +33,15 @@ typedef NS_ENUM(NSInteger, TLMineSectionTag) {
 - (void)loadView
 {
     [super loadView];
-
-    [self.navigationItem setTitle:LOCSTR(@"我")];
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(-1, 0, 0, 0));
+    }];
+    
+    self.topView = self.collectionView.addView(0)
+    .backgroundColor([UIColor whiteColor])
+    .frame(CGRectMake(0, 0, self.view.frame.size.width, 0))
+    .view;
 
     [self loadMenus];
 }
@@ -46,7 +54,7 @@ typedef NS_ENUM(NSInteger, TLMineSectionTag) {
     
     // 用户信息
     TLUser *user = [self defaultUser];
-    self.addSection(TLMineSectionTagUserInfo).sectionInsets(UIEdgeInsetsMake(15, 0, 0, 0));
+    self.addSection(TLMineSectionTagUserInfo);
     self.addCell([TLMineHeaderCell class]).toSection(TLMineSectionTagUserInfo).withDataModel(user).selectedAction(^ (id model) {
         @strongify(self);
         WXUserViewController *vc = [[WXUserViewController alloc] initWithUserModel:user];
@@ -54,14 +62,14 @@ typedef NS_ENUM(NSInteger, TLMineSectionTag) {
     });
     
     // 钱包
-    self.addSection(TLMineSectionTagWallet).sectionInsets(UIEdgeInsetsMake(20, 0, 0, 0));
+    self.addSection(TLMineSectionTagWallet).sectionInsets(UIEdgeInsetsMake(10, 0, 0, 0));
     TLMenuItem *wallet = createMenuItem(@"mine_wallet", LOCSTR(@"钱包"));
     [wallet setBadge:@""];
     [wallet setSubTitle:@"新到账1024元"];
     self.addCell(ClassMineMenuCell).toSection(TLMineSectionTagWallet).withDataModel(wallet);
     
     // 功能
-    self.addSection(TLMineSectionTagFounction).sectionInsets(UIEdgeInsetsMake(20, 0, 0, 0));
+    self.addSection(TLMineSectionTagFounction).sectionInsets(UIEdgeInsetsMake(10, 0, 0, 0));
     
     TLMenuItem *collect = createMenuItem(@"mine_favorites", LOCSTR(@"收藏"));
     self.addCell(ClassMineMenuCell).toSection(TLMineSectionTagFounction).withDataModel(collect);
@@ -74,7 +82,7 @@ typedef NS_ENUM(NSInteger, TLMineSectionTag) {
     self.addCell(ClassMineMenuCell).toSection(TLMineSectionTagFounction).withDataModel(expression);
     
     // 设置
-    self.addSection(TLMineSectionTagSetting).sectionInsets(UIEdgeInsetsMake(20, 0, 30, 0));
+    self.addSection(TLMineSectionTagSetting).sectionInsets(UIEdgeInsetsMake(10, 0, 30, 0));
     TLMenuItem *setting = createMenuItem(@"mine_setting", LOCSTR(@"设置"));
     self.addCell(ClassMineMenuCell).toSection(TLMineSectionTagSetting).withDataModel(setting);
     
@@ -96,6 +104,14 @@ typedef NS_ENUM(NSInteger, TLMineSectionTag) {
             item.subTitle = nil;
             [self reloadView];
         }
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y < 0) {
+        self.topView.y = scrollView.contentOffset.y;
+        self.topView.height = -scrollView.contentOffset.y + 1;
     }
 }
 

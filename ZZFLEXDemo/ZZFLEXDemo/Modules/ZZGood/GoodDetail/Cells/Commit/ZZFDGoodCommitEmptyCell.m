@@ -8,7 +8,6 @@
 //
 
 #import "ZZFDGoodCommitEmptyCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDGoodCommitEmptyCell ()
 
@@ -38,7 +37,7 @@
         UILabel *label = self.addLabel(1)
         .text(@"暂无互动信息哦~")
         .font([UIFont systemFontOfSize:15])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.mas_equalTo(45);
             make.centerX.mas_equalTo(0);
         })
@@ -50,7 +49,7 @@
         .titleColor([UIColor whiteColor])
         .backgroundColor([UIColor redColor])
         .cornerRadius(3)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.top.mas_equalTo(label.mas_bottom).mas_offset(20);
             make.size.mas_equalTo(CGSizeMake(120, 35));

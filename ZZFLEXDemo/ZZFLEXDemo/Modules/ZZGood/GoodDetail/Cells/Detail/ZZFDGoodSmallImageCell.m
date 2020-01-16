@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodSmallImageCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDGoodSmallImageCell ()
 
@@ -47,7 +46,7 @@
         .cornerRadius(6)
         .contentMode(UIViewContentModeScaleAspectFill)
         .clipsToBounds(YES)
-        .masonry(^(MASConstraintMaker *make){
+        .masonry(^(UIView *senderView, MASConstraintMaker *make){
             make.edges.mas_equalTo(0);
         })
         .view;

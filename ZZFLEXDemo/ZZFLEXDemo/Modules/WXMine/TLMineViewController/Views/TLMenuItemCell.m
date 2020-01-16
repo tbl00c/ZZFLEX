@@ -7,7 +7,6 @@
 //
 
 #import "TLMenuItemCell.h"
-#import "UIView+ZZFLEX.h"
 #import "TLMenuItem.h"
 #import "TLBadge.h"
 
@@ -36,7 +35,7 @@
 #pragma mark - # Protocol
 + (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return 44.0f;
+    return 56.0f;
 }
 
 - (void)setViewDataModel:(id)dataModel
@@ -56,7 +55,7 @@
         self.addSeparator(ZZSeparatorPositionBottom);
     }
     else {
-        self.addSeparator(ZZSeparatorPositionBottom).beginAt(15);
+        self.addSeparator(ZZSeparatorPositionBottom).beginAt(55);
     }
 }
 
@@ -105,7 +104,7 @@
 - (void)p_loadSubViews
 {
     self.iconView = self.contentView.addImageView(0)
-    .masonry(^(MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.left.mas_equalTo(15.0f);
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(25.0f);
@@ -113,7 +112,7 @@
     .view;
     
     self.titleLabel = self.contentView.addLabel(1)
-    .masonry(^(MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.left.mas_equalTo(self.iconView.mas_right).mas_offset(15.0f);
         make.right.mas_lessThanOrEqualTo(-15.0f);
@@ -130,7 +129,7 @@
     
     self.arrowView = self.contentView.addImageView(2)
     .image([UIImage imageNamed:@"right_arrow"])
-    .masonry(^(MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(8, 13));
         make.right.mas_equalTo(-15);
@@ -139,7 +138,7 @@
     
     self.detailLabel = self.addLabel(4)
     .font([UIFont systemFontOfSize:14.0f]).textColor([UIColor grayColor])
-    .masonry(^(MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.left.mas_greaterThanOrEqualTo(self.badgeView.mas_right).mas_offset(15);
         make.right.mas_equalTo(self.arrowView.mas_left).mas_offset(-EGDE_RIGHT_IMAGE);
         make.centerY.mas_equalTo(self.iconView);

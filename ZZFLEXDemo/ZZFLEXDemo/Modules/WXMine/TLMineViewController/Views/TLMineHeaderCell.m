@@ -7,10 +7,6 @@
 //
 
 #import "TLMineHeaderCell.h"
-#import "UIView+ZZFLEX.h"
-
-#define     MINE_SPACE_X        14.0f
-#define     MINE_SPACE_Y        12.0f
 
 @interface TLMineHeaderCell ()
 
@@ -32,7 +28,7 @@
 #pragma mark - # Protocol
 + (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return 90;
+    return 132;
 }
 
 - (void)setViewDataModel:(id)dataModel
@@ -42,18 +38,7 @@
 
 - (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
-    if (indexPath.row == 0) {
-        self.addSeparator(ZZSeparatorPositionTop);
-    }
-    else {
-        self.removeSeparator(ZZSeparatorPositionTop);
-    }
-    if (indexPath.row == count - 1) {
-        self.addSeparator(ZZSeparatorPositionBottom);
-    }
-    else {
-        self.addSeparator(ZZSeparatorPositionBottom).beginAt(15);
-    }
+    self.addSeparator(ZZSeparatorPositionBottom);
 }
 
 #pragma mark - # Public Methods
@@ -61,7 +46,6 @@
 {
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self setSelectedBackgrounColor:[UIColor colorGrayLine]];
         
         [self p_initSubViews];
     }
@@ -81,12 +65,12 @@
 - (void)p_initSubViews
 {
     self.avatarImageView = self.contentView.addImageView(1)
-    .cornerRadius(5.0f).border(BORDER_WIDTH_1PX, [UIColor lightGrayColor])
-    .masonry(^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(MINE_SPACE_X);
-        make.top.mas_equalTo(MINE_SPACE_Y);
-        make.bottom.mas_equalTo(- MINE_SPACE_Y);
-        
+    .cornerRadius(5.0f)
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
+        make.left.mas_equalTo(20);
+        make.top.mas_equalTo(32);
+        make.height.mas_equalTo(62);
+        make.width.mas_equalTo(senderView.mas_height);
     })
     .view;
     [self.avatarImageView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -94,28 +78,28 @@
     }];
 
     self.nikenameLabel = self.contentView.addLabel(2)
-    .text(@"用户昵称").font([UIFont systemFontOfSize:17])
-    .masonry(^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.avatarImageView.mas_right).mas_offset(MINE_SPACE_Y);
-        make.bottom.mas_equalTo(self.avatarImageView.mas_centerY).mas_offset(-3.5);
+    .text(@"用户昵称").font([UIFont boldSystemFontOfSize:22])
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.avatarImageView.mas_right).mas_offset(15);
+        make.top.mas_equalTo(self.avatarImageView).mas_offset(2.0f);
     })
     .view;
     [self.nikenameLabel setContentCompressionResistancePriority:100 forAxis:UILayoutConstraintAxisHorizontal];
     
 
     self.wechatIDLabel = self.contentView.addLabel(3)
-    .text(@"微信号").font([UIFont systemFontOfSize:14])
-    .masonry(^(MASConstraintMaker *make) {
+    .text(@"微信号").font([UIFont systemFontOfSize:17])
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.left.mas_equalTo(self.nikenameLabel);
-        make.top.mas_equalTo(self.avatarImageView.mas_centerY).mas_offset(5.0);
+        make.top.mas_equalTo(self.avatarImageView.mas_centerY).mas_offset(8.0);
     })
     .view;
     
 
     self.arrowView = self.contentView.addImageView(4)
     .image([UIImage imageNamed:@"right_arrow"])
-    .masonry(^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.wechatIDLabel);
         make.size.mas_equalTo(CGSizeMake(8, 13));
         make.right.mas_equalTo(-15);
     })
@@ -123,10 +107,10 @@
     
     self.QRImageView = self.contentView.addImageView(5)
     .image([UIImage imageNamed:@"mine_cell_myQR"])
-    .masonry(^ (MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(-0.5);
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.arrowView);
         make.right.mas_equalTo(self.arrowView.mas_left).mas_offset(-10);
-        make.height.and.width.mas_equalTo(18);
+        make.height.and.width.mas_equalTo(15);
     })
     .view;
 }

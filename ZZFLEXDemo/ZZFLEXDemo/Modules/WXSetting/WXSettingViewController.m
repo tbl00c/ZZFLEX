@@ -7,7 +7,6 @@
 //
 
 #import "WXSettingViewController.h"
-#import <ZZFLEX/ZZFLEX.h>
 #import "WXSettingItemCell.h"
 #import "WXSettingButtonCell.h"
 
@@ -20,7 +19,7 @@
 
     self.collectionView.zz_setup
     .backgroundColor([UIColor colorGrayBG])
-    .masonry(^ (MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     });
 }
@@ -40,7 +39,7 @@
     
     {
         NSInteger sectionType = 0;
-        self.addSection(sectionType);
+        self.addSection(sectionType).sectionInsets(UIEdgeInsetsMake(edgeTop, 0, 0, 0));
         self.addXibCell([WXSettingItemCell class]).toSection(sectionType).withDataModel(@"账号与安全");
     }
     

@@ -12,6 +12,7 @@
 #import "TLContactsItemCell.h"
 #import "ZZFlexibleLayoutSectionModel.h"
 #import "TLContactsHeaderView.h"
+#import "WXUserViewController.h"
 
 @interface TLContactsAngel ()
 
@@ -73,10 +74,8 @@
         }
         self.addCells([TLContactsItemCell class]).toSection(sectionTag).withDataModelArray(data).selectedAction(^ (TLContactsItemModel *data) {
             @strongify(self);
-            TLUser *user = data.userInfo;
-            UIViewController *vc = [[UIViewController alloc] init];
-            [vc.view setBackgroundColor:[UIColor whiteColor]];
-            [vc setTitle:user.username];
+            TLUser *userModel = data.userInfo;
+            WXUserViewController *vc = [[WXUserViewController alloc] initWithUserModel:userModel];
             [self tryPushVC:vc];
         });
     }

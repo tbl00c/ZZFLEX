@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodSectionTitleCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDGoodSectionTitleCell ()
 
@@ -33,7 +32,7 @@
         [self setBackgroundColor:[UIColor whiteColor]];
         self.titleLabel = self.addLabel(1).numberOfLines(0)
         .font([UIFont boldSystemFontOfSize:15])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(15);
             make.right.mas_equalTo(-15);

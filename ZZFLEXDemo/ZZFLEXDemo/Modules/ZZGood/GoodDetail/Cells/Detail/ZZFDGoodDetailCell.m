@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodDetailCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDGoodDetailCell ()
 
@@ -36,7 +35,7 @@
         [self setBackgroundColor:[UIColor whiteColor]];
         self.titleLabel = self.addLabel(1)
         .numberOfLines(0)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(5);
             make.right.mas_equalTo(-15);

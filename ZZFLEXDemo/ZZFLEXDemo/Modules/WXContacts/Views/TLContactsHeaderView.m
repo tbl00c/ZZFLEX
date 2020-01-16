@@ -7,7 +7,6 @@
 //
 
 #import "TLContactsHeaderView.h"
-#import "UIView+ZZFLEX.h"
 
 @interface TLContactsHeaderView ()
 
@@ -19,7 +18,7 @@
 
 + (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return 22.0f;
+    return 30.0f;
 }
 
 - (void)setViewDataModel:(id)dataModel
@@ -31,18 +30,18 @@
 {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         UIView *bgView = [UIView new];
-        [bgView setBackgroundColor:[UIColor colorGrayBG]];
+        [bgView setBackgroundColor:RGBAColor(239.0, 239.0, 244.0, 1.0)];
         [self setBackgroundView:bgView];
         
         self.titleLabel = self.contentView.addLabel(1)
-        .font([UIFont systemFontOfSize:15])
+        .font([UIFont systemFontOfSize:14])
         .textColor([UIColor grayColor])
-        .masonry(^ (MASConstraintMaker *make){
-            make.left.mas_equalTo(10);
+        .view;
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(15);
             make.centerY.mas_equalTo(0);
             make.right.mas_lessThanOrEqualTo(-15);
-        })
-        .view;
+        }];
     }
     return self;
 }

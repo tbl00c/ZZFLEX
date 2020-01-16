@@ -13,7 +13,7 @@
 #import "ZZFLEXFoundationExtension.h"
 
 // UIKit相关拓展
-#import "UIView+ZZFLEX.h"
+#import "ZZFLEXViewExtension.h"
 #import "ZZFLEXAngel.h"
 #import "ZZFlexibleLayoutViewProtocol.h"
 #import "ZZFlexibleLayoutViewController.h"

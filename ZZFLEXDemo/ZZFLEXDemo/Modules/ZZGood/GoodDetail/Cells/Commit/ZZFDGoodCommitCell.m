@@ -8,7 +8,6 @@
 
 #import "ZZFDGoodCommitCell.h"
 #import "ZZFDGoodListModel.h"
-#import "UIView+ZZFLEX.h"
 
 #define     GOOD_AVATAR_WIDTH               40
 #define     GOOD_FONT_COMMIT_DETAIL         [UIFont systemFontOfSize:14]
@@ -66,7 +65,7 @@
         .contentMode(UIViewContentModeScaleAspectFill)
         .clipsToBounds(YES)
         .cornerRadius(GOOD_AVATAR_WIDTH / 2.0)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(10);
             make.size.mas_equalTo(GOOD_AVATAR_WIDTH);
@@ -75,7 +74,7 @@
         
         self.nameLabel = self.contentView.addLabel(1002)
         .font([UIFont boldSystemFontOfSize:15])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.mas_equalTo(self.avatarView).mas_offset(-1);
             make.left.mas_equalTo(self.avatarView.mas_right).mas_offset(10);
             make.right.mas_lessThanOrEqualTo(-15);
@@ -85,7 +84,7 @@
         self.dateLabel = self.contentView.addLabel(1003)
         .font([UIFont systemFontOfSize:13])
         .textColor([UIColor lightGrayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.nameLabel).mas_offset(-1);
             make.left.mas_equalTo(self.nameLabel.mas_right).mas_offset(10);
             make.right.mas_lessThanOrEqualTo(-15);
@@ -95,7 +94,7 @@
         self.contentLabel = self.contentView.addLabel(1004)
         .numberOfLines(0)
         .font(GOOD_FONT_COMMIT_DETAIL)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(8);
             make.left.mas_equalTo(self.nameLabel);
             make.right.mas_lessThanOrEqualTo(-15);

@@ -12,11 +12,16 @@
 
 - (CGSize)visableSizeForHostView:(__kindof UIView *)hostView
 {
+    return [self visableSizeForHostView:hostView sectionEdge:UIEdgeInsetsZero];
+}
+
+- (CGSize)visableSizeForHostView:(__kindof UIView *)hostView sectionEdge:(UIEdgeInsets)sectionEdge
+{
     CGFloat width = self.viewSize.width;
-    width = width < 0 ? hostView.frame.size.width * -width : width;
+    width = width < 0 ? (hostView.frame.size.width - sectionEdge.left - sectionEdge.right) * -width : width;
     
     CGFloat height = self.viewSize.height;
-    height = height < 0 ? hostView.frame.size.height * -height : height;
+    height = height < 0 ? (hostView.frame.size.height - sectionEdge.top - sectionEdge.bottom) * -height : height;
     
     return CGSizeMake(width, height);
 }

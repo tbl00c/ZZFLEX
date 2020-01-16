@@ -71,7 +71,7 @@
 - (NSArray *)messageData
 {
     if (!_messageData) {
-        _messageData = @[@"嗨~", @"点击左侧头像，可以跳转到用户详情页哦"];
+        _messageData = @[@"你好，加油", @"一切以用户价值为依归", @"做一个伟大的产品取悦自己", @"思辨胜于执行"];
     }
     return _messageData;
 }

@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDCateSectionView.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDCateModel.h"
 
 @interface ZZFDCateSectionView ()
@@ -33,7 +32,7 @@
     if (self = [super initWithFrame:frame]) {
         self.titleLabel = self.addLabel(1)
         .font([UIFont boldSystemFontOfSize:14])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
         })
         .view;

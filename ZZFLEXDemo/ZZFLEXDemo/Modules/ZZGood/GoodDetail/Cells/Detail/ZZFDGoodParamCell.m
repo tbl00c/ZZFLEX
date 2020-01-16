@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodParamCell.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDGoodListModel.h"
 
 @interface ZZFDGoodParamCell ()
@@ -40,7 +39,7 @@
         self.titleLabel = self.addLabel(1)
         .font([UIFont systemFontOfSize:13])
         .textColor([UIColor grayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(5);
             make.right.mas_equalTo(-15);

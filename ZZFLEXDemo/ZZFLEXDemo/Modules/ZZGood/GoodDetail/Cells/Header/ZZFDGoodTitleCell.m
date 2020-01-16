@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodTitleCell.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDGoodListModel.h"
 
 #define     GOOD_TITLE_FONT     [UIFont boldSystemFontOfSize:18]
@@ -38,7 +37,7 @@
         self.titleLabel = self.addLabel(1)
         .numberOfLines(0)
         .font(GOOD_TITLE_FONT)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(15);
             make.right.mas_equalTo(-15);

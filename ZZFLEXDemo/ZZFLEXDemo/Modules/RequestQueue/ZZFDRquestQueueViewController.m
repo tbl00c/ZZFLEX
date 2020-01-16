@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     self.textView = self.view.addTextView(1)
     .backgroundColor([UIColor blackColor]).editable(NO)
     .textColor([UIColor whiteColor]).font([UIFont systemFontOfSize:15])
-    .masonry(^(MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.bottom.left.right.mas_equalTo(0);
         make.height.mas_equalTo(RQVC_HEIGHT_TEXTVIEW);
     })
@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     
     self.collectionView = self.view.addCollectionView(2)
     .backgroundColor([UIColor colorGrayBG])
-    .masonry(^(MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(self.textView.mas_top);
     })

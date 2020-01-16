@@ -8,7 +8,6 @@
 
 #import "ZZFDCateCell.h"
 #import "ZZFLEXAngel.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDPlatformItemModel.h"
 #import "ZZFLEXEditModel.h"
 #import "ZZFDCateCell.h"
@@ -94,7 +93,7 @@
         
         UILabel *titleLabel = self.contentView.addLabel(1)
         .text(@"类别").font([UIFont systemFontOfSize:15])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.mas_equalTo(12);
             make.left.mas_equalTo(15);
             make.width.mas_lessThanOrEqualTo(100);
@@ -103,7 +102,7 @@
         
         self.maxLabel = self.contentView.addLabel(2)
         .font([UIFont systemFontOfSize:13]).textColor([UIColor lightGrayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerY.mas_equalTo(titleLabel);
             make.right.mas_equalTo(-15);
             make.left.mas_greaterThanOrEqualTo(titleLabel.mas_right);
@@ -112,7 +111,7 @@
         
         self.collectionView = self.contentView.addCollectionView(3)
         .backgroundColor([UIColor whiteColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.mas_equalTo(titleLabel.mas_bottom).mas_offset(5);
             make.left.right.bottom.mas_equalTo(0);
         })
@@ -145,7 +144,7 @@
         .cornerRadius(3).titleFont([UIFont systemFontOfSize:14])
         .backgroundColor([UIColor colorGrayBG]).titleColor([UIColor grayColor])
         .backgroundColorSelected([UIColor colorWithHexString:@"#ff5647" alpha:1.0]).titleColorSelected([UIColor whiteColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         })
         .view;

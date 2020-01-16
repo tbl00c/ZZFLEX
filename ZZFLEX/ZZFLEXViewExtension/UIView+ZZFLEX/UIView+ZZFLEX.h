@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIView+ZZSeparator.h"
 
 #import "ZZViewChainModel.h"
 #import "ZZLabelChainModel.h"

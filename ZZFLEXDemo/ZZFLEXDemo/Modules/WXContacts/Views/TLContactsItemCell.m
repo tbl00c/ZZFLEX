@@ -7,7 +7,6 @@
 //
 
 #import "TLContactsItemCell.h"
-#import "UIView+ZZFLEX.h"
 
 TLContactsItemModel *createContactsItemModel(NSString *path, NSString *url, NSString *title, NSString *subTitle, id userInfo)
 {
@@ -42,7 +41,7 @@ TLContactsItemModel *createContactsItemModelWithTag(NSInteger tag, NSString *pat
 
 + (CGFloat)viewHeightByDataModel:(id)dataModel
 {
-    return 55.0f;
+    return 56.0f;
 }
 
 - (void)setViewDataModel:(id)dataModel
@@ -95,10 +94,10 @@ TLContactsItemModel *createContactsItemModelWithTag(NSInteger tag, NSString *pat
     [super layoutSubviews];
     
     if (!self.showSeperator) {
-        self.removeSeparator(ZZSeparatorPositionBottom);
+       self.removeSeparator(ZZSeparatorPositionBottom);
     }
     else {
-        self.addSeparator(ZZSeparatorPositionBottom).beginAt(10);
+       self.addSeparator(ZZSeparatorPositionBottom).beginAt(39 + 27);
     }
 }
 
@@ -106,37 +105,36 @@ TLContactsItemModel *createContactsItemModelWithTag(NSInteger tag, NSString *pat
 - (void)p_initUI
 {
     // 头像
-    self.avatarView = self.contentView.addImageView(1)
-    .masonry(^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(10);
-        make.bottom.mas_equalTo(-10);
-    })
-    .view;
-    [self.avatarView mas_updateConstraints:^(MASConstraintMaker *make) {
+    self.avatarView = self.contentView.addImageView(1).cornerRadius(4.0f).view;
+    [self.avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.top.mas_equalTo(8);
+        make.bottom.mas_equalTo(-8);
         make.width.mas_equalTo(self.avatarView.mas_height);
     }];
     
     // 昵称
     self.nameLabel = self.contentView.addLabel(2)
     .font([UIFont systemFontOfSize:17.0f])
-    .masonry(^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.avatarView.mas_right).mas_offset(10);
+    .view;
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.avatarView.mas_right).mas_offset(12);
         make.centerY.mas_equalTo(self.avatarView);
         make.right.mas_lessThanOrEqualTo(-20);
-    })
-    .view;
+    }];
     
     // 备注
     self.subTitleLabel = self.contentView.addLabel(3)
     .font([UIFont systemFontOfSize:14.0f])
     .textColor([UIColor grayColor])
-    .masonry(^(MASConstraintMaker *make) {
+    .view;
+    [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.nameLabel);
         make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(2);
         make.right.mas_lessThanOrEqualTo(-20);
-    })
-    .view;
+    }];
 }
+
 
 @end
 

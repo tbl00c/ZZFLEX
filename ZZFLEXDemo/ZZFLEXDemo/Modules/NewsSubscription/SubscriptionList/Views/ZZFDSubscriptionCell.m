@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDSubscriptionCell.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFLEXAngel.h"
 #import "ZZFDSubscriptionModel.h"
 
@@ -43,7 +42,7 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         self.keyLabel = self.contentView.addLabel(1)
         .font(FONT_SUB_ITEM).textColor([UIColor darkGrayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(5);
             make.width.mas_equalTo(WIDTH_SUB_ITEM_KEY);
@@ -53,7 +52,7 @@
         self.valueLabel = self.contentView.addLabel(2)
         .font(FONT_SUB_ITEM).textColor([UIColor grayColor])
         .numberOfLines(0)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(self.keyLabel.mas_right);
             make.top.mas_equalTo(self.keyLabel);
             make.right.mas_lessThanOrEqualTo(-15);
@@ -118,7 +117,7 @@
         .backgroundColor([UIColor clearColor])
         .userInteractionEnabled(NO).scrollsToTop(NO)
         .separatorStyle(UITableViewCellSeparatorStyleNone)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(TOP_SPACE_FD_SUB_CELL, 0, TOP_SPACE_FD_SUB_CELL, 0));
         })
         .view;

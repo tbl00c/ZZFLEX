@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDCateSectionItemCell.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDCateModel.h"
 #import "UIColor+ZZFD.h"
 
@@ -43,7 +42,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.imageView = self.addImageView(0)
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.top.mas_equalTo(5);
             make.size.mas_equalTo(58);
@@ -52,7 +51,7 @@
         
         self.titleLabel = self.addLabel(1)
         .font([UIFont systemFontOfSize:12])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.bottom.mas_equalTo(-10);
         })

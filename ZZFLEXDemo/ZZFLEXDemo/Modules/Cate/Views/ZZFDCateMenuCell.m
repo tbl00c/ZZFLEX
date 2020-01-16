@@ -8,7 +8,6 @@
 
 #import "ZZFDCateMenuCell.h"
 #import "ZZFDCateModel.h"
-#import "UIView+ZZFLEX.h"
 
 @implementation ZZFDCateMenuCell
 

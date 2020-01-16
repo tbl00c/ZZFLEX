@@ -8,7 +8,6 @@
 
 #import "ZZFDGoodPriceCell.h"
 #import "ZZFDGoodListModel.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDGoodPriceCell ()
 
@@ -34,7 +33,7 @@
         [self setBackgroundColor:[UIColor whiteColor]];
         
         self.priceLabel = self.addLabel(2)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.centerY.mas_equalTo(0);
         })

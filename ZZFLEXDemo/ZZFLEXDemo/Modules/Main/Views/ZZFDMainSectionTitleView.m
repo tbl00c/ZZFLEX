@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDMainSectionTitleView.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDMainSectionTitleView ()
 
@@ -36,7 +35,7 @@
     if (self = [super initWithFrame:frame]) {
         self.titleLabel = self.addLabel(1).numberOfLines(0)
         .font([UIFont systemFontOfSize:16]).textColor([UIColor darkGrayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.right.mas_lessThanOrEqualTo(-15);
             make.top.mas_equalTo(20);

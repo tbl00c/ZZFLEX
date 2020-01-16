@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDAlbumCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDAlbumCell ()
 
@@ -23,7 +22,7 @@
         [self setClipsToBounds:YES];
         self.imageView = self.contentView.addImageView(0)
         .contentMode(UIViewContentModeScaleAspectFill)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         })
         .view;

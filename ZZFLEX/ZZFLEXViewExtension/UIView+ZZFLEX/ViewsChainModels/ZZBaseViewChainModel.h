@@ -73,9 +73,9 @@ ZZFLEX_CHAIN_PROPERTY ObjcType (^ left)(CGFloat left);
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ right)(CGFloat right);
 
 #pragma mark - # Layout
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ masonry)( void (^constraints)(MASConstraintMaker *make) );
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ updateMasonry)( void (^constraints)(MASConstraintMaker *make) );
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ remakeMasonry)( void (^constraints)(MASConstraintMaker *make) );
+ZZFLEX_CHAIN_PROPERTY ObjcType (^ masonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
+ZZFLEX_CHAIN_PROPERTY ObjcType (^ updateMasonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
+ZZFLEX_CHAIN_PROPERTY ObjcType (^ remakeMasonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
 
 #pragma mark - # Color
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ backgroundColor)(UIColor *backgroundColor);

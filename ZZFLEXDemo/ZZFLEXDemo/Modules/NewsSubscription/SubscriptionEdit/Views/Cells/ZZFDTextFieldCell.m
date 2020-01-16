@@ -33,7 +33,7 @@
         self.textField = self.contentView.addTextField(1001)
         .font([UIFont systemFontOfSize:15])
         .textAlignment(NSTextAlignmentRight)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.top.bottom.mas_equalTo(0);
             make.left.mas_equalTo(self.titleLabel.mas_right).mas_offset(20);

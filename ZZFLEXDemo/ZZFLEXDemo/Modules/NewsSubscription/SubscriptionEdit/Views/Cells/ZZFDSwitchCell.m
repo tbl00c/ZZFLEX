@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDSwitchCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDSwitchCell ()
 
@@ -32,7 +31,7 @@
         
         @weakify(self);
         self.switchControl = self.addSwitch(1001)
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.centerY.mas_equalTo(0);
         })

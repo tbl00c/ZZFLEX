@@ -10,7 +10,6 @@
 #import "ZZFLEXEditModel.h"
 #import "ZZFDSubscriptionModel.h"
 #import "ZZFlexibleLayoutViewProtocol.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDBaseCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
 

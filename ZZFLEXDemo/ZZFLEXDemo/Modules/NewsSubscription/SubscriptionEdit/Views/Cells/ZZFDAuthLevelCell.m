@@ -36,7 +36,7 @@
         .borderWidth(BORDER_WIDTH_1PX).borderColor([UIColor colorGrayLine].CGColor).cornerRadius(2.0f)
         .font([UIFont systemFontOfSize:15]).textColor([UIColor grayColor]).textAlignment(NSTextAlignmentCenter)
         .keyboardType(UIKeyboardTypeNumberPad)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.top.mas_equalTo(8);
             make.bottom.mas_equalTo(-8);
@@ -50,7 +50,7 @@
         
         UIView *line = self.contentView.addView(1)
         .backgroundColor([UIColor colorGrayLine])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(self.maxTF.mas_left).mas_offset(-10);
             make.centerY.mas_equalTo(0);
             make.height.mas_equalTo(BORDER_WIDTH_1PX * 2);
@@ -62,7 +62,7 @@
         .borderWidth(BORDER_WIDTH_1PX).borderColor([UIColor colorGrayLine].CGColor).cornerRadius(2.0f)
         .font([UIFont systemFontOfSize:15]).textColor([UIColor grayColor]).textAlignment(NSTextAlignmentCenter)
         .keyboardType(UIKeyboardTypeNumberPad)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(line.mas_left).mas_offset(-10);
             make.centerY.width.height.mas_equalTo(self.maxTF);
         })

@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodAreaCell.h"
-#import "UIView+ZZFLEX.h"
 
 #define     GOOD_FONT_AREA          [UIFont systemFontOfSize:12]
 
@@ -57,7 +56,7 @@
         .cornerRadius(12)
         .backgroundColor([UIColor colorGrayBG])
         .backgroundColorHL(RGBColor(192, 192, 192))
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(24);

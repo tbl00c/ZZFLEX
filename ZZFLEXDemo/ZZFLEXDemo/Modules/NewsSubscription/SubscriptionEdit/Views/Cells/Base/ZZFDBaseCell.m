@@ -46,7 +46,7 @@
         [self setBackgroundColor:[UIColor whiteColor]];
         
         _arrowView = self.addImageView(0).image([UIImage imageNamed:@"right_arrow"])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(8, 13));
             make.right.mas_equalTo(-15);

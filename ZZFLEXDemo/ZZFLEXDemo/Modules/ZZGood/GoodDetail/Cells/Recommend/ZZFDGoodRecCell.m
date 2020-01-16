@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDGoodRecCell.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDGoodListModel.h"
 
 @interface ZZFDGoodRecCell ()
@@ -53,7 +52,7 @@
         self.imageView = self.contentView.addImageView(1001)
         .contentMode(UIViewContentModeScaleAspectFill)
         .clipsToBounds(YES)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.top.right.mas_equalTo(0);
         })
         .view;
@@ -63,7 +62,7 @@
         
         self.titleLabel = self.contentView.addLabel(1002)
         .font([UIFont systemFontOfSize:14])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.mas_equalTo(self.imageView.mas_bottom).mas_offset(10);
             make.left.mas_equalTo(10);
             make.right.mas_lessThanOrEqualTo(-10);
@@ -71,7 +70,7 @@
         .view;
         
         self.priceLabel = self.contentView.addLabel(1011)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(self.titleLabel);
             make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(5);
         })
@@ -80,7 +79,7 @@
         self.positionLabel = self.contentView.addLabel(1010)
         .font([UIFont systemFontOfSize:12])
         .textColor([UIColor grayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(self.titleLabel);
             make.top.mas_equalTo(self.priceLabel.mas_bottom).mas_offset(5);
         })
@@ -89,7 +88,7 @@
         self.lastLonginLabel = self.contentView.addLabel(1011)
         .font([UIFont systemFontOfSize:12])
         .textColor([UIColor grayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-10);
             make.bottom.mas_equalTo(self.positionLabel);
         })

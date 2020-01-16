@@ -11,7 +11,7 @@
 #import "TLFriendHelper.h"
 #import "TLSearchController.h"
 #import "TLContactsSearchResultViewController.h"
-#import "UIView+ZZFLEX.h"
+#import "WXUserViewController.h"
 
 @interface TLContactsViewController ()
 
@@ -78,9 +78,7 @@
         [resultVC setItemSelectedAction:^(TLContactsSearchResultViewController *searchVC, TLUser *userModel) {
             @strongify(self);
             [self.searchController setActive:NO];
-            UIViewController *detailVC = [[UIViewController alloc] init];
-            [detailVC.view setBackgroundColor:[UIColor whiteColor]];
-            detailVC.title = userModel.username;
+            WXUserViewController *detailVC = [[WXUserViewController alloc] initWithUserModel:userModel];
             PushVC(detailVC);
         }];
         _searchController = [TLSearchController createWithResultVC:resultVC];

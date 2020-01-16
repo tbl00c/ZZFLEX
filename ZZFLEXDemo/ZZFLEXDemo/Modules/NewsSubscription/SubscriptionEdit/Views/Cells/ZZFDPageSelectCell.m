@@ -36,7 +36,7 @@
         self.detailTF = self.contentView.addTextField(2002)
         .textAlignment(NSTextAlignmentRight).userInteractionEnabled(NO)
         .font([UIFont systemFontOfSize:15]).textColor([UIColor grayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
             make.right.mas_equalTo(self.arrowView.mas_left).mas_offset(-7);
             make.left.mas_greaterThanOrEqualTo(self.titleLabel.mas_right);

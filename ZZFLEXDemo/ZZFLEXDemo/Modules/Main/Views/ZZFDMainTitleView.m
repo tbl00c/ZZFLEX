@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDMainTitleView.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDMainTitleView ()
 
@@ -40,7 +39,7 @@
         self.titleLabel = self.addLabel(1)
         .font([UIFont systemFontOfSize:18])
         .textColor([UIColor darkGrayColor])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.bottom.mas_equalTo(-7);
         })

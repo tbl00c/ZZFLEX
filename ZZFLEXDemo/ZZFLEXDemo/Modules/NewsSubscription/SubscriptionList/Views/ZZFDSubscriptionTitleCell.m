@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDSubscriptionTitleCell.h"
-#import "UIView+ZZFLEX.h"
 #import "TLMenuItem.h"
 
 #define     WIDTH_ICON_RIGHT        31
@@ -50,7 +49,7 @@
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
         self.iconView = self.contentView.addImageView(1)
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15.0f);
             make.centerY.mas_equalTo(0);
             make.size.mas_equalTo(25.0f);
@@ -58,7 +57,7 @@
         .view;
         
         self.titleLabel = self.contentView.addLabel(2)
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
             make.left.mas_equalTo(self.iconView.mas_right).mas_offset(15.0f);
             make.right.mas_lessThanOrEqualTo(self.contentView).mas_offset(15.0f);

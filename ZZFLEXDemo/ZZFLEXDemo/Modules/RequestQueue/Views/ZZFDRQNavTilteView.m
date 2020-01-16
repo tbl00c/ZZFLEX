@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDRQNavTilteView.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDRQNavTilteView ()
 
@@ -31,7 +30,7 @@
         self.titleLabel = self.addLabel(2)
         .font([UIFont boldSystemFontOfSize:16])
         .textAlignment(NSTextAlignmentCenter)
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.top.bottom.right.mas_equalTo(0);
             make.left.mas_equalTo(self.activityView.mas_right);
         })

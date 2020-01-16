@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDCateViewController.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFLEXAngel.h"
 #import "ZZFDCateModel.h"
 #import "UIColor+ZZFD.h"
@@ -41,7 +40,7 @@
     .showsVerticalScrollIndicator(NO)
     .tableFooterView([UIView new])
     .separatorStyle(UITableViewCellSeparatorStyleNone)
-    .masonry(^ (MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.left.bottom.top.mas_equalTo(0);
         make.width.mas_equalTo(125);
     })
@@ -52,7 +51,7 @@
     .backgroundColor([UIColor whiteColor])
     .alwaysBounceVertical(YES)
     .showsVerticalScrollIndicator(NO)
-    .masonry(^ (MASConstraintMaker *make) {
+    .masonry(^(UIView *senderView, MASConstraintMaker *make) {
         make.right.bottom.top.mas_equalTo(0);
         make.left.mas_equalTo(self.tableView.mas_right);
     })

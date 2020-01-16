@@ -10,7 +10,6 @@
 #import <MJRefresh/MJRefresh.h>
 #import <XLPhotoBrowser+CoderXL/XLPhotoBrowser.h>
 #import "ZZFDGoodAreaCell.h"
-#import "UIView+ZZFLEX.h"
 #import "ZZFDGoodTitleCell.h"
 #import "ZZFDGoodPriceCell.h"
 #import "ZZFDGoodReadCell.h"

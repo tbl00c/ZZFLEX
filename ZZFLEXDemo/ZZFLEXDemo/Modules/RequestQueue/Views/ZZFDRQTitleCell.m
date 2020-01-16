@@ -7,7 +7,6 @@
 //
 
 #import "ZZFDRQTitleCell.h"
-#import "UIView+ZZFLEX.h"
 
 @interface ZZFDRQTitleCell ()
 
@@ -44,7 +43,7 @@
         self.titleLabel = self.contentView.addLabel(1)
         .numberOfLines(0)
         .font([UIFont boldSystemFontOfSize:15])
-        .masonry(^ (MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
             make.top.mas_equalTo(15);
         })
@@ -54,7 +53,7 @@
         self.button = self.contentView.addButton(2)
         .title(@"模块刷新").titleColor([UIColor blueColor]).titleFont([UIFont systemFontOfSize:14])
         .titleSelected(@"刷新中...").titleColorSelected([UIColor grayColor])
-        .masonry(^(MASConstraintMaker *make) {
+        .masonry(^(UIView *senderView, MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.centerY.mas_equalTo(self.titleLabel);
         })

@@ -10,6 +10,7 @@
 #define ZZFDPrefixHeader_pch
 
 #import <TLKit/TLKit.h>
+#import <ZZFLEX/ZZFLEX.h>
 #import <Masonry/Masonry.h>
 
 #import "UIColor+ZZFD.h"
