@@ -13,26 +13,29 @@
 @synthesize viewSize = _viewSize;
 @synthesize dataModel = _dataModel;
 
-- (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel
+- (instancetype)initWithViewClass:(Class)viewClass
 {
-    return [self initWithClassName:className andDataModel:dataModel viewTag:0];
+    return [self initWithViewClass:viewClass andDataModel:nil];
 }
 
-- (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewTag:(NSInteger)viewTag
+- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel
 {
-    return [self initWithClassName:className andDataModel:dataModel viewSize:CGSizeZero viewTag:viewTag];
+    return [self initWithViewClass:viewClass andDataModel:dataModel viewTag:0];
 }
 
-- (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag
+- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel viewTag:(NSInteger)viewTag
+{
+    return [self initWithViewClass:viewClass andDataModel:dataModel viewSize:CGSizeZero viewTag:viewTag];
+}
+
+- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag
 {
     if (self = [super init]) {
         _viewSize = viewSize;
         _dataModel = dataModel;
-        _className = className;
+        _viewClass = viewClass;
+        _className = NSStringFromClass(viewClass);
         _viewTag = viewTag;
-        if (className.length > 0) {
-            _viewClass = NSClassFromString(className);
-        }
         [self updateViewSize];
     }
     return self;
@@ -44,12 +47,10 @@
     [self updateViewSize];
 }
 
-- (void)setClassName:(NSString *)className
+- (void)setViewClass:(Class)viewClass
 {
-    _className = className;
-    if (className.length > 0) {
-        _viewClass = NSClassFromString(className);
-    }
+    _viewClass = viewClass;
+    _className = viewClass ? NSStringFromClass(viewClass) : nil;
     [self updateViewSize];
 }
 

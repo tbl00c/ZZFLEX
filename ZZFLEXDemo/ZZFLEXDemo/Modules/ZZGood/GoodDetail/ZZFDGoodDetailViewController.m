@@ -11,6 +11,21 @@
 #import <XLPhotoBrowser+CoderXL/XLPhotoBrowser.h>
 #import "ZZFDGoodAreaCell.h"
 #import "UIView+ZZFLEX.h"
+#import "ZZFDGoodTitleCell.h"
+#import "ZZFDGoodPriceCell.h"
+#import "ZZFDGoodReadCell.h"
+#import "ZZFDGoodSectionTitleCell.h"
+#import "ZZFDGoodParamCell.h"
+#import "ZZFDGoodDetailCell.h"
+#import "ZZFDGoodBigImageCell.h"
+#import "ZZFDGoodSmallImageCell.h"
+#import "ZZFDImageMoreCell.h"
+#import "ZZFDGoodUserCell.h"
+#import "ZZFDGoodCommitEmptyCell.h"
+#import "ZZFDGoodCommitInputCell.h"
+#import "ZZFDGoodCommitCell.h"
+#import "ZZFDGoodTitleView.h"
+#import "ZZFDGoodRecCell.h"
 
 typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     ZZFDGoodSectionTypeHeader,
@@ -59,14 +74,14 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     /// header
     self.addSection(ZZFDGoodSectionTypeHeader);
     // 标题
-    self.addCell(@"ZZFDGoodTitleCell").toSection(ZZFDGoodSectionTypeHeader).withDataModel(listModel.goodTitle);
+    self.addCell([ZZFDGoodTitleCell class]).toSection(ZZFDGoodSectionTypeHeader).withDataModel(listModel.goodTitle);
     // 价格
-    self.addCell(@"ZZFDGoodPriceCell").toSection(ZZFDGoodSectionTypeHeader).withDataModel(listModel.attrPrice);
+    self.addCell([ZZFDGoodPriceCell class]).toSection(ZZFDGoodSectionTypeHeader).withDataModel(listModel.attrPrice);
     // 阅读量
     NSString *readInfo = [NSString stringWithFormat:@"%u次阅读", arc4random() % 1000];
-    self.addCell(@"ZZFDGoodReadCell").toSection(ZZFDGoodSectionTypeHeader).withDataModel(readInfo);
+    self.addCell([ZZFDGoodReadCell class]).toSection(ZZFDGoodSectionTypeHeader).withDataModel(readInfo);
     // 区域
-    self.addCell(@"ZZFDGoodAreaCell").toSection(ZZFDGoodSectionTypeHeader).withDataModel(listModel.position).eventAction(^ id(NSInteger eventType, id data) {
+    self.addCell([ZZFDGoodAreaCell class]).toSection(ZZFDGoodSectionTypeHeader).withDataModel(listModel.position).eventAction(^ id(NSInteger eventType, id data) {
         @strongify(self);
         UIViewController *vc = [[UIViewController alloc] init];
         [vc.view setBackgroundColor:[UIColor whiteColor]];
@@ -78,18 +93,18 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     /// Detail
     self.addSection(ZZFDGoodSectionTypeDetail).sectionInsets(UIEdgeInsetsMake(12, 0, 0, 0));
     // 标题
-    self.addCell(@"ZZFDGoodSectionTitleCell").toSection(ZZFDGoodSectionTypeDetail).withDataModel(@"商品详情");
+    self.addCell([ZZFDGoodSectionTitleCell class]).toSection(ZZFDGoodSectionTypeDetail).withDataModel(@"商品详情");
     // 参数
     if (listModel.params.count > 0) {
-        self.addCells(@"ZZFDGoodParamCell").toSection(ZZFDGoodSectionTypeDetail).withDataModelArray(listModel.params);
+        self.addCells([ZZFDGoodParamCell class]).toSection(ZZFDGoodSectionTypeDetail).withDataModelArray(listModel.params);
         if (listModel.params.count % 2 == 1) {
-            self.addCell(@"ZZFDGoodParamCell").toSection(ZZFDGoodSectionTypeDetail);
+            self.addCell([ZZFDGoodParamCell class]).toSection(ZZFDGoodSectionTypeDetail);
         }
         self.addSeperatorCell(CGSizeMake(-1, 8), [UIColor whiteColor]).toSection(ZZFDGoodSectionTypeDetail);
     }
     // 详细描述
     if (listModel.attrGoodDetail) {
-        self.addCell(@"ZZFDGoodDetailCell").toSection(ZZFDGoodSectionTypeDetail).withDataModel(listModel.attrGoodDetail);
+        self.addCell([ZZFDGoodDetailCell class]).toSection(ZZFDGoodSectionTypeDetail).withDataModel(listModel.attrGoodDetail);
     }
     
     /// Image
@@ -108,25 +123,25 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         
         self.addSection(ZZFDGoodSectionTypeImage).sectionInsets(UIEdgeInsetsMake(8, 15, 20, 15)).minimumLineSpacing(10).minimumInteritemSpacing(10).backgrounColor([UIColor whiteColor]);
         if (listModel.goodImages.count <= 4) {
-            self.addCells(@"ZZFDGoodBigImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray(listModel.goodImages).selectedAction(selecteAction);
+            self.addCells([ZZFDGoodBigImageCell class]).toSection(ZZFDGoodSectionTypeImage).withDataModelArray(listModel.goodImages).selectedAction(selecteAction);
         }
         else {
-            self.addCells(@"ZZFDGoodBigImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(0, 3)]).selectedAction(selecteAction);
+            self.addCells([ZZFDGoodBigImageCell class]).toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(0, 3)]).selectedAction(selecteAction);
             if (listModel.goodImages.count <= 9) {
-                self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, listModel.goodImages.count - 3)]).selectedAction(selecteAction);
+                self.addCells([ZZFDGoodSmallImageCell class]).toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, listModel.goodImages.count - 3)]).selectedAction(selecteAction);
                 if (listModel.goodImages.count % 2 == 0) {
-                    self.addCell(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage);
+                    self.addCell([ZZFDGoodSmallImageCell class]).toSection(ZZFDGoodSectionTypeImage);
                 }
             }
             else {
-                self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, 6)]).selectedAction(selecteAction);
-                self.addCell(@"ZZFDImageMoreCell").toSection(ZZFDGoodSectionTypeImage).selectedAction(^(id data) {
+                self.addCells([ZZFDGoodSmallImageCell class]).toSection(ZZFDGoodSectionTypeImage).withDataModelArray([listModel.goodImages subarrayWithRange:NSMakeRange(3, 6)]).selectedAction(selecteAction);
+                self.addCell([ZZFDImageMoreCell class]).toSection(ZZFDGoodSectionTypeImage).selectedAction(^(id data) {
                     @strongify(self);
                     self.deleteCell.byViewTag(100101);
-                    self.addCells(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage)
+                    self.addCells([ZZFDGoodSmallImageCell class]).toSection(ZZFDGoodSectionTypeImage)
                     .withDataModelArray([self.listModel.goodImages subarrayWithRange:NSMakeRange(9, self.listModel.goodImages.count - 9)]).selectedAction(selecteAction);
                     if (self.listModel.goodImages.count % 2 == 0) {
-                        self.addCell(@"ZZFDGoodSmallImageCell").toSection(ZZFDGoodSectionTypeImage);
+                        self.addCell([ZZFDGoodSmallImageCell class]).toSection(ZZFDGoodSectionTypeImage);
                     }
                     [self reloadView];
                 }).viewTag(100101);
@@ -140,7 +155,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
     
     /// User
     self.addSection(ZZFDGoodSectionTypeUser);
-    self.addCell(@"ZZFDGoodUserCell").toSection(ZZFDGoodSectionTypeUser).withDataModel(listModel).selectedAction(^ (ZZFDGoodListModel *data) {
+    self.addCell([ZZFDGoodUserCell class]).toSection(ZZFDGoodSectionTypeUser).withDataModel(listModel).selectedAction(^ (ZZFDGoodListModel *data) {
         @strongify(self);
         UIViewController *vc = [[UIViewController alloc] init];
         [vc.view setBackgroundColor:[UIColor whiteColor]];
@@ -162,22 +177,22 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
 - (void)resetCommitModule
 {
     self.sectionForTag(ZZFDGoodSectionTypeCommit).clear();
-    self.addCell(@"ZZFDGoodSectionTitleCell").toSection(ZZFDGoodSectionTypeCommit).withDataModel(@"互动");
+    self.addCell([ZZFDGoodSectionTitleCell class]).toSection(ZZFDGoodSectionTypeCommit).withDataModel(@"互动");
     @weakify(self);
     if (self.listModel.commitData.count == 0) {
-        self.addCell(@"ZZFDGoodCommitEmptyCell").toSection(ZZFDGoodSectionTypeCommit).eventAction(^ id(NSInteger type, id data) {
+        self.addCell([ZZFDGoodCommitEmptyCell class]).toSection(ZZFDGoodSectionTypeCommit).eventAction(^ id(NSInteger type, id data) {
             @strongify(self);
             [self showCommitInputAlert];
             return nil;
         });
     }
     else {
-        self.addCell(@"ZZFDGoodCommitInputCell").toSection(ZZFDGoodSectionTypeCommit).eventAction(^ id(NSInteger type, id data) {
+        self.addCell([ZZFDGoodCommitInputCell class]).toSection(ZZFDGoodSectionTypeCommit).eventAction(^ id(NSInteger type, id data) {
             @strongify(self);
             [self showCommitInputAlert];
             return nil;
         });
-        self.addCells(@"ZZFDGoodCommitCell").toSection(ZZFDGoodSectionTypeCommit).withDataModelArray(self.listModel.commitData);
+        self.addCells([ZZFDGoodCommitCell class]).toSection(ZZFDGoodSectionTypeCommit).withDataModelArray(self.listModel.commitData);
     }
     [self reloadView];
 }
@@ -220,7 +235,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         
         if (offset == 0) {
             self.sectionForTag(ZZFDGoodSectionTypeRec).clear();
-            self.setHeader(@"ZZFDGoodTitleView").toSection(ZZFDGoodSectionTypeRec);
+            self.setHeader([ZZFDGoodTitleView class]).toSection(ZZFDGoodSectionTypeRec);
             
             if (!self.collectionView.mj_footer) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -244,7 +259,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         }
         
         // 批量添加cell
-        self.addCells(@"ZZFDGoodRecCell").toSection(ZZFDGoodSectionTypeRec).withDataModelArray(data).selectedAction(^ (id data) {
+        self.addCells([ZZFDGoodRecCell class]).toSection(ZZFDGoodSectionTypeRec).withDataModelArray(data).selectedAction(^ (id data) {
             @strongify(self);
             ZZFDGoodDetailViewController *vc = [[ZZFDGoodDetailViewController alloc] initWithListModel:data];
             PushVC(vc);

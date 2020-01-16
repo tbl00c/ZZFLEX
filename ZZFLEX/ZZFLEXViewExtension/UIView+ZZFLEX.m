@@ -12,8 +12,8 @@
 - (ZZChainModelClass * (^)(NSInteger tag))methodName    \
 {   \
     return ^ZZChainModelClass* (NSInteger tag) {      \
-        UIViewClass *view = [[UIViewClass alloc] init];       \
-        [self addSubview:view];                            \
+        UIViewClass *view = UIViewClass.zz_create(tag).view;    \
+        [self addSubview:view];     \
         ZZChainModelClass *chainModel = [[ZZChainModelClass alloc] initWithTag:tag andView:view]; \
         return chainModel;      \
     };      \
@@ -35,18 +35,6 @@ ZZFLEX_VE_API(addSwitch, ZZSwitchChainModel, UISwitch);
 ZZFLEX_VE_API(addScrollView, ZZScrollViewChainModel, UIScrollView);
 ZZFLEX_VE_API(addTextView, ZZTextViewChainModel, UITextView);
 ZZFLEX_VE_API(addTableView, ZZTableViewChainModel, UITableView);
-- (ZZCollectionViewChainModel * (^)(NSInteger tag))addCollectionView
-{
-    return ^ZZCollectionViewChainModel* (NSInteger tag) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.minimumInteritemSpacing = layout.minimumLineSpacing = 0;
-        layout.headerReferenceSize = layout.footerReferenceSize = CGSizeZero;
-        layout.sectionInset = UIEdgeInsetsZero;
-        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        [self addSubview:view];
-        ZZCollectionViewChainModel *chainModel = [[ZZCollectionViewChainModel alloc] initWithTag:tag andView:view];
-        return chainModel;
-    };
-}
+ZZFLEX_VE_API(addCollectionView, ZZCollectionViewChainModel, UICollectionView);
 
 @end

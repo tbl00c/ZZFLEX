@@ -9,6 +9,11 @@
 #import "ZZFDSubscriptionEditViewController.h"
 #import "ZZFLEXEditModel.h"
 #import "ZZFDPlatformItemModel.h"
+#import "ZZFDTextFieldCell.h"
+#import "ZZFDPageSelectCell.h"
+#import "ZZFDAuthLevelCell.h"
+#import "ZZFDSwitchCell.h"
+#import "ZZFDCateCell.h"
 
 #import "ZZFDPlatformSelectViewController.h"
 #import "ZZFDLanguageSelectViewController.h"
@@ -83,7 +88,7 @@ typedef NS_ENUM(NSInteger, ZZFDSEVCSectionType) {
         @strongify(self);
         [self.subModel setKeyword:model.value];
     });
-    self.addCell(@"ZZFDTextFieldCell").toSection(ZZFDSEVCSectionTypeKeyword).withDataModel(keywordModel);
+    self.addCell([ZZFDTextFieldCell class]).toSection(ZZFDSEVCSectionTypeKeyword).withDataModel(keywordModel);
     
     // 作者等级
     self.addSection(ZZFDSEVCSectionTypeLevel).sectionInsets(UIEdgeInsetsMake(15, 0, 0, 0));
@@ -114,7 +119,7 @@ typedef NS_ENUM(NSInteger, ZZFDSEVCSectionType) {
     });
     [levelModel setPlaceholderModel1:@"10"];
     [levelModel setValue1:(subModel.maxLevel.length == 0 || subModel.maxLevel.integerValue == 10) ? nil : subModel.maxLevel];
-    self.addCell(@"ZZFDAuthLevelCell").toSection(ZZFDSEVCSectionTypeLevel).withDataModel(levelModel);
+    self.addCell([ZZFDAuthLevelCell class]).toSection(ZZFDSEVCSectionTypeLevel).withDataModel(levelModel);
     
     // 通知
     self.addSection(ZZFDSEVCSectionTypeNoti).sectionInsets(UIEdgeInsetsMake(15, 0, 0, 0));
@@ -123,7 +128,7 @@ typedef NS_ENUM(NSInteger, ZZFDSEVCSectionType) {
         BOOL on = [model.value boolValue];
         [self.subModel setNoti:on];
     });
-    self.addCell(@"ZZFDSwitchCell").toSection(ZZFDSEVCSectionTypeNoti).withDataModel(notiModel);
+    self.addCell([ZZFDSwitchCell class]).toSection(ZZFDSEVCSectionTypeNoti).withDataModel(notiModel);
     
     [self reloadView];
 }
@@ -140,7 +145,7 @@ typedef NS_ENUM(NSInteger, ZZFDSEVCSectionType) {
         }
         return nil;
     }, nil);
-    self.addCell(@"ZZFDPageSelectCell").toSection(ZZFDSEVCSectionTypePlatform).withDataModel(platformModel).selectedAction(^(ZZFLEXEditModel *model) {
+    self.addCell([ZZFDPageSelectCell class]).toSection(ZZFDSEVCSectionTypePlatform).withDataModel(platformModel).selectedAction(^(ZZFLEXEditModel *model) {
         @strongify(self);
         ZZFDPlatformSelectViewController *platformSelectVC = [[ZZFDPlatformSelectViewController alloc] initWithSelectPlatform:self.subModel.platform selectedAction:^(ZZFDSubscriptionPlatform platform) {
             @strongify(self);
@@ -154,7 +159,7 @@ typedef NS_ENUM(NSInteger, ZZFDSEVCSectionType) {
     if (subModel.languageArray.count > 0) {
         NSString *title = subModel.language.length > 0 ? subModel.language : @"全部";
         ZZFLEXEditModel *languageModel = createFLEXEditModel(0, @"语言", @"请选择", title, subModel, nil, nil);
-        self.addCell(@"ZZFDPageSelectCell").toSection(ZZFDSEVCSectionTypePlatform).withDataModel(languageModel).selectedAction(^(ZZFLEXEditModel *model) {
+        self.addCell([ZZFDPageSelectCell class]).toSection(ZZFDSEVCSectionTypePlatform).withDataModel(languageModel).selectedAction(^(ZZFLEXEditModel *model) {
             @strongify(self);
             ZZFDLanguageSelectViewController *platformSelectVC = [[ZZFDLanguageSelectViewController alloc] initWithLanguageArray:subModel.languageArray selectLanguage:title selectedAction:^(NSString *language) {
                 @strongify(self);
@@ -196,7 +201,7 @@ typedef NS_ENUM(NSInteger, ZZFDSEVCSectionType) {
             }
             [self.subModel setCate:selectedData];
         });
-        self.addCell(@"ZZFDCateCell").toSection(ZZFDSEVCSectionTypeCate).withDataModel(cateModel);
+        self.addCell([ZZFDCateCell class]).toSection(ZZFDSEVCSectionTypeCate).withDataModel(cateModel);
     }
     else {
         self.sectionForTag(ZZFDSEVCSectionTypeCate).sectionInsets(UIEdgeInsetsZero).clear();

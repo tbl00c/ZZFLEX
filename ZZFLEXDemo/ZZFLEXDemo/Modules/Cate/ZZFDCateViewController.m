@@ -11,6 +11,9 @@
 #import "ZZFLEXAngel.h"
 #import "ZZFDCateModel.h"
 #import "UIColor+ZZFD.h"
+#import "ZZFDCateMenuCell.h"
+#import "ZZFDCateSectionView.h"
+#import "ZZFDCateSectionItemCell.h"
 
 @interface ZZFDCateViewController ()
 
@@ -94,7 +97,7 @@
     self.tableViewAngel.addSection(1001);
     // 往section批量添加cells
     @weakify(self);
-    self.tableViewAngel.addCells(@"ZZFDCateMenuCell").withDataModelArray(data).toSection(1001).selectedAction(^(id item){
+    self.tableViewAngel.addCells([ZZFDCateMenuCell class]).withDataModelArray(data).toSection(1001).selectedAction(^(id item){
         @strongify(self);
         [self didSelectedCate:item];
     });
@@ -113,8 +116,8 @@
     for (int i = 0; i < cate.cateSectionItems.count; i++) {
         self.collectionViewAngel.addSection(i).sectionInsets(UIEdgeInsetsMake(0, 15, 0, 15));
         ZZFDCateSectionModel *section = cate.cateSectionItems[i];
-        self.collectionViewAngel.setHeader(@"ZZFDCateSectionView").toSection(i).withDataModel(section);
-        self.collectionViewAngel.addCells(@"ZZFDCateSectionItemCell").toSection(i).withDataModelArray(section.cateSectionItems).selectedAction(^ (ZZFDCateItemModel *model) {
+        self.collectionViewAngel.setHeader([ZZFDCateSectionView class]).toSection(i).withDataModel(section);
+        self.collectionViewAngel.addCells([ZZFDCateSectionItemCell class]).toSection(i).withDataModelArray(section.cateSectionItems).selectedAction(^ (ZZFDCateItemModel *model) {
             @strongify(self);
             UIViewController *vc = [[UIViewController alloc] init];
             [vc.view setBackgroundColor:[UIColor whiteColor]];

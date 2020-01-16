@@ -72,7 +72,7 @@
     
     NSInteger sectionType = 0;
     self.addSection(sectionType).sectionInsets(UIEdgeInsetsMake(space, space, space, space)).minimumLineSpacing(space).minimumInteritemSpacing(space);
-    self.addCells(@"ZZFDAlbumCell").toSection(sectionType).withDataModelArray(data)
+    self.addCells([ZZFDAlbumCell class]).toSection(sectionType).withDataModelArray(data)
     .configAction(^(ZZFDAlbumCell *cell, ZZFDAlbumModel *model) {   // 配置cell，等价于cellForRowAtIndexPath时的配置逻辑
         [cell setModel:model];
     })

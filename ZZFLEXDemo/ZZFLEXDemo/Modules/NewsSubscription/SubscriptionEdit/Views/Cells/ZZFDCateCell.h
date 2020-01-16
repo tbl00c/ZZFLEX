@@ -12,3 +12,9 @@
 @interface ZZFDCateCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
 
 @end
+
+@interface ZZFDCateItemCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
+
+@property (nonatomic, strong) UIButton *titleLabel;
+
+@end

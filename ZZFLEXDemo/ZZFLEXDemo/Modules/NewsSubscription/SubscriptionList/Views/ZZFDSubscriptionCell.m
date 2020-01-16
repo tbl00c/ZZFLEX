@@ -85,7 +85,7 @@
     return height;
 }
 
-- (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
     if (indexPath.row == 0) {
         self.addSeparator(ZZSeparatorPositionTop);
@@ -105,7 +105,7 @@
 {
     self.angel.clear();
     self.angel.addSection(1);
-    self.angel.addCells(@"ZZFDSubscriptionItemCell").toSection(1).withDataModelArray(dataModel.listShowModelArray);
+    self.angel.addCells([ZZFDSubscriptionItemCell class]).toSection(1).withDataModelArray(dataModel.listShowModelArray);
     [self.tableView reloadData];
 }
 

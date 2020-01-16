@@ -11,6 +11,7 @@
 #import "UIView+ZZFLEX.h"
 #import "ZZFDPlatformItemModel.h"
 #import "ZZFLEXEditModel.h"
+#import "ZZFDCateCell.h"
 
 #define     FDCATE_MAX_COUNT         5
 
@@ -43,7 +44,7 @@
     
     self.angel.clear();
     self.angel.addSection(1).sectionInsets(UIEdgeInsetsMake(10, 15, 20, 15)).minimumLineSpacing(15).minimumInteritemSpacing(15);
-    self.angel.addCells(@"ZZFDCateItemCell").toSection(1).withDataModelArray(dataModel.titleModel).selectedAction(^ (ZZFDPlatformItemModel *model) {
+    self.angel.addCells([ZZFDCateItemCell class]).toSection(1).withDataModelArray(dataModel.titleModel).selectedAction(^ (ZZFDPlatformItemModel *model) {
         @strongify(self);
         if (!model.selected && [self selectedCount] == FDCATE_MAX_COUNT) {
             [TLUIUtility showAlertWithTitle:@"已达选择上限" message:nil cancelButtonTitle:@"确定"];
@@ -80,7 +81,7 @@
     return count;
 }
 
-- (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
     self.addSeparator(ZZSeparatorPositionTop);
     self.addSeparator(ZZSeparatorPositionBottom);
@@ -129,12 +130,6 @@
 @end
 
 #pragma mark - ## ZZFDCateItemCell
-@interface ZZFDCateItemCell : UICollectionViewCell <ZZFlexibleLayoutViewProtocol>
-
-@property (nonatomic, strong) UIButton *titleLabel;
-
-@end
-
 @implementation ZZFDCateItemCell
 
 + (CGSize)viewSizeByDataModel:(id)dataModel
@@ -160,7 +155,7 @@
 
 - (void)setViewDataModel:(ZZFDPlatformItemModel *)dataModel
 {
-    self.titleLabel.zz_make.title(dataModel.title).selected(dataModel.selected);
+    self.titleLabel.zz_setup.title(dataModel.title).selected(dataModel.selected);
 }
 
 @end

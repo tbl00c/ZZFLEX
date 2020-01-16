@@ -12,54 +12,60 @@
 #import "ZZFLEXAngel+UICollectionView.h"
 #import "ZZFlexibleLayoutSeperatorCell.h"
 #import "ZZFLEXTableViewEmptyCell.h"
+#import "ZZFlexibleLayoutEmptyHeaderFooterView.h"
 #import "ZZFLEXMacros.h"
+#import "ZZFlexibleLayoutSectionModel.h"
 
 /*
  *  注册Cell 到 hostView
  */
-void RegisterHostViewCell(__kindof UIScrollView *hostView, NSString *cellName)
+void RegisterHostViewCell(__kindof UIScrollView *hostView, Class viewClass)
 {
+    NSString *viewName = NSStringFromClass(viewClass);
     if ([hostView isKindOfClass:[UITableView class]]) {
-        [(UITableView *)hostView registerClass:NSClassFromString(cellName) forCellReuseIdentifier:cellName];
+        [(UITableView *)hostView registerClass:viewClass forCellReuseIdentifier:viewName];
     }
     else if ([hostView isKindOfClass:[UICollectionView class]]) {
-        [(UICollectionView *)hostView registerClass:NSClassFromString(cellName) forCellWithReuseIdentifier:cellName];
+        [(UICollectionView *)hostView registerClass:viewClass forCellWithReuseIdentifier:viewName];
     }
 }
 
 /*
  *  注册XibCell 到 hostView
  */
-void RegisterHostViewXibCell(__kindof UIScrollView *hostView, NSString *cellName)
+void RegisterHostViewXibCell(__kindof UIScrollView *hostView, Class viewClass)
 {
-    UINib *nib = [UINib nibWithNibName:cellName bundle:[NSBundle bundleForClass:NSClassFromString(cellName)]];
+    NSString *viewName = NSStringFromClass(viewClass);
+    UINib *nib = [UINib nibWithNibName:viewName bundle:[NSBundle bundleForClass:viewClass]];
     if ([hostView isKindOfClass:[UITableView class]]) {
-        [(UITableView *)hostView registerNib:nib forCellReuseIdentifier:cellName];
+        [(UITableView *)hostView registerNib:nib forCellReuseIdentifier:viewName];
     }
     else if ([hostView isKindOfClass:[UICollectionView class]]) {
-        [(UICollectionView *)hostView registerNib:nib forCellWithReuseIdentifier:cellName];
+        [(UICollectionView *)hostView registerNib:nib forCellWithReuseIdentifier:viewName];
     }
 }
 
 /*
  *  注册ReusableView 到 hostView
  */
-void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kind, NSString *viewName)
+void RegisterHostViewReusableView(__kindof UIScrollView *hostView, NSString *kind, Class viewClass)
 {
+    NSString *viewName = NSStringFromClass(viewClass);
     if ([hostView isKindOfClass:[UITableView class]]) {
-        [(UITableView *)hostView registerClass:NSClassFromString(viewName) forHeaderFooterViewReuseIdentifier:viewName];
+        [(UITableView *)hostView registerClass:viewClass forHeaderFooterViewReuseIdentifier:viewName];
     }
     else if ([hostView isKindOfClass:[UICollectionView class]]) {
-        [(UICollectionView *)hostView registerClass:NSClassFromString(viewName) forSupplementaryViewOfKind:kind withReuseIdentifier:viewName];
+        [(UICollectionView *)hostView registerClass:viewClass forSupplementaryViewOfKind:kind withReuseIdentifier:viewName];
     }
 }
 
 /*
  *  注册XibReusableView 到 hostView
  */
-void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *kind, NSString *viewName)
+void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *kind, Class viewClass)
 {
-    UINib *nib = [UINib nibWithNibName:viewName bundle:[NSBundle bundleForClass:NSClassFromString(viewName)]];
+    NSString *viewName = NSStringFromClass(viewClass);
+    UINib *nib = [UINib nibWithNibName:viewName bundle:[NSBundle bundleForClass:viewClass]];
     if ([hostView isKindOfClass:[UITableView class]]) {
         [(UITableView *)hostView registerNib:nib forHeaderFooterViewReuseIdentifier:viewName];
     }
@@ -68,7 +74,12 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
     }
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-property-synthesis"
+
 @implementation ZZFLEXAngel
+
+#pragma clang diagnostic pop
 
 - (instancetype)initWithHostView:(__kindof UIScrollView *)hostView
 {
@@ -92,14 +103,14 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
     if ([_hostView isKindOfClass:[UITableView class]]) {
         [(UITableView *)_hostView setDataSource:self];
         [(UITableView *)_hostView setDelegate:self];
-        RegisterHostViewCell(_hostView, @"ZZFLEXTableViewEmptyCell");
+        RegisterHostViewCell(_hostView, [ZZFLEXTableViewEmptyCell class]);
     }
     else if ([_hostView isKindOfClass:[UICollectionView class]]) {
         [(UICollectionView *)_hostView setDataSource:self];
         [(UICollectionView *)_hostView setDelegate:self];
-        RegisterHostViewCell(_hostView, @"ZZFlexibleLayoutSeperatorCell");        // 注册空白cell
-        RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionHeader, @"ZZFlexibleLayoutEmptyHeaderFooterView");
-        RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionFooter, @"ZZFlexibleLayoutEmptyHeaderFooterView");
+        RegisterHostViewCell(_hostView, [ZZFlexibleLayoutSeperatorCell class]);        // 注册空白cell
+        RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionHeader, [ZZFlexibleLayoutEmptyHeaderFooterView class]);
+        RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionFooter, [ZZFlexibleLayoutEmptyHeaderFooterView class]);
     }
 }
 
@@ -201,7 +212,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 
 #pragma mark - # Section操作
 /// 添加section
-- (ZZFLEXChainSectionModel *(^)(NSInteger tag))addSection
+- (ZZFLEXAngelSectionChainModel *(^)(NSInteger tag))addSection
 {
     return ^(NSInteger tag){
         if (self.hasSection(tag)) {
@@ -212,12 +223,12 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
         sectionModel.sectionTag = tag;
         
         [self.data addObject:sectionModel];
-        ZZFLEXChainSectionModel *chainSectionModel = [[ZZFLEXChainSectionModel alloc] initWithSectionModel:sectionModel];
+        ZZFLEXAngelSectionChainModel *chainSectionModel = [[ZZFLEXAngelSectionChainModel alloc] initWithSectionModel:sectionModel];
         return chainSectionModel;
     };
 }
 
-- (ZZFLEXChainSectionInsertModel *(^)(NSInteger tag))insertSection
+- (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger tag))insertSection
 {
     return ^(NSInteger tag){
         if (self.hasSection(tag)) {
@@ -227,23 +238,23 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
         ZZFlexibleLayoutSectionModel *sectionModel = [[ZZFlexibleLayoutSectionModel alloc] init];
         sectionModel.sectionTag = tag;
         
-        ZZFLEXChainSectionInsertModel *chainSectionModel = [[ZZFLEXChainSectionInsertModel alloc] initWithSectionModel:sectionModel listData:self.data];
+        ZZFLEXAngelSectionInsertChainModel *chainSectionModel = [[ZZFLEXAngelSectionInsertChainModel alloc] initWithSectionModel:sectionModel listData:self.data];
         return chainSectionModel;
     };
 }
 
 /// 获取section
-- (ZZFLEXChainSectionEditModel *(^)(NSInteger tag))sectionForTag
+- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))sectionForTag
 {
     return ^(NSInteger tag){
         ZZFlexibleLayoutSectionModel *sectionModel = nil;
         for (sectionModel in self.data) {
             if (sectionModel.sectionTag == tag) {
-                ZZFLEXChainSectionEditModel *chainSectionModel = [[ZZFLEXChainSectionEditModel alloc] initWithSectionModel:sectionModel];
+                ZZFLEXAngelSectionEditChainModel *chainSectionModel = [[ZZFLEXAngelSectionEditChainModel alloc] initWithSectionModel:sectionModel];
                 return chainSectionModel;
             }
         }
-        return [[ZZFLEXChainSectionEditModel alloc] initWithSectionModel:nil];
+        return [[ZZFLEXAngelSectionEditChainModel alloc] initWithSectionModel:nil];
     };
 }
 
@@ -271,205 +282,198 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 
 #pragma mark - # Section View 操作
 //MARK: Header
-- (ZZFLEXChainViewModel *(^)(NSString *className))setHeader
+- (ZZFLEXAngelViewChainModel *(^)(Class viewClass))setHeader
 {
-    return ^(NSString *className) {
-        return [self _setHeaderWithClassName:className xib:NO];
+    return ^(Class viewClass) {
+        return [self _setHeaderWithViewClass:viewClass xib:NO];
     };
 }
-- (ZZFLEXChainViewModel *(^)(NSString *className))setXibHeader
+- (ZZFLEXAngelViewChainModel *(^)(Class viewClass))setXibHeader
 {
-    return ^(NSString *className) {
-        return [self _setHeaderWithClassName:className xib:YES];
+    return ^(Class viewClass) {
+        return [self _setHeaderWithViewClass:viewClass xib:YES];
     };
 }
-- (ZZFLEXChainViewModel *)_setHeaderWithClassName:(NSString *)className xib:(BOOL)xib
+- (ZZFLEXAngelViewChainModel *)_setHeaderWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
     ZZFlexibleLayoutViewModel *viewModel;
-    if (className) {
-        xib ? RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionHeader, className) : RegisterHostViewReusableView(self.hostView, UICollectionElementKindSectionHeader, className);
-        viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-        viewModel.className = className;
+    if (viewClass) {
+        xib ? RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionHeader, viewClass) : RegisterHostViewReusableView(self.hostView, UICollectionElementKindSectionHeader, viewClass);
+        viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithViewClass:viewClass];
     }
-    ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeHeader];
+    ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeHeader];
     return chainViewModel;
 }
 
 //MARK: Footer
-- (ZZFLEXChainViewModel *(^)(NSString *className))setFooter
+- (ZZFLEXAngelViewChainModel *(^)(Class viewClass))setFooter
 {
-    return ^(NSString *className) {
-        return [self _setFotterWithClassName:className xib:NO];
+    return ^(Class viewClass) {
+        return [self _setFotterWithViewClass:viewClass xib:NO];
     };
 }
-- (ZZFLEXChainViewModel *(^)(NSString *className))setXibFooter
+- (ZZFLEXAngelViewChainModel *(^)(Class viewClass))setXibFooter
 {
-    return ^(NSString *className) {
-        return [self _setFotterWithClassName:className xib:YES];
+    return ^(Class viewClass) {
+        return [self _setFotterWithViewClass:viewClass xib:YES];
     };
 }
-- (ZZFLEXChainViewModel *)_setFotterWithClassName:(NSString *)className xib:(BOOL)xib
+- (ZZFLEXAngelViewChainModel *)_setFotterWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
     ZZFlexibleLayoutViewModel *viewModel;
-    if (className) {
-        xib ? RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionFooter, className) : RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionFooter, className);
-        viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-        viewModel.className = className;
+    if (viewClass) {
+        xib ? RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionFooter, viewClass) : RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionFooter, viewClass);
+        viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithViewClass:viewClass];
     }
-    ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeFooter];
+    ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeFooter];
     return chainViewModel;
 }
 
 #pragma mark - # Cell 操作
 /// 添加cell
-- (ZZFLEXChainViewModel *(^)(NSString *className))addCell
+- (ZZFLEXAngelViewChainModel *(^)(Class viewClass))addCell
 {
-    return ^(NSString *className) {
-        return [self _addCellWithClassName:className xib:NO];
+    return ^(Class viewClass) {
+        return [self _addCellWithViewClass:viewClass xib:NO];
     };
 }
 /// 添加Xib Cell
-- (ZZFLEXChainViewModel *(^)(NSString *className))addXibCell
+- (ZZFLEXAngelViewChainModel *(^)(Class viewClass))addXibCell
 {
-    return ^(NSString *className) {
-        return [self _addCellWithClassName:className xib:YES];
+    return ^(Class viewClass) {
+        return [self _addCellWithViewClass:viewClass xib:YES];
     };
 }
-- (ZZFLEXChainViewModel *)_addCellWithClassName:(NSString *)className xib:(BOOL)xib
+- (ZZFLEXAngelViewChainModel *)_addCellWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
-    xib ? RegisterHostViewXibCell(self.hostView, className) : RegisterHostViewCell(self.hostView, className);
-    ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-    viewModel.className = className;
-    ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
+    xib ? RegisterHostViewXibCell(self.hostView, viewClass) : RegisterHostViewCell(self.hostView, viewClass);
+    ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithViewClass:viewClass];
+    ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeCell];
     return chainViewModel;
 }
 
 /// 批量添加Cell
-- (ZZFLEXChainViewBatchModel *(^)(NSString *className))addCells
+- (ZZFLEXAngelViewBatchChainModel *(^)(Class viewClass))addCells
 {
-    return ^(NSString *className) {
-        return [self _addCellsWithClassName:className xib:NO];
+    return ^(Class viewClass) {
+        return [self _addCellsWithViewClass:viewClass xib:NO];
     };
 }
 /// 批量添加Xib Cell
-- (ZZFLEXChainViewBatchModel *(^)(NSString *className))addXibCells
+- (ZZFLEXAngelViewBatchChainModel *(^)(Class viewClass))addXibCells
 {
-    return ^(NSString *className) {
-        return [self _addCellsWithClassName:className xib:YES];
+    return ^(Class viewClass) {
+        return [self _addCellsWithViewClass:viewClass xib:YES];
     };
 }
-- (ZZFLEXChainViewBatchModel *)_addCellsWithClassName:(NSString *)className xib:(BOOL)xib
+- (ZZFLEXAngelViewBatchChainModel *)_addCellsWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
-    xib ? RegisterHostViewXibCell(self.hostView, className) : RegisterHostViewCell(self.hostView, className);
-    ZZFLEXChainViewBatchModel *viewModel = [[ZZFLEXChainViewBatchModel alloc] initWithClassName:className listData:self.data];
+    xib ? RegisterHostViewXibCell(self.hostView, viewClass) : RegisterHostViewCell(self.hostView, viewClass);
+    ZZFLEXAngelViewBatchChainModel *viewModel = [[ZZFLEXAngelViewBatchChainModel alloc] initWithViewClass:viewClass listData:self.data];
     return viewModel;
 }
 
 /// 添加空白cell
-- (ZZFLEXChainViewModel *(^)(CGSize size, UIColor *color))addSeperatorCell;
+- (ZZFLEXAngelViewChainModel *(^)(CGSize size, UIColor *color))addSeperatorCell;
 {
-    @weakify(self);
     return ^(CGSize size, UIColor *color) {
-        @strongify(self);
-        ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-        viewModel.className = [self.hostView isKindOfClass:[UITableView class]] ? NSStringFromClass([ZZFLEXTableViewEmptyCell class]) : NSStringFromClass([ZZFlexibleLayoutSeperatorCell class]);
-        viewModel.dataModel = [[ZZFlexibleLayoutSeperatorModel alloc] initWithSize:size andColor:color];
-        ZZFLEXChainViewModel *chainViewModel = [[ZZFLEXChainViewModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
+        Class viewClass = [self.hostView isKindOfClass:[UITableView class]] ? [ZZFLEXTableViewEmptyCell class] : [ZZFlexibleLayoutSeperatorCell class];
+        ZZFlexibleLayoutSeperatorModel *dataModel = [[ZZFlexibleLayoutSeperatorModel alloc] initWithSize:size andColor:color];
+        ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithViewClass:viewClass andDataModel:dataModel];
+        ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeCell];
         return chainViewModel;
     };
 }
 
 /// 插入XibCell
-- (ZZFLEXChainViewInsertModel *(^)(NSString *className))insertCell
+- (ZZFLEXAngelViewInsertChainModel *(^)(Class viewClass))insertCell
 {
-    return ^(NSString *className) {
-        return [self _insertCellWithClassName:className xib:NO];
+    return ^(Class viewClass) {
+        return [self _insertCellWithViewClass:viewClass xib:NO];
     };
 }
 /// 插入XibCell
-- (ZZFLEXChainViewInsertModel *(^)(NSString *className))insertXibCell
+- (ZZFLEXAngelViewInsertChainModel *(^)(Class viewClass))insertXibCell
 {
-    return ^(NSString *className) {
-        return [self _insertCellWithClassName:className xib:YES];
+    return ^(Class viewClass) {
+        return [self _insertCellWithViewClass:viewClass xib:YES];
     };
 }
-- (ZZFLEXChainViewInsertModel *)_insertCellWithClassName:(NSString *)className xib:(BOOL)xib
+- (ZZFLEXAngelViewInsertChainModel *)_insertCellWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
-    xib ? RegisterHostViewXibCell(self.hostView, className) : RegisterHostViewCell(self.hostView, className);
-    ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] init];
-    viewModel.className = className;
-    ZZFLEXChainViewInsertModel *chainViewModel = [[ZZFLEXChainViewInsertModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXChainViewTypeCell];
+    xib ? RegisterHostViewXibCell(self.hostView, viewClass) : RegisterHostViewCell(self.hostView, viewClass);
+    ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithViewClass:viewClass];
+    ZZFLEXAngelViewInsertChainModel *chainViewModel = [[ZZFLEXAngelViewInsertChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeCell];
     return chainViewModel;
 }
 
 /// 批量插入cells
-- (ZZFLEXChainViewBatchInsertModel *(^)(NSString *className))insertCells
+- (ZZFLEXAngelViewBatchInsertChainModel *(^)(Class viewClass))insertCells
 {
-    return ^(NSString *className) {
-        return [self _insertCellsWithClassName:className xib:NO];
+    return ^(Class viewClass) {
+        return [self _insertCellsWithViewClass:viewClass xib:NO];
     };
 }
-- (ZZFLEXChainViewBatchInsertModel *(^)(NSString *className))insertXibCells
+- (ZZFLEXAngelViewBatchInsertChainModel *(^)(Class viewClass))insertXibCells
 {
-    return ^(NSString *className) {
-        return [self _insertCellsWithClassName:className xib:YES];
+    return ^(Class viewClass) {
+        return [self _insertCellsWithViewClass:viewClass xib:YES];
     };
 }
-- (ZZFLEXChainViewBatchInsertModel *)_insertCellsWithClassName:(NSString *)className xib:(BOOL)xib
+- (ZZFLEXAngelViewBatchInsertChainModel *)_insertCellsWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
-    xib ? RegisterHostViewXibCell(self.hostView, className) : RegisterHostViewCell(self.hostView, className);
-    ZZFLEXChainViewBatchInsertModel *viewModel = [[ZZFLEXChainViewBatchInsertModel alloc] initWithClassName:className listData:self.data];
+    xib ? RegisterHostViewXibCell(self.hostView, viewClass) : RegisterHostViewCell(self.hostView, viewClass);
+    ZZFLEXAngelViewBatchInsertChainModel *viewModel = [[ZZFLEXAngelViewBatchInsertChainModel alloc] initWithViewClass:viewClass listData:self.data];
     return viewModel;
 }
 
-
 /// 删除cell
-- (ZZFLEXChainViewEditModel *)deleteCell
+- (ZZFLEXAngelViewEditChainModel *)deleteCell
 {
-    ZZFLEXChainViewEditModel *deleteModel = [[ZZFLEXChainViewEditModel alloc] initWithType:ZZFLEXChainViewEditTypeDelete andListData:self.data];
+    ZZFLEXAngelViewEditChainModel *deleteModel = [[ZZFLEXAngelViewEditChainModel alloc] initWithType:ZZFLEXAngelViewEditTypeDelete andListData:self.data];
     return deleteModel;
 }
 
 /// 批量删除cell
-- (ZZFLEXChainViewBatchEditModel *)deleteCells
+- (ZZFLEXAngelViewBatchEditChainModel *)deleteCells
 {
-    ZZFLEXChainViewBatchEditModel *deleteModel = [[ZZFLEXChainViewBatchEditModel alloc] initWithType:ZZFLEXChainViewEditTypeDelete andListData:self.data];
+    ZZFLEXAngelViewBatchEditChainModel *deleteModel = [[ZZFLEXAngelViewBatchEditChainModel alloc] initWithType:ZZFLEXAngelViewEditTypeDelete andListData:self.data];
     return deleteModel;
 }
 
 /// 更新cell
-- (ZZFLEXChainViewEditModel *)updateCell
+- (ZZFLEXAngelViewEditChainModel *)updateCell
 {
-    ZZFLEXChainViewEditModel *deleteModel = [[ZZFLEXChainViewEditModel alloc] initWithType:ZZFLEXChainViewEditTypeUpdate andListData:self.data];
+    ZZFLEXAngelViewEditChainModel *deleteModel = [[ZZFLEXAngelViewEditChainModel alloc] initWithType:ZZFLEXAngelViewEditTypeUpdate andListData:self.data];
     return deleteModel;
 }
 
 /// 批量更新cell
-- (ZZFLEXChainViewBatchEditModel *)updateCells
+- (ZZFLEXAngelViewBatchEditChainModel *)updateCells
 {
-    ZZFLEXChainViewBatchEditModel *deleteModel = [[ZZFLEXChainViewBatchEditModel alloc] initWithType:ZZFLEXChainViewEditTypeUpdate andListData:self.data];
+    ZZFLEXAngelViewBatchEditChainModel *deleteModel = [[ZZFLEXAngelViewBatchEditChainModel alloc] initWithType:ZZFLEXAngelViewEditTypeUpdate andListData:self.data];
     return deleteModel;
 }
 
 /// 包含cell
-- (ZZFLEXChainViewEditModel *)hasCell
+- (ZZFLEXAngelViewEditChainModel *)hasCell
 {
-    ZZFLEXChainViewEditModel *deleteModel = [[ZZFLEXChainViewEditModel alloc] initWithType:ZZFLEXChainViewEditTypeHas andListData:self.data];
+    ZZFLEXAngelViewEditChainModel *deleteModel = [[ZZFLEXAngelViewEditChainModel alloc] initWithType:ZZFLEXAngelViewEditTypeHas andListData:self.data];
     return deleteModel;
 }
 
 #pragma mark - # DataModel 数据源获取
 /// 数据源获取
-- (ZZFLEXChainViewEditModel *)dataModel
+- (ZZFLEXAngelViewEditChainModel *)dataModel
 {
-    ZZFLEXChainViewEditModel *dataModel = [[ZZFLEXChainViewEditModel alloc] initWithType:ZZFLEXChainViewEditTypeDataModel andListData:self.data];
+    ZZFLEXAngelViewEditChainModel *dataModel = [[ZZFLEXAngelViewEditChainModel alloc] initWithType:ZZFLEXAngelViewEditTypeDataModel andListData:self.data];
     return dataModel;
 }
 
 /// 批量获取数据源
-- (ZZFLEXChainViewBatchEditModel *)dataModelArray
+- (ZZFLEXAngelViewBatchEditChainModel *)dataModelArray
 {
-    ZZFLEXChainViewBatchEditModel *dataModel = [[ZZFLEXChainViewBatchEditModel alloc] initWithType:ZZFLEXChainViewEditTypeDataModel andListData:self.data];
+    ZZFLEXAngelViewBatchEditChainModel *dataModel = [[ZZFLEXAngelViewBatchEditChainModel alloc] initWithType:ZZFLEXAngelViewEditTypeDataModel andListData:self.data];
     return dataModel;
 }
 

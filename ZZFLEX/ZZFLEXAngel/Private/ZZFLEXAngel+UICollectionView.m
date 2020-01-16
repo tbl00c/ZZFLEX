@@ -100,10 +100,21 @@
     return sectionModel.sectionInsets;
 }
 
+#pragma mark - # ZZFlexibleLayoutFlowLayout
 - (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout colorForSectionAtIndex:(NSInteger)section
 {
     ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
     return sectionModel.backgroundColor ? sectionModel.backgroundColor : collectionView.backgroundColor;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionHeaderPinToVisibleBounds:(NSInteger)section
+{
+    return NO;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionFooterPinToVisibleBounds:(NSInteger)section
+{
+    return NO;
 }
 
 @end

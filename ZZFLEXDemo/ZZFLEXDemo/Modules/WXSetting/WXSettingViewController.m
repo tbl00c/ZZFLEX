@@ -8,6 +8,8 @@
 
 #import "WXSettingViewController.h"
 #import <ZZFLEX/ZZFLEX.h>
+#import "WXSettingItemCell.h"
+#import "WXSettingButtonCell.h"
 
 @implementation WXSettingViewController
 
@@ -16,7 +18,7 @@
     [super loadView];
     [self setTitle:@"设置"];
 
-    self.collectionView.zz_make
+    self.collectionView.zz_setup
     .backgroundColor([UIColor colorGrayBG])
     .masonry(^ (MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
@@ -39,37 +41,37 @@
     {
         NSInteger sectionType = 0;
         self.addSection(sectionType);
-        self.addXibCell(@"WXSettingItemCell").toSection(sectionType).withDataModel(@"账号与安全");
+        self.addXibCell([WXSettingItemCell class]).toSection(sectionType).withDataModel(@"账号与安全");
     }
     
     {
         NSInteger sectionType = 1;
         self.addSection(sectionType).sectionInsets(UIEdgeInsetsMake(edgeTop, 0, 0, 0));
-        self.addCells(@"WXSettingItemCell").toSection(sectionType).withDataModelArray(@[@"新消息通知", @"隐私", @"通用"]);
+        self.addXibCells([WXSettingItemCell class]).toSection(sectionType).withDataModelArray(@[@"新消息通知", @"隐私", @"通用"]);
     }
     
     {
         NSInteger sectionType = 2;
         self.addSection(sectionType).sectionInsets(UIEdgeInsetsMake(edgeTop, 0, 0, 0));
-        self.addCells(@"WXSettingItemCell").toSection(sectionType).withDataModelArray(@[@"帮助与反馈", @"关于微信"]);
+        self.addXibCells([WXSettingItemCell class]).toSection(sectionType).withDataModelArray(@[@"帮助与反馈", @"关于微信"]);
     }
     
     {
         NSInteger sectionType = 3;
         self.addSection(sectionType).sectionInsets(UIEdgeInsetsMake(edgeTop, 0, 0, 0));
-        self.addXibCell(@"WXSettingItemCell").toSection(sectionType).withDataModel(@"插件");
+        self.addXibCell([WXSettingItemCell class]).toSection(sectionType).withDataModel(@"插件");
     }
     
     {
         NSInteger sectionType = 4;
         self.addSection(sectionType).sectionInsets(UIEdgeInsetsMake(edgeTop, 0, 0, 0));
-        self.addXibCell(@"WXSettingButtonCell").toSection(sectionType).withDataModel(@"切换账号");
+        self.addXibCell([WXSettingButtonCell class]).toSection(sectionType).withDataModel(@"切换账号");
     }
     
     {
         NSInteger sectionType = 5;
         self.addSection(sectionType).sectionInsets(UIEdgeInsetsMake(edgeTop, 0, 0, 0));
-        self.addXibCell(@"WXSettingButtonCell").toSection(sectionType).withDataModel(@"退出登录");
+        self.addXibCell([WXSettingButtonCell class]).toSection(sectionType).withDataModel(@"退出登录");
     }
     
     [self reloadView];

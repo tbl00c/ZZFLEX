@@ -36,8 +36,8 @@
     if ([itemView respondsToSelector:@selector(setViewEventAction:)]) {
         [itemView setViewEventAction:self.eventAction];
     }
-    if ([itemView respondsToSelector:@selector(viewIndexPath:sectionItemCount:)]) {
-        [itemView viewIndexPath:indexPath sectionItemCount:sectionCount];
+    if ([itemView respondsToSelector:@selector(onViewPositionUpdatedWithIndexPath:sectionItemCount:)]) {
+        [itemView onViewPositionUpdatedWithIndexPath:indexPath sectionItemCount:sectionCount];
     }
     [itemView setTag:self.viewTag];
     if (self.configAction) {

@@ -8,6 +8,7 @@
 
 #import "ZZFDLanguageSelectViewController.h"
 #import "ZZFDPlatformItemModel.h"
+#import "ZZFDPlatformItemCell.h"
 
 @interface ZZFDLanguageSelectViewController ()
 
@@ -69,10 +70,10 @@
     };
     
     self.addSection(0).sectionInsets(UIEdgeInsetsMake(15, 0, 0, 0));
-    self.addCell(@"ZZFDPlatformItemCell").toSection(0).withDataModel(self.allModel).selectedAction(selectedAction);
+    self.addCell([ZZFDPlatformItemCell class]).toSection(0).withDataModel(self.allModel).selectedAction(selectedAction);
     
     self.addSection(1).sectionInsets(UIEdgeInsetsMake(15, 0, 0, 0));
-    self.addCells(@"ZZFDPlatformItemCell").toSection(1).withDataModelArray(self.itemsArray).selectedAction(selectedAction);
+    self.addCells([ZZFDPlatformItemCell class]).toSection(1).withDataModelArray(self.itemsArray).selectedAction(selectedAction);
     
     [self reloadView];
 }

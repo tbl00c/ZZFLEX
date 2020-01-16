@@ -22,8 +22,8 @@
 {
     [super setViewDataModel:dataModel];
     
-    self.minTF.zz_make.text(dataModel.value).placeholder(dataModel.placeholderModel);
-    self.maxTF.zz_make.text(dataModel.value1).placeholder(dataModel.placeholderModel1);
+    self.minTF.zz_setup.text(dataModel.value).placeholder(dataModel.placeholderModel);
+    self.maxTF.zz_setup.text(dataModel.value1).placeholder(dataModel.placeholderModel1);
 }
 
 - (instancetype)initWithFrame:(CGRect)frame

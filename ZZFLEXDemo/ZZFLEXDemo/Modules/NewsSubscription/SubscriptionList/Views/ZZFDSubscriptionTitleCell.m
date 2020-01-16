@@ -36,7 +36,7 @@
     [self setMenuItem:dataModel];
 }
 
-- (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
     self.addSeparator(ZZSeparatorPositionTop);
     self.addSeparator(ZZSeparatorPositionBottom);

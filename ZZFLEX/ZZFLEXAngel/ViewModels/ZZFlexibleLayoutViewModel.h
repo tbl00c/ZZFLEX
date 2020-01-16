@@ -17,9 +17,9 @@
 @interface ZZFlexibleLayoutViewModel : NSObject
 
 /// view/cell类名
-@property (nonatomic, strong) NSString *className;
+@property (nonatomic, strong, readonly) NSString *className;
 /// view/cell类
-@property (nonatomic, assign, readonly) Class viewClass;
+@property (nonatomic, assign) Class viewClass;
 
 /// view/cell的数据Model
 @property (nonatomic, strong) id dataModel;
@@ -42,11 +42,16 @@
 @property (nonatomic, copy) void (^configAction)(__kindof UIView *itemView, id dataModel);
 
 /**
+*  根据类名初始化viewModel
+*/
+- (instancetype)initWithViewClass:(Class)viewClass;
+
+/**
  *  根据类名和数据源初始化viewModel
  */
-- (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel;
-- (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewTag:(NSInteger)viewTag;
-- (id)initWithClassName:(NSString *)className andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag;
+- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel;
+- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel viewTag:(NSInteger)viewTag;
+- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag;
 
 /**
  *  重新计算视图大小

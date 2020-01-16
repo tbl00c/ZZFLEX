@@ -27,7 +27,7 @@
     [self.titleLabel setText:dataModel];
 }
 
-- (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
     if (indexPath.row == 0) {
         self.addSeparator(ZZSeparatorPositionTop);

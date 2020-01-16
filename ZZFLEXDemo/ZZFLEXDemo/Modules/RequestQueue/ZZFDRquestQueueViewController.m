@@ -11,6 +11,7 @@
 #import "ZZFDRQFailedCell.h"
 #import "ZZFDRQTitleCell.h"
 #import "ZZFDRQNavTilteView.h"
+#import "ZZFDRQSuccessCell.h"
 
 #define     RQVC_HEIGHT_TEXTVIEW            MIN(200, SCREEN_HEIGHT * 0.35)
 
@@ -79,7 +80,7 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     }];
 
     UILabel *tipLabel = [[UILabel alloc] init];
-    tipLabel.zz_make.frame(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBAR_HEIGHT - STATUSBAR_HEIGHT - RQVC_HEIGHT_TEXTVIEW)).userInteractionEnabled(YES)
+    tipLabel.zz_setup.frame(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBAR_HEIGHT - STATUSBAR_HEIGHT - RQVC_HEIGHT_TEXTVIEW)).userInteractionEnabled(YES)
     .text(@"点击开始\n队列请求模拟").numberOfLines(0).textAlignment(NSTextAlignmentCenter).textColor([UIColor grayColor]);
     [self.collectionView showTipView:tipLabel retryAction:^(id userData) {
         @strongify(self);
@@ -153,10 +154,10 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
     @weakify(self);
     if (success) {
         NSString *title = [NSString stringWithFormat:@"模块%ld", type];
-        self.angel.addCell(@"ZZFDRQTitleCell").toSection(type).withDataModel([ZZFDRQTitleModel createModelWithTitle:title]).eventAction(^ id(NSInteger eventType, ZZFDRQFailedModel *data) {
+        self.angel.addCell([ZZFDRQTitleCell class]).toSection(type).withDataModel([ZZFDRQTitleModel createModelWithTitle:title]).eventAction(^ id(NSInteger eventType, ZZFDRQFailedModel *data) {
             @strongify(self);
             self.angel.sectionForTag(type).deleteCellByTag(10001001);
-            self.angel.addCell(@"ZZFDRQFailedCell").toSection(type).withDataModel([ZZFDRQFailedModel createModelWithLoading:YES]);
+            self.angel.addCell([ZZFDRQFailedCell class]).toSection(type).withDataModel([ZZFDRQFailedModel createModelWithLoading:YES]);
             [self.collectionView reloadData];
                         
             [self p_addLog:@"=> 开始局部刷新" color:[UIColor whiteColor]];
@@ -164,10 +165,10 @@ typedef NS_ENUM(NSInteger, ZZFDRquestQueueVCSectionType) {
 
             return nil;
         });
-        self.angel.addCell(@"ZZFDRQSuccessCell").toSection(type).withDataModel(data).viewTag(10001001);
+        self.angel.addCell([ZZFDRQSuccessCell class]).toSection(type).withDataModel(data).viewTag(10001001);
     }
     else {
-        self.angel.addCell(@"ZZFDRQFailedCell").toSection(type).withDataModel([ZZFDRQFailedModel createModelWithLoading:NO]).eventAction(^ id(NSInteger eventType, ZZFDRQFailedModel *data) {
+        self.angel.addCell([ZZFDRQFailedCell class]).toSection(type).withDataModel([ZZFDRQFailedModel createModelWithLoading:NO]).eventAction(^ id(NSInteger eventType, ZZFDRQFailedModel *data) {
             @strongify(self);
             [self p_addLog:@"=> 开始局部刷新" color:[UIColor whiteColor]];
             [[self createRequestModelWithType:type] executeRequestMethod];

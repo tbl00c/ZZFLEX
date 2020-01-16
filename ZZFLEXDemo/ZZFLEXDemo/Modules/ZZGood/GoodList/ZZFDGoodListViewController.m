@@ -100,7 +100,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
         self.addSection(ZZFDGoodListSectionTypeGood);
     }
     // 批量添加cell
-    self.addCells(NSStringFromClass([ZZFDGoodListCell class])).toSection(ZZFDGoodListSectionTypeGood).withDataModelArray(data).eventAction(^ id(ZZFDGoodListCellEventType eventType, id data) {
+    self.addCells([ZZFDGoodListCell class]).toSection(ZZFDGoodListSectionTypeGood).withDataModelArray(data).eventAction(^ id(ZZFDGoodListCellEventType eventType, id data) {
         @strongify(self);
         if (!self) {
             return nil;

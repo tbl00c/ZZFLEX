@@ -21,7 +21,7 @@
 1、新增已有列表页不修改cell代码、迁移至ZZFLEX列表页方案
 
 ```
-self.addCells(@"ZZFDAlbumCell").toSection(sectionType).withDataModelArray(data)
+self.addCells([ZZFDAlbumCell").toSection(sectionType).withDataModelArray(data)
 .configAction(^(ZZFDAlbumCell *cell, ZZFDAlbumModel *model) {   // 配置cell，等价于cellForRowAtIndexPath时的配置逻辑
     [cell setModel:model];
 })

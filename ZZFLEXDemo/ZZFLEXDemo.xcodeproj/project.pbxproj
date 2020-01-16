@@ -63,6 +63,12 @@
 		C2951B34202609F100A56643 /* TLSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2951B33202609F100A56643 /* TLSearchController.m */; };
 		C2951B3720260C2500A56643 /* ZZFDRQNavTilteView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2951B3620260C2500A56643 /* ZZFDRQNavTilteView.m */; };
 		C29D37141FE7AFBA007236D8 /* ZZFDCateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */; };
+		C2AC46B523D040F100EDA1A5 /* WXMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC46AE23D040F100EDA1A5 /* WXMessage.m */; };
+		C2AC46B623D040F100EDA1A5 /* WXChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC46B023D040F100EDA1A5 /* WXChatViewController.m */; };
+		C2AC46B723D040F100EDA1A5 /* WXChatTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC46B223D040F100EDA1A5 /* WXChatTextMessageCell.m */; };
+		C2AC46C023D0414C00EDA1A5 /* WXUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC46BA23D0414C00EDA1A5 /* WXUserViewController.m */; };
+		C2AC46C123D0414C00EDA1A5 /* WXUserHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC46BC23D0414C00EDA1A5 /* WXUserHeaderCell.m */; };
+		C2AC46C223D0414C00EDA1A5 /* WCUserButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC46BD23D0414C00EDA1A5 /* WCUserButtonCell.m */; };
 		C2AC73311FE516DA00DABA11 /* ZZFDMainTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73301FE516DA00DABA11 /* ZZFDMainTitleView.m */; };
 		C2AC73371FE51FD400DABA11 /* ZZFDMainSectionTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC73361FE51FD400DABA11 /* ZZFDMainSectionTitleView.m */; };
 		C2AC94EA22681E150094366C /* WXSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AC94E922681E150094366C /* WXSettingViewController.m */; };
@@ -206,6 +212,18 @@
 		C2951B3620260C2500A56643 /* ZZFDRQNavTilteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDRQNavTilteView.m; sourceTree = "<group>"; };
 		C29D37121FE7AFBA007236D8 /* ZZFDCateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDCateViewController.h; sourceTree = "<group>"; };
 		C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDCateViewController.m; sourceTree = "<group>"; };
+		C2AC46AE23D040F100EDA1A5 /* WXMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMessage.m; sourceTree = "<group>"; };
+		C2AC46AF23D040F100EDA1A5 /* WXMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMessage.h; sourceTree = "<group>"; };
+		C2AC46B023D040F100EDA1A5 /* WXChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXChatViewController.m; sourceTree = "<group>"; };
+		C2AC46B223D040F100EDA1A5 /* WXChatTextMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXChatTextMessageCell.m; sourceTree = "<group>"; };
+		C2AC46B323D040F100EDA1A5 /* WXChatTextMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXChatTextMessageCell.h; sourceTree = "<group>"; };
+		C2AC46B423D040F100EDA1A5 /* WXChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXChatViewController.h; sourceTree = "<group>"; };
+		C2AC46B923D0414C00EDA1A5 /* WXUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserViewController.h; sourceTree = "<group>"; };
+		C2AC46BA23D0414C00EDA1A5 /* WXUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserViewController.m; sourceTree = "<group>"; };
+		C2AC46BC23D0414C00EDA1A5 /* WXUserHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserHeaderCell.m; sourceTree = "<group>"; };
+		C2AC46BD23D0414C00EDA1A5 /* WCUserButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCUserButtonCell.m; sourceTree = "<group>"; };
+		C2AC46BE23D0414C00EDA1A5 /* WCUserButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCUserButtonCell.h; sourceTree = "<group>"; };
+		C2AC46BF23D0414C00EDA1A5 /* WXUserHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserHeaderCell.h; sourceTree = "<group>"; };
 		C2AC732F1FE516DA00DABA11 /* ZZFDMainTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDMainTitleView.h; sourceTree = "<group>"; };
 		C2AC73301FE516DA00DABA11 /* ZZFDMainTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDMainTitleView.m; sourceTree = "<group>"; };
 		C2AC73351FE51FD400DABA11 /* ZZFDMainSectionTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDMainSectionTitleView.h; sourceTree = "<group>"; };
@@ -489,11 +507,9 @@
 		C27E9F4C1FCE609C0062C896 /* WXMine */ = {
 			isa = PBXGroup;
 			children = (
-				C27E9F621FCE61480062C896 /* Models */,
-				C27E9F551FCE60E70062C896 /* Views */,
-				C27E9F731FCE64C20062C896 /* Resource */,
-				C27E9F511FCE60E70062C896 /* TLMineViewController.h */,
-				C27E9F521FCE60E70062C896 /* TLMineViewController.m */,
+				C2AC46B823D0414C00EDA1A5 /* WXUserViewController */,
+				C2AC46AC23D040F100EDA1A5 /* WXChatViewController */,
+				C2AC46AB23D040D900EDA1A5 /* TLMineViewController */,
 			);
 			path = WXMine;
 			sourceTree = "<group>";
@@ -696,6 +712,68 @@
 				C29D37131FE7AFBA007236D8 /* ZZFDCateViewController.m */,
 			);
 			path = Cate;
+			sourceTree = "<group>";
+		};
+		C2AC46AB23D040D900EDA1A5 /* TLMineViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C27E9F621FCE61480062C896 /* Models */,
+				C27E9F551FCE60E70062C896 /* Views */,
+				C27E9F731FCE64C20062C896 /* Resource */,
+				C27E9F511FCE60E70062C896 /* TLMineViewController.h */,
+				C27E9F521FCE60E70062C896 /* TLMineViewController.m */,
+			);
+			path = TLMineViewController;
+			sourceTree = "<group>";
+		};
+		C2AC46AC23D040F100EDA1A5 /* WXChatViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C2AC46AD23D040F100EDA1A5 /* Models */,
+				C2AC46B123D040F100EDA1A5 /* Views */,
+				C2AC46B423D040F100EDA1A5 /* WXChatViewController.h */,
+				C2AC46B023D040F100EDA1A5 /* WXChatViewController.m */,
+			);
+			path = WXChatViewController;
+			sourceTree = "<group>";
+		};
+		C2AC46AD23D040F100EDA1A5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C2AC46AF23D040F100EDA1A5 /* WXMessage.h */,
+				C2AC46AE23D040F100EDA1A5 /* WXMessage.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C2AC46B123D040F100EDA1A5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C2AC46B323D040F100EDA1A5 /* WXChatTextMessageCell.h */,
+				C2AC46B223D040F100EDA1A5 /* WXChatTextMessageCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C2AC46B823D0414C00EDA1A5 /* WXUserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C2AC46BB23D0414C00EDA1A5 /* Views */,
+				C2AC46B923D0414C00EDA1A5 /* WXUserViewController.h */,
+				C2AC46BA23D0414C00EDA1A5 /* WXUserViewController.m */,
+			);
+			path = WXUserViewController;
+			sourceTree = "<group>";
+		};
+		C2AC46BB23D0414C00EDA1A5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C2AC46BE23D0414C00EDA1A5 /* WCUserButtonCell.h */,
+				C2AC46BD23D0414C00EDA1A5 /* WCUserButtonCell.m */,
+				C2AC46BF23D0414C00EDA1A5 /* WXUserHeaderCell.h */,
+				C2AC46BC23D0414C00EDA1A5 /* WXUserHeaderCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C2AC94E722681DEB0094366C /* WXSetting */ = {
@@ -1031,6 +1109,7 @@
 				C20CB02D202842170088276C /* ZZFDPlatformItemModel.m in Sources */,
 				C2951B2E202609C100A56643 /* TLContactsSearchResultViewController.m in Sources */,
 				C2F2F9892018A509003D53F7 /* ZZFDRQSuccessCell.m in Sources */,
+				C2AC46B523D040F100EDA1A5 /* WXMessage.m in Sources */,
 				C282D0C91FEA2B2600559705 /* ZZFDGoodUserCell.m in Sources */,
 				C27E9F6E1FCE61DF0062C896 /* TLBadge.m in Sources */,
 				C282D0BC1FEA14AD00559705 /* ZZFDGoodParamCell.m in Sources */,
@@ -1069,17 +1148,21 @@
 				C27E9F681FCE615F0062C896 /* TLMenuItemCell.m in Sources */,
 				C2DA6B642019C667005A747A /* ZZFDRQTitleCell.m in Sources */,
 				C282D0AE1FEA0C0700559705 /* ZZFDGoodReadCell.m in Sources */,
+				C2AC46B623D040F100EDA1A5 /* WXChatViewController.m in Sources */,
+				C2AC46C023D0414C00EDA1A5 /* WXUserViewController.m in Sources */,
 				C2F2F9822018A3C4003D53F7 /* ZZFDRquestQueueViewController.m in Sources */,
 				C282D0BF1FEA1BBE00559705 /* ZZFDGoodBigImageCell.m in Sources */,
 				C2951B34202609F100A56643 /* TLSearchController.m in Sources */,
 				C27E9F4D1FCE609C0062C896 /* ZZFDGoodDetailViewController.m in Sources */,
 				C2C93AD5202815CC001582C3 /* ZZFDSubscriptionCell.m in Sources */,
+				C2AC46C123D0414C00EDA1A5 /* WXUserHeaderCell.m in Sources */,
 				C2AC94FC226829AF0094366C /* WXSettingButtonCell.m in Sources */,
 				C2AC94F7226825230094366C /* WXSettingItemCell.m in Sources */,
 				C2F2F95720186DA8003D53F7 /* ZZFDCateModel.m in Sources */,
 				C2F2F95520186DA8003D53F7 /* ZZFDCateSectionView.m in Sources */,
 				C282D0AF1FEA0C0700559705 /* ZZFDGoodAreaCell.m in Sources */,
 				C27E9F6B1FCE61840062C896 /* TLUser.m in Sources */,
+				C2AC46B723D040F100EDA1A5 /* WXChatTextMessageCell.m in Sources */,
 				C2F2F96520188DA1003D53F7 /* TLContactsItemCell.m in Sources */,
 				C2F21C4E2241E2F300841F4C /* ZZFDAlbumCell.m in Sources */,
 				C20CB02A202841A40088276C /* ZZFDPlatformItemCell.m in Sources */,
@@ -1096,6 +1179,7 @@
 				C282D1091FEA5D9A00559705 /* ZZFDGoodCommitCell.m in Sources */,
 				C27E9F4E1FCE609C0062C896 /* ZZFDGoodListModel.m in Sources */,
 				C2F2F98D2018A53C003D53F7 /* ZZFDRQRequest.m in Sources */,
+				C2AC46C223D0414C00EDA1A5 /* WCUserButtonCell.m in Sources */,
 				C2C93AD220280EC7001582C3 /* ZZFDSubscriptionModel+Request.m in Sources */,
 				C2AC73311FE516DA00DABA11 /* ZZFDMainTitleView.m in Sources */,
 				C25C210B20275EBF003D3192 /* ZZFDTextFieldCell.m in Sources */,

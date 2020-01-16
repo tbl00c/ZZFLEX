@@ -22,7 +22,7 @@
 /// UIKit拓展声明
 #define     ZZFLEX_EX_INTERFACE(ZZView, ZZViewChainModelClass)   \
 @interface ZZView (ZZFLEX_EX)   \
-ZZFLEX_CHAIN_PROPERTY ZZViewChainModelClass *zz_make;    \
+ZZFLEX_CHAIN_PROPERTY ZZViewChainModelClass *zz_setup;    \
 + (ZZViewChainModelClass *(^)(NSInteger tag))zz_create;   \
 @end
 /// UIKit拓展实现
@@ -34,7 +34,7 @@ ZZFLEX_CHAIN_PROPERTY ZZViewChainModelClass *zz_make;    \
         return [[ZZViewChainModelClass alloc] initWithTag:tag andView:view];    \
     };\
 }\
-- (ZZViewChainModelClass *)zz_make {   \
+- (ZZViewChainModelClass *)zz_setup {   \
     return [[ZZViewChainModelClass alloc] initWithTag:self.tag andView:self];    \
 }   \
 @end

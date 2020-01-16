@@ -53,7 +53,7 @@ UIView+ZZFLEX是使用***Objective-C的泛型***实现的，可以无视继承�
 如需对控件的属性进行编辑，可以这样写：
 
 ```
-button.zz_make.frame(CGRectMake(0, 0, 100, 40)).title(@"hi").titleColor(@"how are u");
+button.zz_setup.frame(CGRectMake(0, 0, 100, 40)).title(@"hi").titleColor(@"how are u");
 ```
 
 如需单独创建一个控件，不添加到视图上：

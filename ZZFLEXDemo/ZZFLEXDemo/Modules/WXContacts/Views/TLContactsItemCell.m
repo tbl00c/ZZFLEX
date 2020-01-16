@@ -50,7 +50,7 @@ TLContactsItemModel *createContactsItemModelWithTag(NSInteger tag, NSString *pat
     [self setModel:dataModel];
 }
 
-- (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
     self.showSeperator = (indexPath.row != count - 1);
 }

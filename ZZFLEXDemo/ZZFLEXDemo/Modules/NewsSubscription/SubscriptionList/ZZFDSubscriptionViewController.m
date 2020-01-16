@@ -24,7 +24,7 @@
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
     [self setTitle:@"我的订阅"];
     
-    self.tableView.zz_make.tableFooterView([UIView new]).separatorStyle(UITableViewCellSeparatorStyleNone)
+    self.tableView.zz_setup.tableFooterView([UIView new]).separatorStyle(UITableViewCellSeparatorStyleNone)
     .estimatedRowHeight(0).estimatedSectionFooterHeight(0).estimatedSectionHeaderHeight(0);
     
     @weakify(self);

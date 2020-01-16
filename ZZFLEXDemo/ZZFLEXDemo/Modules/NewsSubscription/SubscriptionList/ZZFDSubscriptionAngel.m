@@ -8,9 +8,12 @@
 
 #import "ZZFDSubscriptionAngel.h"
 #import "ZZFLEXAngel+Private.h"
+#import "ZZFlexibleLayoutSectionModel.h"
 #import "ZZFDSubscriptionEditViewController.h"
 #import "ZZFDSubscriptionModel+Request.h"
 #import "TLMenuItem.h"
+#import "ZZFDSubscriptionTitleCell.h"
+#import "ZZFDSubscriptionCell.h"
 
 @interface ZZFDSubscriptionAngel ()
 
@@ -35,7 +38,7 @@
     
     self.addSection(ZZFDBillListVCSectionTypeAdd);
     self.addSeperatorCell(CGSizeMake(0, 15), [UIColor clearColor]).toSection(ZZFDBillListVCSectionTypeAdd);
-    self.addCell(@"ZZFDSubscriptionTitleCell").toSection(ZZFDBillListVCSectionTypeAdd).withDataModel(createMenuItem(@"add_icon", @"添加订阅")).selectedAction(^ (id model) {
+    self.addCell([ZZFDSubscriptionTitleCell class]).toSection(ZZFDBillListVCSectionTypeAdd).withDataModel(createMenuItem(@"add_icon", @"添加订阅")).selectedAction(^ (id model) {
         @strongify(self);
         ZZFDSubscriptionEditViewController *billEditVC = [[ZZFDSubscriptionEditViewController alloc] initWithSubModel:nil completeAction:^(ZZFDSubscriptionModel *subModel) {
             @strongify(self);
@@ -50,7 +53,7 @@
     
     self.addSection(ZZFDBillListVCSectionTypeItems);
     if (data.count > 0) {
-        self.addCells(@"ZZFDSubscriptionCell").toSection(ZZFDBillListVCSectionTypeItems).withDataModelArray(data).selectedAction(^ (ZZFDSubscriptionModel *model) {
+        self.addCells([ZZFDSubscriptionCell class]).toSection(ZZFDBillListVCSectionTypeItems).withDataModelArray(data).selectedAction(^ (ZZFDSubscriptionModel *model) {
             @strongify(self);
             ZZFDSubscriptionEditViewController *billEditVC = [[ZZFDSubscriptionEditViewController alloc] initWithSubModel:model.mutableCopy completeAction:^(ZZFDSubscriptionModel *subModel) {
                 @strongify(self);

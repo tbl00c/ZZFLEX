@@ -10,6 +10,7 @@
 #import "ZZFLEX.h"
 #import "TLContactsItemCell.h"
 #import "TLFriendHelper.h"
+#import "TLContactsHeaderView.h"
 
 @interface TLContactsSearchResultViewController ()
 
@@ -25,7 +26,7 @@
 {
     [super loadView];
     
-    self.tableView.zz_make.backgroundColor([UIColor colorGrayBG])
+    self.tableView.zz_setup.backgroundColor([UIColor colorGrayBG])
     .separatorStyle(UITableViewCellSeparatorStyleNone).tableFooterView([UIView new])
     .estimatedRowHeight(0).estimatedSectionFooterHeight(0).estimatedSectionHeaderHeight(0);
     
@@ -61,8 +62,8 @@
     self.tableViewAngel.clear();
     if (data.count > 0) {
         self.tableViewAngel.addSection(0);
-        self.tableViewAngel.setHeader(@"TLContactsHeaderView").toSection(0).withDataModel(@"联系人");
-        self.tableViewAngel.addCells(@"TLContactsItemCell").toSection(0).withDataModelArray(data).selectedAction(^ (TLContactsItemModel *model) {
+        self.tableViewAngel.setHeader([TLContactsHeaderView class]).toSection(0).withDataModel(@"联系人");
+        self.tableViewAngel.addCells([TLContactsItemCell class]).toSection(0).withDataModelArray(data).selectedAction(^ (TLContactsItemModel *model) {
             if (self.itemSelectedAction) {
                 self.itemSelectedAction(self, model.userInfo);
             }

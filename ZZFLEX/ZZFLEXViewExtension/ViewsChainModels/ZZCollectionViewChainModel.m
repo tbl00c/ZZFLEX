@@ -7,6 +7,7 @@
 //
 
 #import "ZZCollectionViewChainModel.h"
+#import "ZZFlexibleLayoutFlowLayout.h"
 
 #define     ZZFLEX_CHAIN_COLLECTIONVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZCollectionViewChainModel *, UICollectionView)
 #define     ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZCollectionViewChainModel *, UICollectionView)
@@ -39,4 +40,23 @@ ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollsToTop, BOOL)
 
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UICollectionView, ZZCollectionViewChainModel)
+@implementation UICollectionView (ZZFLEX_EX)
+
++ (ZZCollectionViewChainModel *(^)(NSInteger tag))zz_create
+{
+    return ^ZZCollectionViewChainModel *(NSInteger tag){
+        ZZFlexibleLayoutFlowLayout *layout = [[ZZFlexibleLayoutFlowLayout alloc] init];
+        layout.minimumInteritemSpacing = layout.minimumLineSpacing = 0;
+        layout.headerReferenceSize = layout.footerReferenceSize = CGSizeZero;
+        layout.sectionInset = UIEdgeInsetsZero;
+        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        return [[ZZCollectionViewChainModel alloc] initWithTag:tag andView:view];
+    };
+}
+
+- (ZZCollectionViewChainModel *)zz_setup
+{
+    return [[ZZCollectionViewChainModel alloc] initWithTag:self.tag andView:self];
+}
+
+@end

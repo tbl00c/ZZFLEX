@@ -33,7 +33,7 @@
     [super loadView];
     [self setTitle:LOCSTR(@"通讯录")];
     
-    self.tableView.zz_make.backgroundColor([UIColor colorGrayBG]).separatorStyle(UITableViewCellSeparatorStyleNone)
+    self.tableView.zz_setup.backgroundColor([UIColor colorGrayBG]).separatorStyle(UITableViewCellSeparatorStyleNone)
     .tableHeaderView(self.searchController.searchBar).tableFooterView(self.footerLabel)
     .estimatedRowHeight(0).estimatedSectionFooterHeight(0).estimatedSectionHeaderHeight(0)
     .sectionIndexBackgroundColor([UIColor clearColor]).sectionIndexColor([UIColor darkGrayColor]);
@@ -92,7 +92,7 @@
 {
     if (_footerLabel == nil) {
         _footerLabel= [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50.0f)];
-        _footerLabel.zz_make.textAlignment(NSTextAlignmentCenter).font([UIFont systemFontOfSize:17.0f]).textColor([UIColor grayColor]);
+        _footerLabel.zz_setup.textAlignment(NSTextAlignmentCenter).font([UIFont systemFontOfSize:17.0f]).textColor([UIColor grayColor]);
     }
     return _footerLabel;
 }

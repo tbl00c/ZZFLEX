@@ -37,7 +37,7 @@
     return height;
 }
 
-- (void)viewIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count
 {
     if (indexPath.row == count - 1) {
         showSeperator = NO;

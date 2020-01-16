@@ -21,6 +21,8 @@
     ZZFDMainViewController *mainVC = [[ZZFDMainViewController alloc] init];
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:mainVC];
     [navC.navigationBar setShadowImage:[UIImage new]];
+    [navC.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [navC.navigationBar setBackgroundColor:[UIColor whiteColor]];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setRootViewController:navC];

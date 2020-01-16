@@ -7,6 +7,7 @@
 //
 
 #import "ZZFDPlatformSelectViewController.h"
+#import "ZZFDPlatformItemCell.h"
 
 @interface ZZFDPlatformSelectViewController ()
 
@@ -51,7 +52,7 @@
     self.clear();
     
     self.addSection(0).sectionInsets(UIEdgeInsetsMake(15, 0, 0, 0));
-    self.addCells(@"ZZFDPlatformItemCell").withDataModelArray(modelArray).toSection(0).selectedAction(^ (ZZFDPlatformItemModel *model) {
+    self.addCells([ZZFDPlatformItemCell class]).withDataModelArray(modelArray).toSection(0).selectedAction(^ (ZZFDPlatformItemModel *model) {
         @strongify(self);
         for (ZZFDPlatformItemModel *item in self.itemsArray) {
             item.selected = (item == model);
