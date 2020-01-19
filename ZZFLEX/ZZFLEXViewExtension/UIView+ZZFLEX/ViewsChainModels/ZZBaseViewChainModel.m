@@ -8,11 +8,7 @@
 
 #import "ZZBaseViewChainModel.h"
 #import "UIView+ZZFrame.h"
-#if __has_include(<Masonry.h>)
-#import <Masonry.h>
-#elif __has_include("Masonry.h")
-#import "Masonry.h"
-#endif
+#import <Masonry/Masonry.h>
 
 #define     ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, id, UIView)
 

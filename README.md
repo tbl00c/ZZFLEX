@@ -25,12 +25,13 @@ self.setCornor(ZZCornerPositionAll).radius(cornorRadius);
 
 3、UICollectionView支持卡片类型支持（设置sectionEdge后，在cell中根据位置设置圆角即可）；
 
-4、ZZFLEXViewExtension中Masonry设置是，加增view参数，便于设置与自身关系；
+4、ZZFLEXViewExtension中Masonry设置方法，加增view参数，便于设置与自身关系；
 
 ```objective-c
 UIImageView *imageView = self.addImageView(0)
-.masonry(^(UIView *senderView, MASConstraintMaker *make) {
-    make.edges.mas_equalTo(0);
+.masonry(^ (UIView *senderView, MASConstraintMaker *make) {
+    make.top.left.bottom.mas_equalTo(0);
+    make.height.mas_equalTo(senderView);
 })
 .view;
 ```
@@ -49,9 +50,11 @@ NSAttributedString *attrTitle = NSMutableAttributedString.zz_create(@"Hello worl
 - (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count;
 ```
 
-8、ZZFlexibleLayoutViewController重构，使用ZZFlexAngel核心逻辑；
+8、强依赖Masonry；
 
-9、更多逻辑性能优化、BUG修复；
+9、ZZFlexibleLayoutViewController重构，使用ZZFlexAngel核心逻辑；
+
+10、更多逻辑性能优化、BUG修复；
 
 [更多更新记录](./update.md)
 

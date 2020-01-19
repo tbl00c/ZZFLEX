@@ -119,7 +119,7 @@
 		C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDLanguageSelectViewController.m; sourceTree = "<group>"; };
 		C248E3AA225457F100CB74E9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C248E3AB225457F100CB74E9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZZFLEX.podspec; path = ../ZZFLEX.podspec; sourceTree = "<group>"; };
+		C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZZFLEX.podspec; path = ../ZZFLEX.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C248E3B222545B2800CB74E9 /* update.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = update.md; path = ../update.md; sourceTree = "<group>"; };
 		C25C20F42027547E003D3192 /* Subscription.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Subscription.xcassets; sourceTree = "<group>"; };
 		C25C20F62027547E003D3192 /* ZZFDSubscriptionEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZFDSubscriptionEditViewController.m; sourceTree = "<group>"; };
