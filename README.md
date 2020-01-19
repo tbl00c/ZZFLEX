@@ -7,17 +7,51 @@
 
 <img src="./Screenshot/1.gif" width = "375" height = "667" alt="screenshot1" />  <img src="./Screenshot/2.gif" width = "375" height = "667" alt="screenshot1" />
 
-## ZZUIHelpler 已支持自动生成ZZFLEX代码
-
-<img src="./Screenshot/ZZUIHelper.png" alt="ZZUIHelper" /> 
-
-#### 详见 <https://github.com/tbl00c/ZZUIHelper>
-
 ## 更新
 
-### 0.3.0
+### 1.0 [重大更新]
 
-1、增加XIB支持。
+1、addCell时，类型由类名字符串变更为class；
+
+```objective-c
+self.addCell([ACell class]).toSection(sectionTag)
+```
+
+2、ZZFLEXViewExtension新增圆角支持;
+
+```objective-c
+self.setCornor(ZZCornerPositionAll).radius(cornorRadius);
+```
+
+3、UICollectionView支持卡片类型支持（设置sectionEdge后，在cell中根据位置设置圆角即可）；
+
+4、ZZFLEXViewExtension中Masonry设置是，加增view参数，便于设置与自身关系；
+
+```objective-c
+UIImageView *imageView = self.addImageView(0)
+.masonry(^(UIView *senderView, MASConstraintMaker *make) {
+    make.edges.mas_equalTo(0);
+})
+.view;
+```
+
+5、新增ZZFLEXFoundationExtension，支持NSAttributeString的链式调用;
+
+```objective-c
+NSAttributedString *attrTitle = NSMutableAttributedString.zz_create(@"Hello world").font([UIFont boldSystemFontOfSize:17]).foregroundColor([UIColor redColor]).object;
+```
+
+6、ZZFLEXViewExtension中```zz_make```属性更名为```zz_setup```;
+
+7、ZZFlexibleLayoutViewProtocol中，cell位置通知方法名变给为
+
+```objective-c
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count;
+```
+
+8、ZZFlexibleLayoutViewController重构，使用ZZFlexAngel核心逻辑；
+
+9、更多逻辑性能优化、BUG修复；
 
 [更多更新记录](./update.md)
 
@@ -128,6 +162,13 @@ ZZFLEXAngel是ZZFlexibleLayoutViewController核心思想和设计提炼而成的
 ZZFLEXRequestQueue的核心思想是“将一次数据请求的过程封装成对象”，它可以保证在此业务场景下，按队列顺序加载展示UI。
 
 详见Demo。
+
+## ZZUIHelpler 已支持自动生成ZZFLEX代码
+
+<img src="./Screenshot/ZZUIHelper.png" alt="ZZUIHelper" /> 
+
+#### 详见 <https://github.com/tbl00c/ZZUIHelper>
+
 
 ## 其他
 
