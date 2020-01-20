@@ -322,7 +322,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 {
     ZZFlexibleLayoutViewModel *viewModel;
     if (viewClass) {
-        xib ? RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionFooter, viewClass) : RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionFooter, viewClass);
+        xib ? RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionFooter, viewClass) : RegisterHostViewReusableView(self.hostView, UICollectionElementKindSectionFooter, viewClass);
         viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithViewClass:viewClass];
     }
     ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeFooter];
