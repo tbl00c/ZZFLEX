@@ -50,11 +50,13 @@ NSAttributedString *attrTitle = NSMutableAttributedString.zz_create(@"Hello worl
 - (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count;
 ```
 
-8、强依赖Masonry；
+8、ZZFLEXRequestQueue支持progress；
 
-9、ZZFlexibleLayoutViewController重构，使用ZZFlexAngel核心逻辑；
+9、强依赖Masonry；
 
-10、更多逻辑性能优化、BUG修复；
+10、ZZFlexibleLayoutViewController重构，使用ZZFlexAngel核心逻辑；
+
+11、更多逻辑性能优化、BUG修复；
 
 [更多更新记录](./update.md)
 
