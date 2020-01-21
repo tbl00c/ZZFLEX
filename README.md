@@ -9,7 +9,7 @@
 
 ## 更新
 
-### 1.0 [重大更新，升级攻略<https://github.com/tbl00c/ZZUIHelper>]
+### 1.0 [重大更新，[升级攻略](./UpdateTo1.0.md)]
 
 1、addCell时，类型由类名字符串变更为class；
 
