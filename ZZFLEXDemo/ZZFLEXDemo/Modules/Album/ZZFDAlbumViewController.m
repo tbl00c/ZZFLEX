@@ -44,7 +44,7 @@
                 [self loadListWithData:result];
             }
             else {
-                [TLUIUtility showAlertWithTitle:@"未获取到相册权限" message:@"请在设置/ZZFLEXDemo/照片-允许访问照片" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] actionHandler:^(NSInteger buttonIndex) {
+                [TLAlertView showWithTitle:@"未获取到相册权限" message:@"请在设置/ZZFLEXDemo/照片-允许访问照片" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] actionHandler:^(NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
                         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestAlbumInfo) name:UIApplicationWillEnterForegroundNotification object:nil];
                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];

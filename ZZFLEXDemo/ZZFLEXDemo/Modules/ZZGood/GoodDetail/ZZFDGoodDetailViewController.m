@@ -198,24 +198,17 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
 
 - (void)showCommitInputAlert
 {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"留言" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    
-    __block UITextField *tf;
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        tf = textField;
-    }];
-    
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"发送" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSString *text = tf.text;
+    TLAlertView *alertView = [[TLAlertView alloc] initWithTitle:@"留言" message:nil];
+    [alertView addCancelItemTitle:@"取消" clickAction:nil];
+    [alertView addItemWithTitle:@"发送" clickAction:^(TLAlertView *alertView, TLAlertViewItem *item, NSInteger index) {
+        NSString *text = alertView.textField.text;
         [self.listModel.commitData insertObject:createCommitModel(@"我", @"avatar", @"刚刚", text) atIndex:0];
         [self resetCommitModule];
     }];
-    [alert addAction:ok];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cancel];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    [alertView addTextFieldWithConfigAction:^(TLAlertView *alertView, UITextField *textField) {
+        [textField setPlaceholder:@"请输入留言"];
+    }];
+    [alertView show];
 }
 
 - (void)requestRecDataWithOffset:(NSInteger)offset
@@ -230,7 +223,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         }
         
         self.offset = offset + data.count;
-        [TLUIUtility hiddenLoading];
+        [TLToast dismiss];
         
         if (offset == 0) {
             self.sectionForTag(ZZFDGoodSectionTypeRec).clear();
@@ -265,11 +258,11 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         });
         [self reloadView];
     } failure:^(NSString *errMsg) {
-        [TLUIUtility hiddenLoading];
+        [TLToast dismiss];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         
-        [TLUIUtility showErrorHint:errMsg];
+        [TLToast showErrorToast:errMsg];
     }];
 }
 

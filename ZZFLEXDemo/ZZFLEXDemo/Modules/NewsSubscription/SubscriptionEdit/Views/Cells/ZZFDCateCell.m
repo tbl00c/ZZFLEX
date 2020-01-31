@@ -46,7 +46,7 @@
     self.angel.addCells([ZZFDCateItemCell class]).toSection(1).withDataModelArray(dataModel.titleModel).selectedAction(^ (ZZFDPlatformItemModel *model) {
         @strongify(self);
         if (!model.selected && [self selectedCount] == FDCATE_MAX_COUNT) {
-            [TLUIUtility showAlertWithTitle:@"已达选择上限" message:nil cancelButtonTitle:@"确定"];
+            [TLAlertView showWithTitle:@"已达选择上限" message:nil];
         }
         else {
             model.selected = !model.selected;

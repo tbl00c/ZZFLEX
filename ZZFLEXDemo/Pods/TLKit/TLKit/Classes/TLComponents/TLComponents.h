@@ -1,16 +1,17 @@
 //
-//  TLFunctional.h
+//  TLComponents.h
 //  TLKit
 //
 //  Created by 李伯坤 on 2017/9/13.
 //  Copyright © 2017年 李伯坤. All rights reserved.
 //
 
-#ifndef TLFunctional_h
-#define TLFunctional_h
+#ifndef TLComponents_h
+#define TLComponents_h
 
 #import "TLActionSheet.h"
+#import "TLAlertView.h"
 //#import "TLBadge.h"
-#import "TLUIUtility.h"
+#import "TLToast.h"
 
-#endif /* TLFunctional_h */
+#endif /* TLComponents_h */

@@ -10,7 +10,7 @@
 
 @implementation NSArray (SafeAccess)
 
-- (id)safeObjectWithIndex:(NSUInteger)index{
+- (id)safeObjectAtIndex:(NSUInteger)index{
     if (index <self.count) {
         return self[index];
     }else{
@@ -18,9 +18,9 @@
     }
 }
 
-- (NSString *)stringWithIndex:(NSUInteger)index
+- (NSString *)stringAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     if (value == nil || value == [NSNull null] || [[value description] isEqualToString:@"<null>"]) {
         return nil;
     }
@@ -34,9 +34,9 @@
     return nil;
 }
 
-- (NSNumber *)numberWithIndex:(NSUInteger)index
+- (NSNumber *)numberAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     if ([value isKindOfClass:[NSNumber class]]) {
         return (NSNumber*)value;
     }
@@ -48,8 +48,8 @@
     return nil;
 }
 
-- (NSDecimalNumber *)decimalNumberWithIndex:(NSUInteger)index{
-    id value = [self safeObjectWithIndex:index];
+- (NSDecimalNumber *)decimalNumberAtIndex:(NSUInteger)index{
+    id value = [self safeObjectAtIndex:index];
     
     if ([value isKindOfClass:[NSDecimalNumber class]]) {
         return value;
@@ -65,9 +65,9 @@
     return nil;
 }
 
-- (NSArray *)arrayWithIndex:(NSUInteger)index
+- (NSArray *)arrayAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     if (value == nil || value == [NSNull null]) {
         return nil;
     }
@@ -77,9 +77,9 @@
     return nil;
 }
 
-- (NSDictionary *)dictionaryWithIndex:(NSUInteger)index
+- (NSDictionary *)dictionaryAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     if (value == nil || value == [NSNull null]) {
         return nil;
     }
@@ -89,9 +89,9 @@
     return nil;
 }
 
-- (NSInteger)integerWithIndex:(NSUInteger)index
+- (NSInteger)integerAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     if (value == nil || value == [NSNull null]) {
         return 0;
     }
@@ -101,9 +101,9 @@
     return 0;
 }
 
-- (NSUInteger)unsignedIntegerWithIndex:(NSUInteger)index
+- (NSUInteger)unsignedIntegerAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     if (value == nil || value == [NSNull null]) {
         return 0;
     }
@@ -113,9 +113,9 @@
     return 0;
 }
 
-- (BOOL)boolWithIndex:(NSUInteger)index
+- (BOOL)boolAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null]) {
         return NO;
@@ -129,9 +129,9 @@
     return NO;
 }
 
-- (int16_t)int16WithIndex:(NSUInteger)index
+- (int16_t)int16AtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null]) {
         return 0;
@@ -145,9 +145,9 @@
     return 0;
 }
 
-- (int32_t)int32WithIndex:(NSUInteger)index
+- (int32_t)int32AtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null]) {
         return 0;
@@ -158,9 +158,9 @@
     return 0;
 }
 
-- (int64_t)int64WithIndex:(NSUInteger)index
+- (int64_t)int64AtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null]) {
         return 0;
@@ -171,9 +171,9 @@
     return 0;
 }
 
-- (char)charWithIndex:(NSUInteger)index{
+- (char)charAtIndex:(NSUInteger)index{
     
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null])
     {
@@ -186,9 +186,9 @@
     return 0;
 }
 
-- (short)shortWithIndex:(NSUInteger)index
+- (short)shortAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null])
     {
@@ -204,9 +204,9 @@
     }
     return 0;
 }
-- (float)floatWithIndex:(NSUInteger)index
+- (float)floatAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null])
     {
@@ -218,9 +218,9 @@
     }
     return 0;
 }
-- (double)doubleWithIndex:(NSUInteger)index
+- (double)doubleAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null])
     {
@@ -233,10 +233,10 @@
     return 0;
 }
 
-- (NSDate *)dateWithIndex:(NSUInteger)index dateFormat:(NSString *)dateFormat {
+- (NSDate *)dateAtIndex:(NSUInteger)index dateFormat:(NSString *)dateFormat {
     NSDateFormatter *formater = [[NSDateFormatter alloc]init];
     formater.dateFormat = dateFormat;
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     if (value == nil || value == [NSNull null])
     {
@@ -250,34 +250,34 @@
 }
 
 //CG
-- (CGFloat)CGFloatWithIndex:(NSUInteger)index
+- (CGFloat)CGFloatAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     CGFloat f = [value doubleValue];
     
     return f;
 }
 
-- (CGPoint)pointWithIndex:(NSUInteger)index
+- (CGPoint)pointAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     CGPoint point = CGPointFromString(value);
     
     return point;
 }
-- (CGSize)sizeWithIndex:(NSUInteger)index
+- (CGSize)sizeAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
-    
+    id value = [self safeObjectAtIndex:index];
+
     CGSize size = CGSizeFromString(value);
     
     return size;
 }
-- (CGRect)rectWithIndex:(NSUInteger)index
+- (CGRect)rectAtIndex:(NSUInteger)index
 {
-    id value = [self safeObjectWithIndex:index];
+    id value = [self safeObjectAtIndex:index];
     
     CGRect rect = CGRectFromString(value);
     
