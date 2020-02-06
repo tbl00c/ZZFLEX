@@ -25,14 +25,6 @@ return self;    \
 };  \
 }
 
-#define     ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(methodName, masonryMethod) \
-- (id (^)( void (^constraints)(__kindof UIView *, MASConstraintMaker *)) )methodName    \
-{   \
-return ^id ( void (^constraints)(__kindof UIView *, MASConstraintMaker *) ) {  \
-return self;    \
-};  \
-}
-
 #define     ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(methodName, ZZParamType) \
 - (id (^)(ZZParamType param))methodName    \
 {   \
@@ -76,15 +68,9 @@ ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(right, CGFloat);
 
 
 #pragma mark - # Layout
-#if __has_include(<Masonry.h>) || __has_include("Masonry.h")
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(masonry, mas_makeConstraints);
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(updateMasonry, mas_updateConstraints);
 ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(remakeMasonry, mas_remakeConstraints);
-#else
-ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(masonry, mas_makeConstraints);
-ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(updateMasonry, mas_updateConstraints);
-ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION_NULL(remakeMasonry, mas_remakeConstraints);
-#endif
 
 #pragma mark - # Color
 ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(backgroundColor, UIColor *);

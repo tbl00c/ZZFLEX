@@ -18,6 +18,9 @@
 #import "ZZFlexibleLayoutViewProtocol.h"
 #import "ZZFlexibleLayoutViewController.h"
 
+// ZZFLEXAngel 模板
+#import "ZZFLEXAngeWings.h"
+
 // 请求队列
 #import "ZZFLEXRequestQueue.h"
 

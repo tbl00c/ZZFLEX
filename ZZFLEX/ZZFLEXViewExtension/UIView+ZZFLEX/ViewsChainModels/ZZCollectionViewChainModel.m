@@ -50,6 +50,7 @@ ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollsToTop, BOOL)
         layout.headerReferenceSize = layout.footerReferenceSize = CGSizeZero;
         layout.sectionInset = UIEdgeInsetsZero;
         UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        [view setBackgroundColor:[UIColor whiteColor]];
         return [[ZZCollectionViewChainModel alloc] initWithTag:tag andView:view];
     };
 }

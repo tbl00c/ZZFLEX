@@ -19,6 +19,7 @@
 #import "ZZFDRquestQueueViewController.h"
 #import "ZZFDAlbumViewController.h"
 #import "WXSettingViewController.h"
+#import "ZZFDWingsDemoViewController.h"
 
 #define     FDMAIN_FONT_SIZE_DETAIL         14
 #define     ClassMenuHeaderCell             [ZZFDMainSectionTitleView class]
@@ -31,6 +32,7 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
     ZZFDMainSectionTypeVC,                  // ZZFlexibleLayoutViewController
     ZZFDMainSectionTypeVCExtension,
     ZZFDMainSectionTypeAgent,               // ZZFLEXAgent
+    ZZFDMainSectionTypeWings,               // 模板
     ZZFDMainSectionTypeEdit,                // 编辑类页面处理Demo
     ZZFDMainSectionTypeRQ,                  // ZZFLEX事件响应队列
     ZZFDMainSectionTypeHeaderSpace,
@@ -186,6 +188,21 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
             @strongify(self);
             ZZFDAlbumViewController *vc = [[ZZFDAlbumViewController alloc] init];
             PushVC(vc);
+        });
+    }
+    
+    // ZZFLEXAgent
+    {
+        NSInteger sectionTag = ZZFDMainSectionTypeWings;
+        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 30, 15));
+        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXAngelWings",
+                                                                    @"为ZZFLEXAngel提供了模板Cell");
+        self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
+
+        self.addCell(ClassMenuCell).withDataModel(@"ZZFLEXAngelWings Demo").toSection(sectionTag).selectedAction(^(id model){
+           @strongify(self);
+           ZZFDWingsDemoViewController *vc = [[ZZFDWingsDemoViewController alloc] init];
+           PushVC(vc);
         });
     }
 

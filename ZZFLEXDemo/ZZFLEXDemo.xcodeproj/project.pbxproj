@@ -11,6 +11,7 @@
 		C20CB02A202841A40088276C /* ZZFDPlatformItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB029202841A40088276C /* ZZFDPlatformItemCell.m */; };
 		C20CB02D202842170088276C /* ZZFDPlatformItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB02C202842170088276C /* ZZFDPlatformItemModel.m */; };
 		C20CB031202859A20088276C /* ZZFDLanguageSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */; };
+		C245A4E323EC29C30098D007 /* ZZFDWingsNormalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C245A4E223EC29C20098D007 /* ZZFDWingsNormalListViewController.m */; };
 		C248E3AC225457F100CB74E9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AA225457F100CB74E9 /* README.md */; };
 		C248E3AD225457F100CB74E9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AB225457F100CB74E9 /* LICENSE */; };
 		C248E3AF2254580500CB74E9 /* ZZFLEX.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */; };
@@ -37,6 +38,7 @@
 		C27E9F721FCE63B40062C896 /* UIColor+ZZFD.m in Sources */ = {isa = PBXBuildFile; fileRef = C27E9F711FCE63B40062C896 /* UIColor+ZZFD.m */; };
 		C27E9F751FCE64C20062C896 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C27E9F741FCE64C20062C896 /* Mine.xcassets */; };
 		C27E9F781FCE84E40062C896 /* ZZGood.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C27E9F771FCE84E40062C896 /* ZZGood.xcassets */; };
+		C27EF54923E8726F004C68F6 /* ZZFDWingsDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C27EF54823E8726F004C68F6 /* ZZFDWingsDemoViewController.m */; };
 		C282D0AC1FEA0C0700559705 /* ZZFDGoodTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C282D0A71FEA0C0700559705 /* ZZFDGoodTitleCell.m */; };
 		C282D0AD1FEA0C0700559705 /* ZZFDGoodPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C282D0A81FEA0C0700559705 /* ZZFDGoodPriceCell.m */; };
 		C282D0AE1FEA0C0700559705 /* ZZFDGoodReadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C282D0A91FEA0C0700559705 /* ZZFDGoodReadCell.m */; };
@@ -117,6 +119,8 @@
 		C20CB02C202842170088276C /* ZZFDPlatformItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDPlatformItemModel.m; sourceTree = "<group>"; };
 		C20CB02F202859A20088276C /* ZZFDLanguageSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDLanguageSelectViewController.h; sourceTree = "<group>"; };
 		C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDLanguageSelectViewController.m; sourceTree = "<group>"; };
+		C245A4E123EC29C20098D007 /* ZZFDWingsNormalListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDWingsNormalListViewController.h; sourceTree = "<group>"; };
+		C245A4E223EC29C20098D007 /* ZZFDWingsNormalListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDWingsNormalListViewController.m; sourceTree = "<group>"; };
 		C248E3AA225457F100CB74E9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C248E3AB225457F100CB74E9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZZFLEX.podspec; path = ../ZZFLEX.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -162,6 +166,8 @@
 		C27E9F711FCE63B40062C896 /* UIColor+ZZFD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZZFD.m"; sourceTree = "<group>"; };
 		C27E9F741FCE64C20062C896 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		C27E9F771FCE84E40062C896 /* ZZGood.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ZZGood.xcassets; sourceTree = "<group>"; };
+		C27EF54723E8726F004C68F6 /* ZZFDWingsDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDWingsDemoViewController.h; sourceTree = "<group>"; };
+		C27EF54823E8726F004C68F6 /* ZZFDWingsDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDWingsDemoViewController.m; sourceTree = "<group>"; };
 		C282D0A41FEA0C0700559705 /* ZZFDGoodPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodPriceCell.h; sourceTree = "<group>"; };
 		C282D0A51FEA0C0700559705 /* ZZFDGoodReadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodReadCell.h; sourceTree = "<group>"; };
 		C282D0A61FEA0C0700559705 /* ZZFDGoodAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZFDGoodAreaCell.h; sourceTree = "<group>"; };
@@ -339,6 +345,15 @@
 				C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */,
 			);
 			path = ZZFDLanguageSelectViewController;
+			sourceTree = "<group>";
+		};
+		C245A4E023EC29AC0098D007 /* NormalList */ = {
+			isa = PBXGroup;
+			children = (
+				C245A4E123EC29C20098D007 /* ZZFDWingsNormalListViewController.h */,
+				C245A4E223EC29C20098D007 /* ZZFDWingsNormalListViewController.m */,
+			);
+			path = NormalList;
 			sourceTree = "<group>";
 		};
 		C248E3A9225457D000CB74E9 /* Podspec Metadata */ = {
@@ -563,6 +578,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C27EF54623E87234004C68F6 /* Wings */ = {
+			isa = PBXGroup;
+			children = (
+				C245A4E023EC29AC0098D007 /* NormalList */,
+				C27EF54723E8726F004C68F6 /* ZZFDWingsDemoViewController.h */,
+				C27EF54823E8726F004C68F6 /* ZZFDWingsDemoViewController.m */,
+			);
+			path = Wings;
+			sourceTree = "<group>";
+		};
 		C282D0A31FEA0C0700559705 /* Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,6 +667,7 @@
 		C2863A8B1FCCFB76008BC3C0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C27EF54623E87234004C68F6 /* Wings */,
 				C2F21C472241E1CE00841F4C /* Album */,
 				C27E9F6F1FCE63A20062C896 /* Common */,
 				C2863A8C1FCCFB76008BC3C0 /* Launcher */,
@@ -1085,11 +1111,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ZZFLEX/ZZFLEX.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZZFLEX.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1157,6 +1185,7 @@
 				C2C93AD5202815CC001582C3 /* ZZFDSubscriptionCell.m in Sources */,
 				C2AC46C123D0414C00EDA1A5 /* WXUserHeaderCell.m in Sources */,
 				C2AC94FC226829AF0094366C /* WXSettingButtonCell.m in Sources */,
+				C245A4E323EC29C30098D007 /* ZZFDWingsNormalListViewController.m in Sources */,
 				C2AC94F7226825230094366C /* WXSettingItemCell.m in Sources */,
 				C2F2F95720186DA8003D53F7 /* ZZFDCateModel.m in Sources */,
 				C2F2F95520186DA8003D53F7 /* ZZFDCateSectionView.m in Sources */,
@@ -1169,6 +1198,7 @@
 				C282D0AC1FEA0C0700559705 /* ZZFDGoodTitleCell.m in Sources */,
 				C2F2F95420186DA8003D53F7 /* ZZFDCateSectionItemCell.m in Sources */,
 				C2F2F9862018A4FA003D53F7 /* ZZFDRQFailedCell.m in Sources */,
+				C27EF54923E8726F004C68F6 /* ZZFDWingsDemoViewController.m in Sources */,
 				C282D0C51FEA281000559705 /* ZZFDImageMoreCell.m in Sources */,
 				C2AC94EA22681E150094366C /* WXSettingViewController.m in Sources */,
 				C26B6B4F202AD4F40058656E /* ZZFDAuthLevelCell.m in Sources */,

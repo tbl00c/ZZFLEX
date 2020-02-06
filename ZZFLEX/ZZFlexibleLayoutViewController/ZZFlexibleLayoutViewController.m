@@ -41,6 +41,7 @@
 - (void)loadView
 {
     [super loadView];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView setFrame:self.view.bounds];
     [self.view addSubview:self.collectionView];
 }

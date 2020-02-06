@@ -16,7 +16,9 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/tbl00c/ZZFLEX"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.source       = { :git => "https://github.com/tbl00c/ZZFLEX.git", :tag => s.version }
+  s.resource_bundles = {'ZZFLEX' => ['ZZFLEX/ZZFLEX.xcassets']}
   s.dependency 'Masonry'
+  s.dependency 'SDWebImage'
 
   s.requires_arc = true
   s.source_files = "ZZFLEX/**/*.{h,m,mm}"

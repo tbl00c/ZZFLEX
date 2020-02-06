@@ -8,6 +8,7 @@ pod 'TLKit', :git => 'https://github.com/tbl00c/TLKit.git'
 
 pod 'Masonry', '~> 1.1.0'
 pod 'MJRefresh', '~> 3.1.15'
+pod 'SDWebImage'
 pod 'XLPhotoBrowser+CoderXL', :git => 'https://github.com/tbl00c/XLPhotoBrowser.git', :tag => '1.2.1'
 
 end
