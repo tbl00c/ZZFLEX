@@ -7,7 +7,7 @@
 //
 
 #import "ZZFLEXAngelViewBatchChainModel.h"
-#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXSectionModel.h"
 
 #pragma mark - ## ZZFLEXAngelViewBaseBatchChainModel （批量，基类）
 @interface ZZFLEXAngelViewBaseBatchChainModel()
@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *listData;
 
 @property (nonatomic, strong) NSMutableArray *viewModelArray;
-@property (nonatomic, strong) ZZFlexibleLayoutSectionModel *sectionModel;
+@property (nonatomic, strong) ZZFLEXSectionModel *sectionModel;
 @property (nonatomic, weak) id itemsDelegate;
 @property (nonatomic, copy) id (^itemsEventAction)(NSInteger actionType, id data);
 @property (nonatomic, copy) void (^itemsSelectedAction)(id data);
@@ -41,7 +41,7 @@
 - (id (^)(NSInteger section))toSection
 {
     return ^(NSInteger section) {
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
             if (sectionModel.sectionTag == section) {
                 self.sectionModel = sectionModel;
                 if (self.viewModelArray.count > 0) {
@@ -58,7 +58,7 @@
 {
     return ^(NSArray *dataModelArray) {
         for (id model in dataModelArray) {
-            ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithViewClass:self.viewClass andDataModel:model viewSize:self.itemViewSize viewTag:self.tag];
+            ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass andDataModel:model viewSize:self.itemViewSize viewTag:self.tag];
             [viewModel setDelegate:self.itemsDelegate];
             [viewModel setEventAction:self.itemsEventAction];
             [viewModel setSelectedAction:self.itemsSelectedAction];
@@ -132,7 +132,7 @@
 - (void)setItemsDelegate:(id)itemsDelegate
 {
     _itemsDelegate = itemsDelegate;
-    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setDelegate:itemsDelegate];
     }
 }
@@ -140,7 +140,7 @@
 - (void)setItemsEventAction:(id (^)(NSInteger, id))itemsEventAction
 {
     _itemsEventAction = itemsEventAction;
-    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setEventAction:itemsEventAction];
     }
 }
@@ -148,7 +148,7 @@
 - (void)setItemsSelectedAction:(void (^)(id))itemsSelectedAction
 {
     _itemsSelectedAction = itemsSelectedAction;
-    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setSelectedAction:itemsSelectedAction];
     }
 }
@@ -156,7 +156,7 @@
 - (void)setItemConfigAction:(void (^)(__kindof UIView *view, id dataModel))itemConfigAction
 {
     _itemsConfigAction = itemConfigAction;
-    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setConfigAction:itemConfigAction];
     }
 }
@@ -164,7 +164,7 @@
 - (void)setTag:(NSInteger)tag
 {
     _tag = tag;
-    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setViewTag:tag];
     }
 }
@@ -172,7 +172,7 @@
 - (void)setItemViewSize:(CGSize)itemViewSize
 {
     _itemViewSize = itemViewSize;
-    for (ZZFlexibleLayoutViewModel *viewModel in self.viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setViewSize:itemViewSize];
     }
 }
@@ -205,7 +205,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
 {
     return ^(NSArray *dataModelArray) {
         for (id model in dataModelArray) {
-            ZZFlexibleLayoutViewModel *viewModel = [[ZZFlexibleLayoutViewModel alloc] initWithViewClass:self.viewClass andDataModel:model];
+            ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass andDataModel:model];
             [viewModel setViewTag:self.tag];
             [viewModel setDelegate:self.itemsDelegate];
             [viewModel setEventAction:self.itemsEventAction];
@@ -221,7 +221,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
 - (id (^)(NSInteger section))toSection
 {
     return ^(NSInteger section) {
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
             if (sectionModel.sectionTag == section) {
                 self.sectionModel = sectionModel;
                 break;
@@ -278,7 +278,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     }
     else if ((self.status & ZZFLEXInsertArrayDataStatusBefore)|| (self.status & ZZFLEXInsertArrayDataStatusAfter)) {
         for (NSInteger i = 0; i < self.sectionModel.itemsArray.count; i++) {
-            ZZFlexibleLayoutViewModel *viewModel = [self.sectionModel objectAtIndex:i];
+            ZZFLEXViewModel *viewModel = [self.sectionModel objectAtIndex:i];
             if (viewModel.viewTag == self.insertTag) {
                 index = (self.status & ZZFLEXInsertArrayDataStatusBefore) ? i : i + 1;
                 break;

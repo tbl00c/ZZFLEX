@@ -10,7 +10,7 @@
 #import "ZZFLEXAngel+Private.h"
 #import "TLUserGroup.h"
 #import "TLContactsItemCell.h"
-#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXSectionModel.h"
 #import "TLContactsHeaderView.h"
 #import "WXUserViewController.h"
 
@@ -108,7 +108,7 @@
 // 备注
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     if (sectionModel.sectionTag != TLContactsVCSectionTypeFuncation && sectionModel.sectionTag != TLContactsVCSectionTypeEnterprise) {
         UITableViewRowAction *remarkAction;
         remarkAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal

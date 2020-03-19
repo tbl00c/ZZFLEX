@@ -8,23 +8,23 @@
 
 #import "ZZFlexibleLayoutViewController.h"
 #import "ZZFlexibleLayoutFlowLayout.h"
-#import "ZZFlexibleLayoutViewModel.h"
-#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXViewModel.h"
+#import "ZZFLEXSectionModel.h"
 
-@class ZZFlexibleLayoutSectionModel;
+@class ZZFLEXSectionModel;
 @interface ZZFlexibleLayoutViewController (Kernel) <
 UICollectionViewDataSource,
 UICollectionViewDelegate,
 ZZFlexibleLayoutFlowLayoutDelegate
 >
 
-- (ZZFlexibleLayoutSectionModel *)sectionModelAtIndex:(NSInteger)section;
+- (ZZFLEXSectionModel *)sectionModelAtIndex:(NSInteger)section;
 
 /// 根据tag获取sectionModel
-- (ZZFlexibleLayoutSectionModel *)sectionModelForTag:(NSInteger)sectionTag;
+- (ZZFLEXSectionModel *)sectionModelForTag:(NSInteger)sectionTag;
 
-- (ZZFlexibleLayoutViewModel *)viewModelAtIndexPath:(NSIndexPath *)indexPath;
+- (ZZFLEXViewModel *)viewModelAtIndexPath:(NSIndexPath *)indexPath;
 
-- (NSArray<ZZFlexibleLayoutViewModel *> *)viewModelsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+- (NSArray<ZZFLEXViewModel *> *)viewModelsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
 
 @end

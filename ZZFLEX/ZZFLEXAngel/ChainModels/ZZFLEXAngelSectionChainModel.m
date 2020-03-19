@@ -7,19 +7,19 @@
 //
 
 #import "ZZFLEXAngelSectionChainModel.h"
-#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXSectionModel.h"
 #import "ZZFLEXMacros.h"
 
 #pragma mark - ## ZZFLEXAngelSectionBaseChainModel (基类)
 @interface ZZFLEXAngelSectionBaseChainModel ()
 
-@property (nonatomic, strong) ZZFlexibleLayoutSectionModel *sectionModel;
+@property (nonatomic, strong) ZZFLEXSectionModel *sectionModel;
 
 @end
 
 @implementation ZZFLEXAngelSectionBaseChainModel
 
-- (instancetype)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel
+- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel
 {
     if (self = [super init]) {
         self.sectionModel = sectionModel;
@@ -75,7 +75,7 @@
 
 @implementation ZZFLEXAngelSectionInsertChainModel
 
-- (instancetype)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel listData:(NSMutableArray *)listData
+- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel listData:(NSMutableArray *)listData
 {
     if (self = [super initWithSectionModel:sectionModel]) {
         self.listData = listData;
@@ -95,7 +95,7 @@
 {
     return ^(NSInteger sectionTag) {
         for (int i = 0; i < self.listData.count; i++) {
-            ZZFlexibleLayoutSectionModel *model = self.listData[i];
+            ZZFLEXSectionModel *model = self.listData[i];
             if (model.sectionTag == sectionTag) {
                 [self p_insertToListDataAtIndex:i];
                 break;
@@ -109,7 +109,7 @@
 {
     return ^(NSInteger sectionTag) {
         for (int i = 0; i < self.listData.count; i++) {
-            ZZFlexibleLayoutSectionModel *model = self.listData[i];
+            ZZFLEXSectionModel *model = self.listData[i];
             if (model.sectionTag == sectionTag) {
                 [self p_insertToListDataAtIndex:i + 1];
                 break;
@@ -140,7 +140,7 @@
 {
     NSArray *viewModelArray = self.sectionModel.itemsArray;
     NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
-    for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in viewModelArray) {
         if (viewModel.dataModel) {
             [data addObject:viewModel.dataModel];
         }
@@ -165,7 +165,7 @@
 - (id (^)(NSInteger viewTag))dataModelByViewTag
 {
     return ^(NSInteger viewTag) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == viewTag) {
                 return viewModel.dataModel;
             }
@@ -185,7 +185,7 @@
 {
     return ^(NSInteger viewTag) {
         NSMutableArray *data = [[NSMutableArray alloc] init];
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == viewTag) {
                 if (viewModel.dataModel) {
                     [data addObject:viewModel.dataModel];
@@ -263,7 +263,7 @@
 - (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))deleteCellByTag
 {
     return ^(NSInteger tag) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {
                 [self.sectionModel removeObject:viewModel];
                 break;
@@ -277,12 +277,12 @@
 {
     return ^(NSInteger tag) {
         NSMutableArray *deleteData = @[].mutableCopy;
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {
                 [deleteData addObject:viewModel];
             }
         }
-        for (ZZFlexibleLayoutViewModel *viewModel in deleteData) {
+        for (ZZFLEXViewModel *viewModel in deleteData) {
             [self.sectionModel removeObject:viewModel];
         }
         return self;
@@ -295,7 +295,7 @@
     return ^(void) {
         [self.sectionModel.headerViewModel updateViewSize];
         [self.sectionModel.footerViewModel updateViewSize];
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             [viewModel updateViewSize];
         }
         return self;
@@ -306,7 +306,7 @@
 {
     return ^(void) {
         [self.sectionModel.headerViewModel updateViewSize];
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             [viewModel updateViewSize];
         }
         [self.sectionModel.footerViewModel updateViewSize];
@@ -317,7 +317,7 @@
 - (ZZFLEXAngelSectionEditChainModel *(^)(void))updateCells
 {
     return ^(void) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             [viewModel updateViewSize];
         }
         return self;
@@ -343,7 +343,7 @@
 - (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))updateCellByTag
 {
     return ^(NSInteger tag) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {
                 [viewModel updateViewSize];
                 break;
@@ -356,7 +356,7 @@
 - (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))updateAllCellsByTag
 {
     return ^(NSInteger tag) {
-        for (ZZFlexibleLayoutViewModel *viewModel in self.sectionModel.itemsArray) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {
                 [viewModel updateViewSize];
             }

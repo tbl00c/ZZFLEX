@@ -62,10 +62,6 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
 }
 
 
-@interface ZZFDMainViewController ()
-
-@end
-
 @implementation ZZFDMainViewController
 
 - (void)loadView

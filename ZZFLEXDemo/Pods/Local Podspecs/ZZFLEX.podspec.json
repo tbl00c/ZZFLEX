@@ -18,6 +18,11 @@
     "git": "https://github.com/tbl00c/ZZFLEX.git",
     "tag": "1.0"
   },
+  "dependencies": {
+    "Masonry": [
+
+    ]
+  },
   "requires_arc": true,
   "source_files": "ZZFLEX/**/*.{h,m,mm}"
 }

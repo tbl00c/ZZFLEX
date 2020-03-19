@@ -8,8 +8,8 @@
 
 #import "ZZFLEXAngel+UITableView.h"
 #import "ZZFLEXAngel+Private.h"
-#import "ZZFlexibleLayoutViewModel+UITableView.h"
-#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXViewModel+Angel.h"
+#import "ZZFLEXSectionModel.h"
 #import "ZZFlexibleLayoutViewProtocol.h"
 #import "ZZFLEXTableViewEmptyCell.h"
 #import "ZZFLEXMacros.h"
@@ -24,62 +24,81 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     return [sectionModel count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
-    ZZFlexibleLayoutViewModel *viewModel = [sectionModel objectAtIndex:indexPath.row];
-    UITableViewCell *cell = [viewModel tableViewCellForPageControler:self tableView:tableView sectionCount:sectionModel.count indexPath:indexPath];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    ZZFLEXViewModel *viewModel = [sectionModel objectAtIndex:indexPath.row];
+    UITableViewCell<ZZFlexibleLayoutViewProtocol> *cell;
+    if (!viewModel.viewClass) {
+        ZZFLEXLog(@"!!!!! tableViewCell不存在，将使用空白Cell：%@", viewModel.className);
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ZZFLEXTableViewEmptyCell" forIndexPath:indexPath];
+        [cell setTag:viewModel.viewTag];
+        return cell;
+    }
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:viewModel.className forIndexPath:indexPath];
+    [viewModel excuteConfigActionForHostView:tableView itemView:cell sectionCount:sectionModel.count indexPath:indexPath];
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    ZZFlexibleLayoutViewModel *viewModel = sectionModel.headerViewModel;
-    UITableViewHeaderFooterView *view = [viewModel tableViewHeaderFooterViewForPageControler:self tableView:tableView section:section];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
+    ZZFLEXViewModel *viewModel = sectionModel.headerViewModel;
+    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = [self _headerFooterViewForTableView:tableView viewModel:viewModel section:section];
     return view;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    ZZFlexibleLayoutViewModel *viewModel = sectionModel.footerViewModel;
-    UITableViewHeaderFooterView *view = [viewModel tableViewHeaderFooterViewForPageControler:self tableView:tableView section:section];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
+    ZZFLEXViewModel *viewModel = sectionModel.footerViewModel;
+    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = [self _headerFooterViewForTableView:tableView viewModel:viewModel section:section];
     return view;
 }
+
+- (UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *)_headerFooterViewForTableView:(UITableView *)tableView viewModel:(ZZFLEXViewModel *)viewModel section:(NSInteger)section
+{
+    if (!viewModel.viewClass) {
+       return nil;
+    }
+    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.className];
+    [viewModel excuteConfigActionForHostView:tableView itemView:view sectionCount:section indexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+    return view;
+}
+
 //MARK: UICollectionViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
+    ZZFLEXViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
     [viewModel excuteSelectedActionForHostView:tableView];
 }
 
 //MARK: ZZFlexibleLayoutFlowLayoutDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZZFlexibleLayoutViewModel *model = [self viewModelAtIndexPath:indexPath];
+    ZZFLEXViewModel *model = [self viewModelAtIndexPath:indexPath];
     CGFloat height = [model visableSizeForHostView:tableView].height;
     return height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    ZZFlexibleLayoutViewModel *model = sectionModel.headerViewModel;
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
+    ZZFLEXViewModel *model = sectionModel.headerViewModel;
     CGFloat height = [model visableSizeForHostView:tableView].height;
     return height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    ZZFlexibleLayoutViewModel *model = sectionModel.footerViewModel;
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
+    ZZFLEXViewModel *model = sectionModel.footerViewModel;
     CGFloat height = [model visableSizeForHostView:tableView].height;
     return height;
 }

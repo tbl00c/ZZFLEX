@@ -194,7 +194,7 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
 - (NSInteger)sectionIndexForTag:(NSInteger)sectionTag
 {
     for (int section = 0; section < self.data.count; section++) {
-        ZZFlexibleLayoutSectionModel *sectionModel = self.data[section];
+        ZZFLEXSectionModel *sectionModel = self.data[section];
         if (sectionModel.sectionTag == sectionTag) {
             return section;
         }
@@ -206,9 +206,9 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
 {
     NSMutableArray *data = [[NSMutableArray alloc] init];
     for (int section = 0; section < self.data.count; section++) {
-        ZZFlexibleLayoutSectionModel *sectionModel = self.data[section];
+        ZZFLEXSectionModel *sectionModel = self.data[section];
         for (int row = 0; row < sectionModel.itemsArray.count; row++) {
-            ZZFlexibleLayoutViewModel *viewModel = [sectionModel objectAtIndex:row];
+            ZZFLEXViewModel *viewModel = [sectionModel objectAtIndex:row];
             if (viewModel.viewTag == cellTag) {
                 NSIndexPath *indexPath = [NSIndexPath indexPathForItem:row inSection:section];
                 [data addObject:indexPath];
@@ -222,9 +222,9 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
 {
     NSMutableArray *data = [[NSMutableArray alloc] init];
     NSInteger sectionIndex = [self sectionIndexForTag:sectionTag];
-    ZZFlexibleLayoutSectionModel *sectionModel = self.data[sectionIndex];
+    ZZFLEXSectionModel *sectionModel = self.data[sectionIndex];
     for (int row = 0; row < sectionModel.itemsArray.count; row++) {
-        ZZFlexibleLayoutViewModel *viewModel = [sectionModel objectAtIndex:row];
+        ZZFLEXViewModel *viewModel = [sectionModel objectAtIndex:row];
         if (viewModel.viewTag == cellTag) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:row inSection:sectionIndex];
             [data addObject:indexPath];

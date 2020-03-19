@@ -1,14 +1,14 @@
 //
-//  ZZFlexibleLayoutSectionModel.m
+//  ZZFLEXSectionModel.m
 //  ZZFlexibleLayoutFrameworkDemo
 //
 //  Created by lbk on 2016/12/27.
 //  Copyright © 2016年 lbk. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXSectionModel.h"
 
-@implementation ZZFlexibleLayoutSectionModel
+@implementation ZZFLEXSectionModel
 
 - (id)init
 {
@@ -39,7 +39,7 @@
     return self.itemsArray.count;
 }
 
-- (void)addObject:(ZZFlexibleLayoutViewModel *)object
+- (void)addObject:(ZZFLEXViewModel *)object
 {
     if (!object) {
         return;
@@ -47,14 +47,14 @@
     [self.itemsArray addObject:object];
 }
 
-- (void)addObjectsFromArray:(NSArray<ZZFlexibleLayoutViewModel *> *)otherArray
+- (void)addObjectsFromArray:(NSArray<ZZFLEXViewModel *> *)otherArray
 {
     if (otherArray) {
         [self.itemsArray addObjectsFromArray:otherArray];
     }
 }
 
-- (void)insertObject:(ZZFlexibleLayoutViewModel *)object atIndex:(NSUInteger)objectIndex;
+- (void)insertObject:(ZZFLEXViewModel *)object atIndex:(NSUInteger)objectIndex;
 {
     if (!object) {
         return;
@@ -62,7 +62,7 @@
     [self.itemsArray insertObject:object atIndex:objectIndex];
 }
 
-- (void)insertObjects:(NSArray<ZZFlexibleLayoutViewModel *> *)objects atIndexes:(NSIndexSet *)indexes
+- (void)insertObjects:(NSArray<ZZFLEXViewModel *> *)objects atIndexes:(NSIndexSet *)indexes
 {
     if (objects) {
         [self.itemsArray insertObjects:objects atIndexes:indexes];
@@ -79,7 +79,7 @@
     index < self.itemsArray.count ? [self.itemsArray removeObjectAtIndex:index] : nil;
 }
 
-- (void)removeObject:(ZZFlexibleLayoutViewModel *)object
+- (void)removeObject:(ZZFLEXViewModel *)object
 {
     if ([self.itemsArray containsObject:object]) {
         [self.itemsArray removeObject:object];
@@ -88,7 +88,7 @@
 
 - (id)dataModelAtIndex:(NSUInteger)index
 {
-    ZZFlexibleLayoutViewModel *viewModel = [self objectAtIndex:index];
+    ZZFLEXViewModel *viewModel = [self objectAtIndex:index];
     return viewModel.dataModel;
 }
 

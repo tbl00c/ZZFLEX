@@ -1,5 +1,5 @@
 //
-//  ZZFlexibleLayoutViewModel.h
+//  ZZFLEXViewModel.h
 //  ZZFlexibleLayoutFrameworkDemo
 //
 //  Created by lbk on 2016/12/27.
@@ -14,7 +14,7 @@
  * 是对dataModel的一层封装
  * 实际给cell\view传递的仍然是dataModel
  */
-@interface ZZFlexibleLayoutViewModel : NSObject
+@interface ZZFLEXViewModel : NSObject
 
 /// view/cell类名
 @property (nonatomic, strong, readonly) NSString *className;

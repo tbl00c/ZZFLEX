@@ -1,5 +1,5 @@
 //
-//  ZZFlexibleLayoutSectionModel.h
+//  ZZFLEXSectionModel.h
 //  ZZFlexibleLayoutFrameworkDemo
 //
 //  Created by lbk on 2016/12/27.
@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZZFlexibleLayoutViewModel.h"
+#import "ZZFLEXViewModel.h"
 
 /**
  * 仅框架内部使用
@@ -15,7 +15,7 @@
  * 用于collectionView每个Section的Model
  */
 
-@interface ZZFlexibleLayoutSectionModel : NSObject
+@interface ZZFLEXSectionModel : NSObject
 
 /// section标识
 @property (nonatomic, assign) NSInteger sectionTag;
@@ -25,13 +25,13 @@
 
 #pragma mark - # Section Header
 /// section头部视图Model
-@property (nonatomic, strong) ZZFlexibleLayoutViewModel *headerViewModel;
+@property (nonatomic, strong) ZZFLEXViewModel *headerViewModel;
 /// section头部视图Size
 @property (nonatomic, assign, readonly) CGSize headerViewSize;
 
 #pragma mark - # Section Footer
 /// section尾部视图Model
-@property (nonatomic, strong) ZZFlexibleLayoutViewModel *footerViewModel;
+@property (nonatomic, strong) ZZFLEXViewModel *footerViewModel;
 /// section尾部视图Size
 @property (nonatomic, assign, readonly) CGSize footerViewSize;
 
@@ -45,21 +45,21 @@
 
 #pragma mark - # Items
 /// section元素Model数组
-@property (nonatomic, strong, readonly) NSMutableArray<ZZFlexibleLayoutViewModel *> *itemsArray;
+@property (nonatomic, strong, readonly) NSMutableArray<ZZFLEXViewModel *> *itemsArray;
 /// section元素个数
 @property (nonatomic, assign, readonly) NSUInteger count;
 
 /**
  * 为section添加元素
  */
-- (void)addObject:(ZZFlexibleLayoutViewModel *)object;
-- (void)addObjectsFromArray:(NSArray<ZZFlexibleLayoutViewModel *> *)otherArray;
+- (void)addObject:(ZZFLEXViewModel *)object;
+- (void)addObjectsFromArray:(NSArray<ZZFLEXViewModel *> *)otherArray;
 
 /**
  * 为section插入元素
  */
-- (void)insertObject:(ZZFlexibleLayoutViewModel *)object atIndex:(NSUInteger)objectIndex;
-- (void)insertObjects:(NSArray<ZZFlexibleLayoutViewModel *> *)objects atIndexes:(NSIndexSet *)indexes;
+- (void)insertObject:(ZZFLEXViewModel *)object atIndex:(NSUInteger)objectIndex;
+- (void)insertObjects:(NSArray<ZZFLEXViewModel *> *)objects atIndexes:(NSIndexSet *)indexes;
 
 /*
  * 获取section的第index个元素
@@ -74,7 +74,7 @@
 /**
  * 删除item
  */
-- (void)removeObject:(ZZFlexibleLayoutViewModel *)object;
+- (void)removeObject:(ZZFLEXViewModel *)object;
 
 /*
  * 获取section的第index个元素的dataModel

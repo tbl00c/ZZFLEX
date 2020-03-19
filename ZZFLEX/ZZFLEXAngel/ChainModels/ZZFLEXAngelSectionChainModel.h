@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class ZZFlexibleLayoutSectionModel;
+@class ZZFLEXSectionModel;
 
 #pragma mark - ## ZZFLEXAngelSectionBaseChainModel (基类)
 @interface ZZFLEXAngelSectionBaseChainModel<ZZFLEXReturnType> : NSObject
@@ -27,7 +27,7 @@
 - (ZZFLEXReturnType (^)(UIColor *backgrounColor))backgrounColor;
 
 /// 初始化，框架内部使用
-- (instancetype)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel;
+- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel;
 
 @end
 
@@ -51,7 +51,7 @@
 - (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger sectionTag))afterSection;
 
 /// 框架内部使用
-- (instancetype)initWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel listData:(NSMutableArray *)listData;
+- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel listData:(NSMutableArray *)listData;
 
 @end
 

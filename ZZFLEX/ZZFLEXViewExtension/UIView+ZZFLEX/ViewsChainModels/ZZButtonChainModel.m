@@ -21,6 +21,17 @@
     };      \
 }       \
 
+
+#define     ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(methodName, eventType) \
+- (ZZButtonChainModel *(^)(void (^eventBlock)(id sender)))methodName     \
+{   \
+    return ^ZZButtonChainModel *(void (^eventBlock)(id sender)) {    \
+        [(UIControl *)self.view addControlEvents:eventType handler:eventBlock]; \
+        return self;    \
+    };  \
+}
+
+
 #define     ZZFLEX_CHAIN_BUTTON_TITLE_IMPLEMENTATION(methodName, State)             ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, NSString *, setTitle, State)
 #define     ZZFLEX_CHAIN_BUTTON_TITLECOLOR_IMPLEMENTATION(methodName, State)        ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, UIColor *, setTitleColor, State)
 #define     ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(methodName, State)            ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, UIColor *, setTitleShadowColor, State)
@@ -90,6 +101,14 @@ ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(highlighted, BOOL);
         return self;
     };
 }
+
+
+ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchDown, UIControlEventTouchDown);
+ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchDownRepeat, UIControlEventTouchDownRepeat);
+ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchUpInside, UIControlEventTouchUpInside);
+ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchUpOutside, UIControlEventTouchUpOutside);
+ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchCancel, UIControlEventTouchCancel);
+
 
 ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(contentVerticalAlignment, UIControlContentVerticalAlignment);
 ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(contentHorizontalAlignment, UIControlContentHorizontalAlignment);

@@ -58,6 +58,13 @@ ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ highlighted)(BOOL highlighted);
 
 ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
 
+ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchDown)(void (^eventBlock)(id sender));
+ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchDownRepeat)(void (^eventBlock)(id sender));
+ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchUpInside)(void (^eventBlock)(id sender));
+ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchUpOutside)(void (^eventBlock)(id sender));
+ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchCancel)(void (^eventBlock)(id sender));
+
+
 ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ contentVerticalAlignment)(UIControlContentVerticalAlignment contentVerticalAlignment);
 ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ contentHorizontalAlignment)(UIControlContentHorizontalAlignment contentHorizontalAlignment);
 

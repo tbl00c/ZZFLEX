@@ -8,7 +8,7 @@
 
 #import "ZZFDSubscriptionAngel.h"
 #import "ZZFLEXAngel+Private.h"
-#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXSectionModel.h"
 #import "ZZFDSubscriptionEditViewController.h"
 #import "ZZFDSubscriptionModel+Request.h"
 #import "TLMenuItem.h"
@@ -106,7 +106,7 @@
 {
     @weakify(self);
     TLWeakSelf(tableView);
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     if (sectionModel.sectionTag == ZZFDBillListVCSectionTypeItems) {
         UITableViewRowAction *delAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
                                                                              title:@"删除"
@@ -122,7 +122,7 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     if (sectionModel.sectionTag == ZZFDBillListVCSectionTypeItems) {
         return UITableViewCellEditingStyleDelete;
     }

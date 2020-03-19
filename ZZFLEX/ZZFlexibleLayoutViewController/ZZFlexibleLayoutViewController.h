@@ -35,7 +35,7 @@
 @end
 
 #pragma mark - ## ZZFlexibleLayoutViewController
-@class ZZFlexibleLayoutSectionModel;
+@class ZZFLEXSectionModel;
 @interface ZZFlexibleLayoutViewController : UIViewController <ZZFLEXAngelAPIProtocol, ZZFlexibleLayoutViewControllerProtocol>
 
 /// 瀑布流列表

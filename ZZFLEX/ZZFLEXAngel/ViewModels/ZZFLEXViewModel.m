@@ -1,15 +1,15 @@
 //
-//  ZZFlexibleLayoutViewModel.m
+//  ZZFLEXViewModel.m
 //  ZZFlexibleLayoutFrameworkDemo
 //
 //  Created by lbk on 2016/12/27.
 //  Copyright © 2016年 lbk. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewModel.h"
+#import "ZZFLEXViewModel.h"
 #import "ZZFlexibleLayoutViewProtocol.h"
 
-@implementation ZZFlexibleLayoutViewModel
+@implementation ZZFLEXViewModel
 @synthesize viewSize = _viewSize;
 @synthesize dataModel = _dataModel;
 

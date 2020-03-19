@@ -7,7 +7,7 @@
 //
 
 #import "ZZFLEXAngelViewEditChainModel.h"
-#import "ZZFlexibleLayoutSectionModel.h"
+#import "ZZFLEXSectionModel.h"
 
 #pragma mark - ## ZZFLEXAngelViewEditChainModel (单个)
 @interface ZZFLEXAngelViewEditChainModel ()
@@ -32,8 +32,8 @@
 - (id (^)(NSInteger viewTag))byViewTag
 {
     return ^id(NSInteger viewTag) {
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
+            for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
                 if (viewModel.viewTag == viewTag) {
                     return [self p_executeWithSectionModel:sectionModel viewModel:viewModel];
                 }
@@ -46,8 +46,8 @@
 - (id (^)(id dataModel))byDataModel
 {
     return ^id(id dataModel) {
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
+            for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
                 if (viewModel.dataModel == dataModel) {
                     return [self p_executeWithSectionModel:sectionModel viewModel:viewModel];
                 }
@@ -60,8 +60,8 @@
 - (id (^)(NSString *className))byViewClassName
 {
     return ^id(NSString *className) {
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
-            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
+            for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
                 if ([viewModel.className isEqualToString:className]) {
                     return [self p_executeWithSectionModel:sectionModel viewModel:viewModel];
                 }
@@ -74,9 +74,9 @@
 - (id (^)(NSIndexPath *indexPath))atIndexPath
 {
     return ^id(NSIndexPath *indexPath) {
-        ZZFlexibleLayoutSectionModel *sectionModel = (indexPath.section >=0 && indexPath.section < self.listData.count) ? self.listData[indexPath.section] : nil;
+        ZZFLEXSectionModel *sectionModel = (indexPath.section >=0 && indexPath.section < self.listData.count) ? self.listData[indexPath.section] : nil;
         if (sectionModel) {
-            ZZFlexibleLayoutViewModel *viewModel = (indexPath.row >= 0 && indexPath.row < sectionModel.itemsArray.count) ? sectionModel.itemsArray[indexPath.row] : nil;
+            ZZFLEXViewModel *viewModel = (indexPath.row >= 0 && indexPath.row < sectionModel.itemsArray.count) ? sectionModel.itemsArray[indexPath.row] : nil;
             if (viewModel) {
                 return [self p_executeWithSectionModel:sectionModel viewModel:viewModel];
             }
@@ -86,7 +86,7 @@
 }
 
 #pragma mark - # Private Methods
-- (id)p_executeWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel viewModel:(ZZFlexibleLayoutViewModel *)viewModel
+- (id)p_executeWithSectionModel:(ZZFLEXSectionModel *)sectionModel viewModel:(ZZFLEXViewModel *)viewModel
 {
     if (self.editType == ZZFLEXAngelViewEditTypeDelete) {
         [sectionModel.itemsArray removeObject:viewModel];
@@ -131,7 +131,7 @@
 {
     return ^NSArray *(void) {
         NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
             if (self.editType == ZZFLEXAngelViewEditTypeDelete) {       // 删除
                 [sectionModel.itemsArray removeAllObjects];
             }
@@ -150,9 +150,9 @@
 {
     return ^NSArray *(NSInteger viewTag) {
         NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
             NSMutableArray *data = [[NSMutableArray alloc] init];
-            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+            for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
                 if (viewModel.viewTag == viewTag) {
                     [data addObject:viewModel];
                 }
@@ -176,9 +176,9 @@
 {
     return ^NSArray *(id dataModel) {
         NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
             NSMutableArray *data = [[NSMutableArray alloc] init];
-            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+            for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
                 if (viewModel.dataModel == dataModel) {
                     [data addObject:viewModel];
                 }
@@ -199,9 +199,9 @@
 {
     return ^NSArray *(NSString *className) {
         NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
-        for (ZZFlexibleLayoutSectionModel *sectionModel in self.listData) {
+        for (ZZFLEXSectionModel *sectionModel in self.listData) {
             NSMutableArray *data = [[NSMutableArray alloc] init];
-            for (ZZFlexibleLayoutViewModel *viewModel in sectionModel.itemsArray) {
+            for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
                 if ([viewModel.className isEqualToString:className]) {
                     [data addObject:viewModel];
                 }
@@ -221,9 +221,9 @@
     };
 }
 
-- (NSArray *)p_deleteWithSectionModel:(ZZFlexibleLayoutSectionModel *)sectionModel viewModelArray:(NSArray *)viewModelArray
+- (NSArray *)p_deleteWithSectionModel:(ZZFLEXSectionModel *)sectionModel viewModelArray:(NSArray *)viewModelArray
 {
-    for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in viewModelArray) {
         if (viewModel == sectionModel.headerViewModel) {
             sectionModel.headerViewModel = nil;
         }
@@ -239,7 +239,7 @@
 
 - (void)p_updateViewModelArray:(NSArray *)viewModelArray
 {
-    for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in viewModelArray) {
         [viewModel updateViewSize];
     }
 }
@@ -247,7 +247,7 @@
 - (NSArray *)dataModelArrayByViewModelArray:(NSArray *)viewModelArray
 {
     NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
-    for (ZZFlexibleLayoutViewModel *viewModel in viewModelArray) {
+    for (ZZFLEXViewModel *viewModel in viewModelArray) {
         if (viewModel.dataModel) {
             [data addObject:viewModel.dataModel];
         }

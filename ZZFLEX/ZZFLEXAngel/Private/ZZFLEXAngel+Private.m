@@ -7,19 +7,19 @@
 //
 
 #import "ZZFLEXAngel+Private.h"
-#import "ZZFlexibleLayoutSectionModel.h"
-#import "ZZFlexibleLayoutViewModel.h"
+#import "ZZFLEXSectionModel.h"
+#import "ZZFLEXViewModel.h"
 
 @implementation ZZFLEXAngel (Private)
 
-- (ZZFlexibleLayoutSectionModel *)sectionModelAtIndex:(NSInteger)section
+- (ZZFLEXSectionModel *)sectionModelAtIndex:(NSInteger)section
 {
     return section < self.data.count ? self.data[section] : nil;
 }
 
-- (ZZFlexibleLayoutSectionModel *)sectionModelForTag:(NSInteger)sectionTag
+- (ZZFLEXSectionModel *)sectionModelForTag:(NSInteger)sectionTag
 {
-    for (ZZFlexibleLayoutSectionModel *sectionModel in self.data) {
+    for (ZZFLEXSectionModel *sectionModel in self.data) {
         if (sectionModel.sectionTag == sectionTag) {
             return sectionModel;
         }
@@ -27,20 +27,20 @@
     return nil;
 }
 
-- (ZZFlexibleLayoutViewModel *)viewModelAtIndexPath:(NSIndexPath *)indexPath
+- (ZZFLEXViewModel *)viewModelAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!indexPath) {
         return nil;
     }
-    ZZFlexibleLayoutSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     return [sectionModel objectAtIndex:indexPath.row];
 }
 
-- (NSArray<ZZFlexibleLayoutViewModel *> *)viewModelsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+- (NSArray<ZZFLEXViewModel *> *)viewModelsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
 {
     NSMutableArray *data = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
-        ZZFlexibleLayoutViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
+        ZZFLEXViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
         if (viewModel) {
             [data addObject:viewModel];
         }
