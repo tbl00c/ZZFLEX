@@ -1,13 +1,13 @@
 //
-//  ZZFLEXAngelTitleCell.m
+//  ZZFLEXAngelIconTitleCell.m
 //  Masonry
 //
 //  Created by 李伯坤 on 2020/2/6.
 //
 
-#import "ZZFLEXAngelTitleCell.h"
+#import "ZZFLEXAngelIconTitleCell.h"
 
-@implementation ZZFLEXAngelTitleCell
+@implementation ZZFLEXAngelIconTitleCell
 
 - (void)setItem:(ZZFLEXAngelItem *)item
 {
@@ -29,17 +29,17 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        [self resetNormalCellUI];
+        [self resetTitleCellUI];
     }
     return self;
 }
 
-- (void)resetNormalCellUI
+- (void)resetTitleCellUI
 {
     {
         _titleView = self.angelView.addView(0)
         .masonry(^ (__kindof UIView *view, MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
+            make.left.top.bottom.mas_equalTo(0);
         })
         .view;
     }
@@ -62,7 +62,7 @@
         label.zz_setup.masonry(^(__kindof UIView *sender, MASConstraintMaker *make) {
             make.left.mas_equalTo(self.iconView.mas_right);
             make.centerY.mas_equalTo(0);
-            make.right.mas_lessThanOrEqualTo(self.titleLabel);
+            make.right.mas_equalTo(0);
         });
         _titleLabel = label;
     }

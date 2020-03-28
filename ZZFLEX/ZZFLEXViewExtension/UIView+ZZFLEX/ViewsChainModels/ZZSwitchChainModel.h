@@ -23,6 +23,8 @@ ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ enabled)(BOOL enabled);
 ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ selected)(BOOL selected);
 ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ highlighted)(BOOL highlighted);
 
+ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ eventValueChanged)(void (^eventBlock)(id sender));
+
 ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
 
 @end

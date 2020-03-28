@@ -320,8 +320,10 @@
 		C0147FEEAF838AD5EE9ACE3DBE3CAE5F /* SDWebImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 9266D477C2736FB38FABDB016B7A60CC /* SDWebImageFrame.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C0E2C41633CCA2B473A186ADDE148122 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3648DDF25B8EAE72A3BDBFBE121E6E /* SVIndefiniteAnimatedView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C135ABAC9088EEB87BD88FD3FEE042DB /* ZZFlexibleLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0BD1956FFB5D9A2744F70300C9C5B3 /* ZZFlexibleLayoutViewController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C245A4EA23EC35900098D007 /* ZZFLEXAngelTitleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C245A4E823EC35900098D007 /* ZZFLEXAngelTitleCell.h */; };
-		C245A4EB23EC35900098D007 /* ZZFLEXAngelTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C245A4E923EC35900098D007 /* ZZFLEXAngelTitleCell.m */; };
+		C245A4EA23EC35900098D007 /* ZZFLEXAngelIconTitleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C245A4E823EC35900098D007 /* ZZFLEXAngelIconTitleCell.h */; };
+		C245A4EB23EC35900098D007 /* ZZFLEXAngelIconTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C245A4E923EC35900098D007 /* ZZFLEXAngelIconTitleCell.m */; };
+		C2E2633A23EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E2633823EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.h */; };
+		C2E2633B23EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E2633923EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.m */; };
 		C39141B7067413F2B6AA89D7C219EE64 /* SDImageCacheConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1105A188E2D6E49BBD983156CD9D252B /* SDImageCacheConfig.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C3D8382011D240215545E334E5C91682 /* ZZLabelChainModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B37336F772E0097A0CE2702FFB5DBB /* ZZLabelChainModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C3E12EC75087E0E93A7D9CD25A46C385 /* ZZFlexibleLayoutEmptyHeaderFooterView.h in Headers */ = {isa = PBXBuildFile; fileRef = E07E64A4D08104495F0CFC1F4CA1512C /* ZZFlexibleLayoutEmptyHeaderFooterView.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -851,8 +853,10 @@
 		C1CBF388701A4EC4EDECDC84E17052BB /* MASLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASLayoutConstraint.h; path = Masonry/MASLayoutConstraint.h; sourceTree = "<group>"; };
 		C21057A65CD56DE10EDCBF62FA33B862 /* ZZFLEXAngel+UITableView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZZFLEXAngel+UITableView.h"; sourceTree = "<group>"; };
 		C23A589145AA70881DEDDE0580B82580 /* UITextView+LengthLimit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+LengthLimit.h"; path = "TLKit/Classes/TLCategories/UIKit/UITextView/UITextView+LengthLimit.h"; sourceTree = "<group>"; };
-		C245A4E823EC35900098D007 /* ZZFLEXAngelTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFLEXAngelTitleCell.h; sourceTree = "<group>"; };
-		C245A4E923EC35900098D007 /* ZZFLEXAngelTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXAngelTitleCell.m; sourceTree = "<group>"; };
+		C245A4E823EC35900098D007 /* ZZFLEXAngelIconTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFLEXAngelIconTitleCell.h; sourceTree = "<group>"; };
+		C245A4E923EC35900098D007 /* ZZFLEXAngelIconTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXAngelIconTitleCell.m; sourceTree = "<group>"; };
+		C2E2633823EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFLEXAngelSwitchCell.h; sourceTree = "<group>"; };
+		C2E2633923EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFLEXAngelSwitchCell.m; sourceTree = "<group>"; };
 		C35BD172D407EBC6BA9A53C7AAB1F0D7 /* UIScrollView+Pages.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+Pages.h"; path = "TLKit/Classes/TLCategories/UIKit/UIScrollView/UIScrollView+Pages.h"; sourceTree = "<group>"; };
 		C4874CE25DFEF0A5BBEB76CEEDED5378 /* NSMutableDictionary+SafeAccess.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+SafeAccess.m"; path = "TLKit/Classes/TLCategories/Foundation/NSMutableDictionary/NSMutableDictionary+SafeAccess.m"; sourceTree = "<group>"; };
 		C4D920C77BC6EA8494C2028FEAE88709 /* TLActionSheet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLActionSheet.m; path = TLKit/Classes/TLComponents/TLActionSheet/TLActionSheet.m; sourceTree = "<group>"; };
@@ -1115,6 +1119,8 @@
 		221C6F5B4A811650D1E5BB17214CE07F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C2E2633723EC3ACD008AB077 /* Switch */,
+				C2E2633623EC3AA3008AB077 /* IconTitle */,
 				03E7AC063CED979AF6DDFEE780347A4C /* Base */,
 				5AD0BF9F3F3AEA715BBCEC4516D51760 /* Normal */,
 			);
@@ -1410,8 +1416,6 @@
 			children = (
 				3D333ED87CF3DAD391437E7B2CE55CA5 /* ZZFLEXAngelNormalCell.h */,
 				E1116193DC9E8007A9A8E8DAF9A7713E /* ZZFLEXAngelNormalCell.m */,
-				C245A4E823EC35900098D007 /* ZZFLEXAngelTitleCell.h */,
-				C245A4E923EC35900098D007 /* ZZFLEXAngelTitleCell.m */,
 			);
 			path = Normal;
 			sourceTree = "<group>";
@@ -1835,6 +1839,24 @@
 			name = TLToast;
 			sourceTree = "<group>";
 		};
+		C2E2633623EC3AA3008AB077 /* IconTitle */ = {
+			isa = PBXGroup;
+			children = (
+				C245A4E823EC35900098D007 /* ZZFLEXAngelIconTitleCell.h */,
+				C245A4E923EC35900098D007 /* ZZFLEXAngelIconTitleCell.m */,
+			);
+			path = IconTitle;
+			sourceTree = "<group>";
+		};
+		C2E2633723EC3ACD008AB077 /* Switch */ = {
+			isa = PBXGroup;
+			children = (
+				C2E2633823EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.h */,
+				C2E2633923EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.m */,
+			);
+			path = Switch;
+			sourceTree = "<group>";
+		};
 		C353B03AB9C70F440546A6806D5DCDBC /* TLKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -2204,13 +2226,14 @@
 			files = (
 				92BF70E9D3285561EB404A7C4A4A6DEE /* MASCompositeConstraint.h in Headers */,
 				4CE091F886EC6324673EFE0AEBBEA0FE /* MASConstraint+Private.h in Headers */,
+				C2E2633A23EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.h in Headers */,
 				EB663E3E1EB4BB670DC29B77DB330135 /* MASConstraint.h in Headers */,
 				9194B58ACE900ED6BAE6AD92E24A2CFF /* MASConstraintMaker.h in Headers */,
 				7CF2AC7A3B3ED03B30C1E4ED662B0551 /* MASLayoutConstraint.h in Headers */,
 				B20A0E5D8F9BCED1A82793C4BE9E7258 /* Masonry.h in Headers */,
 				65E88072A2BDC576BFC85E67EF9FBBC6 /* MASUtilities.h in Headers */,
 				42947699890A199B08A896144A878D80 /* MASViewAttribute.h in Headers */,
-				C245A4EA23EC35900098D007 /* ZZFLEXAngelTitleCell.h in Headers */,
+				C245A4EA23EC35900098D007 /* ZZFLEXAngelIconTitleCell.h in Headers */,
 				115ACCE253A886181B55773DDC70D6ED /* MASViewConstraint.h in Headers */,
 				F1B75048874B8773E5568E6D3ACA12E4 /* NSArray+MASAdditions.h in Headers */,
 				81F811A56B6724F7E8E2D25364E595E3 /* NSArray+MASShorthandAdditions.h in Headers */,
@@ -2658,10 +2681,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B369AAD43832AEDBBDA8A0DF0856B4C /* MASCompositeConstraint.m in Sources */,
-				C245A4EB23EC35900098D007 /* ZZFLEXAngelTitleCell.m in Sources */,
+				C245A4EB23EC35900098D007 /* ZZFLEXAngelIconTitleCell.m in Sources */,
 				D783A8A5A426DBF85162B92142651218 /* MASConstraint.m in Sources */,
 				181B2691FF506F26F7F71F711C724B81 /* MASConstraintMaker.m in Sources */,
 				68734B2FD4E55F9A95D5B416C075074A /* MASLayoutConstraint.m in Sources */,
+				C2E2633B23EC3AE6008AB077 /* ZZFLEXAngelSwitchCell.m in Sources */,
 				3430321D06CBCF49F5A7DF6A70D9BB91 /* Masonry-dummy.m in Sources */,
 				2E5F3B41BD51ACE4EE3B422BB67E51DF /* MASViewAttribute.m in Sources */,
 				31064475EC704EC31BC3E2DE0DAFC72C /* MASViewConstraint.m in Sources */,

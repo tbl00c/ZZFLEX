@@ -47,17 +47,26 @@ static ZZFLEXAngelItem *zzflex_createAngelItem(NSString *title) {
     return item;
 }
 
-static ZZFLEXAngelItem *zzflex_createAngelItemWithSubTitle(NSString *title, NSString *subTitle) {
-    ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
-    item.title = title;
-    item.subTitle = subTitle;
-    return item;
-}
-
 static ZZFLEXAngelItem *zzflex_createAngelIconItem(NSString *iconName, NSString *title) {
     ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
     item.iconName = iconName;
     item.title = title;
+    return item;
+}
+
+
+static ZZFLEXAngelItem *zzflex_createAngelWebIconItem(NSString *iconUrl, NSString *title) {
+    ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
+    item.iconUrl = iconUrl;
+    item.title = title;
+    return item;
+}
+
+#pragma mark - # SubTitle
+static ZZFLEXAngelItem *zzflex_createAngelItemWithSubTitle(NSString *title, NSString *subTitle) {
+    ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
+    item.title = title;
+    item.subTitle = subTitle;
     return item;
 }
 
@@ -69,9 +78,27 @@ static ZZFLEXAngelItem *zzflex_createAngelIconItemWithSubTitle(NSString *iconNam
     return item;
 }
 
-static ZZFLEXAngelItem *zzflex_createAngelWebIconItem(NSString *iconUrl, NSString *title) {
+#pragma mark - # Switch
+static ZZFLEXAngelItem *zzflex_createAngelSwitchItem(NSString *title, BOOL on) {
+    ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
+    item.title = title;
+    item.style.selected = on;
+    return item;
+}
+
+static ZZFLEXAngelItem *zzflex_createAngelSwitchIconItem(NSString *iconName, NSString *title, BOOL on) {
+    ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
+    item.iconName = iconName;
+    item.title = title;
+    item.style.selected = on;
+    return item;
+}
+
+static ZZFLEXAngelItem *zzflex_createAngelSwitchWebIconItem(NSString *iconUrl, NSString *title, BOOL on) {
     ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
     item.iconUrl = iconUrl;
     item.title = title;
+    item.style.selected = on;
     return item;
 }
+

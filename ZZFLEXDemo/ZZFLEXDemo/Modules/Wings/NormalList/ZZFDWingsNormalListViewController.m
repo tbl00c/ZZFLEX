@@ -26,37 +26,8 @@
     [self setTitle:@"ZZFLEXAngelWings"];
     [self.view setBackgroundColor:[UIColor colorGrayBG]];
     
-    @weakify(self);
-    UISwitch *button1 = UISwitch.zz_create(0)
-    .eventBlock(UIControlEventValueChanged, ^(UISwitch *button) {
-        @strongify(self);
-        self.icon = button.on ? @"mine_wallet" : nil;
-        [self resetData];
-    })
-    .view;
-    
-    _accessoryType = ZZFLEXAngelItemAccessoryDisclosureIndicator;
-    UISwitch *button2 = UISwitch.zz_create(0).on(YES)
-    .eventBlock(UIControlEventValueChanged, ^(UISwitch *button) {
-        @strongify(self);
-        self.accessoryType = button.on ? ZZFLEXAngelItemAccessoryDisclosureIndicator : ZZFLEXAngelItemAccessoryNone;
-        [self resetData];
-    })
-    .view;
-    
-    _seperatorType = ZZFLEXAngelItemSeperatorSimple;
-    UISwitch *button3 = UISwitch.zz_create(0).on(YES)
-    .eventBlock(UIControlEventValueChanged, ^(UISwitch *button) {
-        @strongify(self);
-        self.seperatorType = button.on ? ZZFLEXAngelItemSeperatorSimple : ZZFLEXAngelItemSeperatorNone;
-        [self resetData];
-    })
-    .view;
-    
-    [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithCustomView:button1],
-                                                  [[UIBarButtonItem alloc] initWithCustomView:button2],
-                                                  [[UIBarButtonItem alloc] initWithCustomView:button3],
-    ]];
+    self.seperatorType = ZZFLEXAngelItemSeperatorSimple;
+    self.accessoryType = ZZFLEXAngelItemAccessoryDisclosureIndicator;
 }
 
 - (void)viewDidLoad
@@ -68,11 +39,51 @@
 
 - (void)resetData
 {
+    @weakify(self);
     CGFloat offset = 12;
     self.clear();
+    NSInteger sectionType = 0;
 
     UIEdgeInsets sectionInsets = self.group ? UIEdgeInsetsMake(offset, offset, 0, offset) : UIEdgeInsetsMake(offset, 0, 0, 0);
     NSValue *seperatorInsets = self.group ? [NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(0, 15, 0, 15)] : nil;
+    
+    ZZFLEXAngelItem *(^__machinedItem)(ZZFLEXAngelItem *) = ^ZZFLEXAngelItem *(ZZFLEXAngelItem *item) {
+        item.iconName = self.icon;
+        item.style.cornorType = self.group ? ZZFLEXAngelItemCornorSimple : ZZFLEXAngelItemCornorNone;
+        item.style.seperatorInsets = seperatorInsets;
+        item.style.seperatorType = self.seperatorType;
+        item.style.accessoryType = self.accessoryType;
+        return item;
+    };
+    
+    {
+        sectionType ++;
+        self.addSection(sectionType).sectionInsets(sectionInsets);
+        self.addCell(ZZFLEXAngelWingsClassEnum.switchClass).toSection(sectionType).withDataModel(__machinedItem(zzflex_createAngelSwitchItem(@"图标", self.icon != nil)))
+        .eventAction(^ id(NSInteger eventType, ZZFLEXAngelItem *item) {
+            @strongify(self);
+            self.icon = item.style.selected ? @"mine_wallet" : nil;
+            [self resetData];
+            return nil;
+        });
+             
+        self.addCell(ZZFLEXAngelWingsClassEnum.switchClass).toSection(sectionType).withDataModel(__machinedItem(zzflex_createAngelSwitchItem(@"更多指示器", self.accessoryType == ZZFLEXAngelItemAccessoryDisclosureIndicator)))
+        .eventAction(^ id(NSInteger eventType, ZZFLEXAngelItem *item) {
+            @strongify(self);
+            self.accessoryType = item.style.selected ? ZZFLEXAngelItemAccessoryDisclosureIndicator : ZZFLEXAngelItemAccessoryNone;
+            [self resetData];
+            return nil;
+        });
+        
+        self.addCell(ZZFLEXAngelWingsClassEnum.switchClass).toSection(sectionType).withDataModel(__machinedItem(zzflex_createAngelSwitchItem(@"分割线", self.seperatorType == ZZFLEXAngelItemSeperatorSimple)))
+        .eventAction(^ id(NSInteger eventType, ZZFLEXAngelItem *item) {
+            @strongify(self);
+            self.seperatorType = item.style.selected ? ZZFLEXAngelItemSeperatorSimple : ZZFLEXAngelItemSeperatorNone;
+            [self resetData];
+            return nil;
+        });
+    }
+    
     
     void (^ addItemsToSection)(NSInteger) = ^ (NSInteger sectionType) {
         NSMutableArray *data = [[NSMutableArray alloc] init];
@@ -83,17 +94,12 @@
         [data addObject:zzflex_createAngelItemWithSubTitle(@"标准菜单项4", @"这里是副标题")];
 
         for (ZZFLEXAngelItem *item in data) {
-            item.iconName = self.icon;
-            item.style.cornorType = self.group ? ZZFLEXAngelItemCornorSimple : ZZFLEXAngelItemCornorNone;
-            item.style.seperatorInsets = seperatorInsets;
-            item.style.seperatorType = self.seperatorType;
-            item.style.accessoryType = self.accessoryType;
+            __machinedItem(item);
         }
         
-        self.addCells(ZZFLEXAngeWingsClassEnum.normalClass).toSection(sectionType).withDataModelArray(data);
+        self.addCells(ZZFLEXAngelWingsClassEnum.normalClass).toSection(sectionType).withDataModelArray(data);
     };
 
-    NSInteger sectionType = 0;
     // 组1
     {
         sectionType ++;

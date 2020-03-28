@@ -40,14 +40,14 @@
         NSInteger sectionType = 0;
         self.addSection(sectionType).sectionInsets(UIEdgeInsetsMake(offset, 0, 0, 0));
         
-        self.addCell(ZZFLEXAngeWingsClassEnum.normalClass).toSection(sectionType).withDataModel(zzflex_createAngelItem(@"平铺分组菜单列表"))
+        self.addCell(ZZFLEXAngelWingsClassEnum.normalClass).toSection(sectionType).withDataModel(zzflex_createAngelItem(@"平铺分组菜单列表"))
         .selectedAction(^ (ZZFLEXAngelItem *item) {
             @strongify(self);
             ZZFDWingsNormalListViewController *vc = [[ZZFDWingsNormalListViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         });
         
-        self.addCell(ZZFLEXAngeWingsClassEnum.normalClass).toSection(sectionType).withDataModel(zzflex_createAngelItem(@"区块分组菜单列表"))
+        self.addCell(ZZFLEXAngelWingsClassEnum.normalClass).toSection(sectionType).withDataModel(zzflex_createAngelItem(@"区块分组菜单列表"))
         .selectedAction(^ (ZZFLEXAngelItem *item) {
             @strongify(self);
             ZZFDWingsNormalListViewController *vc = [[ZZFDWingsNormalListViewController alloc] init];

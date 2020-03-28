@@ -11,6 +11,15 @@
 
 #define     ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZSwitchChainModel *, UISwitch)
 
+#define     ZZFLEX_CHAIN_SWITCH_EVENT_IMPLEMENTATION(methodName, eventType) \
+- (ZZSwitchChainModel *(^)(void (^eventBlock)(id sender)))methodName     \
+{   \
+    return ^ZZSwitchChainModel *(void (^eventBlock)(id sender)) {    \
+        [(UIControl *)self.view addControlEvents:eventType handler:eventBlock]; \
+        return self;    \
+    };  \
+}
+
 @implementation ZZSwitchChainModel
 
 ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(on, BOOL);
@@ -32,6 +41,8 @@ ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(highlighted, BOOL);
         return self;
     };
 }
+
+ZZFLEX_CHAIN_SWITCH_EVENT_IMPLEMENTATION(eventValueChanged, UIControlEventValueChanged)
 
 @end
 

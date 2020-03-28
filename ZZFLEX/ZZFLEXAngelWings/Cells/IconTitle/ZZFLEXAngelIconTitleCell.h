@@ -1,5 +1,5 @@
 //
-//  ZZFLEXAngelTitleCell.h
+//  ZZFLEXAngelIconTitleCell.h
 //  Masonry
 //
 //  Created by 李伯坤 on 2020/2/6.
@@ -9,7 +9,7 @@
 #import "ZZFLEXAngelCellImageView.h"
 #import "ZZFLEXAngelCellLabel.h"
 
-@interface ZZFLEXAngelTitleCell : ZZFLEXAngelBaseCell
+@interface ZZFLEXAngelIconTitleCell : ZZFLEXAngelBaseCell
 
 @property (nonatomic, strong, readonly) UIView *titleView;
 @property (nonatomic, strong, readonly) ZZFLEXAngelCellImageView *iconView;

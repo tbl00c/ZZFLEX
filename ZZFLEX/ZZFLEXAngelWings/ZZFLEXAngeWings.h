@@ -8,8 +8,9 @@
 #import "ZZFLEXAngelItem.h"
 #import "ZZFLEXAngeWingAppearance.h"
 
-@interface ZZFLEXAngeWingsClassEnum : NSObject
+@interface ZZFLEXAngelWingsClassEnum : NSObject
 
 + (Class)normalClass;
++ (Class)switchClass;
 
 @end

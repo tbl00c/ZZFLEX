@@ -90,9 +90,7 @@
     }
     
     {
-        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"ZZFLEX" ofType:@"bundle"]];
-        UIImage *image = [UIImage imageNamed:@"zzflex_right_arrow" inBundle:bundle compatibleWithTraitCollection:nil];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:ZZFLEXImage(@"zzflex_right_arrow")];
         [self.angelView addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(0);

@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) ZZFLEXAngelItemStyle *itemStyle;
 
-@property (nonatomic, strong) ZZFLEXAngelItemImage *iconStyle;
+@property (nonatomic, strong) ZZFLEXAngelItemImageStyle *iconStyle;
 
 @property (nonatomic, strong) ZZFLEXAngelItemTextStyle *titleStyle;
 
@@ -22,11 +22,11 @@
 
 @property (nonatomic, strong) ZZFLEXAngelItemTextStyle *messageStyle;
 
-@property (nonatomic, strong) ZZFLEXAngelItemImage *imageStyle;
+@property (nonatomic, strong) ZZFLEXAngelItemImageStyle *imageStyle;
 
 
 + (instancetype)appearance;
 
-+ (instancetype)appearanceForClass:(Class)class;
++ (instancetype)appearanceForClass:(Class)aClass;
 
 @end

@@ -7,12 +7,18 @@
 
 #import "ZZFLEXAngeWings.h"
 #import "ZZFLEXAngelNormalCell.h"
+#import "ZZFLEXAngelSwitchCell.h"
 
-@implementation ZZFLEXAngeWingsClassEnum
+@implementation ZZFLEXAngelWingsClassEnum
 
 + (Class)normalClass
 {
     return [ZZFLEXAngelNormalCell class];
+}
+
++ (Class)switchClass
+{
+    return [ZZFLEXAngelSwitchCell class];
 }
 
 @end
