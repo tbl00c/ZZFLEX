@@ -8,6 +8,7 @@
 
 #import "ZZBaseViewChainModel.h"
 #import "UIView+ZZFrame.h"
+#import "CALayer+ZZFLEXDarkMode.h"
 #import <Masonry/Masonry.h>
 
 #define     ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, id, UIView)
@@ -105,12 +106,18 @@ ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(masksToBounds, BOOL);
 {
     return ^__kindof ZZBaseViewChainModel *(CGFloat borderWidth, UIColor *borderColor) {
         [self.view.layer setBorderWidth:borderWidth];
-        [self.view.layer setBorderColor:borderColor.CGColor];
+        [self.view.layer setZzflex_borderColor:borderColor];
         return self;
     };
 }
 ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(borderWidth, CGFloat);
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(borderColor, CGColorRef);
+- (id (^)(UIColor *borderColor))borderColor
+{
+    return ^__kindof ZZBaseViewChainModel *(UIColor *borderColor) {
+        [self.view.layer setZzflex_borderColor:borderColor];
+        return self;
+    };
+}
 
 ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(zPosition, CGFloat);
 ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(anchorPoint, CGPoint);
@@ -120,12 +127,19 @@ ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(anchorPoint, CGPoint);
     return ^__kindof ZZBaseViewChainModel *(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity) {
         [self.view.layer setShadowOffset:shadowOffset];
         [self.view.layer setShadowRadius:shadowRadius];
-        [self.view.layer setShadowColor:shadowColor.CGColor];
+        [self.view.layer setZzflex_shadowColor:shadowColor];
         [self.view.layer setShadowOpacity:shadowOpacity];
         return self;
     };
 }
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(shadowColor, CGColorRef);
+- (id (^)(UIColor *borderColor))shadowColor
+{
+    return ^__kindof ZZBaseViewChainModel *(UIColor *shadowColor) {
+        [self.view.layer setZzflex_shadowColor:shadowColor];
+        return self;
+    };
+}
+
 ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(shadowOpacity, CGFloat);
 ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(shadowOffset, CGSize);
 ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(shadowRadius, CGFloat);

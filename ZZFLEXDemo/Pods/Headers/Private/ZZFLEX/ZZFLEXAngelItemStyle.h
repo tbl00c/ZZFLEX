@@ -1,1 +1,1 @@
-../../../../../ZZFLEX/ZZFLEXAngelWings/Model/ZZFLEXAngelItemStyle.h
+../../../../../ZZFLEX/ZZFLEXAngelWings/Model/Style/ZZFLEXAngelItemStyle.h

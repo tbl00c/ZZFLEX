@@ -10,6 +10,7 @@
 #import "ZZFlexibleLayoutViewController+Kernel.h"
 #import "ZZFLEXMacros.h"
 #import "UIView+ZZFLEX.h"
+#import <Masonry/Masonry.h>
 
 #define     ZZFLEXVC_ANGEL_CHAIN_METHOD(methodName, returnType, paramType)  \
 - (returnType (^)(paramType))methodName \
@@ -44,6 +45,9 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView setFrame:self.view.bounds];
     [self.view addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
 }
 
 - (void)dealloc

@@ -98,13 +98,13 @@ ZZFLEX_CHAIN_PROPERTY ObjcType (^ cornerRadius)(CGFloat cornerRadius);
 
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ border)(CGFloat borderWidth, UIColor *borderColor);
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ borderWidth)(CGFloat borderWidth);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ borderColor)(CGColorRef borderColor);
+ZZFLEX_CHAIN_PROPERTY ObjcType (^ borderColor)(UIColor *borderColor);
 
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ zPosition)(CGFloat zPosition);
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ anchorPoint)(CGPoint anchorPoint);
 
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadow)(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowColor)(CGColorRef shadowColor);
+ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowColor)(UIColor *shadowColor);
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowOpacity)(CGFloat shadowOpacity);
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowOffset)(CGSize shadowOffset);
 ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowRadius)(CGFloat shadowRadius);

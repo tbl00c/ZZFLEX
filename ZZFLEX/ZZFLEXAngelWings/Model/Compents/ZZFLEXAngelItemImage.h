@@ -32,13 +32,13 @@
 
 @end
 
-static ZZFLEXAngelItemImage *zzflex_createAngelWebImage(NSString *imageUrl) {
+static inline ZZFLEXAngelItemImage *zzflex_createAngelWebImage(NSString *imageUrl) {
     ZZFLEXAngelItemImage *item = [[ZZFLEXAngelItemImage alloc] init];
     item.imageUrl = imageUrl;
     return item;
 }
 
-static ZZFLEXAngelItemImage *zzflex_createAngelImage(NSString *imageName) {
+static inline ZZFLEXAngelItemImage *zzflex_createAngelImage(NSString *imageName) {
     ZZFLEXAngelItemImage *item = [[ZZFLEXAngelItemImage alloc] init];
     item.imageName = imageName;
     return item;

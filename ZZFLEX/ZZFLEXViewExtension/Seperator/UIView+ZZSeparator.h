@@ -10,7 +10,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define     ZZSEPERATOR_DEFAULT_COLOR       [UIColor colorWithString:@"#eaeaea" alpha:1.0]
+#define     ZZSEPERATOR_DEFAULT_COLOR       [UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1.0]
+#define     ZZSEPERATOR_DEFAULT_COLOR_DARK       [UIColor colorWithRed:47/255.0 green:47/255.0 blue:47/255.0 alpha:1.0]
 
 typedef NS_ENUM(NSInteger, ZZSeparatorPosition) {
     ZZSeparatorPositionTop,

@@ -9,8 +9,7 @@
 #import "UIView+ZZSeparator.h"
 #import <objc/runtime.h>
 #import "ZZFLEXMacros.h"
-
-#define     TLSEPERATOR_DEFAULT_COLOR       [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0]
+#import "CALayer+ZZFLEXDarkMode.h"
 
 #pragma mark - ## ZZSeparatorModel
 @interface ZZSeparatorModel : NSObject
@@ -37,7 +36,18 @@
 {
     if (self = [super init]) {
         [self setPosition:ZZSeparatorPositionBottom];
-        [self setColor:TLSEPERATOR_DEFAULT_COLOR];
+        if (@available(iOS 13.0, *)) {
+            UIColor *color = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                    return ZZSEPERATOR_DEFAULT_COLOR_DARK;
+                }
+                return ZZSEPERATOR_DEFAULT_COLOR;
+            }];
+            [self setColor:color];
+        }
+        else {
+            [self setColor:ZZSEPERATOR_DEFAULT_COLOR];
+        }
         [self setBegin:0];
         [self setEnd:0];
         [self setLength:0];
@@ -230,6 +240,8 @@
     }
     
     CAShapeLayer *layer = separatorModel.layer;
+//    [layer setZzflex_strokeColor:color];
+//    [layer setZzflex_fillColor:color];
     [layer setStrokeColor:[color CGColor]];
     [layer setFillColor:[color CGColor]];
     [layer setLineWidth:borderWidth];

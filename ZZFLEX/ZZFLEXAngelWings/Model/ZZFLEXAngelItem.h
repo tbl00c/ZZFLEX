@@ -41,13 +41,13 @@
 
 @end
 
-static ZZFLEXAngelItem *zzflex_createAngelItem(NSString *title) {
+static inline ZZFLEXAngelItem *zzflex_createAngelItem(NSString *title) {
     ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
     item.title = title;
     return item;
 }
 
-static ZZFLEXAngelItem *zzflex_createAngelIconItem(NSString *iconName, NSString *title) {
+static inline ZZFLEXAngelItem *zzflex_createAngelIconItem(NSString *iconName, NSString *title) {
     ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
     item.iconName = iconName;
     item.title = title;
@@ -55,7 +55,7 @@ static ZZFLEXAngelItem *zzflex_createAngelIconItem(NSString *iconName, NSString 
 }
 
 
-static ZZFLEXAngelItem *zzflex_createAngelWebIconItem(NSString *iconUrl, NSString *title) {
+static inline ZZFLEXAngelItem *zzflex_createAngelWebIconItem(NSString *iconUrl, NSString *title) {
     ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
     item.iconUrl = iconUrl;
     item.title = title;
@@ -63,14 +63,14 @@ static ZZFLEXAngelItem *zzflex_createAngelWebIconItem(NSString *iconUrl, NSStrin
 }
 
 #pragma mark - # SubTitle
-static ZZFLEXAngelItem *zzflex_createAngelItemWithSubTitle(NSString *title, NSString *subTitle) {
+static inline ZZFLEXAngelItem *zzflex_createAngelItemWithSubTitle(NSString *title, NSString *subTitle) {
     ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
     item.title = title;
     item.subTitle = subTitle;
     return item;
 }
 
-static ZZFLEXAngelItem *zzflex_createAngelIconItemWithSubTitle(NSString *iconName, NSString *title, NSString *subTitle) {
+static inline ZZFLEXAngelItem *zzflex_createAngelIconItemWithSubTitle(NSString *iconName, NSString *title, NSString *subTitle) {
     ZZFLEXAngelItem *item = [[ZZFLEXAngelItem alloc] init];
     item.iconName = iconName;
     item.title = title;

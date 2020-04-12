@@ -29,7 +29,7 @@
 
 @end
 
-static ZZFLEXAngelItemText *zzflex_createAngelText(NSString *text) {
+static inline ZZFLEXAngelItemText *zzflex_createAngelText(NSString *text) {
     ZZFLEXAngelItemText *item = [[ZZFLEXAngelItemText alloc] init];
     item.text = text;
     return item;
