@@ -1,5 +1,53 @@
 ## ZZFLEX更新记录
 
+### 1.0
+1、addCell时，类型由类名字符串变更为class；
+
+```objective-c
+self.addCell([ACell class]).toSection(sectionTag)
+```
+
+2、ZZFLEXViewExtension新增圆角支持;
+
+```objective-c
+self.setCornor(ZZCornerPositionAll).radius(cornorRadius);
+```
+
+3、UICollectionView支持卡片类型支持（设置sectionEdge后，在cell中根据位置设置圆角即可）；
+
+4、ZZFLEXViewExtension中Masonry设置方法，加增view参数，便于设置与自身关系；
+
+```objective-c
+UIImageView *imageView = self.addImageView(0)
+.masonry(^ (UIView *senderView, MASConstraintMaker *make) {
+    make.top.left.bottom.mas_equalTo(0);
+    make.height.mas_equalTo(senderView);
+})
+.view;
+```
+
+5、新增ZZFLEXFoundationExtension，支持NSAttributeString的链式调用;
+
+```objective-c
+NSAttributedString *attrTitle = NSMutableAttributedString.zz_create(@"Hello world").font([UIFont boldSystemFontOfSize:17]).foregroundColor([UIColor redColor]).object;
+```
+
+6、ZZFLEXViewExtension中```zz_make```属性更名为```zz_setup```;
+
+7、ZZFlexibleLayoutViewProtocol中，cell位置通知方法名变给为
+
+```objective-c
+- (void)onViewPositionUpdatedWithIndexPath:(NSIndexPath *)indexPath sectionItemCount:(NSInteger)count;
+```
+
+8、ZZFLEXRequestQueue支持progress；
+
+9、强依赖Masonry；
+
+10、ZZFLEXCollectionViewController重构，使用ZZFlexAngel核心逻辑；
+
+11、更多逻辑性能优化、BUG修复；
+
 ### 0.3.0
 
 1、增加XIB支持。

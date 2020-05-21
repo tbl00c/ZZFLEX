@@ -11,6 +11,7 @@
 		C20CB02A202841A40088276C /* ZZFDPlatformItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB029202841A40088276C /* ZZFDPlatformItemCell.m */; };
 		C20CB02D202842170088276C /* ZZFDPlatformItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB02C202842170088276C /* ZZFDPlatformItemModel.m */; };
 		C20CB031202859A20088276C /* ZZFDLanguageSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */; };
+		C22212D524235D5700FA0B32 /* WXContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22212D424235D5700FA0B32 /* WXContactsViewController.m */; };
 		C248E3AC225457F100CB74E9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AA225457F100CB74E9 /* README.md */; };
 		C248E3AD225457F100CB74E9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AB225457F100CB74E9 /* LICENSE */; };
 		C248E3AF2254580500CB74E9 /* ZZFLEX.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */; };
@@ -117,6 +118,8 @@
 		C20CB02C202842170088276C /* ZZFDPlatformItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDPlatformItemModel.m; sourceTree = "<group>"; };
 		C20CB02F202859A20088276C /* ZZFDLanguageSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDLanguageSelectViewController.h; sourceTree = "<group>"; };
 		C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDLanguageSelectViewController.m; sourceTree = "<group>"; };
+		C22212D324235D5700FA0B32 /* WXContactsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXContactsViewController.h; sourceTree = "<group>"; };
+		C22212D424235D5700FA0B32 /* WXContactsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXContactsViewController.m; sourceTree = "<group>"; };
 		C248E3AA225457F100CB74E9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C248E3AB225457F100CB74E9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C248E3AE2254580500CB74E9 /* ZZFLEX.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZZFLEX.podspec; path = ../ZZFLEX.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -339,6 +342,15 @@
 				C20CB030202859A20088276C /* ZZFDLanguageSelectViewController.m */,
 			);
 			path = ZZFDLanguageSelectViewController;
+			sourceTree = "<group>";
+		};
+		C22212D224235D3C00FA0B32 /* WXContacts(VC) */ = {
+			isa = PBXGroup;
+			children = (
+				C22212D324235D5700FA0B32 /* WXContactsViewController.h */,
+				C22212D424235D5700FA0B32 /* WXContactsViewController.m */,
+			);
+			path = "WXContacts(VC)";
 			sourceTree = "<group>";
 		};
 		C248E3A9225457D000CB74E9 /* Podspec Metadata */ = {
@@ -642,6 +654,7 @@
 		C2863A8B1FCCFB76008BC3C0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C22212D224235D3C00FA0B32 /* WXContacts(VC) */,
 				C2F21C472241E1CE00841F4C /* Album */,
 				C27E9F6F1FCE63A20062C896 /* Common */,
 				C2863A8C1FCCFB76008BC3C0 /* Launcher */,
@@ -1122,6 +1135,7 @@
 				C2863A941FCCFB76008BC3C0 /* ZZFDAppDelegate.m in Sources */,
 				C2863AA61FCD022B008BC3C0 /* ZZFDMainMenuCell.m in Sources */,
 				C26B6B79202AF53B0058656E /* ZZFDSubscriptionAngel.m in Sources */,
+				C22212D524235D5700FA0B32 /* WXContactsViewController.m in Sources */,
 				C20CB031202859A20088276C /* ZZFDLanguageSelectViewController.m in Sources */,
 				C2AC73371FE51FD400DABA11 /* ZZFDMainSectionTitleView.m in Sources */,
 				C27E9F581FCE60E70062C896 /* TLMineViewController.m in Sources */,
@@ -1317,7 +1331,7 @@
 				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1335,7 +1349,7 @@
 				INFOPLIST_FILE = ZZFLEXDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lbk.zzflex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

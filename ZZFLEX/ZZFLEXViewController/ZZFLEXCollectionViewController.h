@@ -1,5 +1,5 @@
 //
-//  ZZFlexibleLayoutViewController.h
+//  ZZFLEXCollectionViewController.h
 //  zhuanzhuan
 //
 //  Created by lbk on 2016/10/10.
@@ -21,22 +21,12 @@
 
 #define     ZZFLEX_CHAINAPI_TYPE            @property (nonatomic, copy, readonly)
 
-#pragma mark - ## ZZFlexibleLayoutViewControllerProtocol
-@protocol ZZFlexibleLayoutViewControllerProtocol <NSObject>
-@optional;
-/**
- *  collectionView Cell 点击事件
- */
-- (void)collectionViewDidSelectItem:(id)itemModel
-                         sectionTag:(NSInteger)sectionTag
-                            cellTag:(NSInteger)cellTag
-                          className:(NSString *)className
-                          indexPath:(NSIndexPath *)indexPath;
-@end
-
-#pragma mark - ## ZZFlexibleLayoutViewController
-@class ZZFLEXSectionModel;
-@interface ZZFlexibleLayoutViewController : UIViewController <ZZFLEXAngelAPIProtocol, ZZFlexibleLayoutViewControllerProtocol>
+#pragma mark - ## ZZFLEXCollectionViewController
+@interface ZZFLEXCollectionViewController : UIViewController <
+UICollectionViewDelegate,
+UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout,
+ZZFLEXAngelAPIProtocol>
 
 /// 瀑布流列表
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
@@ -58,8 +48,8 @@
 
 @end
 
-#pragma mark - ## ZZFlexibleLayoutViewController (Scroll)
-@interface ZZFlexibleLayoutViewController (Scroll)
+#pragma mark - ## ZZFLEXCollectionViewController (Scroll)
+@interface ZZFLEXCollectionViewController (Scroll)
 
 - (void)scrollToTop:(BOOL)animated;
 - (void)scrollToBottom:(BOOL)animated;

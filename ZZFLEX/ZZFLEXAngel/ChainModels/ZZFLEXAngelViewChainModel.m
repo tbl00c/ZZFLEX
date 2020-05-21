@@ -13,7 +13,6 @@
 @interface ZZFLEXAngelViewBaseChainModel()
 
 @property (nonatomic, strong) NSMutableArray *listData;
-@property (nonatomic, strong) ZZFLEXViewModel *viewModel;
 
 @end
 
@@ -23,8 +22,8 @@
 {
     if (self = [super init]) {
         _type = type;
-        self.listData = listData;
-        self.viewModel = viewModel;
+        _listData = listData;
+        _viewModel = viewModel;
     }
     return self;
 }

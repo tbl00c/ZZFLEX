@@ -26,6 +26,8 @@
 /// backgrounColor
 - (ZZFLEXReturnType (^)(UIColor *backgrounColor))backgrounColor;
 
+@property (nonatomic, strong, readonly) ZZFLEXSectionModel *sectionModel;
+
 /// 初始化，框架内部使用
 - (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel;
 

@@ -19,6 +19,7 @@
 #import "ZZFDRquestQueueViewController.h"
 #import "ZZFDAlbumViewController.h"
 #import "WXSettingViewController.h"
+#import "WXContactsViewController.h"
 
 #define     FDMAIN_FONT_SIZE_DETAIL         14
 #define     ClassMenuHeaderCell             [ZZFDMainSectionTitleView class]
@@ -28,7 +29,8 @@ typedef NS_ENUM(NSInteger, ZZFDMainSectionType) {
     ZZFDMainSectionTypeHello,               // Hello
     ZZFDMainSectionTypeFE,                  // ZZFLEX Foundation拓展
     ZZFDMainSectionTypeVE,                  // ZZFLEX View拓展
-    ZZFDMainSectionTypeVC,                  // ZZFlexibleLayoutViewController
+    ZZFDMainSectionTypeVC,                  // ZZFLEXCollectionViewController
+    ZZFDMainSectionTypeTVC,
     ZZFDMainSectionTypeVCExtension,
     ZZFDMainSectionTypeAgent,               // ZZFLEXAgent
     ZZFDMainSectionTypeEdit,                // 编辑类页面处理Demo
@@ -125,13 +127,33 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
     }
     
-    // ZZFlexibleLayoutViewController
+    // ZZFLEXAgent
+    {
+        NSInteger sectionTag = ZZFDMainSectionTypeAgent;
+        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 30, 15));
+        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXAngel",
+                                                                     @"ZZFLEXAngel是一个列表页控制器，支持UITableView和UICollectionView（统称hostView）；使用她，我们通常无需关心和实现hostView的各种代理方法。她的设计使得列表页的构建就如同拼图一般，只需要一件件的add需要的cell\header\footer(需实现ZZFlexibleLayoutViewProtocol)，我们想要的界面就绘制出来了。");
+        __zz_attr_string_bold(attrTitle, @"列表控制中心");
+        self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
+        
+        self.addCell(ClassMenuCell).withDataModel(@"电商分类页").toSection(sectionTag).selectedAction(^(id model){
+            @strongify(self);
+            ZZFDCateViewController *vc = [[ZZFDCateViewController alloc] init];
+            PushVC(vc);
+        });
+        self.addCell(ClassMenuCell).withDataModel(@"微信“通讯录”").toSection(sectionTag).selectedAction(^(id model){
+            @strongify(self);
+            TLContactsViewController *vc = [[TLContactsViewController alloc] init];
+            PushVC(vc);
+        });
+    }
+    
+    // ZZFLEXCollectionViewController
     {
         NSInteger sectionTag = ZZFDMainSectionTypeVC;
         self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 30, 15));
-        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFlexibleLayoutViewController",
-                                                                     @"ZZFlexibleLayoutViewController（下称ZZFLEXVC） 是一个基于collectionView实现的数据驱动的列表页框架，可大幅降低复杂列表界面实现和维护的难度。\n使用它我们无需再关心collectionView的各种代理方法，只需潜心实现我们需要的列表元素。\n它使得一个复杂界面的构建就如同拼图一般，我们只需一件件的add需要的模块，即可绘制出我们想要的界面。");
-        __zz_attr_string_bold(attrTitle, @"数据驱动的列表页框架");
+        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXCollectionViewController",
+                                                                     @"基于UICollectionView+ZZFLEXAngel的VC级实现");
         self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
         self.addCell(ClassMenuCell).withDataModel(@"商品列表&详情页").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
@@ -149,26 +171,19 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
             PushVC(vc);
         });
     }
-
-    // ZZFLEXAgent
+    
+    // ZZFLEXTableViewController
     {
-        NSInteger sectionTag = ZZFDMainSectionTypeAgent;
-        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 30, 15));
-        NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXAngel",
-                                                                     @"ZZFLEXVC为列表页的开发带来的优异的拓展性和可维护性，但它是一个VC级别的实现，在一些业务场景下还是不够灵活的。\nZZFLEXAngel是ZZFLEXVC核心思想和设计提炼而成的一个“列表控制中心”，它与页面和列表控件是完全解耦的。\n使用它我们只需把任意collectionView或tableView的dataSource和delegate指向它或它子类的实例，就可以通过这个实例、使用和ZZFLEXVC中一样的那些好用的API了。");
-        __zz_attr_string_bold(attrTitle, @"列表控制中心");
-        self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
-        
-        self.addCell(ClassMenuCell).withDataModel(@"电商分类页").toSection(sectionTag).selectedAction(^(id model){
-            @strongify(self);
-            ZZFDCateViewController *vc = [[ZZFDCateViewController alloc] init];
-            PushVC(vc);
-        });
-        self.addCell(ClassMenuCell).withDataModel(@"微信“通讯录”").toSection(sectionTag).selectedAction(^(id model){
-            @strongify(self);
-            TLContactsViewController *vc = [[TLContactsViewController alloc] init];
-            PushVC(vc);
-        });
+       NSInteger sectionTag = ZZFDMainSectionTypeTVC;
+       self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 30, 15));
+       NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXTableViewController",
+                                                                    @"基于UITableView+ZZFLEXAngel的VC级实现");
+       self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
+       self.addCell(ClassMenuCell).withDataModel(@"微信“通信录”").toSection(sectionTag).selectedAction(^(id model){
+           @strongify(self);
+           WXContactsViewController *vc = [[WXContactsViewController alloc] init];
+           PushVC(vc);
+       });
     }
     
     {

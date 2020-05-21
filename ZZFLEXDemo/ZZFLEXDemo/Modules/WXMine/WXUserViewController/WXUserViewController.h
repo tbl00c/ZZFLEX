@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WXUserViewController : ZZFlexibleLayoutViewController 
+@interface WXUserViewController : ZZFLEXCollectionViewController 
 
 @property (nonatomic, strong) TLUser *userModel;
 

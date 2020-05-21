@@ -6,9 +6,9 @@
 //  Copyright © 2018年 李伯坤. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController.h"
+#import "ZZFLEXCollectionViewController.h"
 
-@interface ZZFDLanguageSelectViewController : ZZFlexibleLayoutViewController
+@interface ZZFDLanguageSelectViewController : ZZFLEXCollectionViewController
 
 - (instancetype)initWithLanguageArray:(NSArray *)languageArray selectLanguage:(NSString *)language selectedAction:(void (^)(NSString *language))selectedAction;
 

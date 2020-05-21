@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
     ZZFDGoodListSectionTypeGood,
 };
 
-@interface ZZFDGoodListViewController () <ZZFlexibleLayoutViewControllerProtocol>
+@interface ZZFDGoodListViewController ()
 
 @property (nonatomic, assign) NSInteger offset;
 

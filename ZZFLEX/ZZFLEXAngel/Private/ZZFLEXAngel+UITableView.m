@@ -16,7 +16,7 @@
 
 @implementation ZZFLEXAngel (UITableView)
 
-//MARK: UICollectionViewDataSource
+//MARK: UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.data.count;
@@ -61,17 +61,19 @@
     return view;
 }
 
-- (UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *)_headerFooterViewForTableView:(UITableView *)tableView viewModel:(ZZFLEXViewModel *)viewModel section:(NSInteger)section
+- (UITableViewHeaderFooterView *)_headerFooterViewForTableView:(UITableView *)tableView viewModel:(ZZFLEXViewModel *)viewModel section:(NSInteger)section
 {
+    UITableViewHeaderFooterView *view;
     if (!viewModel.viewClass) {
-       return nil;
+        view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZZFLEXTableViewHeaderFooterView"];
+        return view;
     }
-    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.className];
+    view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.className];
     [viewModel excuteConfigActionForHostView:tableView itemView:view sectionCount:section indexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
     return view;
 }
 
-//MARK: UICollectionViewDelegate
+//MARK: UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -79,7 +81,6 @@
     [viewModel excuteSelectedActionForHostView:tableView];
 }
 
-//MARK: ZZFlexibleLayoutFlowLayoutDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZZFLEXViewModel *model = [self viewModelAtIndexPath:indexPath];
@@ -92,6 +93,9 @@
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *model = sectionModel.headerViewModel;
     CGFloat height = [model visableSizeForHostView:tableView].height;
+    if (height < 0.0001) {
+        height = sectionModel.sectionInsets.top;
+    }
     return height;
 }
 
@@ -100,6 +104,9 @@
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *model = sectionModel.footerViewModel;
     CGFloat height = [model visableSizeForHostView:tableView].height;
+    if (height < 0.0001) {
+        height = sectionModel.sectionInsets.bottom;
+    }
     return height;
 }
 

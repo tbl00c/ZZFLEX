@@ -16,4 +16,6 @@
 
 - (ZZFLEXViewModel *)viewModelAtIndexPath:(NSIndexPath *)indexPath;
 
+- (NSArray<ZZFLEXViewModel *> *)viewModelsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
+
 @end

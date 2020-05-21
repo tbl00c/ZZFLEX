@@ -1,15 +1,15 @@
 //
-//  ZZFlexibleLayoutViewController+EditExtension.m
+//  ZZFLEXCollectionViewController+EditExtension.m
 //  zhuanzhuan
 //
 //  Created by lbk on 2017/8/15.
 //  Copyright © 2017年 zz. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController+EditExtension.h"
+#import "ZZFLEXCollectionViewController+EditExtension.h"
 #import "ZZFLEXEditModelProtocol.h"
 
-@implementation ZZFlexibleLayoutViewController (EditExtension)
+@implementation ZZFLEXCollectionViewController (EditExtension)
 
 - (NSError *)checkInputlegitimacy
 {

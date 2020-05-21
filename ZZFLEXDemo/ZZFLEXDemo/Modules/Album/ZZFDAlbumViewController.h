@@ -6,11 +6,11 @@
 //  Copyright © 2019 李伯坤. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController.h"
+#import "ZZFLEXCollectionViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZZFDAlbumViewController : ZZFlexibleLayoutViewController
+@interface ZZFDAlbumViewController : ZZFLEXCollectionViewController
 
 @end
 

@@ -6,10 +6,10 @@
 //  Copyright © 2018年 李伯坤. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController+EditExtension.h"
+#import "ZZFLEXCollectionViewController+EditExtension.h"
 #import "ZZFDSubscriptionModel.h"
 
-@interface ZZFDSubscriptionEditViewController : ZZFlexibleLayoutViewController
+@interface ZZFDSubscriptionEditViewController : ZZFLEXCollectionViewController
 
 @property (nonatomic, strong) ZZFDSubscriptionModel *subModel;
 @property (nonatomic, copy) void (^completeAction)(ZZFDSubscriptionModel *subModel);

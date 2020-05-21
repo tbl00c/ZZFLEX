@@ -6,8 +6,8 @@
 //  Copyright © 2017年 李伯坤. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController.h"
+#import "ZZFLEXCollectionViewController.h"
 
-@interface TLMineViewController : ZZFlexibleLayoutViewController
+@interface TLMineViewController : ZZFLEXCollectionViewController
 
 @end

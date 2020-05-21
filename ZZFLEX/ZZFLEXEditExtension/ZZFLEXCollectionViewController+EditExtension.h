@@ -1,14 +1,14 @@
 //
-//  ZZFlexibleLayoutViewController+EditExtension.h
+//  ZZFLEXCollectionViewController+EditExtension.h
 //  zhuanzhuan
 //
 //  Created by 李伯坤 on 2017/8/15.
 //  Copyright © 2017年 zz. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController.h"
+#import "ZZFLEXCollectionViewController.h"
 
-@interface ZZFlexibleLayoutViewController (EditExtension)
+@interface ZZFLEXCollectionViewController (EditExtension)
 
 /**
  *  检查用户输入的合法性(自上而下)

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * 所有要加入ZZFlexibleLayoutViewController、ZZFLEXAngel的view/cell都要实现此协议
+ * 所有要加入ZZFLEXCollectionViewController、ZZFLEXAngel的view/cell都要实现此协议
  *
  * 除获取大小/高度两个方法需要二选一之外，其余都可按需选择实现
  */
@@ -21,7 +21,7 @@
  * 获取cell/view大小，与viewHeightByDataModel二选一
  * 仅 CollectionView 可选择使用
  *
- * 调用时机：添加到ZZFlexibleLayoutViewController或ZZFLEXAngel时，如实现仅调用一次后，大小会缓存在ViewModel中。
+ * 调用时机：添加到ZZFLEXCollectionViewController或ZZFLEXAngel时，如实现仅调用一次后，大小会缓存在ViewModel中。
  * 其他：如需更新视图大小，需手动调用update方法
  * 小Tips：0至-1表示比例，如size.width=-0.5时，表示视图的宽度为列表宽度的50%
  */
@@ -30,7 +30,7 @@
  * 获取cell/view高度，与viewSizeByDataModel二选一
  * CollectionView、TableView 均可选择使用
  *
- * 调用时机：添加到ZZFlexibleLayoutViewController或ZZFLEXAngel时，如实现仅调用一次后，高度会缓存在ViewModel中。
+ * 调用时机：添加到ZZFLEXCollectionViewController或ZZFLEXAngel时，如实现仅调用一次后，高度会缓存在ViewModel中。
  * 其他：如需更新视图高度，需手动调用update方法
  * 小Tips：CollectionView也可用此方法，宽度默认为-1，即列表宽度
  */

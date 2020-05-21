@@ -6,10 +6,10 @@
 //  Copyright © 2017年 李伯坤. All rights reserved.
 //
 
-#import "ZZFlexibleLayoutViewController.h"
+#import "ZZFLEXCollectionViewController.h"
 #import "ZZFDGoodListModel.h"
 
-@interface ZZFDGoodDetailViewController : ZZFlexibleLayoutViewController
+@interface ZZFDGoodDetailViewController : ZZFLEXCollectionViewController
 
 @property (nonatomic, strong) ZZFDGoodListModel *listModel;
 

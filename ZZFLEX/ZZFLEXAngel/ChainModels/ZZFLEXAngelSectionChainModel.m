@@ -11,18 +11,12 @@
 #import "ZZFLEXMacros.h"
 
 #pragma mark - ## ZZFLEXAngelSectionBaseChainModel (基类)
-@interface ZZFLEXAngelSectionBaseChainModel ()
-
-@property (nonatomic, strong) ZZFLEXSectionModel *sectionModel;
-
-@end
-
 @implementation ZZFLEXAngelSectionBaseChainModel
 
 - (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel
 {
     if (self = [super init]) {
-        self.sectionModel = sectionModel;
+        _sectionModel = sectionModel;
     }
     return self;
 }
