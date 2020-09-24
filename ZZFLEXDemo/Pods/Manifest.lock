@@ -1,9 +1,9 @@
 PODS:
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
-  - SDWebImage (4.2.3):
-    - SDWebImage/Core (= 4.2.3)
-  - SDWebImage/Core (4.2.3)
+  - SDWebImage (5.9.1):
+    - SDWebImage/Core (= 5.9.1)
+  - SDWebImage/Core (5.9.1)
   - SVProgressHUD (2.2.5)
   - TLKit (0.0.28):
     - TLKit/TLCategories (= 0.0.28)
@@ -91,16 +91,16 @@ PODS:
     - TLKit/TLCategories/UIKit/UIAlertView
     - TLKit/TLCategories/UIKit/UIWindow
   - TLKit/TLShortcut (0.0.28)
-  - "XLPhotoBrowser+CoderXL (1.2.0)":
+  - "XLPhotoBrowser+CoderXL (1.2.2)":
     - SDWebImage
-  - ZZFLEX (1.0):
+  - ZZFLEX (1.1.1):
     - Masonry
 
 DEPENDENCIES:
   - Masonry (~> 1.1.0)
   - MJRefresh (~> 3.1.15)
   - TLKit (from `https://github.com/tbl00c/TLKit.git`)
-  - "XLPhotoBrowser+CoderXL (from `https://github.com/tbl00c/XLPhotoBrowser.git`, tag `1.2.1`)"
+  - "XLPhotoBrowser+CoderXL (from `https://github.com/tbl00c/XLPhotoBrowser.git`, tag `1.2.2`)"
   - ZZFLEX (from `../`)
 
 SPEC REPOS:
@@ -115,7 +115,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/tbl00c/TLKit.git
   "XLPhotoBrowser+CoderXL":
     :git: https://github.com/tbl00c/XLPhotoBrowser.git
-    :tag: 1.2.1
+    :tag: 1.2.2
   ZZFLEX:
     :path: "../"
 
@@ -125,17 +125,17 @@ CHECKOUT OPTIONS:
     :git: https://github.com/tbl00c/TLKit.git
   "XLPhotoBrowser+CoderXL":
     :git: https://github.com/tbl00c/XLPhotoBrowser.git
-    :tag: 1.2.1
+    :tag: 1.2.2
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
+  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TLKit: 29fdba0f2adff5ce34cedadff3e71eb44a1ff925
-  "XLPhotoBrowser+CoderXL": 48f73020942c73ba3c3f44c46f7f2add86a98d00
-  ZZFLEX: 8dea504b44873a40815aef67ccd2a0f0d65fc5e5
+  "XLPhotoBrowser+CoderXL": 7e366dc9f77f59507dfa6e1ee9122e7191d72750
+  ZZFLEX: cc1d746ae5f37bb03f691ffb321aa737a93982a5
 
-PODFILE CHECKSUM: a495a4e7f2f45601d65cc4756ca1ab2332f51c7e
+PODFILE CHECKSUM: 08ba182dbcd02ffb07d1cc03e7efdae284401ff1
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

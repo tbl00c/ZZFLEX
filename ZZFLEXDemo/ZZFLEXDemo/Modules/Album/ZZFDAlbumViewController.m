@@ -8,7 +8,7 @@
 
 #import "ZZFDAlbumViewController.h"
 #import <Photos/Photos.h>
-#import <XLPhotoBrowser+CoderXL/XLPhotoBrowser.h>
+#import <XLPhotoBrowser_CoderXL/XLPhotoBrowser.h>
 
 #import "ZZFDAlbumModel.h"
 #import "ZZFDAlbumCell.h"

@@ -8,7 +8,7 @@
 
 #import "ZZFDGoodDetailViewController.h"
 #import <MJRefresh/MJRefresh.h>
-#import <XLPhotoBrowser+CoderXL/XLPhotoBrowser.h>
+#import <XLPhotoBrowser_CoderXL/XLPhotoBrowser.h>
 #import "ZZFDGoodAreaCell.h"
 #import "ZZFDGoodTitleCell.h"
 #import "ZZFDGoodPriceCell.h"

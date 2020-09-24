@@ -1,1 +1,0 @@
-../../../XLPhotoBrowser+CoderXL/XLPhotoBrowser+CoderXL/XLPhotoBrowserTypeDefine.h

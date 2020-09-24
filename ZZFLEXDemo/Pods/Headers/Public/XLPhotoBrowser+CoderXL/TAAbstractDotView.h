@@ -1,1 +1,0 @@
-../../../XLPhotoBrowser+CoderXL/XLPhotoBrowser+CoderXL/Vender/PageControl/TAAbstractDotView.h

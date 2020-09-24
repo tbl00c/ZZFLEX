@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73C36E7BE34CE6277FA666FC /* Pods_ZZFLEXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A866D88811125267B8016C /* Pods_ZZFLEXDemo.framework */; };
 		C20CB02720283FD50088276C /* ZZFDPlatformSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB02620283FD50088276C /* ZZFDPlatformSelectViewController.m */; };
 		C20CB02A202841A40088276C /* ZZFDPlatformItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB029202841A40088276C /* ZZFDPlatformItemCell.m */; };
 		C20CB02D202842170088276C /* ZZFDPlatformItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB02C202842170088276C /* ZZFDPlatformItemModel.m */; };
@@ -103,11 +104,9 @@
 		C2F2F9862018A4FA003D53F7 /* ZZFDRQFailedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F9852018A4FA003D53F7 /* ZZFDRQFailedCell.m */; };
 		C2F2F9892018A509003D53F7 /* ZZFDRQSuccessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F9882018A509003D53F7 /* ZZFDRQSuccessCell.m */; };
 		C2F2F98D2018A53C003D53F7 /* ZZFDRQRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2F98C2018A53C003D53F7 /* ZZFDRQRequest.m */; };
-		C4CA8820EC31BF20D47A333A /* libPods-ZZFLEXDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3B3E00F40C25E980C181EA /* libPods-ZZFLEXDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6E3B3E00F40C25E980C181EA /* libPods-ZZFLEXDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZZFLEXDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A4ADBAF45856FF582ACE2C /* Pods-ZZFLEXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZFLEXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9440C1BF2DD4CF4BDDF729E6 /* Pods-ZZFLEXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZFLEXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C20CB02520283FD50088276C /* ZZFDPlatformSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDPlatformSelectViewController.h; sourceTree = "<group>"; };
@@ -291,6 +290,7 @@
 		C2F2F9882018A509003D53F7 /* ZZFDRQSuccessCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDRQSuccessCell.m; sourceTree = "<group>"; };
 		C2F2F98B2018A53C003D53F7 /* ZZFDRQRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDRQRequest.h; sourceTree = "<group>"; };
 		C2F2F98C2018A53C003D53F7 /* ZZFDRQRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDRQRequest.m; sourceTree = "<group>"; };
+		F2A866D88811125267B8016C /* Pods_ZZFLEXDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZZFLEXDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,7 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4CA8820EC31BF20D47A333A /* libPods-ZZFLEXDemo.a in Frameworks */,
+				73C36E7BE34CE6277FA666FC /* Pods_ZZFLEXDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +317,7 @@
 		2D6F440DF473BD3A66B3644B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6E3B3E00F40C25E980C181EA /* libPods-ZZFLEXDemo.a */,
+				F2A866D88811125267B8016C /* Pods_ZZFLEXDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1002,7 +1002,7 @@
 				C2D788D91FCC396D00778993 /* Sources */,
 				C2D788DA1FCC396D00778993 /* Frameworks */,
 				C2D788DB1FCC396D00778993 /* Resources */,
-				60A61B1BF6E15E45F6924B69 /* [CP] Copy Pods Resources */,
+				684BB15B2E6860E556D9C61F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1089,24 +1089,34 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		60A61B1BF6E15E45F6924B69 /* [CP] Copy Pods Resources */ = {
+		684BB15B2E6860E556D9C61F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-resources.sh",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TLKit/TLKit.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPhotoBrowser+CoderXL/XLPhotoBrowser_CoderXL.framework",
+				"${BUILT_PRODUCTS_DIR}/ZZFLEX/ZZFLEX.framework",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TLKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPhotoBrowser_CoderXL.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZZFLEX.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

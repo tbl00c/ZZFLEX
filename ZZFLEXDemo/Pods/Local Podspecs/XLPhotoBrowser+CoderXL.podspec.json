@@ -1,6 +1,6 @@
 {
   "name": "XLPhotoBrowser+CoderXL",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "summary": "An easy way to borwser photoes like WeChat Or SinaWeibo Style!",
   "homepage": "https://github.com/CoderXLLau/XLPhotoBrowser",
   "license": "MIT",
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/CoderXLLau/XLPhotoBrowser.git",
-    "tag": "1.2.0"
+    "tag": "1.2.2"
   },
   "source_files": "XLPhotoBrowser+CoderXL/**/*.{h,m}",
   "frameworks": "UIKit",

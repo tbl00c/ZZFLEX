@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZZFLEX"
-  s.version      = "1.1"
+  s.version      = "1.1.1"
   s.platform     = :ios, "8.0"
   s.summary      = "一个iOS UI敏捷开发框架，基于UIKit实现，主要包含常用控件的链式API拓展、一个数据驱动的列表框架、一个事件处理队列。"
   s.description  = <<-DESC
@@ -16,9 +16,11 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/tbl00c/ZZFLEX"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.source       = { :git => "https://github.com/tbl00c/ZZFLEX.git", :tag => s.version }
+  s.frameworks   = 'UIKit', 'CoreFoundation', 'Foundation'
   s.dependency 'Masonry'
 
   s.requires_arc = true
+  s.public_header_files = "ZZFLEX/**/*.{h}"
   s.source_files = "ZZFLEX/**/*.{h,m,mm}"
 
 end

@@ -8,7 +8,7 @@
 
 #import "XLZoomingScrollView.h"
 #import "XLProgressView.h"
-#import "SDImageCache.h"
+#import <SDWebImage/SDImageCache.h>
 
 @interface XLZoomingScrollView () <UIScrollViewDelegate>
 {
