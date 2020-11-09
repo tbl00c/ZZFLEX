@@ -114,7 +114,7 @@
         remarkAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
                                                           title:@"备注"
                                                         handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                                                            [TLUIUtility showSuccessHint:@"备注：暂未实现"];
+                                                            [TLToast showSuccessToast:@"备注：暂未实现"];
                                                         }];
         return @[remarkAction];
     }

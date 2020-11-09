@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, ZZFDSEVCSectionType) {
         @strongify(self);
         NSError *error = [self checkInputlegitimacy];
         if (error) {
-            [TLUIUtility showAlertWithTitle:[error.userInfo objectForKey:@"msg"] message:nil cancelButtonTitle:@"确定" otherButtonTitles:nil actionHandler:nil];
+            [TLAlertView showWithTitle:[error.userInfo objectForKey:@"msg"] message:nil cancelButtonTitle:@"确定"];
             return;
         }
         

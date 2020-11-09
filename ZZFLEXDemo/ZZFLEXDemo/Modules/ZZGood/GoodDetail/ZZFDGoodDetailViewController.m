@@ -230,7 +230,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         }
         
         self.offset = offset + data.count;
-        [TLUIUtility hiddenLoading];
+        [TLToast dismiss];
         
         if (offset == 0) {
             self.sectionForTag(ZZFDGoodSectionTypeRec).clear();
@@ -265,11 +265,11 @@ typedef NS_ENUM(NSInteger, ZZFDGoodSectionType) {
         });
         [self reloadView];
     } failure:^(NSString *errMsg) {
-        [TLUIUtility hiddenLoading];
+        [TLToast dismiss];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         
-        [TLUIUtility showErrorHint:errMsg];
+        [TLToast showErrorToast:errMsg];
     }];
 }
 

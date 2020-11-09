@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
 {
     [super viewDidLoad];
     
-    [TLUIUtility showLoading:nil];
+    [TLToast showLoading:nil];
     [self requestDataWithOffset:0];
     
     @weakify(self);
@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
             return ;
         }
         
-        [TLUIUtility hiddenLoading];
+        [TLToast dismiss];
         [self.collectionView.mj_header endRefreshing];
         
         if (offset == 0) {
@@ -83,11 +83,11 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
         [self ui_loadUIWithData:data clear:offset == 0];
         self.offset = offset + data.count;
     } failure:^(NSString *errMsg) {
-        [TLUIUtility hiddenLoading];
+        [TLToast dismiss];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         
-        [TLUIUtility showErrorHint:errMsg];
+        [TLToast showErrorToast:errMsg];
     }];
 }
 
@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger, ZZFDGoodListSectionType) {
             return nil;
         }
         if (eventType == ZZFDGoodListCellEventTypeClose) {
-            [TLUIUtility showAlertWithTitle:@"不喜欢这个商品？" message:@"我们以后将减少此类商品的推荐" cancelButtonTitle:@"取消" otherButtonTitles:@[@"不喜欢"] actionHandler:^(NSInteger buttonIndex) {
+            [TLAlertView showWithTitle:@"不喜欢这个商品？" message:@"我们以后将减少此类商品的推荐" cancelButtonTitle:@"取消" otherButtonTitles:@[@"不喜欢"]  actionHandler:^(NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
                     self.deleteCell.byDataModel(data);
                     [self reloadView];
