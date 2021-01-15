@@ -12,6 +12,7 @@
 #import "ZZFlexibleLayoutFlowLayout.h"
 #import "ZZFLEXSectionModel.h"
 #import "ZZFLEXAngel+UICollectionView.h"
+#import <Masonry/Masonry.h>
 
 #define     ZZFLEXVC_ANGEL_CHAIN_METHOD(methodName, returnType, paramType)  \
 - (returnType (^)(paramType))methodName \
@@ -43,13 +44,24 @@
 - (void)loadView
 {
     [super loadView];
-    [self.collectionView setFrame:self.view.bounds];
     [self.view addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(__zzflex_deviceOrientationDidChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (void)dealloc
 {
     ZZFLEXLog(@"Dealloc: %@", NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)__zzflex_deviceOrientationDidChanged
+{
+    self.angel.upadte();
+    self.angel.reload();
 }
 
 #pragma mark - # Setter

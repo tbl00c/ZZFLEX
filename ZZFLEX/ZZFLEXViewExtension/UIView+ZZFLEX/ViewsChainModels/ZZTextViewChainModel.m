@@ -8,52 +8,56 @@
 
 #import "ZZTextViewChainModel.h"
 
-#define     ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZTextViewChainModel *, UITextView)
-#define     ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZTextViewChainModel *, UITextView)
-
+#define     ZZFLEXC_TEXTVIEW_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZTextViewChainModel, UITextView, ZZParamType, methodName)
+#define     ZZFLEXC_SV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZTextViewChainModel, UITextView, ZZParamType, methodName)
 
 @implementation ZZTextViewChainModel
 
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(delegate, id<UITextViewDelegate>);
++ (Class)viewClass
+{
+    return [UITextView class];
+}
 
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(text, NSString *);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(font, UIFont *);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(textColor, UIColor *);
+ZZFLEXC_TEXTVIEW_IMP(id<UITextViewDelegate>, delegate)
 
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(textAlignment, NSTextAlignment);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(selectedRange, NSRange);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(editable, BOOL);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(selectable, BOOL);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(dataDetectorTypes, UIDataDetectorTypes);
+ZZFLEXC_TEXTVIEW_IMP(NSString *, text)
+ZZFLEXC_TEXTVIEW_IMP(UIFont *, font)
+ZZFLEXC_TEXTVIEW_IMP(UIColor *, textColor)
 
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(keyboardType, UIKeyboardType);
+ZZFLEXC_TEXTVIEW_IMP(NSTextAlignment, textAlignment)
+ZZFLEXC_TEXTVIEW_IMP(NSRange, selectedRange)
+ZZFLEXC_TEXTVIEW_IMP(BOOL, editable)
+ZZFLEXC_TEXTVIEW_IMP(BOOL, selectable)
+ZZFLEXC_TEXTVIEW_IMP(UIDataDetectorTypes, dataDetectorTypes)
 
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(allowsEditingTextAttributes, BOOL);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(attributedText, NSAttributedString *);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(typingAttributes, NSDictionary *);
+ZZFLEXC_TEXTVIEW_IMP(UIKeyboardType, keyboardType)
 
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(clearsOnInsertion, BOOL);
+ZZFLEXC_TEXTVIEW_IMP(BOOL, allowsEditingTextAttributes)
+ZZFLEXC_TEXTVIEW_IMP(NSAttributedString *, attributedText)
+ZZFLEXC_TEXTVIEW_IMP(NSDictionary *, typingAttributes)
 
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(textContainerInset, UIEdgeInsets);
-ZZFLEX_CHAIN_TEXTVIEW_IMPLEMENTATION(linkTextAttributes, NSDictionary *);
+ZZFLEXC_TEXTVIEW_IMP(BOOL, clearsOnInsertion)
+
+ZZFLEXC_TEXTVIEW_IMP(UIEdgeInsets, textContainerInset)
+ZZFLEXC_TEXTVIEW_IMP(NSDictionary *, linkTextAttributes)
 
 #pragma mark - UIScrollView
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentSize, CGSize)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentOffset, CGPoint)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentInset, UIEdgeInsets)
+ZZFLEXC_SV_IMP(CGSize, contentSize)
+ZZFLEXC_SV_IMP(CGPoint, contentOffset)
+ZZFLEXC_SV_IMP(UIEdgeInsets, contentInset)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(bounces, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(alwaysBounceVertical, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(alwaysBounceHorizontal, BOOL)
+ZZFLEXC_SV_IMP(BOOL, bounces)
+ZZFLEXC_SV_IMP(BOOL, alwaysBounceVertical)
+ZZFLEXC_SV_IMP(BOOL, alwaysBounceHorizontal)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(pagingEnabled, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollEnabled, BOOL)
+ZZFLEXC_SV_IMP(BOOL, pagingEnabled)
+ZZFLEXC_SV_IMP(BOOL, scrollEnabled)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(showsHorizontalScrollIndicator, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(showsVerticalScrollIndicator, BOOL)
+ZZFLEXC_SV_IMP(BOOL, showsHorizontalScrollIndicator)
+ZZFLEXC_SV_IMP(BOOL, showsVerticalScrollIndicator)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollsToTop, BOOL)
+ZZFLEXC_SV_IMP(BOOL, scrollsToTop)
 
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UITextView, ZZTextViewChainModel)
+ZZFLEX_EX_IMP(ZZTextViewChainModel, UITextView)

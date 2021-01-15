@@ -8,19 +8,21 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_LABEL_API(ZZParamType, methodName)      ZZFLEXC_API(ZZLabelChainModel, ZZParamType, methodName)
+
 @class ZZLabelChainModel;
 @interface ZZLabelChainModel : ZZBaseViewChainModel <ZZLabelChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ text)(NSString *text);
-ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ font)(UIFont *font);
-ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ textColor)(UIColor *textColor);
-ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ attributedText)(NSAttributedString *attributedText);
+ZZFLEXC_LABEL_API(NSString *, text)
+ZZFLEXC_LABEL_API(UIFont *, font)
+ZZFLEXC_LABEL_API(UIColor *, textColor)
+ZZFLEXC_LABEL_API(NSAttributedString *, attributedText)
 
-ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ textAlignment)(NSTextAlignment textAlignment);
-ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ numberOfLines)(NSInteger numberOfLines);
-ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ lineBreakMode)(NSLineBreakMode lineBreakMode);
-ZZFLEX_CHAIN_PROPERTY ZZLabelChainModel *(^ adjustsFontSizeToFitWidth)(BOOL adjustsFontSizeToFitWidth);
+ZZFLEXC_LABEL_API(NSTextAlignment, textAlignment)
+ZZFLEXC_LABEL_API(NSInteger, numberOfLines)
+ZZFLEXC_LABEL_API(NSLineBreakMode, lineBreakMode)
+ZZFLEXC_LABEL_API(BOOL, adjustsFontSizeToFitWidth)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UILabel, ZZLabelChainModel)
+ZZFLEX_EX_API(ZZLabelChainModel, UILabel)

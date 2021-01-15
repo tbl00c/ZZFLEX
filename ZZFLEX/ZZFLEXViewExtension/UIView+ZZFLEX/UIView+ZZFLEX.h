@@ -11,6 +11,8 @@
 #import "ZZViewChainModel.h"
 #import "ZZLabelChainModel.h"
 #import "ZZImageViewChainModel.h"
+#import "ZZActivityIndicatorViewChainModel.h"
+#import "ZZProgressViewChainModel.h"
 
 #import "ZZControlChainModel.h"
 #import "ZZTextFieldChainModel.h"
@@ -22,43 +24,29 @@
 #import "ZZTableViewChainModel.h"
 #import "ZZCollectionViewChainModel.h"
 
-#define     ZZFLEX_VIEW_CHAIN_TYPE              @property (nonatomic, copy, readonly)
+#define     ZZFLEX_VIEW_CHAIN_PROPERTY                           @property (nonatomic, copy, readonly)
+
+#define     ZZFLEX_VIEW_CHAIN_API(ZZChainType, methodName)       ZZFLEX_VIEW_CHAIN_PROPERTY ZZChainType *(^ methodName)(NSInteger tag)
 
 @interface UIView (ZZFLEX)
 
-/// 添加View
-ZZFLEX_VIEW_CHAIN_TYPE ZZViewChainModel *(^ addView)(NSInteger tag);
-
-/// 添加Label
-ZZFLEX_VIEW_CHAIN_TYPE ZZLabelChainModel *(^ addLabel)(NSInteger tag);
-
-/// 添加ImageView
-ZZFLEX_VIEW_CHAIN_TYPE ZZImageViewChainModel *(^ addImageView)(NSInteger tag);
+ZZFLEX_VIEW_CHAIN_API(ZZViewChainModel, addView);
+ZZFLEX_VIEW_CHAIN_API(ZZLabelChainModel, addLabel);
+ZZFLEX_VIEW_CHAIN_API(ZZImageViewChainModel, addImageView);
+ZZFLEX_VIEW_CHAIN_API(ZZActivityIndicatorViewChainModel, addActivityIndicatorView);
+ZZFLEX_VIEW_CHAIN_API(ZZProgressViewChainModel, addProgressView);
 
 #pragma mark - # 按钮类
-/// 添加Control
-ZZFLEX_VIEW_CHAIN_TYPE ZZControlChainModel *(^ addControl)(NSInteger tag);
-
-/// 添加TextField
-ZZFLEX_VIEW_CHAIN_TYPE ZZTextFieldChainModel *(^ addTextField)(NSInteger tag);
-
-/// 添加Button
-ZZFLEX_VIEW_CHAIN_TYPE ZZButtonChainModel *(^ addButton)(NSInteger tag);
-
-/// 添加Switch
-ZZFLEX_VIEW_CHAIN_TYPE ZZSwitchChainModel *(^ addSwitch)(NSInteger tag);
+ZZFLEX_VIEW_CHAIN_API(ZZControlChainModel, addControl);
+ZZFLEX_VIEW_CHAIN_API(ZZTextFieldChainModel, addTextField);
+ZZFLEX_VIEW_CHAIN_API(ZZButtonChainModel, addButton);
+ZZFLEX_VIEW_CHAIN_API(ZZSwitchChainModel, addSwitch);
 
 #pragma mark - # 滚动视图类
-/// 添加ScrollView
-ZZFLEX_VIEW_CHAIN_TYPE ZZScrollViewChainModel *(^ addScrollView)(NSInteger tag);
-
-/// 添加TextView
-ZZFLEX_VIEW_CHAIN_TYPE ZZTextViewChainModel *(^ addTextView)(NSInteger tag);
-
-/// 添加TableView
-ZZFLEX_VIEW_CHAIN_TYPE ZZTableViewChainModel *(^ addTableView)(NSInteger tag);
-
-/// 添加CollectionView
-ZZFLEX_VIEW_CHAIN_TYPE ZZCollectionViewChainModel *(^ addCollectionView)(NSInteger tag);
+ZZFLEX_VIEW_CHAIN_API(ZZScrollViewChainModel, addScrollView);
+ZZFLEX_VIEW_CHAIN_API(ZZTextViewChainModel, addTextView);
+ZZFLEX_VIEW_CHAIN_API(ZZTableViewChainModel, addTableView);
+ZZFLEX_VIEW_CHAIN_PROPERTY ZZTableViewChainModel *(^ addTableViewWithStyle)(NSInteger tag, UITableViewStyle style);
+ZZFLEX_VIEW_CHAIN_API(ZZCollectionViewChainModel, addCollectionView);
 
 @end

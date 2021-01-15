@@ -9,24 +9,26 @@
 #import <UIKit/UIKit.h>
 
 /// 链式API声明
-#define     ZZFLEX_CHAIN_PROPERTY               @property (nonatomic, copy, readonly)
+#define     ZZFLEXC_PROPERTY              @property (nonatomic, copy, readonly)
+#define     ZZFLEXC_API(ZZChainType, ZZParamType, methodName)      ZZFLEXC_PROPERTY ZZChainType *(^ methodName)(ZZParamType methodName);
+
 /// 一般链式API实现
-#define     ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZViewChainModelType, ZZViewClass) \
-- (ZZViewChainModelType (^)(ZZParamType param))methodName {   \
-    return ^ZZViewChainModelType (ZZParamType param) {    \
+#define     ZZFLEXC_IMP(ZZViewChainModelType, ZZViewClass, ZZParamType, methodName) \
+- (ZZViewChainModelType *(^)(ZZParamType param))methodName {   \
+    return ^ZZViewChainModelType *(ZZParamType param) {    \
         ((ZZViewClass *)self.view).methodName = param;   \
         return self;    \
     };\
 }
 
 /// UIKit拓展声明
-#define     ZZFLEX_EX_INTERFACE(ZZView, ZZViewChainModelClass)   \
+#define     ZZFLEX_EX_API(ZZViewChainModelClass, ZZView)   \
 @interface ZZView (ZZFLEX_EX)   \
-ZZFLEX_CHAIN_PROPERTY ZZViewChainModelClass *zz_setup;    \
+ZZFLEXC_PROPERTY ZZViewChainModelClass *zz_setup;    \
 + (ZZViewChainModelClass *(^)(NSInteger tag))zz_create;   \
 @end
 /// UIKit拓展实现
-#define     ZZFLEX_EX_IMPLEMENTATION(ZZView, ZZViewChainModelClass) \
+#define     ZZFLEX_EX_IMP(ZZViewChainModelClass, ZZView) \
 @implementation ZZView (ZZFLEX_EX)  \
 + (ZZViewChainModelClass *(^)(NSInteger tag))zz_create {\
     return ^ZZViewChainModelClass *(NSInteger tag){    \
@@ -39,8 +41,12 @@ ZZFLEX_CHAIN_PROPERTY ZZViewChainModelClass *zz_setup;    \
 }   \
 @end
 
+#define     ZZFLEXC_BASE_API(ZZParamType, methodName)      ZZFLEXC_PROPERTY ObjcType (^ methodName)(ZZParamType methodName);
+
 @class MASConstraintMaker;
 @interface ZZBaseViewChainModel <ObjcType> : NSObject
+
++ (Class)viewClass;
 
 /// 视图的唯一标示
 @property (nonatomic, assign, readonly) NSInteger tag;
@@ -48,67 +54,70 @@ ZZFLEX_CHAIN_PROPERTY ZZViewChainModelClass *zz_setup;    \
 /// 视图的唯一标示
 @property (nonatomic, strong, readonly) __kindof UIView *view;
 
-@property (nonatomic, assign, readonly) Class viewClass;
-
 - (instancetype)initWithTag:(NSInteger)tag andView:(__kindof UIView *)view;
 
 #pragma mark - # Frame
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ frame)(CGRect frame);
+ZZFLEXC_BASE_API(CGRect, frame)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ origin)(CGPoint origin);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ x)(CGFloat x);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ y)(CGFloat y);
+ZZFLEXC_BASE_API(CGPoint, origin)
+ZZFLEXC_BASE_API(CGFloat, x)
+ZZFLEXC_BASE_API(CGFloat, y)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ size)(CGSize size);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ width)(CGFloat width);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ height)(CGFloat height);
+ZZFLEXC_BASE_API(CGSize, size)
+ZZFLEXC_BASE_API(CGFloat, width)
+ZZFLEXC_BASE_API(CGFloat, height)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ center)(CGPoint center);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ centerX)(CGFloat centerX);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ centerY)(CGFloat centerY);
+ZZFLEXC_BASE_API(CGPoint, center)
+ZZFLEXC_BASE_API(CGFloat, centerX)
+ZZFLEXC_BASE_API(CGFloat, centerY)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ top)(CGFloat top);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ bottom)(CGFloat bottom);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ left)(CGFloat left);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ right)(CGFloat right);
+ZZFLEXC_BASE_API(CGFloat, top)
+ZZFLEXC_BASE_API(CGFloat, bottom)
+ZZFLEXC_BASE_API(CGFloat, left)
+ZZFLEXC_BASE_API(CGFloat, right)
 
 #pragma mark - # Layout
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ masonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ updateMasonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ remakeMasonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
+ZZFLEXC_PROPERTY ObjcType (^ masonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
+ZZFLEXC_PROPERTY ObjcType (^ updateMasonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
+ZZFLEXC_PROPERTY ObjcType (^ remakeMasonry)( void (^constraints)(__kindof UIView *sender, MASConstraintMaker *make) );
+
+ZZFLEXC_BASE_API(UILayoutPriority, horizontalAxisCompressionResistancePriority)
+ZZFLEXC_BASE_API(UILayoutPriority, verticalAxisCompressionResistancePriority)
+ZZFLEXC_BASE_API(UILayoutPriority, horizontalAxisHuggingPriority)
+ZZFLEXC_BASE_API(UILayoutPriority, verticalAxisHuggingPriority)
 
 #pragma mark - # Color
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ backgroundColor)(UIColor *backgroundColor);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ tintColor)(UIColor *tintColor);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ alpha)(CGFloat alpha);
+ZZFLEXC_BASE_API(UIColor *, backgroundColor)
+ZZFLEXC_BASE_API(UIColor *, tintColor)
+ZZFLEXC_BASE_API(CGFloat, alpha)
 
 #pragma mark - # Control
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ contentMode)(UIViewContentMode contentMode);
+ZZFLEXC_BASE_API(UIViewContentMode, contentMode)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ opaque)(BOOL opaque);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ hidden)(BOOL hidden);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ clipsToBounds)(BOOL clipsToBounds);
+ZZFLEXC_BASE_API(BOOL, opaque)
+ZZFLEXC_BASE_API(BOOL, hidden)
+ZZFLEXC_BASE_API(BOOL, clipsToBounds)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ userInteractionEnabled)(BOOL userInteractionEnabled);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ multipleTouchEnabled)(BOOL multipleTouchEnabled);
+ZZFLEXC_BASE_API(BOOL, userInteractionEnabled)
+ZZFLEXC_BASE_API(BOOL, multipleTouchEnabled)
 
 #pragma mark - # Layer
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ masksToBounds)(BOOL masksToBounds);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ cornerRadius)(CGFloat cornerRadius);
+ZZFLEXC_BASE_API(BOOL, masksToBounds)
+ZZFLEXC_BASE_API(CGFloat, cornerRadius)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ border)(CGFloat borderWidth, UIColor *borderColor);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ borderWidth)(CGFloat borderWidth);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ borderColor)(CGColorRef borderColor);
+ZZFLEXC_PROPERTY ObjcType (^ border)(CGFloat borderWidth, UIColor *borderColor);
+ZZFLEXC_BASE_API(CGFloat, borderWidth)
+ZZFLEXC_BASE_API(CGColorRef, borderColor)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ zPosition)(CGFloat zPosition);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ anchorPoint)(CGPoint anchorPoint);
+ZZFLEXC_BASE_API(CGFloat, zPosition)
+ZZFLEXC_BASE_API(CGPoint, anchorPoint)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadow)(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowColor)(CGColorRef shadowColor);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowOpacity)(CGFloat shadowOpacity);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowOffset)(CGSize shadowOffset);
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ shadowRadius)(CGFloat shadowRadius);
+ZZFLEXC_PROPERTY ObjcType (^ shadow)(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity);
+ZZFLEXC_BASE_API(CGColorRef, shadowColor)
+ZZFLEXC_BASE_API(CGFloat, shadowOpacity)
+ZZFLEXC_BASE_API(CGSize, shadowOffset)
+ZZFLEXC_BASE_API(CGFloat, shadowRadius)
 
-ZZFLEX_CHAIN_PROPERTY ObjcType (^ transform)(CATransform3D transform);
+ZZFLEXC_BASE_API(CATransform3D, transform)
 
 @end

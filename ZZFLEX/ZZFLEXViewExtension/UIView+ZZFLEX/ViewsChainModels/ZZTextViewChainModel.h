@@ -8,49 +8,51 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_TEXTVIEW_API(ZZParamType, methodName)      ZZFLEXC_API(ZZTextViewChainModel, ZZParamType, methodName)
+
 @class ZZTextViewChainModel;
 @interface ZZTextViewChainModel : ZZBaseViewChainModel <ZZTextViewChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ delegate)(id<UITextViewDelegate> delegate);
+ZZFLEXC_TEXTVIEW_API(id<UITextViewDelegate>, delegate)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ text)(NSString *text);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ font)(UIFont *font);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ textColor)(UIColor *textColor);
+ZZFLEXC_TEXTVIEW_API(NSString *, text)
+ZZFLEXC_TEXTVIEW_API(UIFont *, font)
+ZZFLEXC_TEXTVIEW_API(UIColor *, textColor)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ textAlignment)(NSTextAlignment textAlignment);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ selectedRange)(NSRange numberOfLines);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ editable)(BOOL editable);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ selectable)(BOOL selectable);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ dataDetectorTypes)(UIDataDetectorTypes dataDetectorTypes);
+ZZFLEXC_TEXTVIEW_API(NSTextAlignment, textAlignment)
+ZZFLEXC_TEXTVIEW_API(NSRange, selectedRange)
+ZZFLEXC_TEXTVIEW_API(BOOL, editable)
+ZZFLEXC_TEXTVIEW_API(BOOL, selectable)
+ZZFLEXC_TEXTVIEW_API(UIDataDetectorTypes, dataDetectorTypes)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ keyboardType)(UIKeyboardType keyboardType);
+ZZFLEXC_TEXTVIEW_API(UIKeyboardType, keyboardType)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ allowsEditingTextAttributes)(BOOL allowsEditingTextAttributes);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ attributedText)(NSAttributedString *attributedText);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ typingAttributes)(NSDictionary *typingAttributes);
+ZZFLEXC_TEXTVIEW_API(BOOL, allowsEditingTextAttributes)
+ZZFLEXC_TEXTVIEW_API(NSAttributedString *, attributedText)
+ZZFLEXC_TEXTVIEW_API(NSDictionary *, typingAttributes)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ clearsOnInsertion)(BOOL clearsOnInsertion);
+ZZFLEXC_TEXTVIEW_API(BOOL, clearsOnInsertion)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ textContainerInset)(UIEdgeInsets textContainerInset);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ linkTextAttributes)(NSDictionary *linkTextAttributes);
+ZZFLEXC_TEXTVIEW_API(UIEdgeInsets, textContainerInset)
+ZZFLEXC_TEXTVIEW_API(NSDictionary *, linkTextAttributes)
 
 #pragma mark - UIScrollView
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ contentSize)(CGSize contentSize);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ contentOffset)(CGPoint contentOffset);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ contentInset)(UIEdgeInsets contentInset);
+ZZFLEXC_TEXTVIEW_API(CGSize, contentSize)
+ZZFLEXC_TEXTVIEW_API(CGPoint, contentOffset)
+ZZFLEXC_TEXTVIEW_API(UIEdgeInsets, contentInset)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ bounces)(BOOL bounces);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ alwaysBounceVertical)(BOOL alwaysBounceVertical);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ alwaysBounceHorizontal)(BOOL alwaysBounceHorizontal);
+ZZFLEXC_TEXTVIEW_API(BOOL, bounces)
+ZZFLEXC_TEXTVIEW_API(BOOL, alwaysBounceVertical)
+ZZFLEXC_TEXTVIEW_API(BOOL, alwaysBounceHorizontal)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ pagingEnabled)(BOOL pagingEnabled);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ scrollEnabled)(BOOL scrollEnabled);
+ZZFLEXC_TEXTVIEW_API(BOOL, pagingEnabled)
+ZZFLEXC_TEXTVIEW_API(BOOL, scrollEnabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ showsHorizontalScrollIndicator)(BOOL showsHorizontalScrollIndicator);
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ showsVerticalScrollIndicator)(BOOL showsVerticalScrollIndicator);
+ZZFLEXC_TEXTVIEW_API(BOOL, showsHorizontalScrollIndicator)
+ZZFLEXC_TEXTVIEW_API(BOOL, showsVerticalScrollIndicator)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextViewChainModel *(^ scrollsToTop)(BOOL scrollsToTop);
+ZZFLEXC_TEXTVIEW_API(BOOL, scrollsToTop)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UITextView, ZZTextViewChainModel)
+ZZFLEX_EX_API(ZZTextViewChainModel, UITextView)

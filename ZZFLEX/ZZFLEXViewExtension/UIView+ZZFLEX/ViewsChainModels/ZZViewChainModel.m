@@ -11,6 +11,11 @@
 
 @implementation ZZViewChainModel
 
++ (Class)viewClass
+{
+    return [UIView class];
+}
+
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UIView, ZZViewChainModel)
+ZZFLEX_EX_IMP(ZZViewChainModel, UIView)

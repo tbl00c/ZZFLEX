@@ -8,28 +8,33 @@
 
 #import "ZZScrollViewChainModel.h"
 
-#define     ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZScrollViewChainModel *, UIScrollView)
+#define     ZZFLEXC_SV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZScrollViewChainModel, UIScrollView, ZZParamType, methodName)
 
 @implementation ZZScrollViewChainModel
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(delegate, id<UIScrollViewDelegate>)
++ (Class)viewClass
+{
+    return [UIScrollView class];
+}
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentSize, CGSize)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentOffset, CGPoint)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentInset, UIEdgeInsets)
+ZZFLEXC_SV_IMP(id<UIScrollViewDelegate>, delegate)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(bounces, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(alwaysBounceVertical, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(alwaysBounceHorizontal, BOOL)
+ZZFLEXC_SV_IMP(CGSize, contentSize)
+ZZFLEXC_SV_IMP(CGPoint, contentOffset)
+ZZFLEXC_SV_IMP(UIEdgeInsets, contentInset)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(pagingEnabled, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollEnabled, BOOL)
+ZZFLEXC_SV_IMP(BOOL, bounces)
+ZZFLEXC_SV_IMP(BOOL, alwaysBounceVertical)
+ZZFLEXC_SV_IMP(BOOL, alwaysBounceHorizontal)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(showsHorizontalScrollIndicator, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(showsVerticalScrollIndicator, BOOL)
+ZZFLEXC_SV_IMP(BOOL, pagingEnabled)
+ZZFLEXC_SV_IMP(BOOL, scrollEnabled)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollsToTop, BOOL)
+ZZFLEXC_SV_IMP(BOOL, showsHorizontalScrollIndicator)
+ZZFLEXC_SV_IMP(BOOL, showsVerticalScrollIndicator)
+
+ZZFLEXC_SV_IMP(BOOL, scrollsToTop)
 
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UIScrollView, ZZScrollViewChainModel)
+ZZFLEX_EX_IMP(ZZScrollViewChainModel, UIScrollView)

@@ -9,21 +9,36 @@
 #import "ZZSwitchChainModel.h"
 #import "UIControl+ZZEvent.h"
 
-#define     ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZSwitchChainModel *, UISwitch)
+#define     ZZFLEXC_SWITCH_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZSwitchChainModel, UISwitch, ZZParamType, methodName)
+
+#define     ZZFLEXC_BUTTON_EVENT_IMP(methodName, eventType) \
+- (ZZSwitchChainModel *(^)(void (^eventBlock)(id sender)))methodName     \
+{   \
+    return ^ZZSwitchChainModel *(void (^eventBlock)(id sender)) {    \
+        [(UIControl *)self.view addControlEvents:eventType handler:eventBlock]; \
+        return self;    \
+    };  \
+}
 
 @implementation ZZSwitchChainModel
 
-ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(on, BOOL);
-ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(onTintColor, UIColor *);
-ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(thumbTintColor, UIColor *);
++ (Class)viewClass
+{
+    return [UISwitch class];
+}
 
-ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(onImage, UIImage *);
-ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(offImage, UIImage *);
+ZZFLEXC_SWITCH_IMP(BOOL, on)
+
+ZZFLEXC_SWITCH_IMP(UIColor *, onTintColor)
+ZZFLEXC_SWITCH_IMP(UIColor *, thumbTintColor)
+
+ZZFLEXC_SWITCH_IMP(UIImage *, onImage)
+ZZFLEXC_SWITCH_IMP(UIImage *, offImage)
 
 #pragma mark - # UIControl
-ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(enabled, BOOL);
-ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(selected, BOOL);
-ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(highlighted, BOOL);
+ZZFLEXC_SWITCH_IMP(BOOL, enabled)
+ZZFLEXC_SWITCH_IMP(BOOL, selected)
+ZZFLEXC_SWITCH_IMP(BOOL, highlighted)
 
 - (ZZSwitchChainModel *(^)(UIControlEvents controlEvents, void (^eventBlock)(id sender)))eventBlock
 {
@@ -33,6 +48,8 @@ ZZFLEX_CHAIN_SWITCH_IMPLEMENTATION(highlighted, BOOL);
     };
 }
 
+ZZFLEXC_BUTTON_EVENT_IMP(eventValueChanged, UIControlEventValueChanged);
+
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UISwitch, ZZSwitchChainModel)
+ZZFLEX_EX_IMP(ZZSwitchChainModel, UISwitch)

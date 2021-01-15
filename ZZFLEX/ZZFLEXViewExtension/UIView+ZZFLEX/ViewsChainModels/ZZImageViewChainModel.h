@@ -8,13 +8,15 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_IV_API(ZZParamType, methodName)      ZZFLEXC_API(ZZImageViewChainModel, ZZParamType, methodName)
+
 @class ZZImageViewChainModel;
 @interface ZZImageViewChainModel : ZZBaseViewChainModel <ZZImageViewChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZImageViewChainModel *(^ image)(UIImage *image);
-ZZFLEX_CHAIN_PROPERTY ZZImageViewChainModel *(^ highlightedImage)(UIImage *highlightedImage);
-ZZFLEX_CHAIN_PROPERTY ZZImageViewChainModel *(^ highlighted)(BOOL highlighted);
+ZZFLEXC_IV_API(UIImage *, image)
+ZZFLEXC_IV_API(UIImage *, highlightedImage)
+ZZFLEXC_IV_API(BOOL, highlighted)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UIImageView, ZZImageViewChainModel)
+ZZFLEX_EX_API(ZZImageViewChainModel, UIImageView)

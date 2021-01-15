@@ -132,7 +132,7 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         NSInteger sectionTag = ZZFDMainSectionTypeAgent;
         self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 30, 15));
         NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXAngel",
-                                                                     @"ZZFLEXAngel是一个列表页控制器，支持UITableView和UICollectionView（统称hostView）；使用她，我们通常无需关心和实现hostView的各种代理方法。她的设计使得列表页的构建就如同拼图一般，只需要一件件的add需要的cell\header\footer(需实现ZZFlexibleLayoutViewProtocol)，我们想要的界面就绘制出来了。");
+                                                                     @"ZZFLEXAngel是一个列表页控制器，支持UITableView和UICollectionView（统称hostView）；使用她，我们通常无需关心和实现hostView的各种代理方法。她的设计使得列表页的构建就如同拼图一般，只需要一件件的add需要的cell\\header\\footer(需实现ZZFlexibleLayoutViewProtocol)，我们想要的界面就绘制出来了。");
         __zz_attr_string_bold(attrTitle, @"列表控制中心");
         self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
         

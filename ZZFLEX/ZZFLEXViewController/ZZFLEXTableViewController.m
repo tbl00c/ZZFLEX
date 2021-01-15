@@ -9,6 +9,7 @@
 #import "ZZFLEXMacros.h"
 #import "UIView+ZZFLEX.h"
 #import "ZZFLEXAngel+UITableView.h"
+#import <Masonry/Masonry.h>
 
 #define     ZZFLEXVC_ANGEL_CHAIN_METHOD(methodName, returnType, paramType)  \
 - (returnType (^)(paramType))methodName \
@@ -40,16 +41,26 @@
 - (void)loadView
 {
     [super loadView];
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
-    [self.angel setHostView:_tableView];
-    [self.tableView setDelegate:self];
-    [self.tableView setDataSource:self];
-    [self.view addSubview:self.tableView];
+    _tableView = self.view.addTableViewWithStyle(1, self.tableViewStyle)
+    .masonry(^ (__kindof UIView *view, MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }).view;
+    [self.angel setHostView:self.tableView];
+    self.tableView.zz_setup.delegate(self).dataSource(self);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(__zzflex_deviceOrientationDidChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (void)dealloc
 {
     ZZFLEXLog(@"Dealloc: %@", NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)__zzflex_deviceOrientationDidChanged
+{
+    self.angel.upadte();
+    self.angel.reload();
 }
 
 #pragma mark 页面刷新

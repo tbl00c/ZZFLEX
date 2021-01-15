@@ -33,7 +33,7 @@
 @property (nonatomic, copy) id (^eventAction)(NSInteger actionType, id data);
 
 /// 业务方指定的代理，默认nil
-@property (nonatomic, copy) id delegate;
+@property (nonatomic, weak) id delegate;
 
 /// cell选中事件
 @property (nonatomic, copy) void (^selectedAction)(id data);

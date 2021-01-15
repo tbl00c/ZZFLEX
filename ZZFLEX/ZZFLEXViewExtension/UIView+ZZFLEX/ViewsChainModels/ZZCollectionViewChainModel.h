@@ -8,33 +8,35 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_CV_API(ZZParamType, methodName)      ZZFLEXC_API(ZZCollectionViewChainModel, ZZParamType, methodName)
+
 @class ZZCollectionViewChainModel;
 @interface ZZCollectionViewChainModel : ZZBaseViewChainModel<ZZCollectionViewChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ collectionViewLayout)(UICollectionViewLayout *collectionViewLayout);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ delegate)(id<UICollectionViewDelegate> delegate);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ dataSource)(id<UICollectionViewDataSource> dataSource);
+ZZFLEXC_CV_API(UICollectionViewLayout *, collectionViewLayout)
+ZZFLEXC_CV_API(id<UICollectionViewDelegate>, delegate)
+ZZFLEXC_CV_API(id<UICollectionViewDataSource>, dataSource)
 
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ allowsSelection)(BOOL allowsSelection);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ allowsMultipleSelection)(BOOL allowsMultipleSelection);
+ZZFLEXC_CV_API(BOOL, allowsSelection)
+ZZFLEXC_CV_API(BOOL, allowsMultipleSelection)
 
 #pragma mark - UIScrollView
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ contentSize)(CGSize contentSize);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ contentOffset)(CGPoint contentOffset);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ contentInset)(UIEdgeInsets contentInset);
+ZZFLEXC_CV_API(CGSize, contentSize)
+ZZFLEXC_CV_API(CGPoint, contentOffset)
+ZZFLEXC_CV_API(UIEdgeInsets, contentInset)
 
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ bounces)(BOOL bounces);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ alwaysBounceVertical)(BOOL alwaysBounceVertical);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ alwaysBounceHorizontal)(BOOL alwaysBounceHorizontal);
+ZZFLEXC_CV_API(BOOL, bounces)
+ZZFLEXC_CV_API(BOOL, alwaysBounceVertical)
+ZZFLEXC_CV_API(BOOL, alwaysBounceHorizontal)
 
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ pagingEnabled)(BOOL pagingEnabled);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ scrollEnabled)(BOOL scrollEnabled);
+ZZFLEXC_CV_API(BOOL, pagingEnabled)
+ZZFLEXC_CV_API(BOOL, scrollEnabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ showsHorizontalScrollIndicator)(BOOL showsHorizontalScrollIndicator);
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ showsVerticalScrollIndicator)(BOOL showsVerticalScrollIndicator);
+ZZFLEXC_CV_API(BOOL, showsHorizontalScrollIndicator)
+ZZFLEXC_CV_API(BOOL, showsVerticalScrollIndicator)
 
-ZZFLEX_CHAIN_PROPERTY ZZCollectionViewChainModel *(^ scrollsToTop)(BOOL scrollsToTop);
+ZZFLEXC_CV_API(BOOL, scrollsToTop)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UICollectionView, ZZCollectionViewChainModel)
+ZZFLEX_EX_API(ZZCollectionViewChainModel, UICollectionView)

@@ -76,10 +76,9 @@
     @weakify(self);
     self.clear();
     
-    UIButton *button = self.view.addButton(1001).title(@"title").image([UIImage imageNamed:@"asdfadf"])
+    self.view.addButton(1001).title(@"title").image([UIImage imageNamed:@"asdfadf"])
     .frame(CGRectMake(0, 0, 100, 100))
-    .imageHL([UIImage imageNamed:@"imageHL"])
-    .view;
+    .imageHL([UIImage imageNamed:@"imageHL"]);
     
     
     /// 功能

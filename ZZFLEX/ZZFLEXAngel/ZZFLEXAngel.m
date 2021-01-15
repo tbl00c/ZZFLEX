@@ -13,6 +13,7 @@
 #import "ZZFlexibleLayoutSeperatorCell.h"
 #import "ZZFLEXTableViewEmptyCell.h"
 #import "ZZFlexibleLayoutEmptyHeaderFooterView.h"
+#import "ZZFLEXTableViewHeaderFooterView.h"
 #import "ZZFLEXMacros.h"
 #import "ZZFLEXSectionModel.h"
 
@@ -104,6 +105,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
         [(UITableView *)_hostView setDataSource:self];
         [(UITableView *)_hostView setDelegate:self];
         RegisterHostViewCell(_hostView, [ZZFLEXTableViewEmptyCell class]);
+        RegisterHostViewReusableView(_hostView, nil, [ZZFLEXTableViewHeaderFooterView class]);
     }
     else if ([_hostView isKindOfClass:[UICollectionView class]]) {
         [(UICollectionView *)_hostView setDataSource:self];
@@ -126,6 +128,12 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 @implementation ZZFLEXAngel (API)
 
 #pragma mark - # 整体
+- (void (^)(void))reload {
+    return ^(void) {
+        [(UITableView *)self.hostView reloadData];
+    };
+}
+
 - (BOOL (^)(void))clear
 {
     return ^(void) {
@@ -379,9 +387,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
     return ^(CGSize size, UIColor *color) {
         Class viewClass = [self.hostView isKindOfClass:[UITableView class]] ? [ZZFLEXTableViewEmptyCell class] : [ZZFlexibleLayoutSeperatorCell class];
         ZZFlexibleLayoutSeperatorModel *dataModel = [[ZZFlexibleLayoutSeperatorModel alloc] initWithSize:size andColor:color];
-        ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass andDataModel:dataModel];
-        ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeCell];
-        return chainViewModel;
+        return self.addCell(viewClass).withDataModel(dataModel);
     };
 }
 

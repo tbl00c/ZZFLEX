@@ -9,47 +9,61 @@
 #import "ZZTextFieldChainModel.h"
 #import "UIControl+ZZEvent.h"
 
-#define     ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZTextFieldChainModel *, UITextField)
+#define     ZZFLEXC_TF_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZTextFieldChainModel, UITextField, ZZParamType, methodName)
+#define     ZZFLEXC_TF_EVENT_IMP(methodName, eventType) \
+- (ZZTextFieldChainModel *(^)(void (^eventBlock)(id sender)))methodName     \
+{   \
+    return ^ZZTextFieldChainModel *(void (^eventBlock)(id sender)) {    \
+        [(UIControl *)self.view addControlEvents:eventType handler:eventBlock]; \
+        return self;    \
+    };  \
+}
+
 @implementation ZZTextFieldChainModel
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(text, NSString *);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(attributedText, NSAttributedString *);
++ (Class)viewClass
+{
+    return [UITextField class];
+}
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(font, UIFont *);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(textColor, UIColor *);
+ZZFLEXC_TF_IMP(NSString *, text)
+ZZFLEXC_TF_IMP(NSAttributedString *, attributedText)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(textAlignment, NSTextAlignment);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(borderStyle, UITextBorderStyle);
+ZZFLEXC_TF_IMP(UIFont *, font)
+ZZFLEXC_TF_IMP(UIColor *, textColor)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(defaultTextAttributes, NSDictionary *);
+ZZFLEXC_TF_IMP(NSTextAlignment, textAlignment)
+ZZFLEXC_TF_IMP(UITextBorderStyle, borderStyle)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(placeholder, NSString *);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(attributedPlaceholder, NSAttributedString *);
+ZZFLEXC_TF_IMP(NSDictionary *, defaultTextAttributes)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(keyboardType, UIKeyboardType);
+ZZFLEXC_TF_IMP(NSString *, placeholder)
+ZZFLEXC_TF_IMP(NSAttributedString *, attributedPlaceholder)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(clearsOnBeginEditing, BOOL);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(adjustsFontSizeToFitWidth, BOOL);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(minimumFontSize, CGFloat);
+ZZFLEXC_TF_IMP(UIKeyboardType, keyboardType)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(delegate, id<UITextFieldDelegate>);
+ZZFLEXC_TF_IMP(BOOL, clearsOnBeginEditing)
+ZZFLEXC_TF_IMP(BOOL, adjustsFontSizeToFitWidth)
+ZZFLEXC_TF_IMP(CGFloat, minimumFontSize)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(background, UIImage *);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(disabledBackground, UIImage *);
+ZZFLEXC_TF_IMP(id<UITextFieldDelegate>, delegate)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(allowsEditingTextAttributes, BOOL);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(typingAttributes, NSDictionary *);
+ZZFLEXC_TF_IMP(UIImage *, background)
+ZZFLEXC_TF_IMP(UIImage *, disabledBackground)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(clearButtonMode, UITextFieldViewMode);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(leftView, UIView *);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(leftViewMode, UITextFieldViewMode);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(rightView, UIView *);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(rightViewMode, UITextFieldViewMode);
+ZZFLEXC_TF_IMP(BOOL, allowsEditingTextAttributes)
+ZZFLEXC_TF_IMP(NSDictionary *, typingAttributes)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(inputView, UIView *);
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(inputAccessoryView, UIView *);
+ZZFLEXC_TF_IMP(UITextFieldViewMode, clearButtonMode)
+ZZFLEXC_TF_IMP(UIView *, leftView)
+ZZFLEXC_TF_IMP(UITextFieldViewMode, leftViewMode)
+ZZFLEXC_TF_IMP(UIView *, rightView)
+ZZFLEXC_TF_IMP(UITextFieldViewMode, rightViewMode)
 
-ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(enabled, BOOL);
+ZZFLEXC_TF_IMP(UIView *, inputView)
+ZZFLEXC_TF_IMP(UIView *, inputAccessoryView)
+
+ZZFLEXC_TF_IMP(BOOL, enabled)
 
 - (ZZTextFieldChainModel *(^)(UIControlEvents controlEvents, void (^eventBlock)(id sender)))eventBlock
 {
@@ -58,7 +72,11 @@ ZZFLEX_CHAIN_TEXTFIELD_IMPLEMENTATION(enabled, BOOL);
         return self;
     };
 }
+ZZFLEXC_TF_EVENT_IMP(eventEditingDidBegin, UIControlEventEditingDidBegin)
+ZZFLEXC_TF_EVENT_IMP(eventEditingChanged, UIControlEventEditingChanged)
+ZZFLEXC_TF_EVENT_IMP(eventEditingDidEnd, UIControlEventEditingDidEnd)
+ZZFLEXC_TF_EVENT_IMP(eventEditingDidEndEditingDidEndOnExit, UIControlEventEditingDidEndOnExit)
 
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UITextField, ZZTextFieldChainModel)
+ZZFLEX_EX_IMP(ZZTextFieldChainModel, UITextField)

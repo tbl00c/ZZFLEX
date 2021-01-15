@@ -8,50 +8,58 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_TF_API(ZZParamType, methodName)      ZZFLEXC_API(ZZTextFieldChainModel, ZZParamType, methodName)
+
+typedef void (^ZZChainTFEventBlock)(id sender);
+
 @class ZZTextFieldChainModel;
 @interface ZZTextFieldChainModel : ZZBaseViewChainModel <ZZTextFieldChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ text)(NSString *text);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ attributedText)(NSAttributedString *attributedText);
+ZZFLEXC_TF_API(NSString *, text)
+ZZFLEXC_TF_API(NSAttributedString *, attributedText)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ font)(UIFont *font);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ textColor)(UIColor *textColor);
+ZZFLEXC_TF_API(UIFont *, font)
+ZZFLEXC_TF_API(UIColor *, textColor)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ textAlignment)(NSTextAlignment textAlignment);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ borderStyle)(UITextBorderStyle borderStyle);
+ZZFLEXC_TF_API(NSTextAlignment, textAlignment)
+ZZFLEXC_TF_API(UITextBorderStyle, borderStyle)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ defaultTextAttributes)(NSDictionary *defaultTextAttributes);
+ZZFLEXC_TF_API(NSDictionary *, defaultTextAttributes)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ placeholder)(NSString *placeholder);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ attributedPlaceholder)(NSAttributedString *attributedPlaceholder);
+ZZFLEXC_TF_API(NSString *, placeholder)
+ZZFLEXC_TF_API(NSAttributedString *, attributedPlaceholder)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ keyboardType)(UIKeyboardType keyboardType);
+ZZFLEXC_TF_API(UIKeyboardType, keyboardType)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ clearsOnBeginEditing)(BOOL clearsOnBeginEditing);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ adjustsFontSizeToFitWidth)(BOOL adjustsFontSizeToFitWidth);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ minimumFontSize)(CGFloat minimumFontSize);
+ZZFLEXC_TF_API(BOOL, clearsOnBeginEditing)
+ZZFLEXC_TF_API(BOOL, adjustsFontSizeToFitWidth)
+ZZFLEXC_TF_API(CGFloat, minimumFontSize)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ delegate)(id<UITextFieldDelegate> delegate);
+ZZFLEXC_TF_API(id<UITextFieldDelegate>, delegate)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ background)(UIImage *background);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ disabledBackground)(UIImage *disabledBackground);
+ZZFLEXC_TF_API(UIImage *, background)
+ZZFLEXC_TF_API(UIImage *, disabledBackground)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ allowsEditingTextAttributes)(BOOL allowsEditingTextAttributes);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ typingAttributes)(NSDictionary *typingAttributes);
+ZZFLEXC_TF_API(BOOL, allowsEditingTextAttributes)
+ZZFLEXC_TF_API(NSDictionary *, typingAttributes)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ clearButtonMode)(UITextFieldViewMode clearButtonMode);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ leftView)(UIView *leftView);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ leftViewMode)(UITextFieldViewMode leftViewMode);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ rightView)(UIView *rightView);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ rightViewMode)(UITextFieldViewMode rightViewMode);
+ZZFLEXC_TF_API(UITextFieldViewMode, clearButtonMode)
+ZZFLEXC_TF_API(UIView *, leftView)
+ZZFLEXC_TF_API(UITextFieldViewMode, leftViewMode)
+ZZFLEXC_TF_API(UIView *, rightView)
+ZZFLEXC_TF_API(UITextFieldViewMode, rightViewMode)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ inputView)(UIView *inputView);
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ inputAccessoryView)(UIView *inputAccessoryView);
+ZZFLEXC_TF_API(UIView *, inputView)
+ZZFLEXC_TF_API(UIView *, inputAccessoryView)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
+ZZFLEXC_TF_API(BOOL, enabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZTextFieldChainModel *(^ enable)(BOOL enable);
+ZZFLEXC_PROPERTY ZZTextFieldChainModel *(^ eventBlock)(UIControlEvents controlEvents, ZZChainTFEventBlock eventBlock);
+ZZFLEXC_TF_API(ZZChainTFEventBlock, eventEditingDidBegin)
+ZZFLEXC_TF_API(ZZChainTFEventBlock, eventEditingChanged)
+ZZFLEXC_TF_API(ZZChainTFEventBlock, eventEditingDidEnd)
+ZZFLEXC_TF_API(ZZChainTFEventBlock, eventEditingDidEndEditingDidEndOnExit)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UITextField, ZZTextFieldChainModel)
+ZZFLEX_EX_API(ZZTextFieldChainModel, UITextField)

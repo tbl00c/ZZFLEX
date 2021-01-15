@@ -10,9 +10,15 @@
 #import "UIView+ZZFrame.h"
 #import <Masonry/Masonry.h>
 
-#define     ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, id, UIView)
+#define     ZZFLEXC_BASE_IMP(ZZParamType, methodName)   \
+- (id (^)(ZZParamType param))methodName {   \
+return ^id (ZZParamType param) {    \
+    ((UIView *)self.view).methodName = param;   \
+    return self;    \
+};\
+}
 
-#define     ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(methodName, masonryMethod) \
+#define     ZZFLEXC_MASONRY_IMP(methodName, masonryMethod) \
 - (id (^)( void (^constraints)(__kindof UIView *, MASConstraintMaker *)) )methodName    \
 {   \
 return ^id ( void (^constraints)(__kindof UIView *, MASConstraintMaker *) ) {  \
@@ -25,7 +31,7 @@ return self;    \
 };  \
 }
 
-#define     ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(methodName, ZZParamType) \
+#define     ZZFLEXC_LAYER_IMP(ZZParamType, methodName) \
 - (id (^)(ZZParamType param))methodName    \
 {   \
 return ^id (ZZParamType param) {    \
@@ -35,6 +41,11 @@ return self;    \
 }
 
 @implementation ZZBaseViewChainModel
+
++ (Class)viewClass
+{
+    return [UIView class];
+}
 
 - (id)initWithTag:(NSInteger)tag andView:(__kindof UIView *)view
 {
@@ -47,50 +58,75 @@ return self;    \
 }
 
 #pragma mark - # Frame
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(frame, CGRect);
+ZZFLEXC_BASE_IMP(CGRect, frame)
 
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(origin, CGPoint);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(x, CGFloat);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(y, CGFloat);
+ZZFLEXC_BASE_IMP(CGPoint, origin)
+ZZFLEXC_BASE_IMP(CGFloat, x)
+ZZFLEXC_BASE_IMP(CGFloat, y)
 
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(size, CGSize);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(width, CGFloat);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(height, CGFloat);
+ZZFLEXC_BASE_IMP(CGSize, size)
+ZZFLEXC_BASE_IMP(CGFloat, width)
+ZZFLEXC_BASE_IMP(CGFloat, height)
 
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(center, CGPoint);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(centerX, CGFloat);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(centerY, CGFloat);
+ZZFLEXC_BASE_IMP(CGPoint, center)
+ZZFLEXC_BASE_IMP(CGFloat, centerX)
+ZZFLEXC_BASE_IMP(CGFloat, centerY)
 
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(top, CGFloat);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(bottom, CGFloat);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(left, CGFloat);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(right, CGFloat);
-
+ZZFLEXC_BASE_IMP(CGFloat, top)
+ZZFLEXC_BASE_IMP(CGFloat, bottom)
+ZZFLEXC_BASE_IMP(CGFloat, left)
+ZZFLEXC_BASE_IMP(CGFloat, right)
 
 #pragma mark - # Layout
-ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(masonry, mas_makeConstraints);
-ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(updateMasonry, mas_updateConstraints);
-ZZFLEX_CHAIN_MASONRY_IMPLEMENTATION(remakeMasonry, mas_remakeConstraints);
+ZZFLEXC_MASONRY_IMP(masonry, mas_makeConstraints);
+ZZFLEXC_MASONRY_IMP(updateMasonry, mas_updateConstraints);
+ZZFLEXC_MASONRY_IMP(remakeMasonry, mas_remakeConstraints);
+
+- (id (^)(UILayoutPriority priority))horizontalAxisCompressionResistancePriority {
+    return ^id(UILayoutPriority priority) {
+        [self.view setContentCompressionResistancePriority:priority forAxis:UILayoutConstraintAxisHorizontal];
+        return self;
+    };
+}
+
+- (id (^)(UILayoutPriority priority))verticalAxisCompressionResistancePriority {
+    return ^id(UILayoutPriority priority) {
+        [self.view setContentCompressionResistancePriority:priority forAxis:UILayoutConstraintAxisVertical];
+        return self;
+    };
+}
+
+- (id (^)(UILayoutPriority priority))horizontalAxisHuggingPriority {
+    return ^id(UILayoutPriority priority) {
+        [self.view setContentHuggingPriority:priority forAxis:UILayoutConstraintAxisHorizontal];
+        return self;
+    };
+}
+
+- (id (^)(UILayoutPriority priority))verticalAxisHuggingPriority {
+    return ^id(UILayoutPriority priority) {
+        [self.view setContentHuggingPriority:priority forAxis:UILayoutConstraintAxisVertical];
+        return self;
+    };
+}
 
 #pragma mark - # Color
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(backgroundColor, UIColor *);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(tintColor, UIColor *);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(alpha, CGFloat);
-
+ZZFLEXC_BASE_IMP(UIColor *, backgroundColor)
+ZZFLEXC_BASE_IMP(UIColor *, tintColor)
+ZZFLEXC_BASE_IMP(CGFloat, alpha)
 
 #pragma mark - # Control
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(contentMode, UIViewContentMode);
+ZZFLEXC_BASE_IMP(UIViewContentMode, contentMode)
 
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(opaque, BOOL);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(hidden, BOOL);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(clipsToBounds, BOOL);
+ZZFLEXC_BASE_IMP(BOOL, opaque)
+ZZFLEXC_BASE_IMP(BOOL, hidden)
+ZZFLEXC_BASE_IMP(BOOL, clipsToBounds)
 
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(userInteractionEnabled, BOOL);
-ZZFLEX_CHAIN_VIEW_IMPLEMENTATION(multipleTouchEnabled, BOOL);
-
+ZZFLEXC_BASE_IMP(BOOL, userInteractionEnabled)
+ZZFLEXC_BASE_IMP(BOOL, multipleTouchEnabled)
 
 #pragma mark - # Layer
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(masksToBounds, BOOL);
+ZZFLEXC_LAYER_IMP(BOOL, masksToBounds)
 
 - (id (^)(CGFloat cornerRadius))cornerRadius
 {
@@ -109,11 +145,11 @@ ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(masksToBounds, BOOL);
         return self;
     };
 }
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(borderWidth, CGFloat);
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(borderColor, CGColorRef);
+ZZFLEXC_LAYER_IMP(CGFloat, borderWidth)
+ZZFLEXC_LAYER_IMP(CGColorRef, borderColor)
 
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(zPosition, CGFloat);
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(anchorPoint, CGPoint);
+ZZFLEXC_LAYER_IMP(CGFloat, zPosition)
+ZZFLEXC_LAYER_IMP(CGPoint, anchorPoint)
 
 - (id (^)(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity))shadow
 {
@@ -125,13 +161,12 @@ ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(anchorPoint, CGPoint);
         return self;
     };
 }
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(shadowColor, CGColorRef);
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(shadowOpacity, CGFloat);
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(shadowOffset, CGSize);
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(shadowRadius, CGFloat);
+ZZFLEXC_LAYER_IMP(CGColorRef, shadowColor)
+ZZFLEXC_LAYER_IMP(CGFloat, shadowOpacity)
+ZZFLEXC_LAYER_IMP(CGSize, shadowOffset)
+ZZFLEXC_LAYER_IMP(CGFloat, shadowRadius)
 
-
-ZZFLEX_CHAIN_LAYER_IMPLEMENTATION(transform, CATransform3D);
+ZZFLEXC_LAYER_IMP(CATransform3D, transform)
 
 @end
 

@@ -8,55 +8,68 @@
 
 #import "ZZTableViewChainModel.h"
 
-#define     ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZTableViewChainModel *, UITableView)
-#define     ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZTableViewChainModel *, UITableView)
+#define     ZZFLEXC_TV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZTableViewChainModel, UITableView, ZZParamType, methodName)
+#define     ZZFLEXC_SV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZTableViewChainModel, UITableView, ZZParamType, methodName)
 
 @implementation ZZTableViewChainModel
 
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(delegate, id<UITableViewDelegate>)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(dataSource, id<UITableViewDataSource>)
++ (Class)viewClass
+{
+    return [UITableView class];
+}
 
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(rowHeight, CGFloat)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(sectionHeaderHeight, CGFloat)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(sectionFooterHeight, CGFloat)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(estimatedRowHeight, CGFloat)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(estimatedSectionHeaderHeight, CGFloat)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(estimatedSectionFooterHeight, CGFloat)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(separatorInset, UIEdgeInsets)
+ZZFLEXC_TV_IMP(id<UITableViewDelegate>, delegate)
+ZZFLEXC_TV_IMP(id<UITableViewDataSource>, dataSource)
 
+ZZFLEXC_TV_IMP(CGFloat, rowHeight)
+ZZFLEXC_TV_IMP(CGFloat, sectionHeaderHeight)
+ZZFLEXC_TV_IMP(CGFloat, sectionFooterHeight)
+ZZFLEXC_TV_IMP(CGFloat, estimatedRowHeight)
+ZZFLEXC_TV_IMP(CGFloat, estimatedSectionHeaderHeight)
+ZZFLEXC_TV_IMP(CGFloat, estimatedSectionFooterHeight)
+ZZFLEXC_TV_IMP(UIEdgeInsets, separatorInset)
 
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(editing, BOOL)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(allowsSelection, BOOL)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(allowsMultipleSelection, BOOL)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(allowsSelectionDuringEditing, BOOL)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(allowsMultipleSelectionDuringEditing, BOOL)
+ZZFLEXC_TV_IMP(BOOL, editing)
+ZZFLEXC_TV_IMP(BOOL, allowsSelection)
+ZZFLEXC_TV_IMP(BOOL, allowsMultipleSelection)
+ZZFLEXC_TV_IMP(BOOL, allowsSelectionDuringEditing)
+ZZFLEXC_TV_IMP(BOOL, allowsMultipleSelectionDuringEditing)
 
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(separatorStyle, UITableViewCellSeparatorStyle)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(separatorColor, UIColor *)
+ZZFLEXC_TV_IMP(UITableViewCellSeparatorStyle, separatorStyle)
+ZZFLEXC_TV_IMP(UIColor *, separatorColor)
 
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(tableHeaderView, UIView *)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(tableFooterView, UIView *)
+ZZFLEXC_TV_IMP(UIView *, tableHeaderView)
+ZZFLEXC_TV_IMP(UIView *, tableFooterView)
 
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(sectionIndexBackgroundColor, UIColor *)
-ZZFLEX_CHAIN_TABLEVIEW_IMPLEMENTATION(sectionIndexColor, UIColor *)
+ZZFLEXC_TV_IMP(UIColor *, sectionIndexBackgroundColor)
+ZZFLEXC_TV_IMP(UIColor *, sectionIndexColor)
 
 #pragma mark - UIScrollView
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentSize, CGSize)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentOffset, CGPoint)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentInset, UIEdgeInsets)
+ZZFLEXC_SV_IMP(CGSize, contentSize)
+ZZFLEXC_SV_IMP(CGPoint, contentOffset)
+ZZFLEXC_SV_IMP(UIEdgeInsets, contentInset)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(bounces, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(alwaysBounceVertical, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(alwaysBounceHorizontal, BOOL)
+ZZFLEXC_SV_IMP(BOOL, bounces)
+ZZFLEXC_SV_IMP(BOOL, alwaysBounceVertical)
+ZZFLEXC_SV_IMP(BOOL, alwaysBounceHorizontal)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(pagingEnabled, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollEnabled, BOOL)
+ZZFLEXC_SV_IMP(BOOL, pagingEnabled)
+ZZFLEXC_SV_IMP(BOOL, scrollEnabled)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(showsHorizontalScrollIndicator, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(showsVerticalScrollIndicator, BOOL)
+ZZFLEXC_SV_IMP(BOOL, showsHorizontalScrollIndicator)
+ZZFLEXC_SV_IMP(BOOL, showsVerticalScrollIndicator)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollsToTop, BOOL)
+ZZFLEXC_SV_IMP(BOOL, scrollsToTop)
 
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UITableView, ZZTableViewChainModel)
+ZZFLEX_EX_IMP(ZZTableViewChainModel, UITableView)
+@implementation UITableView (ZZFLEX_EX_T)
++ (ZZTableViewChainModel *(^)(NSInteger tag, UITableViewStyle style))zz_createWithStyle
+{
+    return ^ZZTableViewChainModel *(NSInteger tag, UITableViewStyle style) {
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:style];
+        return [[ZZTableViewChainModel alloc] initWithTag:tag andView:tableView];
+    };
+}
+@end

@@ -8,27 +8,29 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_SV_API(ZZParamType, methodName)      ZZFLEXC_API(ZZScrollViewChainModel, ZZParamType, methodName)
+
 @class ZZScrollViewChainModel;
 @interface ZZScrollViewChainModel : ZZBaseViewChainModel<ZZScrollViewChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ delegate)(id<UIScrollViewDelegate> delegate);
+ZZFLEXC_SV_API(id<UIScrollViewDelegate>, delegate)
 
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ contentSize)(CGSize contentSize);
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ contentOffset)(CGPoint contentOffset);
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ contentInset)(UIEdgeInsets contentInset);
+ZZFLEXC_SV_API(CGSize, contentSize)
+ZZFLEXC_SV_API(CGPoint, contentOffset)
+ZZFLEXC_SV_API(UIEdgeInsets, contentInset)
 
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ bounces)(BOOL bounces);
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ alwaysBounceVertical)(BOOL alwaysBounceVertical);
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ alwaysBounceHorizontal)(BOOL alwaysBounceHorizontal);
+ZZFLEXC_SV_API(BOOL, bounces)
+ZZFLEXC_SV_API(BOOL, alwaysBounceVertical)
+ZZFLEXC_SV_API(BOOL, alwaysBounceHorizontal)
 
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ pagingEnabled)(BOOL pagingEnabled);
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ scrollEnabled)(BOOL scrollEnabled);
+ZZFLEXC_SV_API(BOOL, pagingEnabled)
+ZZFLEXC_SV_API(BOOL, scrollEnabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ showsHorizontalScrollIndicator)(BOOL showsHorizontalScrollIndicator);
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ showsVerticalScrollIndicator)(BOOL showsVerticalScrollIndicator);
+ZZFLEXC_SV_API(BOOL, showsHorizontalScrollIndicator)
+ZZFLEXC_SV_API(BOOL, showsVerticalScrollIndicator)
 
-ZZFLEX_CHAIN_PROPERTY ZZScrollViewChainModel *(^ scrollsToTop)(BOOL scrollsToTop);
+ZZFLEXC_SV_API(BOOL, scrollsToTop)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UIScrollView, ZZScrollViewChainModel)
+ZZFLEX_EX_API(ZZScrollViewChainModel, UIScrollView)

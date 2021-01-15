@@ -39,6 +39,9 @@
 - (void)reloadView;
 
 #pragma mark - # 整体
+/// 刷新宿主View
+ZZFLEX_CHAINAPI_TYPE void (^reload)(void);
+
 /// 删除所有元素
 ZZFLEX_CHAINAPI_TYPE BOOL (^clear)(void);
 

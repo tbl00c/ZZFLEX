@@ -8,23 +8,29 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_SWITCH_API(ZZParamType, methodName)      ZZFLEXC_API(ZZSwitchChainModel, ZZParamType, methodName)
+
+typedef void (^ZZChainSwitchEventBlock)(id sender);
+
 @class ZZSwitchChainModel;
 @interface ZZSwitchChainModel : ZZBaseViewChainModel<ZZSwitchChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ on)(BOOL on);
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ onTintColor)(UIColor *onTintColor);
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ thumbTintColor)(UIColor *thumbTintColor);
+ZZFLEXC_SWITCH_API(BOOL, on)
 
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ onImage)(UIImage *onImage);
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ offImage)(UIImage *offImage);
+ZZFLEXC_SWITCH_API(UIColor *, onTintColor)
+ZZFLEXC_SWITCH_API(UIColor *, thumbTintColor)
+
+ZZFLEXC_SWITCH_API(UIImage *, onImage)
+ZZFLEXC_SWITCH_API(UIImage *, offImage)
 
 #pragma mark - # UIControl
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ enabled)(BOOL enabled);
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ selected)(BOOL selected);
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ highlighted)(BOOL highlighted);
+ZZFLEXC_SWITCH_API(BOOL, enabled)
+ZZFLEXC_SWITCH_API(BOOL, selected)
+ZZFLEXC_SWITCH_API(BOOL, highlighted)
 
-ZZFLEX_CHAIN_PROPERTY ZZSwitchChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
+ZZFLEXC_PROPERTY ZZSwitchChainModel *(^ eventBlock)(UIControlEvents controlEvents, ZZChainSwitchEventBlock eventBlock);
+ZZFLEXC_SWITCH_API(ZZChainSwitchEventBlock, eventValueChanged)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UISwitch, ZZSwitchChainModel)
+ZZFLEX_EX_API(ZZSwitchChainModel, UISwitch)

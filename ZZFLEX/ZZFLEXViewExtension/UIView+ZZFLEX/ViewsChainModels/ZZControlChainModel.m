@@ -9,13 +9,18 @@
 #import "ZZControlChainModel.h"
 #import "UIControl+ZZEvent.h"
 
-#define     ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZControlChainModel *, UIControl)
+#define     ZZFLEXC_CONTROL_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZControlChainModel, UIControl, ZZParamType, methodName)
 
 @implementation ZZControlChainModel
 
-ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(enabled, BOOL);
-ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(selected, BOOL);
-ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(highlighted, BOOL);
++ (Class)viewClass
+{
+    return [UIControl class];
+}
+
+ZZFLEXC_CONTROL_IMP(BOOL, enabled)
+ZZFLEXC_CONTROL_IMP(BOOL, selected)
+ZZFLEXC_CONTROL_IMP(BOOL, highlighted)
 
 - (ZZControlChainModel *(^)(UIControlEvents controlEvents, void (^eventBlock)(id sender)))eventBlock
 {
@@ -25,9 +30,8 @@ ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(highlighted, BOOL);
     };
 }
 
-ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(contentVerticalAlignment, UIControlContentVerticalAlignment);
-ZZFLEX_CHAIN_CONTROL_IMPLEMENTATION(contentHorizontalAlignment, UIControlContentHorizontalAlignment);
-
+ZZFLEXC_CONTROL_IMP(UIControlContentVerticalAlignment, contentVerticalAlignment)
+ZZFLEXC_CONTROL_IMP(UIControlContentHorizontalAlignment, contentHorizontalAlignment)
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UIControl, ZZControlChainModel)
+ZZFLEX_EX_IMP(ZZControlChainModel, UIControl)

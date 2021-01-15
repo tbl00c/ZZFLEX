@@ -9,34 +9,39 @@
 #import "ZZCollectionViewChainModel.h"
 #import "ZZFlexibleLayoutFlowLayout.h"
 
-#define     ZZFLEX_CHAIN_COLLECTIONVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZCollectionViewChainModel *, UICollectionView)
-#define     ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZCollectionViewChainModel *, UICollectionView)
+#define     ZZFLEXC_CV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZCollectionViewChainModel, UICollectionView, ZZParamType, methodName)
+#define     ZZFLEXC_SV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZCollectionViewChainModel, UICollectionView, ZZParamType, methodName)
 
 @implementation ZZCollectionViewChainModel
 
-ZZFLEX_CHAIN_COLLECTIONVIEW_IMPLEMENTATION(collectionViewLayout, UICollectionViewLayout *)
-ZZFLEX_CHAIN_COLLECTIONVIEW_IMPLEMENTATION(delegate, id<UICollectionViewDelegate>)
-ZZFLEX_CHAIN_COLLECTIONVIEW_IMPLEMENTATION(dataSource, id<UICollectionViewDataSource>)
++ (Class)viewClass
+{
+    return [UICollectionView class];
+}
 
-ZZFLEX_CHAIN_COLLECTIONVIEW_IMPLEMENTATION(allowsSelection, BOOL)
-ZZFLEX_CHAIN_COLLECTIONVIEW_IMPLEMENTATION(allowsMultipleSelection, BOOL)
+ZZFLEXC_CV_IMP(UICollectionViewLayout *, collectionViewLayout)
+ZZFLEXC_CV_IMP(id<UICollectionViewDelegate>, delegate)
+ZZFLEXC_CV_IMP(id<UICollectionViewDataSource>, dataSource)
+
+ZZFLEXC_CV_IMP(BOOL, allowsSelection)
+ZZFLEXC_CV_IMP(BOOL, allowsMultipleSelection)
 
 #pragma mark - UIScrollView
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentSize, CGSize)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentOffset, CGPoint)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(contentInset, UIEdgeInsets)
+ZZFLEXC_SV_IMP(CGSize, contentSize)
+ZZFLEXC_SV_IMP(CGPoint, contentOffset)
+ZZFLEXC_SV_IMP(UIEdgeInsets, contentInset)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(bounces, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(alwaysBounceVertical, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(alwaysBounceHorizontal, BOOL)
+ZZFLEXC_SV_IMP(BOOL, bounces)
+ZZFLEXC_SV_IMP(BOOL, alwaysBounceVertical)
+ZZFLEXC_SV_IMP(BOOL, alwaysBounceHorizontal)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(pagingEnabled, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollEnabled, BOOL)
+ZZFLEXC_SV_IMP(BOOL, pagingEnabled)
+ZZFLEXC_SV_IMP(BOOL, scrollEnabled)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(showsHorizontalScrollIndicator, BOOL)
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(showsVerticalScrollIndicator, BOOL)
+ZZFLEXC_SV_IMP(BOOL, showsHorizontalScrollIndicator)
+ZZFLEXC_SV_IMP(BOOL, showsVerticalScrollIndicator)
 
-ZZFLEX_CHAIN_SCROLLVIEW_IMPLEMENTATION(scrollsToTop, BOOL)
+ZZFLEXC_SV_IMP(BOOL, scrollsToTop)
 
 @end
 

@@ -10,9 +10,9 @@
 #import "UIControl+ZZEvent.h"
 #import "UIButton+ZZExtension.h"
 
-#define     ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(methodName, ZZParamType)      ZZFLEX_CHAIN_IMPLEMENTATION(methodName, ZZParamType, ZZButtonChainModel *, UIButton)
+#define     ZZFLEXC_BUTTON_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZButtonChainModel, UIButton, ZZParamType, methodName)
 
-#define     ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, ZZParamType, Code, State)    \
+#define     ZZFLEXC_BUTTON_STATE_IMP(methodName, ZZParamType, Code, State)    \
 - (ZZButtonChainModel *(^)(ZZParamType param))methodName   \
 {   \
     return ^ZZButtonChainModel *(ZZParamType param) {     \
@@ -22,7 +22,7 @@
 }       \
 
 
-#define     ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(methodName, eventType) \
+#define     ZZFLEXC_BUTTON_EVENT_IMP(methodName, eventType) \
 - (ZZButtonChainModel *(^)(void (^eventBlock)(id sender)))methodName     \
 {   \
     return ^ZZButtonChainModel *(void (^eventBlock)(id sender)) {    \
@@ -31,50 +31,54 @@
     };  \
 }
 
-
-#define     ZZFLEX_CHAIN_BUTTON_TITLE_IMPLEMENTATION(methodName, State)             ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, NSString *, setTitle, State)
-#define     ZZFLEX_CHAIN_BUTTON_TITLECOLOR_IMPLEMENTATION(methodName, State)        ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, UIColor *, setTitleColor, State)
-#define     ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(methodName, State)            ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, UIColor *, setTitleShadowColor, State)
-#define     ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(methodName, State)             ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, UIImage *, setImage, State)
-#define     ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(methodName, State)           ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, UIImage *, setBackgroundImage, State)
-#define     ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(methodName, State)         ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, NSAttributedString *, setAttributedTitle, State)
-#define     ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(methodName, State)           ZZFLEX_CHAIN_BUTTON_STATE_IMPLEMENTATION(methodName, UIColor *, setBackgroundColor, State)
+#define     ZZFLEXC_BUTTON_TITLE_IMP(methodName, State)             ZZFLEXC_BUTTON_STATE_IMP(methodName, NSString *, setTitle, State)
+#define     ZZFLEXC_BUTTON_TITLECOLOR_IMP(methodName, State)        ZZFLEXC_BUTTON_STATE_IMP(methodName, UIColor *, setTitleColor, State)
+#define     ZZFLEXC_BUTTON_SHADOW_IMP(methodName, State)            ZZFLEXC_BUTTON_STATE_IMP(methodName, UIColor *, setTitleShadowColor, State)
+#define     ZZFLEXC_BUTTON_IMAGE_IMP(methodName, State)             ZZFLEXC_BUTTON_STATE_IMP(methodName, UIImage *, setImage, State)
+#define     ZZFLEXC_BUTTON_BGIMAGE_IMP(methodName, State)           ZZFLEXC_BUTTON_STATE_IMP(methodName, UIImage *, setBackgroundImage, State)
+#define     ZZFLEXC_BUTTON_ATTRTITLE_IMP(methodName, State)         ZZFLEXC_BUTTON_STATE_IMP(methodName, NSAttributedString *, setAttributedTitle, State)
+#define     ZZFLEXC_BUTTON_BGCOLOR_IMP(methodName, State)           ZZFLEXC_BUTTON_STATE_IMP(methodName, UIColor *, setBackgroundColor, State)
 
 @implementation ZZButtonChainModel
 
-ZZFLEX_CHAIN_BUTTON_TITLE_IMPLEMENTATION(title, UIControlStateNormal);
-ZZFLEX_CHAIN_BUTTON_TITLE_IMPLEMENTATION(titleHL, UIControlStateHighlighted);
-ZZFLEX_CHAIN_BUTTON_TITLE_IMPLEMENTATION(titleSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_TITLE_IMPLEMENTATION(titleDisabled, UIControlStateDisabled);
++ (Class)viewClass
+{
+    return [UIButton class];
+}
 
-ZZFLEX_CHAIN_BUTTON_TITLECOLOR_IMPLEMENTATION(titleColor, UIControlStateNormal);
-ZZFLEX_CHAIN_BUTTON_TITLECOLOR_IMPLEMENTATION(titleColorHL, UIControlStateHighlighted);
-ZZFLEX_CHAIN_BUTTON_TITLECOLOR_IMPLEMENTATION(titleColorSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_TITLECOLOR_IMPLEMENTATION(titleColorDisabled, UIControlStateDisabled);
+ZZFLEXC_BUTTON_TITLE_IMP(title, UIControlStateNormal);
+ZZFLEXC_BUTTON_TITLE_IMP(titleHL, UIControlStateHighlighted);
+ZZFLEXC_BUTTON_TITLE_IMP(titleSelected, UIControlStateSelected);
+ZZFLEXC_BUTTON_TITLE_IMP(titleDisabled, UIControlStateDisabled);
 
-ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColor, UIControlStateNormal);
-ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColorHL, UIControlStateHighlighted);
-ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColorSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_SHADOW_IMPLEMENTATION(titleShadowColorDisabled, UIControlStateDisabled);
+ZZFLEXC_BUTTON_TITLECOLOR_IMP(titleColor, UIControlStateNormal);
+ZZFLEXC_BUTTON_TITLECOLOR_IMP(titleColorHL, UIControlStateHighlighted);
+ZZFLEXC_BUTTON_TITLECOLOR_IMP(titleColorSelected, UIControlStateSelected);
+ZZFLEXC_BUTTON_TITLECOLOR_IMP(titleColorDisabled, UIControlStateDisabled);
 
-ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(image, UIControlStateNormal);
-ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(imageHL, UIControlStateHighlighted);
-ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(imageSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_IMAGE_IMPLEMENTATION(imageDisabled, UIControlStateDisabled);
+ZZFLEXC_BUTTON_SHADOW_IMP(titleShadowColor, UIControlStateNormal);
+ZZFLEXC_BUTTON_SHADOW_IMP(titleShadowColorHL, UIControlStateHighlighted);
+ZZFLEXC_BUTTON_SHADOW_IMP(titleShadowColorSelected, UIControlStateSelected);
+ZZFLEXC_BUTTON_SHADOW_IMP(titleShadowColorDisabled, UIControlStateDisabled);
 
-ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImage, UIControlStateNormal);
-ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImageHL, UIControlStateHighlighted);
-ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImageSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_BGIMAGE_IMPLEMENTATION(backgroundImageDisabled, UIControlStateDisabled);
+ZZFLEXC_BUTTON_IMAGE_IMP(image, UIControlStateNormal);
+ZZFLEXC_BUTTON_IMAGE_IMP(imageHL, UIControlStateHighlighted);
+ZZFLEXC_BUTTON_IMAGE_IMP(imageSelected, UIControlStateSelected);
+ZZFLEXC_BUTTON_IMAGE_IMP(imageDisabled, UIControlStateDisabled);
 
-ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitle, UIControlStateNormal);
-ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitleHL, UIControlStateHighlighted);
-ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitleSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_ATTRTITLE_IMPLEMENTATION(attributedTitleDisabled, UIControlStateDisabled);
+ZZFLEXC_BUTTON_BGIMAGE_IMP(backgroundImage, UIControlStateNormal);
+ZZFLEXC_BUTTON_BGIMAGE_IMP(backgroundImageHL, UIControlStateHighlighted);
+ZZFLEXC_BUTTON_BGIMAGE_IMP(backgroundImageSelected, UIControlStateSelected);
+ZZFLEXC_BUTTON_BGIMAGE_IMP(backgroundImageDisabled, UIControlStateDisabled);
 
-ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(backgroundColorHL, UIControlStateHighlighted);
-ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(backgroundColorSelected, UIControlStateSelected);
-ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(backgroundColorDisabled, UIControlStateDisabled);
+ZZFLEXC_BUTTON_ATTRTITLE_IMP(attributedTitle, UIControlStateNormal);
+ZZFLEXC_BUTTON_ATTRTITLE_IMP(attributedTitleHL, UIControlStateHighlighted);
+ZZFLEXC_BUTTON_ATTRTITLE_IMP(attributedTitleSelected, UIControlStateSelected);
+ZZFLEXC_BUTTON_ATTRTITLE_IMP(attributedTitleDisabled, UIControlStateDisabled);
+
+ZZFLEXC_BUTTON_BGCOLOR_IMP(backgroundColorHL, UIControlStateHighlighted);
+ZZFLEXC_BUTTON_BGCOLOR_IMP(backgroundColorSelected, UIControlStateSelected);
+ZZFLEXC_BUTTON_BGCOLOR_IMP(backgroundColorDisabled, UIControlStateDisabled);
 
 - (ZZButtonChainModel *(^)(UIFont *titleFont))titleFont
 {
@@ -84,35 +88,33 @@ ZZFLEX_CHAIN_BUTTON_BGCOLOR_IMPLEMENTATION(backgroundColorDisabled, UIControlSta
     };
 }
 
-ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(contentEdgeInsets, UIEdgeInsets);
-ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(titleEdgeInsets, UIEdgeInsets);
-ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(imageEdgeInsets, UIEdgeInsets);
-
+ZZFLEXC_BUTTON_IMP(UIEdgeInsets, contentEdgeInsets);
+ZZFLEXC_BUTTON_IMP(UIEdgeInsets, titleEdgeInsets);
+ZZFLEXC_BUTTON_IMP(UIEdgeInsets, imageEdgeInsets);
 
 #pragma mark - # UIControl
-ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(enabled, BOOL);
-ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(selected, BOOL);
-ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(highlighted, BOOL);
+ZZFLEXC_BUTTON_IMP(BOOL, enabled);
+ZZFLEXC_BUTTON_IMP(BOOL, selected);
+ZZFLEXC_BUTTON_IMP(BOOL, highlighted);
 
-- (ZZButtonChainModel *(^)(UIControlEvents controlEvents, void (^eventBlock)(id sender)))eventBlock
+- (ZZButtonChainModel *(^)(UIControlEvents controlEvents, ZZChainControlEventBlock eventBlock))eventBlock
 {
-    return ^ZZButtonChainModel *(UIControlEvents controlEvents, void (^eventBlock)(id sender)) {
+    return ^ZZButtonChainModel *(UIControlEvents controlEvents, ZZChainControlEventBlock eventBlock) {
         [(UIControl *)self.view addControlEvents:controlEvents handler:eventBlock];
         return self;
     };
 }
 
 
-ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchDown, UIControlEventTouchDown);
-ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchDownRepeat, UIControlEventTouchDownRepeat);
-ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchUpInside, UIControlEventTouchUpInside);
-ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchUpOutside, UIControlEventTouchUpOutside);
-ZZFLEX_CHAIN_BUTTON_EVENT_IMPLEMENTATION(eventTouchCancel, UIControlEventTouchCancel);
+ZZFLEXC_BUTTON_EVENT_IMP(eventTouchDown, UIControlEventTouchDown);
+ZZFLEXC_BUTTON_EVENT_IMP(eventTouchDownRepeat, UIControlEventTouchDownRepeat);
+ZZFLEXC_BUTTON_EVENT_IMP(eventTouchUpInside, UIControlEventTouchUpInside);
+ZZFLEXC_BUTTON_EVENT_IMP(eventTouchUpOutside, UIControlEventTouchUpOutside);
+ZZFLEXC_BUTTON_EVENT_IMP(eventTouchCancel, UIControlEventTouchCancel);
 
-
-ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(contentVerticalAlignment, UIControlContentVerticalAlignment);
-ZZFLEX_CHAIN_BUTTON_IMPLEMENTATION(contentHorizontalAlignment, UIControlContentHorizontalAlignment);
+ZZFLEXC_BUTTON_IMP(UIControlContentVerticalAlignment, contentVerticalAlignment);
+ZZFLEXC_BUTTON_IMP(UIControlContentHorizontalAlignment, contentHorizontalAlignment);
 
 @end
 
-ZZFLEX_EX_IMPLEMENTATION(UIButton, ZZButtonChainModel)
+ZZFLEX_EX_IMP(ZZButtonChainModel, UIButton)

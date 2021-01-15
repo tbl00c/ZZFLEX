@@ -7,7 +7,7 @@
 
 #import "ZZMutableParagraphStyleChainModel.h"
 
-#define     ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(methodName, ZZParamType) \
+#define     ZZFLEX_FMPS_CHAIN_IMP(methodName, ZZParamType) \
 - (ZZMutableParagraphStyleChainModel *(^)(ZZParamType param))methodName {   \
 return ^ZZMutableParagraphStyleChainModel *(ZZParamType param) {    \
 self.object.methodName = param;   \
@@ -26,18 +26,18 @@ return self;    \
     return self;
 }
 
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(lineSpacing, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(paragraphSpacing, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(alignment, NSTextAlignment);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(firstLineHeadIndent, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(headIndent, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(tailIndent, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(lineBreakMode, NSLineBreakMode);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(minimumLineHeight, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(maximumLineHeight, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(baseWritingDirection, NSWritingDirection);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(lineHeightMultiple, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(paragraphSpacingBefore, CGFloat);
-ZZFLEX_FMPS_CHAIN_IMPLEMENTATION(hyphenationFactor, float);
+ZZFLEX_FMPS_CHAIN_IMP(lineSpacing, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(paragraphSpacing, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(alignment, NSTextAlignment);
+ZZFLEX_FMPS_CHAIN_IMP(firstLineHeadIndent, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(headIndent, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(tailIndent, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(lineBreakMode, NSLineBreakMode);
+ZZFLEX_FMPS_CHAIN_IMP(minimumLineHeight, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(maximumLineHeight, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(baseWritingDirection, NSWritingDirection);
+ZZFLEX_FMPS_CHAIN_IMP(lineHeightMultiple, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(paragraphSpacingBefore, CGFloat);
+ZZFLEX_FMPS_CHAIN_IMP(hyphenationFactor, float);
 
 @end

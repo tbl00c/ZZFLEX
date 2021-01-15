@@ -61,7 +61,7 @@
     return view;
 }
 
-- (UITableViewHeaderFooterView *)_headerFooterViewForTableView:(UITableView *)tableView viewModel:(ZZFLEXViewModel *)viewModel section:(NSInteger)section
+- (UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *)_headerFooterViewForTableView:(UITableView *)tableView viewModel:(ZZFLEXViewModel *)viewModel section:(NSInteger)section
 {
     UITableViewHeaderFooterView *view;
     if (!viewModel.viewClass) {

@@ -8,52 +8,57 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_TV_API(ZZParamType, methodName)      ZZFLEXC_API(ZZTableViewChainModel, ZZParamType, methodName)
+
 @class ZZTableViewChainModel;
 @interface ZZTableViewChainModel : ZZBaseViewChainModel<ZZTableViewChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ delegate)(id<UITableViewDelegate> delegate);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ dataSource)(id<UITableViewDataSource> dataSource);
+ZZFLEXC_TV_API(id<UITableViewDelegate>, delegate)
+ZZFLEXC_TV_API(id<UITableViewDataSource>, dataSource)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ rowHeight)(CGFloat rowHeight);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ sectionHeaderHeight)(CGFloat sectionHeaderHeight);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ sectionFooterHeight)(CGFloat sectionFooterHeight);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ estimatedRowHeight)(CGFloat estimatedRowHeight);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ estimatedSectionHeaderHeight)(CGFloat estimatedSectionHeaderHeight);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ estimatedSectionFooterHeight)(CGFloat estimatedSectionFooterHeight);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ separatorInset)(UIEdgeInsets separatorInset);
+ZZFLEXC_TV_API(CGFloat, rowHeight)
+ZZFLEXC_TV_API(CGFloat, sectionHeaderHeight)
+ZZFLEXC_TV_API(CGFloat, sectionFooterHeight)
+ZZFLEXC_TV_API(CGFloat, estimatedRowHeight)
+ZZFLEXC_TV_API(CGFloat, estimatedSectionHeaderHeight)
+ZZFLEXC_TV_API(CGFloat, estimatedSectionFooterHeight)
+ZZFLEXC_TV_API(UIEdgeInsets, separatorInset)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ editing)(BOOL editing);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ allowsSelection)(BOOL allowsSelection);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ allowsMultipleSelection)(BOOL allowsMultipleSelection);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ allowsSelectionDuringEditing)(BOOL allowsSelectionDuringEditing);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ allowsMultipleSelectionDuringEditing)(BOOL allowsMultipleSelectionDuringEditing);
+ZZFLEXC_TV_API(BOOL, editing)
+ZZFLEXC_TV_API(BOOL, allowsSelection)
+ZZFLEXC_TV_API(BOOL, allowsMultipleSelection)
+ZZFLEXC_TV_API(BOOL, allowsSelectionDuringEditing)
+ZZFLEXC_TV_API(BOOL, allowsMultipleSelectionDuringEditing)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ separatorStyle)(UITableViewCellSeparatorStyle separatorStyle);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ separatorColor)(UIColor *separatorColor);
+ZZFLEXC_TV_API(UITableViewCellSeparatorStyle, separatorStyle)
+ZZFLEXC_TV_API(UIColor *, separatorColor)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ tableHeaderView)(UIView * tableHeaderView);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ tableFooterView)(UIView * separatorStyle);
+ZZFLEXC_TV_API(UIView *, tableHeaderView)
+ZZFLEXC_TV_API(UIView *, tableFooterView)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ sectionIndexBackgroundColor)(UIColor *sectionIndexBackgroundColor);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ sectionIndexColor)(UIColor *sectionIndexColor);
+ZZFLEXC_TV_API(UIColor *, sectionIndexBackgroundColor)
+ZZFLEXC_TV_API(UIColor *, sectionIndexColor)
 
 #pragma mark - UIScrollView
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ contentSize)(CGSize contentSize);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ contentOffset)(CGPoint contentOffset);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ contentInset)(UIEdgeInsets contentInset);
+ZZFLEXC_TV_API(CGSize, contentSize)
+ZZFLEXC_TV_API(CGPoint, contentOffset)
+ZZFLEXC_TV_API(UIEdgeInsets, contentInset)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ bounces)(BOOL bounces);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ alwaysBounceVertical)(BOOL alwaysBounceVertical);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ alwaysBounceHorizontal)(BOOL alwaysBounceHorizontal);
+ZZFLEXC_TV_API(BOOL, bounces)
+ZZFLEXC_TV_API(BOOL, alwaysBounceVertical)
+ZZFLEXC_TV_API(BOOL, alwaysBounceHorizontal)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ pagingEnabled)(BOOL pagingEnabled);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ scrollEnabled)(BOOL scrollEnabled);
+ZZFLEXC_TV_API(BOOL, pagingEnabled)
+ZZFLEXC_TV_API(BOOL, scrollEnabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ showsHorizontalScrollIndicator)(BOOL showsHorizontalScrollIndicator);
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ showsVerticalScrollIndicator)(BOOL showsVerticalScrollIndicator);
+ZZFLEXC_TV_API(BOOL, showsHorizontalScrollIndicator)
+ZZFLEXC_TV_API(BOOL, showsVerticalScrollIndicator)
 
-ZZFLEX_CHAIN_PROPERTY ZZTableViewChainModel *(^ scrollsToTop)(BOOL scrollsToTop);
+ZZFLEXC_TV_API(BOOL, scrollsToTop)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UITableView, ZZTableViewChainModel)
+ZZFLEX_EX_API(ZZTableViewChainModel, UITableView)
+@interface UITableView (ZZFLEX_EX_T)
++ (ZZTableViewChainModel *(^)(NSInteger tag, UITableViewStyle style))zz_createWithStyle;
+@end

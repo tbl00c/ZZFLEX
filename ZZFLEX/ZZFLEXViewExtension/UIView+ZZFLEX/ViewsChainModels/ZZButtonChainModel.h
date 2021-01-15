@@ -8,67 +8,69 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_BUTTON_API(ZZParamType, methodName)      ZZFLEXC_API(ZZButtonChainModel, ZZParamType, methodName)
+
+typedef void (^ZZChainControlEventBlock)(id sender);
+
 @class ZZButtonChainModel;
 @interface ZZButtonChainModel : ZZBaseViewChainModel<ZZButtonChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ title)(NSString *title);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleHL)(NSString *titleHL);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleSelected)(NSString *titleSelected);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleDisabled)(NSString *titleDisabled);
+ZZFLEXC_BUTTON_API(NSString *, title)
+ZZFLEXC_BUTTON_API(NSString *, titleHL)
+ZZFLEXC_BUTTON_API(NSString *, titleSelected)
+ZZFLEXC_BUTTON_API(NSString *, titleDisabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleColor)(UIColor *titleColor);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleColorHL)(UIColor *titleColorHL);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleColorSelected)(UIColor *titleColorSelected);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleColorDisabled)(UIColor *titleColorDisabled);
+ZZFLEXC_BUTTON_API(UIColor *, titleColor)
+ZZFLEXC_BUTTON_API(UIColor *, titleColorHL)
+ZZFLEXC_BUTTON_API(UIColor *, titleColorSelected)
+ZZFLEXC_BUTTON_API(UIColor *, titleColorDisabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleShadowColor)(UIColor *titleShadowColor);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleShadowColorHL)(UIColor *titleShadowColorHL);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleShadowColorSelected)(UIColor *titleShadowColorSelected);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleShadowColorDisabled)(UIColor *titleShadowColorDisabled);
+ZZFLEXC_BUTTON_API(UIColor *, titleShadowColor)
+ZZFLEXC_BUTTON_API(UIColor *, titleShadowColorHL)
+ZZFLEXC_BUTTON_API(UIColor *, titleShadowColorSelected)
+ZZFLEXC_BUTTON_API(UIColor *, titleShadowColorDisabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ image)(UIImage *image);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ imageHL)(UIImage *imageHL);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ imageSelected)(UIImage *imageSelected);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ imageDisabled)(UIImage *imageDisabled);
+ZZFLEXC_BUTTON_API(UIImage *, image)
+ZZFLEXC_BUTTON_API(UIImage *, imageHL)
+ZZFLEXC_BUTTON_API(UIImage *, imageSelected)
+ZZFLEXC_BUTTON_API(UIImage *, imageDisabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ backgroundImage)(UIImage *backgroundImage);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ backgroundImageHL)(UIImage *backgroundImageHL);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ backgroundImageSelected)(UIImage *backgroundImageSelected);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ backgroundImageDisabled)(UIImage *backgroundImageDisabled);
+ZZFLEXC_BUTTON_API(UIImage *, backgroundImage)
+ZZFLEXC_BUTTON_API(UIImage *, backgroundImageHL)
+ZZFLEXC_BUTTON_API(UIImage *, backgroundImageSelected)
+ZZFLEXC_BUTTON_API(UIImage *, backgroundImageDisabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ attributedTitle)(NSAttributedString *attributedTitle);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ attributedTitleHL)(NSAttributedString *attributedTitleHL);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ attributedTitleSelected)(NSAttributedString *attributedTitleSelected);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ attributedTitleDisabled)(NSAttributedString *attributedTitleDisabled);
+ZZFLEXC_BUTTON_API(NSAttributedString *, attributedTitle)
+ZZFLEXC_BUTTON_API(NSAttributedString *, attributedTitleHL)
+ZZFLEXC_BUTTON_API(NSAttributedString *, attributedTitleSelected)
+ZZFLEXC_BUTTON_API(NSAttributedString *, attributedTitleDisabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ backgroundColorHL)(UIColor *backgroundColorHL);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ backgroundColorSelected)(UIColor *backgroundColorSelected);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ backgroundColorDisabled)(UIColor *backgroundColorDisabled);
+ZZFLEXC_BUTTON_API(UIColor *, backgroundColorHL)
+ZZFLEXC_BUTTON_API(UIColor *, backgroundColorSelected)
+ZZFLEXC_BUTTON_API(UIColor *, backgroundColorDisabled)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleFont)(UIFont *titleFont);
+ZZFLEXC_BUTTON_API(UIFont *, titleFont)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ contentEdgeInsets)(UIEdgeInsets contentEdgeInsets);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ titleEdgeInsets)(UIEdgeInsets titleEdgeInsets);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ imageEdgeInsets)(UIEdgeInsets imageEdgeInsets);
+ZZFLEXC_BUTTON_API(UIEdgeInsets, contentEdgeInsets)
+ZZFLEXC_BUTTON_API(UIEdgeInsets, titleEdgeInsets)
+ZZFLEXC_BUTTON_API(UIEdgeInsets, imageEdgeInsets)
 
 #pragma mark - # UIControl
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ enabled)(BOOL enabled);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ selected)(BOOL selected);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ highlighted)(BOOL highlighted);
+ZZFLEXC_BUTTON_API(BOOL, enabled)
+ZZFLEXC_BUTTON_API(BOOL, selected)
+ZZFLEXC_BUTTON_API(BOOL, highlighted)
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
+ZZFLEXC_PROPERTY ZZButtonChainModel *(^ eventBlock)(UIControlEvents controlEvents, ZZChainControlEventBlock eventBlock);
 
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchDown)(void (^eventBlock)(id sender));
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchDownRepeat)(void (^eventBlock)(id sender));
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchUpInside)(void (^eventBlock)(id sender));
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchUpOutside)(void (^eventBlock)(id sender));
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ eventTouchCancel)(void (^eventBlock)(id sender));
+ZZFLEXC_BUTTON_API(ZZChainControlEventBlock, eventTouchDown)
+ZZFLEXC_BUTTON_API(ZZChainControlEventBlock, eventTouchDownRepeat)
+ZZFLEXC_BUTTON_API(ZZChainControlEventBlock, eventTouchUpInside)
+ZZFLEXC_BUTTON_API(ZZChainControlEventBlock, eventTouchUpOutside)
+ZZFLEXC_BUTTON_API(ZZChainControlEventBlock, eventTouchCancel)
 
-
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ contentVerticalAlignment)(UIControlContentVerticalAlignment contentVerticalAlignment);
-ZZFLEX_CHAIN_PROPERTY ZZButtonChainModel *(^ contentHorizontalAlignment)(UIControlContentHorizontalAlignment contentHorizontalAlignment);
-
+ZZFLEXC_BUTTON_API(UIControlContentVerticalAlignment, contentVerticalAlignment)
+ZZFLEXC_BUTTON_API(UIControlContentHorizontalAlignment, contentHorizontalAlignment)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UIButton, ZZButtonChainModel)
+ZZFLEX_EX_API(ZZButtonChainModel, UIButton)

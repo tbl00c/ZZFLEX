@@ -8,19 +8,20 @@
 
 #import "ZZBaseViewChainModel.h"
 
+#define     ZZFLEXC_CONTROL_API(ZZParamType, methodName)      ZZFLEXC_API(ZZControlChainModel, ZZParamType, methodName)
+
 @class ZZControlChainModel;
 @interface ZZControlChainModel : ZZBaseViewChainModel<ZZControlChainModel *>
 
-ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ enabled)(BOOL enabled);
-ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ selected)(BOOL selected);
-ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ highlighted)(BOOL highlighted);
+ZZFLEXC_CONTROL_API(BOOL, enabled)
+ZZFLEXC_CONTROL_API(BOOL, selected)
+ZZFLEXC_CONTROL_API(BOOL, highlighted)
 
-ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
+ZZFLEXC_PROPERTY ZZControlChainModel *(^ eventBlock)(UIControlEvents controlEvents, void (^eventBlock)(id sender));
 
-ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ contentVerticalAlignment)(UIControlContentVerticalAlignment contentVerticalAlignment);
-ZZFLEX_CHAIN_PROPERTY ZZControlChainModel *(^ contentHorizontalAlignment)(UIControlContentHorizontalAlignment contentHorizontalAlignment);
-
+ZZFLEXC_CONTROL_API(UIControlContentVerticalAlignment, contentVerticalAlignment)
+ZZFLEXC_CONTROL_API(UIControlContentHorizontalAlignment, contentHorizontalAlignment)
 
 @end
 
-ZZFLEX_EX_INTERFACE(UIControl, ZZControlChainModel)
+ZZFLEX_EX_API(ZZControlChainModel, UIControl)
