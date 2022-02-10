@@ -10,12 +10,13 @@
 #import "ZZFlexibleLayoutViewProtocol.h"
 #import <UIKit/UIKit.h>
 
+@class ZZFLEXAngel;
 @interface ZZFLEXViewModel (Angel)
 
 /**
  获取实际展示大小
  */
-- (CGSize)visableSizeForHostView:(__kindof UIView *)hostView;
+- (CGSize)visableSizeForHostView:(__kindof UIView *)hostView angel:(ZZFLEXAngel *)angel sectionInsets:(UIEdgeInsets)sectionInsets;
 
 /**
  执行配置方法

@@ -13,25 +13,26 @@
 @synthesize viewSize = _viewSize;
 @synthesize dataModel = _dataModel;
 
-- (instancetype)initWithViewClass:(Class)viewClass
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate
 {
-    return [self initWithViewClass:viewClass andDataModel:nil];
+    return [self initWithViewClass:viewClass vmDelegate:vmDelegate dataModel:nil];
 }
 
-- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel
 {
-    return [self initWithViewClass:viewClass andDataModel:dataModel viewTag:0];
+    return [self initWithViewClass:viewClass vmDelegate:vmDelegate dataModel:dataModel viewTag:0];
 }
 
-- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel viewTag:(NSInteger)viewTag
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel viewTag:(NSInteger)viewTag
 {
-    return [self initWithViewClass:viewClass andDataModel:dataModel viewSize:CGSizeZero viewTag:viewTag];
+    return [self initWithViewClass:viewClass vmDelegate:vmDelegate dataModel:dataModel viewSize:CGSizeZero viewTag:viewTag];
 }
 
-- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag
 {
     if (self = [super init]) {
         _viewSize = viewSize;
+        _vmDelegate = vmDelegate;
         _dataModel = dataModel;
         _viewClass = viewClass;
         _className = NSStringFromClass(viewClass);
@@ -65,8 +66,15 @@
 {
     if (self.viewClass) {
         id dataModel = _dataModel;
-        if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewSizeByDataModel:)]) {
+        if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewSizeByDataModel:hostView:)]) {
+            _viewSize = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewSizeByDataModel:dataModel hostView:[self.vmDelegate hostView]];
+        }
+        else if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewSizeByDataModel:)]) {
             _viewSize = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewSizeByDataModel:dataModel];
+        }
+        else if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewHeightByDataModel:hostView:)]) {
+            CGFloat height = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewHeightByDataModel:dataModel hostView:[self.vmDelegate hostView]];
+            _viewSize = CGSizeMake(-1, height);
         }
         else if ([(id<ZZFlexibleLayoutViewProtocol>)self.viewClass respondsToSelector:@selector(viewHeightByDataModel:)]) {
             CGFloat height = [(id<ZZFlexibleLayoutViewProtocol>)self.viewClass viewHeightByDataModel:dataModel];

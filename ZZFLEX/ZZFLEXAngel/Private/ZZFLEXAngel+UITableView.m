@@ -77,14 +77,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ZZFLEXViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
+    ZZFLEXViewModel *viewModel = [self viewModelAtIndexPath:indexPath ];
     [viewModel excuteSelectedActionForHostView:tableView];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZZFLEXViewModel *model = [self viewModelAtIndexPath:indexPath];
-    CGFloat height = [model visableSizeForHostView:tableView].height;
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    ZZFLEXViewModel *model = [sectionModel objectAtIndex:indexPath.row];
+    CGFloat height = [model visableSizeForHostView:tableView angel:self sectionInsets:sectionModel.sectionInsets].height;
     return height;
 }
 
@@ -92,7 +93,7 @@
 {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *model = sectionModel.headerViewModel;
-    CGFloat height = [model visableSizeForHostView:tableView].height;
+    CGFloat height = [model visableSizeForHostView:tableView angel:self sectionInsets:sectionModel.sectionInsets].height;
     if (height < 0.0001) {
         height = sectionModel.sectionInsets.top;
     }
@@ -103,7 +104,7 @@
 {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *model = sectionModel.footerViewModel;
-    CGFloat height = [model visableSizeForHostView:tableView].height;
+    CGFloat height = [model visableSizeForHostView:tableView angel:self sectionInsets:sectionModel.sectionInsets].height;
     if (height < 0.0001) {
         height = sectionModel.sectionInsets.bottom;
     }

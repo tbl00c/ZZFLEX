@@ -11,9 +11,12 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "ZZFLEXViewModel.h"
 
 #pragma mark - ## ZZFLEXAngelViewBaseBatchChainModel (批量，基类)
 @interface ZZFLEXAngelViewBaseBatchChainModel<ZZFLEXReturnType> : NSObject
+
+@property (nonatomic, weak, readonly) id<ZZFLEXViewModelDelegate> vmDelegate;
 
 /// 将cells添加到某个section
 - (ZZFLEXReturnType (^)(NSInteger section))toSection;
@@ -41,7 +44,7 @@
 - (ZZFLEXReturnType (^)(CGFloat height))viewHeight;
 
 #pragma mark - 框架内部使用
-- (instancetype)initWithViewClass:(Class)viewClass listData:(NSMutableArray *)listData;
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate listData:(NSMutableArray *)listData;
 
 @end
 

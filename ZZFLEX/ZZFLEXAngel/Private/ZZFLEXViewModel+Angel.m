@@ -7,18 +7,25 @@
 //
 
 #import "ZZFLEXViewModel+Angel.h"
+#import "ZZFLEXAngel.h"
 
 @implementation ZZFLEXViewModel (Angel)
 
-- (CGSize)visableSizeForHostView:(__kindof UIView *)hostView
+- (CGSize)visableSizeForHostView:(__kindof UIView *)hostView angel:(ZZFLEXAngel *)angel sectionInsets:(UIEdgeInsets)sectionInsets
 {
     CGFloat width = self.viewSize.width;
-    width = width < 0 ? hostView.frame.size.width * -width : width;
+    if (width < 0 && width >= -1) {
+        CGFloat viewWidth = hostView.frame.size.width  - sectionInsets.left - sectionInsets.right;
+        width = viewWidth * -width;
+    }
+    width = MAX(width, 0.01);
     
     CGFloat height = self.viewSize.height;
-    height = height < 0 ? hostView.frame.size.height * -height : height;
-    
-    return CGSizeMake(width, height);
+    if (height < 0 && height >= -1) {
+        height = hostView.frame.size.height * -height;
+    }
+    height = MAX(height, 0.01);
+    return CGSizeMake((NSInteger)width, (NSInteger)height);
 }
 
 - (void)excuteConfigActionForHostView:(__kindof UIView *)hostView itemView:(__kindof UIView<ZZFlexibleLayoutViewProtocol> *)itemView sectionCount:(NSInteger)sectionCount indexPath:(NSIndexPath *)indexPath

@@ -76,8 +76,9 @@
 //MARK: ZZFlexibleLayoutFlowLayoutDelegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZZFLEXViewModel *viewModel = [self viewModelAtIndexPath:indexPath];
-    CGSize size = [viewModel visableSizeForHostView:collectionView];
+    ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
+    ZZFLEXViewModel *viewModel = [sectionModel objectAtIndex:indexPath.row];
+    CGSize size = [viewModel visableSizeForHostView:collectionView angel:self sectionInsets:sectionModel.sectionInsets];
     return size;
 }
 
@@ -85,7 +86,7 @@
 {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *viewModel = sectionModel.headerViewModel;
-    CGSize size = [viewModel visableSizeForHostView:collectionView];
+    CGSize size = [viewModel visableSizeForHostView:collectionView angel:self sectionInsets:sectionModel.sectionInsets];
     return size;
 }
 
@@ -93,7 +94,7 @@
 {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *viewModel = sectionModel.footerViewModel;
-    CGSize size = [viewModel visableSizeForHostView:collectionView];
+    CGSize size = [viewModel visableSizeForHostView:collectionView angel:self sectionInsets:sectionModel.sectionInsets];
     return size;
 }
 
@@ -112,7 +113,8 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
-    return sectionModel.sectionInsets;
+    UIEdgeInsets edgeInsets = sectionModel.sectionInsets;
+    return edgeInsets;
 }
 
 #pragma mark - # ZZFlexibleLayoutFlowLayout

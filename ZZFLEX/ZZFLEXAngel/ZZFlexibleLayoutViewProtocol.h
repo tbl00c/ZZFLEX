@@ -26,6 +26,7 @@
  * 小Tips：0至-1表示比例，如size.width=-0.5时，表示视图的宽度为列表宽度的50%
  */
 + (CGSize)viewSizeByDataModel:(id)dataModel;
++ (CGSize)viewSizeByDataModel:(id)dataModel hostView:(__kindof UIScrollView *)hostView;
 /**
  * 获取cell/view高度，与viewSizeByDataModel二选一
  * CollectionView、TableView 均可选择使用
@@ -35,6 +36,7 @@
  * 小Tips：CollectionView也可用此方法，宽度默认为-1，即列表宽度
  */
 + (CGFloat)viewHeightByDataModel:(id)dataModel;
++ (CGFloat)viewHeightByDataModel:(id)dataModel hostView:(__kindof UIScrollView *)hostView;
 
 
 /**

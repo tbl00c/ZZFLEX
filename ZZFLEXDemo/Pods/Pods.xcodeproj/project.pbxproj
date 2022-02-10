@@ -27,6 +27,13 @@
 			remoteGlobalIDString = E94AEF767442EDAAAAB2129CDFA2C2ED;
 			remoteInfo = MJRefresh;
 		};
+		2ADFDB8A039A9EC1C8196FB0AE906F1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9005CC5D5ECF4FCF96B21B4002617CC5 /* ZZFLEX.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C11B6A3130168632F80EBAABD2D5F994;
+			remoteInfo = ZZFLEX;
+		};
 		47808A5FFBF71C26776E14A4D0FBAC2E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA5A8C87B34077520EAA9AF7B0315A4C /* SDWebImage.xcodeproj */;
@@ -40,13 +47,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8A9D4D6FA645C6C4FB4FAD46A2A7A0B3;
 			remoteInfo = "XLPhotoBrowser+CoderXL";
-		};
-		752039C249AA46955216AB98D179C11C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9005CC5D5ECF4FCF96B21B4002617CC5 /* ZZFLEX.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C11B6A3130168632F80EBAABD2D5F994;
-			remoteInfo = ZZFLEX;
 		};
 		E341206552922B36719A931043BC56AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -212,7 +212,7 @@
 				00C5AB7B7D3524A61197D67E9CC4F7C4 /* PBXTargetDependency */,
 				153B45DCA13772454950802DC4A64065 /* PBXTargetDependency */,
 				322C8FE8FE2F359A63A4C23542139162 /* PBXTargetDependency */,
-				A8910B8C4E89B0610A7EE020F937B3C5 /* PBXTargetDependency */,
+				1BB3862AF116B6A7664026C7C300A477 /* PBXTargetDependency */,
 			);
 			name = "Pods-ZZFLEXDemo";
 			productName = "Pods-ZZFLEXDemo";
@@ -301,6 +301,11 @@
 			name = TLKit;
 			targetProxy = ECCA77A1CC97C70D6DBAB083BF58654B /* PBXContainerItemProxy */;
 		};
+		1BB3862AF116B6A7664026C7C300A477 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZZFLEX;
+			targetProxy = 2ADFDB8A039A9EC1C8196FB0AE906F1F /* PBXContainerItemProxy */;
+		};
 		322C8FE8FE2F359A63A4C23542139162 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "XLPhotoBrowser+CoderXL";
@@ -310,11 +315,6 @@
 			isa = PBXTargetDependency;
 			name = Masonry;
 			targetProxy = E341206552922B36719A931043BC56AE /* PBXContainerItemProxy */;
-		};
-		A8910B8C4E89B0610A7EE020F937B3C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ZZFLEX;
-			targetProxy = 752039C249AA46955216AB98D179C11C /* PBXContainerItemProxy */;
 		};
 		EDEEE0E22F287B0205B27456DC86778B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

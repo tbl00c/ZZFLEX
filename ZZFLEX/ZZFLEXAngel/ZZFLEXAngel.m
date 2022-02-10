@@ -78,6 +78,12 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-property-synthesis"
 
+@interface ZZFLEXAngel () <ZZFLEXViewModelDelegate>
+
+@property (nonatomic, assign) UIDeviceOrientation lastDeviceOrientation;
+
+@end
+
 @implementation ZZFLEXAngel
 
 #pragma clang diagnostic pop
@@ -93,9 +99,15 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 - (instancetype)init
 {
     if (self = [super init]) {
+        _lastDeviceOrientation = [UIDevice currentDevice].orientation;
         _data = [[NSMutableArray alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(__zzflex_deviceOrientationDidChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setHostView:(__kindof UIScrollView *)hostView
@@ -114,11 +126,22 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
         RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionHeader, [ZZFlexibleLayoutEmptyHeaderFooterView class]);
         RegisterHostViewReusableView(_hostView, UICollectionElementKindSectionFooter, [ZZFlexibleLayoutEmptyHeaderFooterView class]);
     }
+    self.upadte();
+    self.reload();
 }
 
-- (void)reloadView
-{
+- (void)reloadView {
     [(UITableView *)self.hostView reloadData];
+}
+
+- (void)__zzflex_deviceOrientationDidChanged:(NSNotification *)notifacation {
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    if (UIInterfaceOrientationIsPortrait(orientation) != UIInterfaceOrientationIsPortrait(self.lastDeviceOrientation)) {
+        NSLog(@"[ZZFLEXAngel] deviceOrientationDidChanged %ld -> %ld", self.lastDeviceOrientation, orientation);
+        self.lastDeviceOrientation = orientation;
+        self.upadte();
+        self.reload();
+    }
 }
 
 @end
@@ -307,7 +330,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
     ZZFLEXViewModel *viewModel;
     if (viewClass) {
         xib ? RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionHeader, viewClass) : RegisterHostViewReusableView(self.hostView, UICollectionElementKindSectionHeader, viewClass);
-        viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass];
+        viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass vmDelegate:self];
     }
     ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeHeader];
     return chainViewModel;
@@ -331,7 +354,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
     ZZFLEXViewModel *viewModel;
     if (viewClass) {
         xib ? RegisterHostViewXibReusableView(self.hostView, UICollectionElementKindSectionFooter, viewClass) : RegisterHostViewReusableView(self.hostView, UICollectionElementKindSectionFooter, viewClass);
-        viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass];
+        viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass vmDelegate:self];
     }
     ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeFooter];
     return chainViewModel;
@@ -355,7 +378,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 - (ZZFLEXAngelViewChainModel *)_addCellWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
     xib ? RegisterHostViewXibCell(self.hostView, viewClass) : RegisterHostViewCell(self.hostView, viewClass);
-    ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass];
+    ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass vmDelegate:self];
     ZZFLEXAngelViewChainModel *chainViewModel = [[ZZFLEXAngelViewChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeCell];
     return chainViewModel;
 }
@@ -377,7 +400,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 - (ZZFLEXAngelViewBatchChainModel *)_addCellsWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
     xib ? RegisterHostViewXibCell(self.hostView, viewClass) : RegisterHostViewCell(self.hostView, viewClass);
-    ZZFLEXAngelViewBatchChainModel *viewModel = [[ZZFLEXAngelViewBatchChainModel alloc] initWithViewClass:viewClass listData:self.data];
+    ZZFLEXAngelViewBatchChainModel *viewModel = [[ZZFLEXAngelViewBatchChainModel alloc] initWithViewClass:viewClass vmDelegate:self listData:self.data];
     return viewModel;
 }
 
@@ -408,7 +431,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 - (ZZFLEXAngelViewInsertChainModel *)_insertCellWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
     xib ? RegisterHostViewXibCell(self.hostView, viewClass) : RegisterHostViewCell(self.hostView, viewClass);
-    ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass];
+    ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:viewClass vmDelegate:self];
     ZZFLEXAngelViewInsertChainModel *chainViewModel = [[ZZFLEXAngelViewInsertChainModel alloc] initWithListData:self.data viewModel:viewModel andType:ZZFLEXAngelViewTypeCell];
     return chainViewModel;
 }
@@ -429,7 +452,7 @@ void RegisterHostViewXibReusableView(__kindof UIScrollView *hostView, NSString *
 - (ZZFLEXAngelViewBatchInsertChainModel *)_insertCellsWithViewClass:(Class)viewClass xib:(BOOL)xib
 {
     xib ? RegisterHostViewXibCell(self.hostView, viewClass) : RegisterHostViewCell(self.hostView, viewClass);
-    ZZFLEXAngelViewBatchInsertChainModel *viewModel = [[ZZFLEXAngelViewBatchInsertChainModel alloc] initWithViewClass:viewClass listData:self.data];
+    ZZFLEXAngelViewBatchInsertChainModel *viewModel = [[ZZFLEXAngelViewBatchInsertChainModel alloc] initWithViewClass:viewClass vmDelegate:self listData:self.data];
     return viewModel;
 }
 

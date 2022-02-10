@@ -28,11 +28,12 @@
 
 @implementation ZZFLEXAngelViewBaseBatchChainModel
 
-- (instancetype)initWithViewClass:(Class)viewClass listData:(NSMutableArray *)listData
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate listData:(NSMutableArray *)listData
 {
     if (self = [super init]) {
         self.viewModelArray = [[NSMutableArray alloc] init];
         self.viewClass = viewClass;
+        _vmDelegate = vmDelegate;
         self.listData = listData;
     }
     return self;
@@ -58,7 +59,7 @@
 {
     return ^(NSArray *dataModelArray) {
         for (id model in dataModelArray) {
-            ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass andDataModel:model viewSize:self.itemViewSize viewTag:self.tag];
+            ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass vmDelegate:self.vmDelegate dataModel:model viewSize:self.itemViewSize viewTag:self.tag];
             [viewModel setDelegate:self.itemsDelegate];
             [viewModel setEventAction:self.itemsEventAction];
             [viewModel setSelectedAction:self.itemsSelectedAction];
@@ -205,7 +206,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
 {
     return ^(NSArray *dataModelArray) {
         for (id model in dataModelArray) {
-            ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass andDataModel:model];
+            ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass vmDelegate:self.vmDelegate dataModel:model];
             [viewModel setViewTag:self.tag];
             [viewModel setDelegate:self.itemsDelegate];
             [viewModel setEventAction:self.itemsEventAction];

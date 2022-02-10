@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZZFLEXViewModelDelegate <NSObject>
+
+- (__kindof UIScrollView *)hostView;
+
+@end
+
 /**
  * 仅框架内部使用
  *
@@ -20,6 +26,8 @@
 @property (nonatomic, strong, readonly) NSString *className;
 /// view/cell类
 @property (nonatomic, assign) Class viewClass;
+
+@property (nonatomic, weak) id<ZZFLEXViewModelDelegate> vmDelegate;
 
 /// view/cell的数据Model
 @property (nonatomic, strong) id dataModel;
@@ -44,14 +52,14 @@
 /**
 *  根据类名初始化viewModel
 */
-- (instancetype)initWithViewClass:(Class)viewClass;
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate;
 
 /**
  *  根据类名和数据源初始化viewModel
  */
-- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel;
-- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel viewTag:(NSInteger)viewTag;
-- (instancetype)initWithViewClass:(Class)viewClass andDataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag;
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel;
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel viewTag:(NSInteger)viewTag;
+- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag;
 
 /**
  *  重新计算视图大小

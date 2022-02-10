@@ -1,9 +1,9 @@
 PODS:
   - Masonry (1.1.0)
   - MJRefresh (3.1.17)
-  - SDWebImage (5.9.4):
-    - SDWebImage/Core (= 5.9.4)
-  - SDWebImage/Core (5.9.4)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
   - SVProgressHUD (2.2.5)
   - TLKit (2.0):
     - TLKit/TLCategories (= 2.0)
@@ -116,7 +116,7 @@ PODS:
   - TLKit/TLShortcut (2.0)
   - "XLPhotoBrowser+CoderXL (1.2.2)":
     - SDWebImage
-  - ZZFLEX (1.1.1):
+  - ZZFLEX (1.3.0):
     - Masonry
 
 DEPENDENCIES:
@@ -153,11 +153,11 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: ee5b68f639775462faba4db0fd243baf4d42c2cf
-  SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TLKit: 8f9b86c0ffa2d1eff72b3fa4a70f6c3bc14d24eb
   "XLPhotoBrowser+CoderXL": 7e366dc9f77f59507dfa6e1ee9122e7191d72750
-  ZZFLEX: 4d9a691ffc9e2c366867bd041f89010c939792c2
+  ZZFLEX: 127b4f240ffed1898e256ed1bdd3ce7f1f3f4811
 
 PODFILE CHECKSUM: a1fdc174498dfa72727db9975c04a769d7356bb8
 
