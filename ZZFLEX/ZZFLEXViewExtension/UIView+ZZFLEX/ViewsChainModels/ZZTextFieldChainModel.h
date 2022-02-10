@@ -54,6 +54,8 @@ ZZFLEXC_TF_API(UIView *, inputAccessoryView)
 
 ZZFLEXC_TF_API(BOOL, enabled)
 
+ZZFLEXC_TF_API(UIReturnKeyType, returnKeyType)
+
 ZZFLEXC_PROPERTY ZZTextFieldChainModel *(^ eventBlock)(UIControlEvents controlEvents, ZZChainTFEventBlock eventBlock);
 ZZFLEXC_TF_API(ZZChainTFEventBlock, eventEditingDidBegin)
 ZZFLEXC_TF_API(ZZChainTFEventBlock, eventEditingChanged)

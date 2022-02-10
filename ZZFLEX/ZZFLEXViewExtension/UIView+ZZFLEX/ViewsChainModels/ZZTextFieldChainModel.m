@@ -64,6 +64,7 @@ ZZFLEXC_TF_IMP(UIView *, inputView)
 ZZFLEXC_TF_IMP(UIView *, inputAccessoryView)
 
 ZZFLEXC_TF_IMP(BOOL, enabled)
+ZZFLEXC_TF_IMP(UIReturnKeyType, returnKeyType)
 
 - (ZZTextFieldChainModel *(^)(UIControlEvents controlEvents, void (^eventBlock)(id sender)))eventBlock
 {

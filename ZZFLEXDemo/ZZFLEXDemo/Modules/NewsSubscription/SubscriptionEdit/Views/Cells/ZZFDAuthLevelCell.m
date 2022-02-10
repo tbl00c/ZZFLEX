@@ -33,7 +33,7 @@
         
         @weakify(self);
         self.maxTF = self.contentView.addTextField(1002)
-        .borderWidth(BORDER_WIDTH_1PX).borderColor([UIColor colorGrayLine].CGColor).cornerRadius(2.0f)
+        .border(ZZBorder.width(BORDER_WIDTH_1PX).color([UIColor colorGrayLine]).object).cornerRadius(2.0f)
         .font([UIFont systemFontOfSize:15]).textColor([UIColor grayColor]).textAlignment(NSTextAlignmentCenter)
         .keyboardType(UIKeyboardTypeNumberPad)
         .masonry(^(UIView *senderView, MASConstraintMaker *make) {
@@ -59,7 +59,7 @@
         .view;
         
         self.minTF = self.contentView.addTextField(1001)
-        .borderWidth(BORDER_WIDTH_1PX).borderColor([UIColor colorGrayLine].CGColor).cornerRadius(2.0f)
+        .border(ZZBorder.width(BORDER_WIDTH_1PX).color([UIColor colorGrayLine]).object).cornerRadius(2.0f)
         .font([UIFont systemFontOfSize:15]).textColor([UIColor grayColor]).textAlignment(NSTextAlignmentCenter)
         .keyboardType(UIKeyboardTypeNumberPad)
         .masonry(^(UIView *senderView, MASConstraintMaker *make) {

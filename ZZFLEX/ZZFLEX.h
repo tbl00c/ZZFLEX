@@ -22,6 +22,8 @@
 // 请求队列
 #import "ZZFLEXRequestQueue.h"
 
+#import "ZZFLEXAppearance.h"
+
 // 不再建议使用
 #import "ZZFLEXCollectionViewController+EditExtension.h"
 

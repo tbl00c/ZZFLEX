@@ -78,6 +78,7 @@ ZZFLEXVC_ANGEL_CHAIN_METHOD(upadte, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(upadteAllItems, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(upadteAllCells, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(isEmpty, BOOL, void)
+ZZFLEXVC_ANGEL_CHAIN_METHOD(reload, void, void)
 
 #pragma mark - # Section操作
 ZZFLEXVC_ANGEL_CHAIN_METHOD(addSection, ZZFLEXAngelSectionChainModel *, NSInteger)

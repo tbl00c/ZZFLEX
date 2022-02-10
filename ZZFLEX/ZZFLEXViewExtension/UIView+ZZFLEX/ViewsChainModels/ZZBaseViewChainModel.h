@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZZBorder.h"
+#import "ZZShadow.h"
 
 /// 链式API声明
 #define     ZZFLEXC_PROPERTY              @property (nonatomic, copy, readonly)
@@ -105,14 +107,16 @@ ZZFLEXC_BASE_API(BOOL, multipleTouchEnabled)
 ZZFLEXC_BASE_API(BOOL, masksToBounds)
 ZZFLEXC_BASE_API(CGFloat, cornerRadius)
 
-ZZFLEXC_PROPERTY ObjcType (^ border)(CGFloat borderWidth, UIColor *borderColor);
+ZZFLEXC_BASE_API(ZZBorderModel *, border)
+ZZFLEXC_PROPERTY ObjcType (^border2)(CGFloat borderWidth, UIColor *borderColor);
 ZZFLEXC_BASE_API(CGFloat, borderWidth)
-ZZFLEXC_BASE_API(CGColorRef, borderColor)
+ZZFLEXC_BASE_API(UIColor *, borderColor)
 
 ZZFLEXC_BASE_API(CGFloat, zPosition)
 ZZFLEXC_BASE_API(CGPoint, anchorPoint)
 
-ZZFLEXC_PROPERTY ObjcType (^ shadow)(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity);
+ZZFLEXC_BASE_API(ZZShadowModel *, shadow)
+ZZFLEXC_PROPERTY ObjcType (^shadow4)(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity);
 ZZFLEXC_BASE_API(CGColorRef, shadowColor)
 ZZFLEXC_BASE_API(CGFloat, shadowOpacity)
 ZZFLEXC_BASE_API(CGSize, shadowOffset)

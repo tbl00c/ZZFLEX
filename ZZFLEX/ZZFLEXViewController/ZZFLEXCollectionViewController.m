@@ -46,22 +46,15 @@
     [super loadView];
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
+        make.edges.mas_equalTo(self.view);
     }];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(__zzflex_deviceOrientationDidChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
+    [self.view layoutIfNeeded];
 }
 
 - (void)dealloc
 {
     ZZFLEXLog(@"Dealloc: %@", NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)__zzflex_deviceOrientationDidChanged
-{
-    self.angel.upadte();
-    self.angel.reload();
 }
 
 #pragma mark - # Setter
@@ -86,6 +79,7 @@ ZZFLEXVC_ANGEL_CHAIN_METHOD(upadte, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(upadteAllItems, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(upadteAllCells, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(isEmpty, BOOL, void)
+ZZFLEXVC_ANGEL_CHAIN_METHOD(reload, void, void)
 
 #pragma mark - # Section操作
 ZZFLEXVC_ANGEL_CHAIN_METHOD(addSection, ZZFLEXAngelSectionChainModel *, NSInteger)

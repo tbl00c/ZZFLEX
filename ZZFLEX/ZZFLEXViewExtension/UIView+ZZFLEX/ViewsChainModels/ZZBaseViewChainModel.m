@@ -9,6 +9,7 @@
 #import "ZZBaseViewChainModel.h"
 #import "UIView+ZZFrame.h"
 #import <Masonry/Masonry.h>
+#import "ZZFLEXAppearance.h"
 
 #define     ZZFLEXC_BASE_IMP(ZZParamType, methodName)   \
 - (id (^)(ZZParamType param))methodName {   \
@@ -137,27 +138,56 @@ ZZFLEXC_LAYER_IMP(BOOL, masksToBounds)
     };
 }
 
-- (id (^)(CGFloat borderWidth, UIColor *borderColor))border
-{
+- (id (^)(ZZBorderModel *border))border {
+    return ^__kindof ZZBaseViewChainModel *(ZZBorderModel *border) {
+        [self.view.layer setBorderWidth:border.width];
+        [self.view.layer setBorderColor:border.color.CGColor];
+        return self;
+    };
+}
+- (id (^)(CGFloat borderWidth, UIColor *borderColor))border2 {
     return ^__kindof ZZBaseViewChainModel *(CGFloat borderWidth, UIColor *borderColor) {
         [self.view.layer setBorderWidth:borderWidth];
         [self.view.layer setBorderColor:borderColor.CGColor];
         return self;
     };
 }
+
 ZZFLEXC_LAYER_IMP(CGFloat, borderWidth)
-ZZFLEXC_LAYER_IMP(CGColorRef, borderColor)
+- (id (^)(UIColor *borderColor))borderColor
+{
+    return ^__kindof ZZBaseViewChainModel *(UIColor *borderColor) {
+        [self.view.layer setBorderColor:borderColor.CGColor];
+        if ([ZZFLEXAppearance appearance].borderColorAction) {
+            [ZZFLEXAppearance appearance].borderColorAction(self.view, borderColor);
+        }
+        return self;
+    };
+}
 
 ZZFLEXC_LAYER_IMP(CGFloat, zPosition)
 ZZFLEXC_LAYER_IMP(CGPoint, anchorPoint)
 
-- (id (^)(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity))shadow
+- (id (^)(ZZShadowModel *shadow))shadow {
+    return ^__kindof ZZBaseViewChainModel *(ZZShadowModel *shadow) {
+        [self.view.layer setShadowOffset:shadow.offset];
+        [self.view.layer setShadowRadius:shadow.radius];
+        [self.view.layer setShadowColor:shadow.color.CGColor];
+        [self.view.layer setShadowOpacity:shadow.opacity];
+        return self;
+    };
+}
+
+- (id (^)(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity))shadow4
 {
     return ^__kindof ZZBaseViewChainModel *(CGSize shadowOffset, CGFloat shadowRadius, UIColor *shadowColor, CGFloat shadowOpacity) {
         [self.view.layer setShadowOffset:shadowOffset];
         [self.view.layer setShadowRadius:shadowRadius];
         [self.view.layer setShadowColor:shadowColor.CGColor];
         [self.view.layer setShadowOpacity:shadowOpacity];
+        if ([ZZFLEXAppearance appearance].shadowColorAction) {
+            [ZZFLEXAppearance appearance].shadowColorAction(self.view, shadowColor);
+        }
         return self;
     };
 }

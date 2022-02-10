@@ -9,8 +9,7 @@
 #import "UIView+ZZSeparator.h"
 #import <objc/runtime.h>
 #import "ZZFLEXMacros.h"
-
-#define     TLSEPERATOR_DEFAULT_COLOR       [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0]
+#import "ZZFLEXAppearance.h"
 
 #pragma mark - ## ZZSeparatorModel
 @interface ZZSeparatorModel : NSObject
@@ -37,7 +36,7 @@
 {
     if (self = [super init]) {
         [self setPosition:ZZSeparatorPositionBottom];
-        [self setColor:TLSEPERATOR_DEFAULT_COLOR];
+        [self setColor:[ZZFLEXAppearance appearance].seperatorColor];
         [self setBegin:0];
         [self setEnd:0];
         [self setLength:0];
@@ -233,6 +232,9 @@
     [layer setStrokeColor:[color CGColor]];
     [layer setFillColor:[color CGColor]];
     [layer setLineWidth:borderWidth];
+    if ([ZZFLEXAppearance appearance].seperatorColorAction) {
+        [ZZFLEXAppearance appearance].seperatorColorAction(self, layer, @(separatorModel.position).stringValue, color);
+    }
     
     CGMutablePathRef path =  CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, startX, startY);
