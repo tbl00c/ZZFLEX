@@ -28,8 +28,7 @@
 @implementation ZZCornerModel
 @synthesize layer = _layer;
 
-- (CAShapeLayer *)layer
-{
+- (CAShapeLayer *)layer {
     if (!_layer) {
         _layer = [CAShapeLayer layer];
     }
@@ -54,8 +53,7 @@
 
 @implementation ZZCornerChainModel
 
-- (id)initWithView:(UIView *)view andPosition:(ZZCornerPosition)position
-{
+- (id)initWithView:(UIView *)view andPosition:(ZZCornerPosition)position {
     if (self = [super init]) {
         _view = view;
         _cornorModel = [[ZZCornerModel alloc] init];
@@ -65,8 +63,7 @@
 }
 
 /// 偏移量
-- (ZZCornerChainModel *(^)(CGFloat radius))radius
-{
+- (ZZCornerChainModel *(^)(CGFloat radius))radius {
     return ^(CGFloat radius) {
         [self.cornorModel setRadius:radius];
         [self.view zz_updateCornor];
@@ -75,8 +72,7 @@
 }
 
 /// 位置
-- (ZZCornerChainModel *(^)(UIColor *color))color
-{
+- (ZZCornerChainModel *(^)(UIColor *color))color {
     return ^(UIColor *color) {
         [self.cornorModel setColor:color];
         [self.view zz_updateCornor];
@@ -85,8 +81,7 @@
 }
 
 /// 线粗
-- (ZZCornerChainModel *(^)(CGFloat borderWidth))borderWidth;
-{
+- (ZZCornerChainModel *(^)(CGFloat borderWidth))borderWidth; {
     return ^(CGFloat borderWidth) {
         [self.cornorModel setBorderWidth:borderWidth];
         [self.view zz_updateCornor];
@@ -99,8 +94,7 @@
 #pragma mark - ## UIView (ZZSeparator)
 @implementation UIView (ZZSeparator)
 
-- (ZZCornerChainModel *(^)(ZZCornerPosition position))setCornor;
-{
+- (ZZCornerChainModel *(^)(ZZCornerPosition position))setCornor; {
     return ^(ZZCornerPosition position) {
         self.removeCornor();
         ZZCornerChainModel *chainModel = [[ZZCornerChainModel alloc] initWithView:self andPosition:position];
@@ -110,22 +104,19 @@
     };
 }
 
-- (void (^)(void))removeCornor
-{
-    return ^ {
+- (void (^)(void))removeCornor {
+    return ^{
         [self.zz_cornerModel.layer removeFromSuperlayer];
         [self setZz_cornerModel:nil];
     };
 }
 
-- (void)zz_updateCornor
-{
+- (void)zz_updateCornor {
     [self updateCornorWithModel:self.zz_cornerModel];
 }
 
 #pragma mark - # Private Methods
-- (void)updateCornorWithModel:(ZZCornerModel *)cornorModel
-{
+- (void)updateCornorWithModel:(ZZCornerModel *)cornorModel {
     cornorModel.color = [UIColor redColor];
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:cornorModel.position cornerRadii:CGSizeMake(cornorModel.radius, cornorModel.radius)];
     
@@ -141,14 +132,12 @@
 
 #pragma mark - # Getters
 static NSString *__zz_corner_key = @"";
-- (ZZCornerModel *)zz_cornerModel
-{
+- (ZZCornerModel *)zz_cornerModel {
     ZZCornerModel *model = objc_getAssociatedObject(self, &__zz_corner_key);
     return model;
 }
 
-- (void)setZz_cornerModel:(ZZCornerModel *)cornerModel
-{
+- (void)setZz_cornerModel:(ZZCornerModel *)cornerModel {
     objc_setAssociatedObject(self, &__zz_corner_key, cornerModel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

@@ -6,22 +6,19 @@
 //  Copyright © 2017年 zz. All rights reserved.
 //
 
-#import "ZZBaseViewChainModel.h"
+#import "ZZViewChainModel.h"
 
-#define     ZZFLEXC_LABEL_API(ZZParamType, methodName)      ZZFLEXC_API(ZZLabelChainModel, ZZParamType, methodName)
+@interface _ZZLabelChainModel<ObjcType> : _ZZViewChainModel <ObjcType>
 
-@class ZZLabelChainModel;
-@interface ZZLabelChainModel : ZZBaseViewChainModel <ZZLabelChainModel *>
+ZZFLEXC_API(NSString *, text)
+ZZFLEXC_API(UIFont *, font)
+ZZFLEXC_API(UIColor *, textColor)
+ZZFLEXC_API(NSAttributedString *, attributedText)
 
-ZZFLEXC_LABEL_API(NSString *, text)
-ZZFLEXC_LABEL_API(UIFont *, font)
-ZZFLEXC_LABEL_API(UIColor *, textColor)
-ZZFLEXC_LABEL_API(NSAttributedString *, attributedText)
-
-ZZFLEXC_LABEL_API(NSTextAlignment, textAlignment)
-ZZFLEXC_LABEL_API(NSInteger, numberOfLines)
-ZZFLEXC_LABEL_API(NSLineBreakMode, lineBreakMode)
-ZZFLEXC_LABEL_API(BOOL, adjustsFontSizeToFitWidth)
+ZZFLEXC_API(NSTextAlignment, textAlignment)
+ZZFLEXC_API(NSInteger, numberOfLines)
+ZZFLEXC_API(NSLineBreakMode, lineBreakMode)
+ZZFLEXC_API(BOOL, adjustsFontSizeToFitWidth)
 
 @end
 

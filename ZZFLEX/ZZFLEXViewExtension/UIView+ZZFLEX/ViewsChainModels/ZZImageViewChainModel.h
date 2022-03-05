@@ -6,16 +6,13 @@
 //  Copyright © 2017年 zz. All rights reserved.
 //
 
-#import "ZZBaseViewChainModel.h"
+#import "ZZViewChainModel.h"
 
-#define     ZZFLEXC_IV_API(ZZParamType, methodName)      ZZFLEXC_API(ZZImageViewChainModel, ZZParamType, methodName)
+@interface _ZZImageViewChainModel<ObjcType> : _ZZViewChainModel <ObjcType>
 
-@class ZZImageViewChainModel;
-@interface ZZImageViewChainModel : ZZBaseViewChainModel <ZZImageViewChainModel *>
-
-ZZFLEXC_IV_API(UIImage *, image)
-ZZFLEXC_IV_API(UIImage *, highlightedImage)
-ZZFLEXC_IV_API(BOOL, highlighted)
+ZZFLEXC_API(UIImage *, image)
+ZZFLEXC_API(UIImage *, highlightedImage)
+ZZFLEXC_API(BOOL, highlighted)
 
 @end
 

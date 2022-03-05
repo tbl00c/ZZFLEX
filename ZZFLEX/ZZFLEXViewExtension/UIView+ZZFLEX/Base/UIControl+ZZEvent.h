@@ -19,6 +19,9 @@
 - (void)addControlEvents:(UIControlEvents)controlEvents
                  handler:(void (^)(id sender))handlerBlock;
 
+- (void)setControlEvents:(UIControlEvents)controlEvents
+                 handler:(void (^)(id sender))handlerBlock;
+
 /**
  *  移除点击事件
  *

@@ -7,19 +7,18 @@
 
 #import "ZZActivityIndicatorViewChainModel.h"
 
-#define     ZZFLEXC_AIV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZActivityIndicatorViewChainModel, UIActivityIndicatorView, ZZParamType, methodName)
+#define     ZZFLEXC_IMP_VIEW_TYPE   UIActivityIndicatorView
 
-@implementation ZZActivityIndicatorViewChainModel
+@implementation _ZZActivityIndicatorViewChainModel
 
-+ (Class)viewClass
-{
++ (Class)viewClass {
     return [UIActivityIndicatorView class];
 }
 
-ZZFLEXC_AIV_IMP(UIActivityIndicatorViewStyle, activityIndicatorViewStyle)
-ZZFLEXC_AIV_IMP(BOOL, hidesWhenStopped)
-ZZFLEXC_AIV_IMP(UIColor *, color)
+ZZFLEXC_IMP(UIActivityIndicatorViewStyle, activityIndicatorViewStyle)
+ZZFLEXC_IMP(BOOL, hidesWhenStopped)
+ZZFLEXC_IMP(UIColor *, color)
 
 @end
 
-ZZFLEX_EX_IMP(ZZActivityIndicatorViewChainModel, UIActivityIndicatorView)
+ZZFLEX_EX_IMP(ZZActivityIndicatorViewChainModel)

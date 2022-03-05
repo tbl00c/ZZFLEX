@@ -52,6 +52,19 @@ static const int ZZ_CONTROL_TARGETS_KEY;
     [controlTargets addObject:controlTarget];
 }
 
+
+- (void)setControlEvents:(UIControlEvents)controlEvents
+                 handler:(void (^)(id sender))handlerBlock {
+    if (!controlEvents) return;
+    [self removeControlEvents:controlEvents];
+    ZZControlTarget *controlTarget = [[ZZControlTarget alloc] initWithSenderBlock:handlerBlock
+                                                                    controlEvents:controlEvents];
+    [self addTarget:controlTarget action:@selector(senderMethod:) forControlEvents:controlEvents];
+    NSMutableArray *controlTargets = [self controlTargets];
+    [controlTargets addObject:controlTarget];
+}
+
+
 - (void)removeControlEvents:(UIControlEvents)controlEvents {
     if (!controlEvents) return;
     NSMutableArray *controlTargets = [self controlTargets];

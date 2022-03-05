@@ -26,6 +26,7 @@
 
 ZZFLEX_BORDER_IMP(CGFloat, width)
 ZZFLEX_BORDER_IMP(UIColor *, color)
+ZZFLEX_BORDER_IMP(CGFloat, radius)
 
 - (ZZBorderModel *)object {
     if (!_object) {

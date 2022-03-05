@@ -21,13 +21,11 @@ UIImage *__zz_createImageByColor(UIColor *color) {
 
 @implementation UIButton (ZZExtension)
 
-- (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state
-{
+- (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state {
     [self setBackgroundImage:__zz_createImageByColor(backgroundColor) forState:state];
 }
 
-- (CGSize)setButtonImagePosition:(ZZButtonImagePosition)position spacing:(CGFloat)spacing
-{
+- (CGSize)setButtonImagePosition:(ZZButtonImagePosition)position spacing:(CGFloat)spacing {
     CGSize imageSize = self.imageView.image.size;
     CGSize titleSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName : self.titleLabel.font}];
     

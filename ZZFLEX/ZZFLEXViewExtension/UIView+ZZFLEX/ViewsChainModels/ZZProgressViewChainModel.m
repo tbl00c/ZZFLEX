@@ -7,22 +7,21 @@
 
 #import "ZZProgressViewChainModel.h"
 
-#define     ZZFLEXC_PV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZProgressViewChainModel, UIProgressView, ZZParamType, methodName)
+#define     ZZFLEXC_IMP_VIEW_TYPE   UIProgressView
 
-@implementation ZZProgressViewChainModel
+@implementation _ZZProgressViewChainModel
 
-+ (Class)viewClass
-{
++ (Class)viewClass {
     return [UIProgressView class];
 }
 
-ZZFLEXC_PV_IMP(UIProgressViewStyle, progressViewStyle)
-ZZFLEXC_PV_IMP(float, progress)
-ZZFLEXC_PV_IMP(UIColor *, progressTintColor)
-ZZFLEXC_PV_IMP(UIColor *, trackTintColor)
-ZZFLEXC_PV_IMP(UIImage *, progressImage)
-ZZFLEXC_PV_IMP(UIImage *, trackImage)
+ZZFLEXC_IMP(UIProgressViewStyle, progressViewStyle)
+ZZFLEXC_IMP(float, progress)
+ZZFLEXC_IMP(UIColor *, progressTintColor)
+ZZFLEXC_IMP(UIColor *, trackTintColor)
+ZZFLEXC_IMP(UIImage *, progressImage)
+ZZFLEXC_IMP(UIImage *, trackImage)
 
 @end
 
-ZZFLEX_EX_IMP(ZZProgressViewChainModel, UIProgressView)
+ZZFLEX_EX_IMP(ZZProgressViewChainModel)

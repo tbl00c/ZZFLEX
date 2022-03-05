@@ -8,19 +8,18 @@
 
 #import "ZZImageViewChainModel.h"
 
-#define     ZZFLEXC_IV_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZImageViewChainModel, UIImageView, ZZParamType, methodName)
+#define     ZZFLEXC_IMP_VIEW_TYPE   UIImageView
 
-@implementation ZZImageViewChainModel
+@implementation _ZZImageViewChainModel
 
-+ (Class)viewClass
-{
++ (Class)viewClass {
     return [UIImageView class];
 }
 
-ZZFLEXC_IV_IMP(UIImage *, image)
-ZZFLEXC_IV_IMP(UIImage *, highlightedImage)
-ZZFLEXC_IV_IMP(BOOL, highlighted)
+ZZFLEXC_IMP(UIImage *, image)
+ZZFLEXC_IMP(UIImage *, highlightedImage)
+ZZFLEXC_IMP(BOOL, highlighted)
 
 @end
 
-ZZFLEX_EX_IMP(ZZImageViewChainModel, UIImageView)
+ZZFLEX_EX_IMP(ZZImageViewChainModel)

@@ -5,16 +5,13 @@
 //  Created by libokun on 2021/1/15.
 //
 
-#import "ZZBaseViewChainModel.h"
+#import "ZZViewChainModel.h"
 
-#define     ZZFLEXC_AIV_API(ZZParamType, methodName)      ZZFLEXC_API(ZZActivityIndicatorViewChainModel, ZZParamType, methodName)
+@interface _ZZActivityIndicatorViewChainModel<ObjcType> : _ZZViewChainModel <ObjcType>
 
-@class ZZActivityIndicatorViewChainModel;
-@interface ZZActivityIndicatorViewChainModel : ZZBaseViewChainModel <ZZActivityIndicatorViewChainModel *>
-
-ZZFLEXC_AIV_API(UIActivityIndicatorViewStyle, activityIndicatorViewStyle)
-ZZFLEXC_AIV_API(BOOL, hidesWhenStopped)
-ZZFLEXC_AIV_API(UIColor *, color)
+ZZFLEXC_API(UIActivityIndicatorViewStyle, activityIndicatorViewStyle)
+ZZFLEXC_API(BOOL, hidesWhenStopped)
+ZZFLEXC_API(UIColor *, color)
 
 @end
 

@@ -10,25 +10,14 @@
 #import "UIControl+ZZEvent.h"
 #import "UIButton+ZZExtension.h"
 
-#define     ZZFLEXC_BUTTON_IMP(ZZParamType, methodName)      ZZFLEXC_IMP(ZZButtonChainModel, UIButton, ZZParamType, methodName)
+#define     ZZFLEXC_IMP_VIEW_TYPE   UIButton
 
 #define     ZZFLEXC_BUTTON_STATE_IMP(methodName, ZZParamType, Code, State)    \
-- (ZZButtonChainModel *(^)(ZZParamType param))methodName   \
-{   \
-    return ^ZZButtonChainModel *(ZZParamType param) {     \
+- (id (^)(ZZParamType param))methodName {   \
+    return ^id (ZZParamType param) {     \
         [(UIButton *)self.view Code:param forState:State];      \
         return self;        \
     };      \
-}       \
-
-
-#define     ZZFLEXC_BUTTON_EVENT_IMP(methodName, eventType) \
-- (ZZButtonChainModel *(^)(void (^eventBlock)(id sender)))methodName     \
-{   \
-    return ^ZZButtonChainModel *(void (^eventBlock)(id sender)) {    \
-        [(UIControl *)self.view addControlEvents:eventType handler:eventBlock]; \
-        return self;    \
-    };  \
 }
 
 #define     ZZFLEXC_BUTTON_TITLE_IMP(methodName, State)             ZZFLEXC_BUTTON_STATE_IMP(methodName, NSString *, setTitle, State)
@@ -39,10 +28,9 @@
 #define     ZZFLEXC_BUTTON_ATTRTITLE_IMP(methodName, State)         ZZFLEXC_BUTTON_STATE_IMP(methodName, NSAttributedString *, setAttributedTitle, State)
 #define     ZZFLEXC_BUTTON_BGCOLOR_IMP(methodName, State)           ZZFLEXC_BUTTON_STATE_IMP(methodName, UIColor *, setBackgroundColor, State)
 
-@implementation ZZButtonChainModel
+@implementation _ZZButtonChainModel
 
-+ (Class)viewClass
-{
++ (Class)viewClass {
     return [UIButton class];
 }
 
@@ -80,41 +68,17 @@ ZZFLEXC_BUTTON_BGCOLOR_IMP(backgroundColorHL, UIControlStateHighlighted);
 ZZFLEXC_BUTTON_BGCOLOR_IMP(backgroundColorSelected, UIControlStateSelected);
 ZZFLEXC_BUTTON_BGCOLOR_IMP(backgroundColorDisabled, UIControlStateDisabled);
 
-- (ZZButtonChainModel *(^)(UIFont *titleFont))titleFont
-{
-    return ^ZZButtonChainModel *(UIFont *titleFont) {
+- (id (^)(UIFont *titleFont))titleFont {
+    return ^id (UIFont *titleFont) {
         ((UIButton *)self.view).titleLabel.font = titleFont;
         return self;
     };
 }
 
-ZZFLEXC_BUTTON_IMP(UIEdgeInsets, contentEdgeInsets);
-ZZFLEXC_BUTTON_IMP(UIEdgeInsets, titleEdgeInsets);
-ZZFLEXC_BUTTON_IMP(UIEdgeInsets, imageEdgeInsets);
-
-#pragma mark - # UIControl
-ZZFLEXC_BUTTON_IMP(BOOL, enabled);
-ZZFLEXC_BUTTON_IMP(BOOL, selected);
-ZZFLEXC_BUTTON_IMP(BOOL, highlighted);
-
-- (ZZButtonChainModel *(^)(UIControlEvents controlEvents, ZZChainControlEventBlock eventBlock))eventBlock
-{
-    return ^ZZButtonChainModel *(UIControlEvents controlEvents, ZZChainControlEventBlock eventBlock) {
-        [(UIControl *)self.view addControlEvents:controlEvents handler:eventBlock];
-        return self;
-    };
-}
-
-
-ZZFLEXC_BUTTON_EVENT_IMP(eventTouchDown, UIControlEventTouchDown);
-ZZFLEXC_BUTTON_EVENT_IMP(eventTouchDownRepeat, UIControlEventTouchDownRepeat);
-ZZFLEXC_BUTTON_EVENT_IMP(eventTouchUpInside, UIControlEventTouchUpInside);
-ZZFLEXC_BUTTON_EVENT_IMP(eventTouchUpOutside, UIControlEventTouchUpOutside);
-ZZFLEXC_BUTTON_EVENT_IMP(eventTouchCancel, UIControlEventTouchCancel);
-
-ZZFLEXC_BUTTON_IMP(UIControlContentVerticalAlignment, contentVerticalAlignment);
-ZZFLEXC_BUTTON_IMP(UIControlContentHorizontalAlignment, contentHorizontalAlignment);
+ZZFLEXC_IMP(UIEdgeInsets, contentEdgeInsets);
+ZZFLEXC_IMP(UIEdgeInsets, titleEdgeInsets);
+ZZFLEXC_IMP(UIEdgeInsets, imageEdgeInsets);
 
 @end
 
-ZZFLEX_EX_IMP(ZZButtonChainModel, UIButton)
+ZZFLEX_EX_IMP(ZZButtonChainModel)

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (ZZBorderChainModel * (^)(CGFloat width))width;
 /// 颜色
 - (ZZBorderChainModel * (^)(UIColor *color))color;
+/// 圆角
+- (ZZBorderChainModel * (^)(CGFloat radius))radius;
 
 @property (nonatomic, strong, readonly) ZZBorderModel *object;
 
@@ -30,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, strong) UIColor *color;
-
+@property (nonatomic, assign) CGFloat radius;
 @end
 
 NS_ASSUME_NONNULL_END

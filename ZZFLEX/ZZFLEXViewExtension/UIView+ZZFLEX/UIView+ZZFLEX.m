@@ -9,8 +9,7 @@
 #import "UIView+ZZFLEX.h"
 
 #define ZZFLEX_VIEW_CHAIN_IMP(ZZChainModelClass, methodName) \
-- (ZZChainModelClass * (^)(NSInteger tag))methodName    \
-{   \
+- (ZZChainModelClass * (^)(NSInteger tag))methodName {   \
     return ^ZZChainModelClass* (NSInteger tag) {      \
         UIView *view = [ZZChainModelClass viewClass].zz_create(tag).view;    \
         [self addSubview:view];     \
@@ -37,8 +36,7 @@ ZZFLEX_VIEW_CHAIN_IMP(ZZSwitchChainModel, addSwitch);
 ZZFLEX_VIEW_CHAIN_IMP(ZZScrollViewChainModel, addScrollView);
 ZZFLEX_VIEW_CHAIN_IMP(ZZTextViewChainModel, addTextView);
 ZZFLEX_VIEW_CHAIN_IMP(ZZTableViewChainModel, addTableView);
-- (ZZTableViewChainModel * (^)(NSInteger tag, UITableViewStyle style))addTableViewWithStyle
-{
+- (ZZTableViewChainModel * (^)(NSInteger tag, UITableViewStyle style))addTableViewWithStyle {
     return ^ZZTableViewChainModel* (NSInteger tag, UITableViewStyle style) {
         UITableView *view = [[[ZZTableViewChainModel viewClass] alloc] initWithFrame:CGRectZero style:style];
         [self addSubview:view];

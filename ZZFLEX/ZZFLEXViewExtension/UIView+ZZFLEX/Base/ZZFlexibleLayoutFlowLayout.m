@@ -27,8 +27,7 @@
 
 @implementation ZZFlexibleLayoutReusableView
 
-- (void)applyLayoutAttributes:(ZZFlexibleLayoutAttributes *)layoutAttributes
-{
+- (void)applyLayoutAttributes:(ZZFlexibleLayoutAttributes *)layoutAttributes {
     [super applyLayoutAttributes:layoutAttributes];
     self.backgroundColor = layoutAttributes.backgroudColor;
 }
@@ -45,8 +44,7 @@
 
 @implementation ZZFlexibleLayoutFlowLayout
 
-- (void)prepareLayout
-{
+- (void)prepareLayout {
     [super prepareLayout];
     
     id<ZZFlexibleLayoutFlowLayoutDelegate> delegate = (id<ZZFlexibleLayoutFlowLayoutDelegate>)self.collectionView.delegate;
@@ -106,8 +104,7 @@
     }
 }
 
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
-{
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     NSMutableArray *superArray = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
 //    @try {
         [self p_layoutHeaderFooterAttributes:superArray forElementsInRect:rect];
@@ -116,15 +113,13 @@
     return superArray;
 }
 
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound
-{
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound {
     return YES;
 }
 
 #pragma mark - # Private Methods
 /// header footer悬浮
-- (void)p_layoutHeaderFooterAttributes:(NSMutableArray *)superArray forElementsInRect:(CGRect)rect
-{
+- (void)p_layoutHeaderFooterAttributes:(NSMutableArray *)superArray forElementsInRect:(CGRect)rect {
     // section Header 悬浮
     NSMutableIndexSet *noneHeaderSections = [NSMutableIndexSet indexSet];
     for (UICollectionViewLayoutAttributes *attributes in superArray) {
@@ -188,8 +183,7 @@
 }
 
 /// 修改section背景色
-- (void)p_layoutBackgrounColorAttributes:(NSMutableArray *)superArray forElementsInRect:(CGRect)rect
-{
+- (void)p_layoutBackgrounColorAttributes:(NSMutableArray *)superArray forElementsInRect:(CGRect)rect {
     for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttributes) {
         if (CGRectIntersectsRect(rect, attr.frame)) {
             [superArray addObject:attr];
@@ -198,8 +192,7 @@
 }
 
 #pragma mark - # Getter
-- (NSMutableArray<UICollectionViewLayoutAttributes *> *)decorationViewAttributes
-{
+- (NSMutableArray<UICollectionViewLayoutAttributes *> *)decorationViewAttributes {
     if (!_decorationViewAttributes) {
         _decorationViewAttributes = [[NSMutableArray alloc] init];
     }

@@ -32,8 +32,7 @@
 @implementation ZZSeparatorModel
 @synthesize layer = _layer;
 
-- (id)init
-{
+- (id)init {
     if (self = [super init]) {
         [self setPosition:ZZSeparatorPositionBottom];
         [self setColor:[ZZFLEXAppearance appearance].seperatorColor];
@@ -45,8 +44,7 @@
     return self;
 }
 
-- (CAShapeLayer *)layer
-{
+- (CAShapeLayer *)layer {
     if (!_layer) {
         _layer = [CAShapeLayer layer];
     }
@@ -71,8 +69,7 @@
 
 @implementation ZZSeparatorChainModel
 
-- (id)initWithView:(UIView *)view andPosition:(ZZSeparatorPosition)position
-{
+- (id)initWithView:(UIView *)view andPosition:(ZZSeparatorPosition)position {
     if (self = [super init]) {
         _view = view;
         _separatorModel = [[ZZSeparatorModel alloc] init];
@@ -82,8 +79,7 @@
 }
 
 /// 偏移量
-- (ZZSeparatorChainModel *(^)(CGFloat offset))offset
-{
+- (ZZSeparatorChainModel *(^)(CGFloat offset))offset {
     return ^(CGFloat offset) {
         [self.separatorModel setOffset:offset];
         [self.view zz_updateSeparator];
@@ -92,8 +88,7 @@
 }
 
 /// 位置
-- (ZZSeparatorChainModel *(^)(UIColor *color))color
-{
+- (ZZSeparatorChainModel *(^)(UIColor *color))color {
     return ^(UIColor *color) {
         [self.separatorModel setColor:color];
         [self.view zz_updateSeparator];
@@ -101,8 +96,7 @@
     };
 }
 /// 起点
-- (ZZSeparatorChainModel *(^)(CGFloat begin))beginAt
-{
+- (ZZSeparatorChainModel *(^)(CGFloat begin))beginAt {
     return ^(CGFloat begin) {
         [self.separatorModel setBegin:begin];
         [self.view zz_updateSeparator];
@@ -110,8 +104,7 @@
     };
 }
 /// 长度
-- (ZZSeparatorChainModel *(^)(CGFloat length))length
-{
+- (ZZSeparatorChainModel *(^)(CGFloat length))length {
     return ^(CGFloat length) {
         [self.separatorModel setLength:length];
         [self.view zz_updateSeparator];
@@ -119,8 +112,7 @@
     };
 }
 /// 终点
-- (ZZSeparatorChainModel *(^)(CGFloat end))endAt
-{
+- (ZZSeparatorChainModel *(^)(CGFloat end))endAt {
     return ^(CGFloat end) {
         [self.separatorModel setEnd:end];
         [self.view zz_updateSeparator];
@@ -128,8 +120,7 @@
     };
 }
 /// 线粗
-- (ZZSeparatorChainModel *(^)(CGFloat borderWidth))borderWidth;
-{
+- (ZZSeparatorChainModel *(^)(CGFloat borderWidth))borderWidth; {
     return ^(CGFloat borderWidth) {
         [self.separatorModel setBorderWidth:borderWidth];
         [self.view zz_updateSeparator];
@@ -142,8 +133,7 @@
 #pragma mark - ## UIView (ZZSeparator)
 @implementation UIView (ZZSeparator)
 
-- (ZZSeparatorChainModel *(^)(ZZSeparatorPosition position))addSeparator;
-{
+- (ZZSeparatorChainModel *(^)(ZZSeparatorPosition position))addSeparator; {
     return ^(ZZSeparatorPosition position) {
         ZZSeparatorChainModel *chainModel = [[ZZSeparatorChainModel alloc] initWithView:self andPosition:position];
         self.removeSeparator(position);
@@ -153,8 +143,7 @@
     };
 }
 
-- (void (^)(ZZSeparatorPosition position))removeSeparator
-{
+- (void (^)(ZZSeparatorPosition position))removeSeparator {
     return ^(ZZSeparatorPosition position) {
         ZZSeparatorModel *model = [self separatorModelForPosition:position];
         if (model) {
@@ -164,16 +153,14 @@
     };
 }
 
-- (void)zz_updateSeparator
-{
+- (void)zz_updateSeparator {
     for (ZZSeparatorModel *model in self.zz_separatorArray) {
         [self updateSeparatorWithModel:model];
     }
 }
 
 #pragma mark - # Private Methods
-- (ZZSeparatorModel *)separatorModelForPosition:(ZZSeparatorPosition)position
-{
+- (ZZSeparatorModel *)separatorModelForPosition:(ZZSeparatorPosition)position {
     for (ZZSeparatorModel *model in self.zz_separatorArray) {
         if (model.position == position) {
             return model;
@@ -182,8 +169,7 @@
     return nil;
 }
 
-- (void)updateSeparatorWithModel:(ZZSeparatorModel *)separatorModel
-{
+- (void)updateSeparatorWithModel:(ZZSeparatorModel *)separatorModel {
     CGFloat startX = 0, startY = 0, endX = 0, endY = 0, offset = separatorModel.offset;
     CGFloat borderWidth = separatorModel.borderWidth;
     UIColor *color = separatorModel.color;
@@ -247,8 +233,7 @@
 
 #pragma mark - # Getters
 static NSString *__zz_sepataror_key = @"";
-- (NSMutableArray *)zz_separatorArray
-{
+- (NSMutableArray *)zz_separatorArray {
     NSMutableArray *zz_separatorArray = objc_getAssociatedObject(self, &__zz_sepataror_key);
     if (!zz_separatorArray) {
         zz_separatorArray = [[NSMutableArray alloc] init];
