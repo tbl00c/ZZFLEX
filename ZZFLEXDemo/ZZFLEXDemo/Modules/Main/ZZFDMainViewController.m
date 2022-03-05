@@ -200,24 +200,10 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         });
     }
 
-    // ZZFLEXEditExtension
-    {
-        NSInteger sectionTag = ZZFDMainSectionTypeEdit;
-        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 30, 15));
-        NSAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXEditExtension",
-                                                              @"此拓展使得ZZFLEXVC和ZZFLEXAngel具有了处理编辑页面的能力，其主要原理为规范了编辑类页面处理流程，并使用一个额外的模型来控制它");
-        self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
-        self.addCell(ClassMenuCell).withDataModel(@"开发者信息订阅").toSection(sectionTag).selectedAction(^(id model){
-            @strongify(self);
-            ZZFDSubscriptionViewController *vc = [[ZZFDSubscriptionViewController alloc] init];
-            PushVC(vc);
-        });
-    }
-
     // ZZFLEX事件响应队列
     {
         NSInteger sectionTag = ZZFDMainSectionTypeRQ;
-        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 100, 15));
+        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 30, 15));
         NSMutableAttributedString *attrTitle = __zz_create_introduce(@"ZZFLEXRequestQueue",
                                                                      @"一些复杂的页面中会存在多个异步数据请求（net、db等），然而同时发起的异步请求，其结果的返回顺序是不确定的，这样会导致UI展示顺序的不确定性，很多情况下这是我们不希望看到的。\nZZFLEXRequestQueue的核心思想是“将一次数据请求的过程封装成对象”，他可以保证在此业务场景下，按队列顺序加载展示UI。");
         __zz_attr_string_bold(attrTitle, @"将一次数据请求的过程封装成对象");
@@ -225,6 +211,21 @@ void __zz_attr_string_bold(NSMutableAttributedString *attrStr, NSString *text) {
         self.addCell(ClassMenuCell).withDataModel(@"多接口页面 Demo").toSection(sectionTag).selectedAction(^(id model){
             @strongify(self);
             ZZFDRquestQueueViewController *vc = [[ZZFDRquestQueueViewController alloc] init];
+            PushVC(vc);
+        });
+    }
+    
+    // ZZFLEXEditExtension
+    {
+        NSInteger sectionTag = ZZFDMainSectionTypeEdit;
+        self.addSection(sectionTag).sectionInsets(UIEdgeInsetsMake(0, 15, 100, 15));
+        NSString *title = @"ZZFLEXEditExtension";
+        NSMutableAttributedString *attrTitle = __zz_create_introduce(title, @"已废弃，不建议再使用");
+        attrTitle.zz_setup.strikethroughStyleWithRange(NSUnderlineStyleSingle|NSUnderlinePatternSolid, NSMakeRange(0, title.length));
+        self.setHeader(ClassMenuHeaderCell).toSection(sectionTag).withDataModel(attrTitle);
+        self.addCell(ClassMenuCell).withDataModel(@"开发者信息订阅").toSection(sectionTag).selectedAction(^(id model){
+            @strongify(self);
+            ZZFDSubscriptionViewController *vc = [[ZZFDSubscriptionViewController alloc] init];
             PushVC(vc);
         });
     }

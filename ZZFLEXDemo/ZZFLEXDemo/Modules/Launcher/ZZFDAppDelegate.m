@@ -20,18 +20,20 @@
 {    
     ZZFDMainViewController *mainVC = [[ZZFDMainViewController alloc] init];
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:mainVC];
-    [navC.navigationBar setShadowImage:[UIImage new]];
-    [navC.navigationBar setBarTintColor:[UIColor whiteColor]];
-    [navC.navigationBar setBackgroundColor:[UIColor whiteColor]];
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = UINavigationBarAppearance.new;
+        appearance.backgroundColor = [UIColor whiteColor];
+        appearance.shadowImage = [UIImage new];
+        navC.navigationBar.standardAppearance = appearance;
+        navC.navigationBar.scrollEdgeAppearance = appearance;
+    } else {
+        navC.navigationBar.shadowImage = [UIImage new];
+        navC.navigationBar.barTintColor = [UIColor whiteColor];
+    }
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setRootViewController:navC];
-    if (@available(iOS 13.0, *)) {
-        
-    }
-    else {
-        [self.window addSubview:navC.view];
-    }
+    [self.window addSubview:navC.view];
     [self.window makeKeyAndVisible];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{

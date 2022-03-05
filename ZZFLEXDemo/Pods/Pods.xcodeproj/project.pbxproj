@@ -41,19 +41,19 @@
 			remoteGlobalIDString = 0A2D890FDC8A954E3F9C05CF5E0F1A35;
 			remoteInfo = TLKit;
 		};
+		75CEFD8A9FDACA6B1376157D784E1078 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9005CC5D5ECF4FCF96B21B4002617CC5 /* ZZFLEX.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C11B6A3130168632F80EBAABD2D5F994;
+			remoteInfo = ZZFLEX;
+		};
 		768D71DCF4B68C84FF24B272DF0455B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3A6B20028BC979B1D969AFFD15C0AE84 /* XLPhotoBrowser+CoderXL.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 8A9D4D6FA645C6C4FB4FAD46A2A7A0B3;
 			remoteInfo = "XLPhotoBrowser+CoderXL";
-		};
-		B47374E5D3DC8921CACF4A89B365FE49 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9005CC5D5ECF4FCF96B21B4002617CC5 /* ZZFLEX.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C11B6A3130168632F80EBAABD2D5F994;
-			remoteInfo = ZZFLEX;
 		};
 		D84B052FF851C138A9C6B4D80103AB26 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -212,7 +212,7 @@
 				84D36C7963BD7CFD76E3F398AB544C4B /* PBXTargetDependency */,
 				7F8776DCE30E9053AF6043028FB0D1BD /* PBXTargetDependency */,
 				1B3553B83D3E0CEC8247164BB2802640 /* PBXTargetDependency */,
-				5D39F79758B9F2C87F6F32F8A9B31BBB /* PBXTargetDependency */,
+				96E8255CBCA6961E7E69FC5B831ED44D /* PBXTargetDependency */,
 			);
 			name = "Pods-ZZFLEXDemo";
 			productName = Pods_ZZFLEXDemo;
@@ -306,11 +306,6 @@
 			name = SDWebImage;
 			targetProxy = 4425818DC0F782B3AFAD9E1887A8E5E2 /* PBXContainerItemProxy */;
 		};
-		5D39F79758B9F2C87F6F32F8A9B31BBB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ZZFLEX;
-			targetProxy = B47374E5D3DC8921CACF4A89B365FE49 /* PBXContainerItemProxy */;
-		};
 		7F8776DCE30E9053AF6043028FB0D1BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TLKit;
@@ -320,6 +315,11 @@
 			isa = PBXTargetDependency;
 			name = SVProgressHUD;
 			targetProxy = 325D70E62D195C8DD9E0E0E9F67D713E /* PBXContainerItemProxy */;
+		};
+		96E8255CBCA6961E7E69FC5B831ED44D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZZFLEX;
+			targetProxy = 75CEFD8A9FDACA6B1376157D784E1078 /* PBXContainerItemProxy */;
 		};
 		F960DC6D9DBA53D4046E21C1B87072F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
