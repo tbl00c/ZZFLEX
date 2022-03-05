@@ -16,3 +16,9 @@
 
 @end
 
+
+@interface NSParagraphStyle (ZZFLEX)
+
++ (ZZMutableParagraphStyleChainModel *)zz_create;
+
+@end

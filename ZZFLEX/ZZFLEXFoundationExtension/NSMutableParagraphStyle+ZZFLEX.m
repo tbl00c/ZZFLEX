@@ -9,15 +9,22 @@
 
 @implementation NSMutableParagraphStyle (ZZFLEX)
 
-+ (ZZMutableParagraphStyleChainModel *)zz_create;
-{
++ (ZZMutableParagraphStyleChainModel *)zz_create; {
     ZZMutableParagraphStyleChainModel *object = [[ZZMutableParagraphStyleChainModel alloc] initWithObject:nil];
     return object;
 }
 
-- (ZZMutableParagraphStyleChainModel *)zz_setup
-{
+- (ZZMutableParagraphStyleChainModel *)zz_setup {
     ZZMutableParagraphStyleChainModel *object = [[ZZMutableParagraphStyleChainModel alloc] initWithObject:self];
+    return object;
+}
+
+@end
+
+@implementation NSParagraphStyle (ZZFLEX)
+
++ (ZZMutableParagraphStyleChainModel *)zz_create; {
+    ZZMutableParagraphStyleChainModel *object = [[ZZMutableParagraphStyleChainModel alloc] initWithObject:nil];
     return object;
 }
 

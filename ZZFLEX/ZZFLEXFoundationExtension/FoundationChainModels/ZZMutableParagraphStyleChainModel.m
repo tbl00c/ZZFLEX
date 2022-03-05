@@ -18,8 +18,7 @@ return self;    \
 
 @implementation ZZMutableParagraphStyleChainModel
 
-- (instancetype)initWithObject:(NSMutableParagraphStyle *)object
-{
+- (instancetype)initWithObject:(NSMutableParagraphStyle *)object {
     if (self = [self init]) {
         _object = object ? object : [[NSMutableParagraphStyle alloc] init];
     }

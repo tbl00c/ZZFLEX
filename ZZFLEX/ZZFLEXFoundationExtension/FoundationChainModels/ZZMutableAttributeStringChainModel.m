@@ -41,8 +41,7 @@ return self;    \
 
 @implementation ZZMutableAttributeStringChainModel
 
-- (instancetype)initWithObject:(NSMutableAttributedString *)object
-{
+- (instancetype)initWithObject:(NSMutableAttributedString *)object {
     if (self = [self init]) {
         _object = object ? object : [[NSMutableAttributedString alloc] init];
     }
@@ -50,40 +49,35 @@ return self;    \
 }
 
 #pragma mark - # 功能
-- (ZZMutableAttributeStringChainModel *(^)(NSAttributedString *attrStr))append
-{
+- (ZZMutableAttributeStringChainModel *(^)(NSAttributedString *attrStr))append {
     return ^ZZMutableAttributeStringChainModel *(NSAttributedString *attrStr) {
         [self.object appendAttributedString:attrStr];
         return self;
     };
 }
 
-- (ZZMutableAttributeStringChainModel *(^)(NSAttributedString *attrStr, NSInteger index))insert
-{
+- (ZZMutableAttributeStringChainModel *(^)(NSAttributedString *attrStr, NSInteger index))insert {
     return ^ZZMutableAttributeStringChainModel *(NSAttributedString *attrStr, NSInteger index) {
         [self.object insertAttributedString:attrStr atIndex:index];
         return self;
     };
 }
 
-- (ZZMutableAttributeStringChainModel *(^)(NSAttributedString *attrStr, NSRange range))replace
-{
+- (ZZMutableAttributeStringChainModel *(^)(NSAttributedString *attrStr, NSRange range))replace {
     return ^ZZMutableAttributeStringChainModel *(NSAttributedString *attrStr, NSRange range) {
         [self.object replaceCharactersInRange:range withAttributedString:attrStr];
         return self;
     };
 }
 
-- (ZZMutableAttributeStringChainModel *(^)(NSRange range))remove
-{
+- (ZZMutableAttributeStringChainModel *(^)(NSRange range))remove {
     return ^ZZMutableAttributeStringChainModel *(NSRange range) {
         [self.object deleteCharactersInRange:range];
         return self;
     };
 }
 
-- (ZZMutableAttributeStringChainModel *(^)(UIImage *image, CGRect bounds))appendImage
-{
+- (ZZMutableAttributeStringChainModel *(^)(UIImage *image, CGRect bounds))appendImage {
     return ^ZZMutableAttributeStringChainModel *(UIImage *image, CGRect bounds) {
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         [attachment setImage:image];
@@ -94,8 +88,7 @@ return self;    \
     };
 }
 
-- (ZZMutableAttributeStringChainModel *(^)(NSString *str))appendString
-{
+- (ZZMutableAttributeStringChainModel *(^)(NSString *str))appendString {
     return ^ZZMutableAttributeStringChainModel *(NSString *str) {
         NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:str];
         [self.object appendAttributedString:attrStr];
@@ -103,8 +96,7 @@ return self;    \
     };
 }
 
-- (ZZMutableAttributeStringChainModel *(^)(NSTextAttachment *attachment))appendAttachment
-{
+- (ZZMutableAttributeStringChainModel *(^)(NSTextAttachment *attachment))appendAttachment {
     return ^ZZMutableAttributeStringChainModel *(NSTextAttachment *attachment) {
         NSAttributedString *attrStr = [NSAttributedString attributedStringWithAttachment:attachment];
         [self.object appendAttributedString:attrStr];
@@ -192,12 +184,12 @@ ZZFLEX_FMAS_NUM_ATTR_RANGE_CHAIN_IMP(kernWithRange, NSInteger, NSKernAttributeNa
 /// 删除线
 ZZFLEX_FMAS_NUM_ATTR_RANGE_CHAIN_IMP(strikethroughStyleWithRange, NSInteger, NSStrikethroughStyleAttributeName)
 /// 删除线颜色
-ZZFLEX_FMAS_ATTR_CHAIN_IMP(strikethroughColorWithRange, UIColor *, NSStrikethroughColorAttributeName)
+ZZFLEX_FMAS_ATTR_RANGE_CHAIN_IMP(strikethroughColorWithRange, UIColor *, NSStrikethroughColorAttributeName)
 
 /// 下划线
 ZZFLEX_FMAS_NUM_ATTR_RANGE_CHAIN_IMP(underlineStyleWithRange, NSUnderlineStyle, NSUnderlineStyleAttributeName)
 /// 下划线颜色
-ZZFLEX_FMAS_ATTR_CHAIN_IMP(underlineColorWithRange, UIColor *, NSUnderlineColorAttributeName)
+ZZFLEX_FMAS_ATTR_RANGE_CHAIN_IMP(underlineColorWithRange, UIColor *, NSUnderlineColorAttributeName)
 
 /// 笔画宽度(粗细)
 ZZFLEX_FMAS_NUM_ATTR_RANGE_CHAIN_IMP(strokeWidthWithRange, NSInteger, NSStrokeWidthAttributeName)
@@ -223,9 +215,9 @@ ZZFLEX_FMAS_NUM_ATTR_RANGE_CHAIN_IMP(writingDirectionWithRange, NSInteger, NSWri
 ZZFLEX_FMAS_NUM_ATTR_RANGE_CHAIN_IMP(verticalGlyphWithRange, NSInteger, NSVerticalGlyphFormAttributeName)
 
 /// 链接属性
-ZZFLEX_FMAS_ATTR_CHAIN_IMP(linkWithRange, NSURL *, NSLinkAttributeName)
+ZZFLEX_FMAS_ATTR_RANGE_CHAIN_IMP(linkWithRange, NSURL *, NSLinkAttributeName)
 
 /// 文本附
-ZZFLEX_FMAS_ATTR_CHAIN_IMP(attachmentWithRange, NSTextAttachment *, NSAttachmentAttributeName)
+ZZFLEX_FMAS_ATTR_RANGE_CHAIN_IMP(attachmentWithRange, NSTextAttachment *, NSAttachmentAttributeName)
 
 @end

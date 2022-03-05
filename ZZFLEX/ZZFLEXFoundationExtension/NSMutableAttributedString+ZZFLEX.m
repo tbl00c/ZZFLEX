@@ -9,8 +9,7 @@
 
 @implementation NSMutableAttributedString (ZZFLEX)
 
-+ (ZZMutableAttributeStringChainModel *(^)(NSString *str))zz_create;
-{
++ (ZZMutableAttributeStringChainModel *(^)(NSString *str))zz_create; {
     return ^ZZMutableAttributeStringChainModel *(NSString *str) {
         NSMutableAttributedString *attrStr = str ? [[NSMutableAttributedString alloc] initWithString:str] : [[NSMutableAttributedString alloc] init];
         ZZMutableAttributeStringChainModel *object = [[ZZMutableAttributeStringChainModel alloc] initWithObject:attrStr];
@@ -18,10 +17,21 @@
     };
 }
 
-- (ZZMutableAttributeStringChainModel *)zz_setup
-{
+- (ZZMutableAttributeStringChainModel *)zz_setup {
     ZZMutableAttributeStringChainModel *object = [[ZZMutableAttributeStringChainModel alloc] initWithObject:self];
     return object;
+}
+
+@end
+
+@implementation NSAttributedString (ZZFLEX)
+
++ (ZZMutableAttributeStringChainModel *(^)(NSString *str))zz_create; {
+    return ^ZZMutableAttributeStringChainModel *(NSString *str) {
+        NSMutableAttributedString *attrStr = str ? [[NSMutableAttributedString alloc] initWithString:str] : [[NSMutableAttributedString alloc] init];
+        ZZMutableAttributeStringChainModel *object = [[ZZMutableAttributeStringChainModel alloc] initWithObject:attrStr];
+        return object;
+    };
 }
 
 @end

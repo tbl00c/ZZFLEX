@@ -11,8 +11,13 @@
 @interface NSMutableAttributedString (ZZFLEX)
 
 + (ZZMutableAttributeStringChainModel *(^)(NSString *str))zz_create;
-
 @property (nonatomic, strong, readonly) ZZMutableAttributeStringChainModel *zz_setup;
+
+@end
+
+@interface NSAttributedString (ZZFLEX)
+
++ (ZZMutableAttributeStringChainModel *(^)(NSString *str))zz_create;
 
 @end
 
