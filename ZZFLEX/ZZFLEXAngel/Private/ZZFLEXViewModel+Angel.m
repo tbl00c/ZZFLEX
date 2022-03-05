@@ -11,25 +11,23 @@
 
 @implementation ZZFLEXViewModel (Angel)
 
-- (CGSize)visableSizeForHostView:(__kindof UIView *)hostView angel:(ZZFLEXAngel *)angel sectionInsets:(UIEdgeInsets)sectionInsets
-{
+- (CGSize)visableSizeForHostView:(__kindof UIView *)hostView angel:(ZZFLEXAngel *)angel sectionInsets:(UIEdgeInsets)sectionInsets {
     CGFloat width = self.viewSize.width;
-    if (width < 0 && width >= -1) {
+    if (width < 0) {
         CGFloat viewWidth = hostView.frame.size.width  - sectionInsets.left - sectionInsets.right;
         width = viewWidth * -width;
     }
-    width = MAX(width, 0.01);
+    width = MAX(width, 0.00001);
     
     CGFloat height = self.viewSize.height;
-    if (height < 0 && height >= -1) {
+    if (height < 0) {
         height = hostView.frame.size.height * -height;
     }
-    height = MAX(height, 0.01);
+    height = MAX(height, 0.00001);
     return CGSizeMake((NSInteger)width, (NSInteger)height);
 }
 
-- (void)excuteConfigActionForHostView:(__kindof UIView *)hostView itemView:(__kindof UIView<ZZFlexibleLayoutViewProtocol> *)itemView sectionCount:(NSInteger)sectionCount indexPath:(NSIndexPath *)indexPath
-{
+- (void)excuteConfigActionForHostView:(__kindof UIView *)hostView itemView:(__kindof UIView<ZZFlexibleLayoutViewProtocol> *)itemView sectionCount:(NSInteger)sectionCount indexPath:(NSIndexPath *)indexPath {
     if ([itemView respondsToSelector:@selector(setViewDataModel:)]) {
         [itemView setViewDataModel:self.dataModel];
     }
@@ -48,8 +46,7 @@
     }
 }
 
-- (void)excuteSelectedActionForHostView:(__kindof UIView *)hostView
-{
+- (void)excuteSelectedActionForHostView:(__kindof UIView *)hostView {
     if (self.selectedAction) {
         self.selectedAction(self.dataModel);
     }

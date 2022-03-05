@@ -17,80 +17,71 @@
 @implementation ZZFLEXAngel (UITableView)
 
 //MARK: UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.data.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     return [sectionModel count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     ZZFLEXViewModel *viewModel = [sectionModel objectAtIndex:indexPath.row];
     UITableViewCell<ZZFlexibleLayoutViewProtocol> *cell;
     if (!viewModel.viewClass) {
-        ZZFLEXLog(@"!!!!! tableViewCell不存在，将使用空白Cell：%@", viewModel.className);
+        ZZFLEXLog(@"!!!!! tableViewCell不存在，将使用空白Cell");
         cell = [tableView dequeueReusableCellWithIdentifier:@"ZZFLEXTableViewEmptyCell" forIndexPath:indexPath];
         [cell setTag:viewModel.viewTag];
         return cell;
     }
     
-    cell = [tableView dequeueReusableCellWithIdentifier:viewModel.className forIndexPath:indexPath];
+    cell = [tableView dequeueReusableCellWithIdentifier:viewModel.reuseIdentifier forIndexPath:indexPath];
     [viewModel excuteConfigActionForHostView:tableView itemView:cell sectionCount:sectionModel.count indexPath:indexPath];
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *viewModel = sectionModel.headerViewModel;
-    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = [self _headerFooterViewForTableView:tableView viewModel:viewModel section:section];
+    UITableViewHeaderFooterView *view = [self _headerFooterViewForTableView:tableView viewModel:viewModel section:section];
     return view;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *viewModel = sectionModel.footerViewModel;
-    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view = [self _headerFooterViewForTableView:tableView viewModel:viewModel section:section];
+    UITableViewHeaderFooterView *view = [self _headerFooterViewForTableView:tableView viewModel:viewModel section:section];
     return view;
 }
 
-- (UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *)_headerFooterViewForTableView:(UITableView *)tableView viewModel:(ZZFLEXViewModel *)viewModel section:(NSInteger)section
-{
-    UITableViewHeaderFooterView *view;
+- (UITableViewHeaderFooterView *)_headerFooterViewForTableView:(UITableView *)tableView viewModel:(ZZFLEXViewModel *)viewModel section:(NSInteger)section {
+    UITableViewHeaderFooterView<ZZFlexibleLayoutViewProtocol> *view;
     if (!viewModel.viewClass) {
         view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZZFLEXTableViewHeaderFooterView"];
         return view;
     }
-    view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.className];
+    view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:viewModel.reuseIdentifier];
     [viewModel excuteConfigActionForHostView:tableView itemView:view sectionCount:section indexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
     return view;
 }
 
 //MARK: UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     ZZFLEXViewModel *viewModel = [self viewModelAtIndexPath:indexPath ];
     [viewModel excuteSelectedActionForHostView:tableView];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:indexPath.section];
     ZZFLEXViewModel *model = [sectionModel objectAtIndex:indexPath.row];
     CGFloat height = [model visableSizeForHostView:tableView angel:self sectionInsets:sectionModel.sectionInsets].height;
     return height;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *model = sectionModel.headerViewModel;
     CGFloat height = [model visableSizeForHostView:tableView angel:self sectionInsets:sectionModel.sectionInsets].height;
@@ -100,8 +91,7 @@
     return height;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     ZZFLEXSectionModel *sectionModel = [self sectionModelAtIndex:section];
     ZZFLEXViewModel *model = sectionModel.footerViewModel;
     CGFloat height = [model visableSizeForHostView:tableView angel:self sectionInsets:sectionModel.sectionInsets].height;

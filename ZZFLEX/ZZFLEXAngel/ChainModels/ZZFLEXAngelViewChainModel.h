@@ -28,6 +28,9 @@ typedef NS_ENUM(NSInteger, ZZFLEXAngelViewType) {
 /// cell的数据源
 - (ZZFLEXReturnType (^)(id dataModel))withDataModel;
 
+/// 复用标识（默认无需设置，除非对同个cell进行了不同定制）
+- (ZZFLEXReturnType (^)(NSString *reuseIdentifier))reuseIdentifier;
+
 /// cell内部事件deledate，与blcok二选一即可
 - (ZZFLEXReturnType (^)(id delegate))delegate;
 /// cell内部事件block，与deledate二选一即可
@@ -47,11 +50,10 @@ typedef NS_ENUM(NSInteger, ZZFLEXAngelViewType) {
 /// 手动配置cell高度，cell实现viewSizeByDataModel:或viewHeightByDataModel:后此设置失效
 - (ZZFLEXReturnType (^)(CGFloat height))viewHeight;
 
-@property (nonatomic, strong, readonly) ZZFLEXViewModel *viewModel;
-
 /// 框架内部使用
 @property (nonatomic, assign, readonly) ZZFLEXAngelViewType type;
-- (id)initWithListData:(NSMutableArray *)listData viewModel:(ZZFLEXViewModel *)viewModel andType:(ZZFLEXAngelViewType)type;
+
+- (instancetype)initWithHostView:(__kindof UIScrollView *)hostView listData:(NSMutableArray *)listData viewModel:(ZZFLEXViewModel *)viewModel type:(ZZFLEXAngelViewType)type xib:(BOOL)xib;
 
 @end
 

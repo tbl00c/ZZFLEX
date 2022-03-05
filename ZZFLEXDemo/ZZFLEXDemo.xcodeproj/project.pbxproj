@@ -642,13 +642,6 @@
 			path = Recommend;
 			sourceTree = "<group>";
 		};
-		C282F88E27B4FEDC00362E5E /* Reactive */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Reactive;
-			sourceTree = "<group>";
-		};
 		C2863A8A1FCCFB33008BC3C0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,7 +654,6 @@
 		C2863A8B1FCCFB76008BC3C0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				C282F88E27B4FEDC00362E5E /* Reactive */,
 				C22212D224235D3C00FA0B32 /* WXContacts(VC) */,
 				C2F21C472241E1CE00841F4C /* Album */,
 				C27E9F6F1FCE63A20062C896 /* Common */,

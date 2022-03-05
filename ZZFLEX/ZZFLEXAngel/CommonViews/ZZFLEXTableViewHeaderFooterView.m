@@ -10,4 +10,13 @@
 
 @implementation ZZFLEXTableViewHeaderFooterView
 
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        self.backgroundView = [UIView new];
+        self.backgroundView.backgroundColor = [UIColor clearColor];
+        self.accessibilityElementsHidden = YES;
+    }
+    return self;
+}
+
 @end

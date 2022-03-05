@@ -20,8 +20,7 @@
 
 @implementation ZZFLEXAngelViewEditChainModel
 
-- (instancetype)initWithType:(ZZFLEXAngelViewEditType)type andListData:(NSArray *)listData
-{
+- (instancetype)initWithType:(ZZFLEXAngelViewEditType)type andListData:(NSArray *)listData {
     if (self = [super init]) {
         self.editType = type;
         self.listData = listData;
@@ -29,8 +28,7 @@
     return self;
 }
 
-- (id (^)(NSInteger viewTag))byViewTag
-{
+- (id (^)(NSInteger viewTag))byViewTag {
     return ^id(NSInteger viewTag) {
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
             for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
@@ -43,8 +41,7 @@
     };
 }
 
-- (id (^)(id dataModel))byDataModel
-{
+- (id (^)(id dataModel))byDataModel {
     return ^id(id dataModel) {
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
             for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
@@ -57,12 +54,11 @@
     };
 }
 
-- (id (^)(NSString *className))byViewClassName
-{
+- (id (^)(NSString *className))byViewClassName {
     return ^id(NSString *className) {
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
             for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
-                if ([viewModel.className isEqualToString:className]) {
+                if ([NSStringFromClass(viewModel.viewClass) isEqualToString:className]) {
                     return [self p_executeWithSectionModel:sectionModel viewModel:viewModel];
                 }
             }
@@ -71,8 +67,7 @@
     };
 }
 
-- (id (^)(NSIndexPath *indexPath))atIndexPath
-{
+- (id (^)(NSIndexPath *indexPath))atIndexPath {
     return ^id(NSIndexPath *indexPath) {
         ZZFLEXSectionModel *sectionModel = (indexPath.section >=0 && indexPath.section < self.listData.count) ? self.listData[indexPath.section] : nil;
         if (sectionModel) {
@@ -86,8 +81,7 @@
 }
 
 #pragma mark - # Private Methods
-- (id)p_executeWithSectionModel:(ZZFLEXSectionModel *)sectionModel viewModel:(ZZFLEXViewModel *)viewModel
-{
+- (id)p_executeWithSectionModel:(ZZFLEXSectionModel *)sectionModel viewModel:(ZZFLEXViewModel *)viewModel {
     if (self.editType == ZZFLEXAngelViewEditTypeDelete) {
         [sectionModel.itemsArray removeObject:viewModel];
         return nil;
@@ -118,8 +112,7 @@
 
 @implementation ZZFLEXAngelViewBatchEditChainModel
 
-- (instancetype)initWithType:(ZZFLEXAngelViewEditType)type andListData:(NSArray *)listData
-{
+- (instancetype)initWithType:(ZZFLEXAngelViewEditType)type andListData:(NSArray *)listData {
     if (self = [super init]) {
         self.editType = type;
         self.listData = listData;
@@ -127,8 +120,7 @@
     return self;
 }
 
-- (NSArray *(^)(void))all
-{
+- (NSArray *(^)(void))all {
     return ^NSArray *(void) {
         NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
@@ -146,8 +138,7 @@
     };
 }
 
-- (NSArray *(^)(NSInteger viewTag))byViewTag
-{
+- (NSArray *(^)(NSInteger viewTag))byViewTag {
     return ^NSArray *(NSInteger viewTag) {
         NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
@@ -172,8 +163,7 @@
     };
 }
 
-- (NSArray *(^)(id dataModel))byDataModel
-{
+- (NSArray *(^)(id dataModel))byDataModel {
     return ^NSArray *(id dataModel) {
         NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
@@ -195,14 +185,13 @@
     };
 }
 
-- (NSArray *(^)(NSString *className))byViewClassName
-{
+- (NSArray * (^)(NSString *className))byViewClassName {
     return ^NSArray *(NSString *className) {
         NSMutableArray *viewModelArray = [[NSMutableArray alloc] init];
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
             NSMutableArray *data = [[NSMutableArray alloc] init];
             for (ZZFLEXViewModel *viewModel in sectionModel.itemsArray) {
-                if ([viewModel.className isEqualToString:className]) {
+                if ([NSStringFromClass(viewModel.viewClass) isEqualToString:className]) {
                     [data addObject:viewModel];
                 }
             }
@@ -221,8 +210,7 @@
     };
 }
 
-- (NSArray *)p_deleteWithSectionModel:(ZZFLEXSectionModel *)sectionModel viewModelArray:(NSArray *)viewModelArray
-{
+- (NSArray *)p_deleteWithSectionModel:(ZZFLEXSectionModel *)sectionModel viewModelArray:(NSArray *)viewModelArray {
     for (ZZFLEXViewModel *viewModel in viewModelArray) {
         if (viewModel == sectionModel.headerViewModel) {
             sectionModel.headerViewModel = nil;
@@ -237,15 +225,13 @@
     return nil;
 }
 
-- (void)p_updateViewModelArray:(NSArray *)viewModelArray
-{
+- (void)p_updateViewModelArray:(NSArray *)viewModelArray {
     for (ZZFLEXViewModel *viewModel in viewModelArray) {
         [viewModel updateViewSize];
     }
 }
 
-- (NSArray *)dataModelArrayByViewModelArray:(NSArray *)viewModelArray
-{
+- (NSArray *)dataModelArrayByViewModelArray:(NSArray *)viewModelArray {
     NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
     for (ZZFLEXViewModel *viewModel in viewModelArray) {
         if (viewModel.dataModel) {

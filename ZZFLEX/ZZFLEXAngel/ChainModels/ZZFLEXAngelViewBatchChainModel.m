@@ -8,16 +8,21 @@
 
 #import "ZZFLEXAngelViewBatchChainModel.h"
 #import "ZZFLEXSectionModel.h"
+#import "ZZFLEXMacros.h"
 
 #pragma mark - ## ZZFLEXAngelViewBaseBatchChainModel （批量，基类）
 @interface ZZFLEXAngelViewBaseBatchChainModel()
 
+@property (nonatomic, weak, readonly) __kindof UIScrollView *hostView;
+@property (nonatomic, assign, readonly) BOOL xib;
+
 @property (nonatomic, assign) Class viewClass;
 @property (nonatomic, strong) NSMutableArray *listData;
 
-@property (nonatomic, strong) NSMutableArray *viewModelArray;
+@property (nonatomic, strong) NSMutableArray<ZZFLEXViewModel *> *viewModelArray;
 @property (nonatomic, strong) ZZFLEXSectionModel *sectionModel;
 @property (nonatomic, weak) id itemsDelegate;
+@property (nonatomic, strong) NSString *itemReuseIdentifier;
 @property (nonatomic, copy) id (^itemsEventAction)(NSInteger actionType, id data);
 @property (nonatomic, copy) void (^itemsSelectedAction)(id data);
 @property (nonatomic, copy) void (^itemsConfigAction)(__kindof UIView *itemView, id data);
@@ -28,19 +33,20 @@
 
 @implementation ZZFLEXAngelViewBaseBatchChainModel
 
-- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate listData:(NSMutableArray *)listData
-{
+- (instancetype)initWithHostView:(__kindof UIScrollView *)hostView viewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate listData:(NSMutableArray *)listData xib:(BOOL)xib {
     if (self = [super init]) {
-        self.viewModelArray = [[NSMutableArray alloc] init];
-        self.viewClass = viewClass;
+        _hostView = hostView;
+        _xib = xib;
+        _viewModelArray = [[NSMutableArray alloc] init];
+        _viewClass = viewClass;
         _vmDelegate = vmDelegate;
-        self.listData = listData;
+        _listData = listData;
+        [self registerCellIfNeed];
     }
     return self;
 }
 
-- (id (^)(NSInteger section))toSection
-{
+- (id (^)(NSInteger section))toSection {
     return ^(NSInteger section) {
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
             if (sectionModel.sectionTag == section) {
@@ -55,11 +61,10 @@
     };
 }
 
-- (id (^)(NSArray *dataModelArray))withDataModelArray
-{
+- (id (^)(NSArray *dataModelArray))withDataModelArray {
     return ^(NSArray *dataModelArray) {
         for (id model in dataModelArray) {
-            ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass vmDelegate:self.vmDelegate dataModel:model viewSize:self.itemViewSize viewTag:self.tag];
+            ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass reuseIdentifier:self.itemReuseIdentifier vmDelegate:self.vmDelegate dataModel:model viewSize:self.itemViewSize viewTag:self.tag];
             [viewModel setDelegate:self.itemsDelegate];
             [viewModel setEventAction:self.itemsEventAction];
             [viewModel setSelectedAction:self.itemsSelectedAction];
@@ -73,105 +78,116 @@
     };
 }
 
-- (id (^)(id delegate))delegate
-{
+- (id (^)(NSString *reuseIdentifier))reuseIdentifier {
+    return ^(NSString *reuseIdentifier) {
+        [self setItemReuseIdentifier:reuseIdentifier];
+        [self registerCellIfNeed];
+        return self;
+    };
+}
+
+- (id (^)(id delegate))delegate {
     return ^(id delegate) {
         [self setItemsDelegate:delegate];
         return self;
     };
 }
 
-- (id (^)(id ((^)(NSInteger actionType, id data))))eventAction
-{
+- (id (^)(id ((^)(NSInteger actionType, id data))))eventAction {
     return ^(id ((^eventAction)(NSInteger actionType, id data))) {
         [self setItemsEventAction:eventAction];
         return self;
     };
 }
 
-- (id (^)(void ((^)(id data))))selectedAction
-{
+- (id (^)(void ((^)(id data))))selectedAction {
     return ^(void ((^selectedAction)(id data))) {
         [self setItemsSelectedAction:selectedAction];
         return self;
     };
 }
 
-- (id (^)(void ((^)(__kindof UIView *itemView, id dataModel))))configAction
-{
+- (id (^)(void ((^)(__kindof UIView *itemView, id dataModel))))configAction {
     return ^(void ((^configAction)(__kindof UIView *itemView, id dataModel))) {
         [self setItemConfigAction:configAction];
         return self;
     };
 }
 
-- (id (^)(NSInteger viewTag))viewTag
-{
+- (id (^)(NSInteger viewTag))viewTag {
     return ^(NSInteger viewTag) {
         [self setTag:viewTag];
         return self;
     };
 }
 
-- (id (^)(CGSize size))viewSize
-{
+- (id (^)(CGSize size))viewSize {
     return ^(CGSize size) {
         [self setItemViewSize:size];
         return self;
     };
 }
 
-- (id (^)(CGFloat height))viewHeight
-{
+- (id (^)(CGFloat height))viewHeight {
     return ^(CGFloat height) {
         [self setItemViewSize:CGSizeMake(-1, height)];
         return self;
     };
 }
 
+- (void)registerCellIfNeed {
+    if (!self.viewClass) {
+        return;
+    }
+    NSString *reuseIdentifier = self.itemReuseIdentifier ? self.itemReuseIdentifier : NSStringFromClass(self.viewClass);
+    self.xib ? RegisterHostViewXibCell(self.hostView, self.viewClass, reuseIdentifier) :
+               RegisterHostViewCell(self.hostView, self.viewClass, reuseIdentifier);
+}
+
 #pragma mark - # Setters
-- (void)setItemsDelegate:(id)itemsDelegate
-{
+- (void)setItemReuseIdentifier:(NSString *)itemReuseIdentifier {
+    _itemReuseIdentifier = itemReuseIdentifier;
+    for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
+        [viewModel setReuseIdentifier:itemReuseIdentifier];
+    }
+}
+
+- (void)setItemsDelegate:(id)itemsDelegate {
     _itemsDelegate = itemsDelegate;
     for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setDelegate:itemsDelegate];
     }
 }
 
-- (void)setItemsEventAction:(id (^)(NSInteger, id))itemsEventAction
-{
+- (void)setItemsEventAction:(id (^)(NSInteger, id))itemsEventAction {
     _itemsEventAction = itemsEventAction;
     for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setEventAction:itemsEventAction];
     }
 }
 
-- (void)setItemsSelectedAction:(void (^)(id))itemsSelectedAction
-{
+- (void)setItemsSelectedAction:(void (^)(id))itemsSelectedAction {
     _itemsSelectedAction = itemsSelectedAction;
     for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setSelectedAction:itemsSelectedAction];
     }
 }
 
-- (void)setItemConfigAction:(void (^)(__kindof UIView *view, id dataModel))itemConfigAction
-{
+- (void)setItemConfigAction:(void (^)(__kindof UIView *view, id dataModel))itemConfigAction {
     _itemsConfigAction = itemConfigAction;
     for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setConfigAction:itemConfigAction];
     }
 }
 
-- (void)setTag:(NSInteger)tag
-{
+- (void)setTag:(NSInteger)tag {
     _tag = tag;
     for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setViewTag:tag];
     }
 }
 
-- (void)setItemViewSize:(CGSize)itemViewSize
-{
+- (void)setItemViewSize:(CGSize)itemViewSize {
     _itemViewSize = itemViewSize;
     for (ZZFLEXViewModel *viewModel in self.viewModelArray) {
         [viewModel setViewSize:itemViewSize];
@@ -202,8 +218,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
 
 @implementation ZZFLEXAngelViewBatchInsertChainModel
 
-- (id (^)(NSArray *dataModelArray))withDataModelArray
-{
+- (id (^)(NSArray *dataModelArray))withDataModelArray {
     return ^(NSArray *dataModelArray) {
         for (id model in dataModelArray) {
             ZZFLEXViewModel *viewModel = [[ZZFLEXViewModel alloc] initWithViewClass:self.viewClass vmDelegate:self.vmDelegate dataModel:model];
@@ -219,8 +234,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     };
 }
 
-- (id (^)(NSInteger section))toSection
-{
+- (id (^)(NSInteger section))toSection {
     return ^(NSInteger section) {
         for (ZZFLEXSectionModel *sectionModel in self.listData) {
             if (sectionModel.sectionTag == section) {
@@ -235,8 +249,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
 }
 
 
-- (ZZFLEXAngelViewBatchInsertChainModel *(^)(NSInteger index))toIndex
-{
+- (ZZFLEXAngelViewBatchInsertChainModel *(^)(NSInteger index))toIndex {
     return ^(NSInteger index) {
         self.status |= ZZFLEXInsertArrayDataStatusIndex;
         self.insertTag = index;
@@ -246,8 +259,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     };
 }
 
-- (ZZFLEXAngelViewBatchInsertChainModel *(^)(NSInteger sectionTag))beforeCell
-{
+- (ZZFLEXAngelViewBatchInsertChainModel *(^)(NSInteger sectionTag))beforeCell {
     return ^(NSInteger sectionTag) {
         self.status |= ZZFLEXInsertArrayDataStatusBefore;
         self.insertTag = sectionTag;
@@ -257,8 +269,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     };
 }
 
-- (ZZFLEXAngelViewBatchInsertChainModel *(^)(NSInteger sectionTag))afterCell
-{
+- (ZZFLEXAngelViewBatchInsertChainModel *(^)(NSInteger sectionTag))afterCell {
     return ^(NSInteger sectionTag) {
         self.status |= ZZFLEXInsertArrayDataStatusAfter;
         self.insertTag = sectionTag;
@@ -268,8 +279,7 @@ typedef NS_OPTIONS(NSInteger, ZZFLEXInsertArrayDataStatus) {
     };
 }
 
-- (void)p_tryInsertCells
-{
+- (void)p_tryInsertCells {
     if (!self.sectionModel || self.viewModelArray.count == 0) {
         return;
     }

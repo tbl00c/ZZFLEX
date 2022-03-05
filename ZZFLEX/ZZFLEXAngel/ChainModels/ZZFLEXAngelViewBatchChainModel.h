@@ -24,6 +24,9 @@
 /// cells的数据源
 - (ZZFLEXReturnType (^)(NSArray *dataModelArray))withDataModelArray;
 
+/// 复用标识（默认无需设置，除非对同个cell进行了不同定制）
+- (ZZFLEXReturnType (^)(NSString *reuseIdentifier))reuseIdentifier;
+
 /// cells内部事件deledate，与blcok二选一即可
 - (ZZFLEXReturnType (^)(id delegate))delegate;
 /// cells内部事件block，与deledate二选一即可
@@ -44,7 +47,7 @@
 - (ZZFLEXReturnType (^)(CGFloat height))viewHeight;
 
 #pragma mark - 框架内部使用
-- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate listData:(NSMutableArray *)listData;
+- (instancetype)initWithHostView:(__kindof UIScrollView *)hostView viewClass:(Class)viewClass  vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate listData:(NSMutableArray *)listData xib:(BOOL)xib;
 
 @end
 

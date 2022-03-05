@@ -11,42 +11,46 @@
 #import "ZZFLEXMacros.h"
 
 #pragma mark - ## ZZFLEXAngelSectionBaseChainModel (基类)
+@interface ZZFLEXAngelSectionBaseChainModel ()
+
+@property (nonatomic, strong) NSMutableArray *listData;
+
+@property (nonatomic, strong) ZZFLEXSectionModel *sectionModel;
+
+@end
+
 @implementation ZZFLEXAngelSectionBaseChainModel
 
-- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel
-{
+- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel listData:(NSMutableArray *)listData {
     if (self = [super init]) {
         _sectionModel = sectionModel;
+        _listData = listData;
     }
     return self;
 }
 
-- (id (^)(CGFloat minimumLineSpacing))minimumLineSpacing
-{
+- (id (^)(CGFloat minimumLineSpacing))minimumLineSpacing {
     return ^(CGFloat minimumLineSpacing) {
         [self.sectionModel setMinimumLineSpacing:minimumLineSpacing];
         return self;
     };
 }
 
-- (id (^)(CGFloat minimumInteritemSpacing))minimumInteritemSpacing
-{
+- (id (^)(CGFloat minimumInteritemSpacing))minimumInteritemSpacing {
     return ^(CGFloat minimumInteritemSpacing) {
         [self.sectionModel setMinimumInteritemSpacing:minimumInteritemSpacing];
         return self;
     };
 }
 
-- (id (^)(UIEdgeInsets sectionInsets))sectionInsets
-{
+- (id (^)(UIEdgeInsets sectionInsets))sectionInsets {
     return ^(UIEdgeInsets sectionInsets) {
         [self.sectionModel setSectionInsets:sectionInsets];
         return self;
     };
 }
 
-- (id (^)(UIColor *backgrounColor))backgrounColor
-{
+- (id (^)(UIColor *backgrounColor))backgrounColor {
     return ^(UIColor *backgrounColor) {
         [self.sectionModel setBackgroundColor:backgrounColor];
         return self;
@@ -61,32 +65,16 @@
 @end
 
 #pragma mark - ## ZZFLEXAngelSectionInsertChainModel （插入）
-@interface ZZFLEXAngelSectionInsertChainModel()
-
-@property (nonatomic, strong) NSMutableArray *listData;
-
-@end
-
 @implementation ZZFLEXAngelSectionInsertChainModel
 
-- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel listData:(NSMutableArray *)listData
-{
-    if (self = [super initWithSectionModel:sectionModel]) {
-        self.listData = listData;
-    }
-    return self;
-}
-
-- (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger index))toIndex
-{
+- (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger index))toIndex {
     return ^(NSInteger index) {
         [self p_insertToListDataAtIndex:index];
         return self;
     };
 }
 
-- (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger sectionTag))beforeSection
-{
+- (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger sectionTag))beforeSection {
     return ^(NSInteger sectionTag) {
         for (int i = 0; i < self.listData.count; i++) {
             ZZFLEXSectionModel *model = self.listData[i];
@@ -99,8 +87,7 @@
     };
 }
 
-- (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger sectionTag))afterSection
-{
+- (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger sectionTag))afterSection {
     return ^(NSInteger sectionTag) {
         for (int i = 0; i < self.listData.count; i++) {
             ZZFLEXSectionModel *model = self.listData[i];
@@ -113,8 +100,7 @@
     };
 }
 
-- (BOOL)p_insertToListDataAtIndex:(NSInteger)index
-{
+- (BOOL)p_insertToListDataAtIndex:(NSInteger)index {
     if (self.listData && index >= 0 && index < self.listData.count) {
         [self.listData insertObject:self.sectionModel atIndex:index];
         self.listData = nil;
@@ -130,8 +116,7 @@
 @implementation ZZFLEXAngelSectionEditChainModel
 
 #pragma mark 获取数据源
-- (NSArray *)dataModelArray
-{
+- (NSArray *)dataModelArray {
     NSArray *viewModelArray = self.sectionModel.itemsArray;
     NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:viewModelArray.count];
     for (ZZFLEXViewModel *viewModel in viewModelArray) {
@@ -145,19 +130,21 @@
     return data;
 }
 
-- (id)dataModelForHeader
-{
+- (id)dataModelForHeader {
     return self.sectionModel.headerViewModel.dataModel;
 }
 
-- (id)dataModelForFooter
-{
+- (id)dataModelForFooter {
     return self.sectionModel.footerViewModel.dataModel;
 }
 
+- (NSInteger)index {
+    NSInteger index = [self.listData indexOfObject:self.sectionModel];
+    return index;
+}
+
 /// 根据viewTag获取数据源
-- (id (^)(NSInteger viewTag))dataModelByViewTag
-{
+- (id (^)(NSInteger viewTag))dataModelByViewTag {
     return ^(NSInteger viewTag) {
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == viewTag) {
@@ -175,8 +162,7 @@
 }
 
 /// 根据viewTag批量获取数据源
-- (NSArray *(^)(NSInteger viewTag))dataModelArrayByViewTag
-{
+- (NSArray *(^)(NSInteger viewTag))dataModelArrayByViewTag {
     return ^(NSInteger viewTag) {
         NSMutableArray *data = [[NSMutableArray alloc] init];
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
@@ -209,10 +195,18 @@
     };
 }
 
+- (NSInteger)height {
+    CGFloat height = self.sectionModel.headerViewSize.height + self.sectionModel.footerViewSize.height + self.sectionModel.sectionInsets.top
+                     + self.sectionModel.sectionInsets.bottom;
+    for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
+        height += viewModel.viewSize.height;
+    }
+    return height;
+}
+
 #pragma mark 删除
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))clear
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))clear {
+    return ^{
         self.sectionModel.headerViewModel = nil;
         self.sectionModel.footerViewModel = nil;
         [self.sectionModel.itemsArray removeAllObjects];
@@ -220,9 +214,8 @@
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))clearItems
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))clearItems {
+    return ^{
         self.sectionModel.headerViewModel = nil;
         [self.sectionModel.itemsArray removeAllObjects];
         self.sectionModel.footerViewModel = nil;
@@ -230,32 +223,28 @@
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))clearCells
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))clearCells {
+    return ^{
         [self.sectionModel.itemsArray removeAllObjects];
         return self;
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))deleteHeader
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))deleteHeader {
+    return ^{
         self.sectionModel.headerViewModel = nil;
         return self;
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))deleteFooter
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))deleteFooter {
+    return ^{
         self.sectionModel.footerViewModel = nil;
         return self;
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))deleteCellByTag
-{
+- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))deleteCellByTag {
     return ^(NSInteger tag) {
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {
@@ -267,8 +256,7 @@
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))deleteAllCellsByTag
-{
+- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))deleteAllCellsByTag {
     return ^(NSInteger tag) {
         NSMutableArray *deleteData = @[].mutableCopy;
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
@@ -283,10 +271,30 @@
     };
 }
 
+- (ZZFLEXAngelSectionEditChainModel * (^)(NSInteger index))deleteCellAtIndex {
+    return ^(NSInteger index) {
+        if (index < self.sectionModel.itemsArray.count) {
+            [self.sectionModel.itemsArray removeObjectAtIndex:index];
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXAngelSectionEditChainModel * (^)(id dataModel))deleteCellByDataModel {
+    return ^(id dataModel) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
+            if (viewModel.dataModel == dataModel) {
+                [self.sectionModel removeObject:viewModel];
+                break;
+            }
+        }
+        return self;
+    };
+}
+
 #pragma mark 刷新
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))update
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))update {
+    return ^{
         [self.sectionModel.headerViewModel updateViewSize];
         [self.sectionModel.footerViewModel updateViewSize];
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
@@ -296,9 +304,8 @@
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))updateItems
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))updateItems {
+    return ^{
         [self.sectionModel.headerViewModel updateViewSize];
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             [viewModel updateViewSize];
@@ -308,9 +315,8 @@
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))updateCells
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))updateCells {
+    return ^{
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             [viewModel updateViewSize];
         }
@@ -318,24 +324,21 @@
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))updateHeader
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))updateHeader {
+    return ^{
         [self.sectionModel.headerViewModel updateViewSize];
         return self;
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(void))updateFooter
-{
-    return ^(void) {
+- (ZZFLEXAngelSectionEditChainModel *(^)(void))updateFooter {
+    return ^{
         [self.sectionModel.footerViewModel updateViewSize];
         return self;
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))updateCellByTag
-{
+- (ZZFLEXAngelSectionEditChainModel * (^)(NSInteger tag))updateCellByTag {
     return ^(NSInteger tag) {
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {
@@ -347,8 +350,27 @@
     };
 }
 
-- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))updateAllCellsByTag
-{
+- (ZZFLEXAngelSectionEditChainModel * (^)(NSInteger index))updateCellAtIndex {
+    return ^(NSInteger index) {
+        if (index < self.sectionModel.itemsArray.count) {
+            ZZFLEXViewModel *viewModel = [self.sectionModel.itemsArray objectAtIndex:index];
+            [viewModel updateViewSize];
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXAngelSectionEditChainModel * (^)(id dataModel))updateCellByDataModel {
+    return ^(id dataModel) {
+        for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
+            [viewModel updateViewSize];
+            break;
+        }
+        return self;
+    };
+}
+
+- (ZZFLEXAngelSectionEditChainModel * (^)(NSInteger tag))updateAllCellsByTag {
     return ^(NSInteger tag) {
         for (ZZFLEXViewModel *viewModel in self.sectionModel.itemsArray) {
             if (viewModel.viewTag == tag) {

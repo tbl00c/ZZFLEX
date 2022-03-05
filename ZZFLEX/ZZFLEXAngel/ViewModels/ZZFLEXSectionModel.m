@@ -10,84 +10,72 @@
 
 @implementation ZZFLEXSectionModel
 
-- (id)init
-{
+- (id)init {
     if (self = [super init]) {
         _itemsArray = [[NSMutableArray alloc] init];
-        self.minimumLineSpacing = 0.0f;
-        self.minimumInteritemSpacing = 0.0f;
-        self.sectionInsets = UIEdgeInsetsZero;
+        _minimumLineSpacing = 0.0f;
+        _minimumInteritemSpacing = 0.0f;
+        _sectionInsets = UIEdgeInsetsZero;
     }
     return self;
 }
 
 #pragma mark - # Section Header
-- (CGSize)headerViewSize
-{
+- (CGSize)headerViewSize {
     return [self.headerViewModel viewSize];
 }
 
 #pragma mark - # Section Footer
-- (CGSize)footerViewSize
-{
+- (CGSize)footerViewSize {
     return [self.footerViewModel viewSize];
 }
 
 #pragma mark - # Items
-- (NSUInteger)count
-{
+- (NSUInteger)count {
     return self.itemsArray.count;
 }
 
-- (void)addObject:(ZZFLEXViewModel *)object
-{
+- (void)addObject:(ZZFLEXViewModel *)object {
     if (!object) {
         return;
     }
     [self.itemsArray addObject:object];
 }
 
-- (void)addObjectsFromArray:(NSArray<ZZFLEXViewModel *> *)otherArray
-{
+- (void)addObjectsFromArray:(NSArray<ZZFLEXViewModel *> *)otherArray {
     if (otherArray) {
         [self.itemsArray addObjectsFromArray:otherArray];
     }
 }
 
-- (void)insertObject:(ZZFLEXViewModel *)object atIndex:(NSUInteger)objectIndex;
-{
+- (void)insertObject:(ZZFLEXViewModel *)object atIndex:(NSUInteger)objectIndex; {
     if (!object) {
         return;
     }
     [self.itemsArray insertObject:object atIndex:objectIndex];
 }
 
-- (void)insertObjects:(NSArray<ZZFLEXViewModel *> *)objects atIndexes:(NSIndexSet *)indexes
-{
+- (void)insertObjects:(NSArray<ZZFLEXViewModel *> *)objects atIndexes:(NSIndexSet *)indexes {
     if (objects) {
         [self.itemsArray insertObjects:objects atIndexes:indexes];
     }
 }
 
-- (id)objectAtIndex:(NSUInteger)index
-{
+- (id)objectAtIndex:(NSUInteger)index {
     return index < self.itemsArray.count ? self.itemsArray[index] : nil;
 }
 
-- (void)removeObjectAtIndex:(NSUInteger)index
-{
+- (void)removeObjectAtIndex:(NSUInteger)index {
     index < self.itemsArray.count ? [self.itemsArray removeObjectAtIndex:index] : nil;
 }
 
-- (void)removeObject:(ZZFLEXViewModel *)object
-{
+- (void)removeObject:(ZZFLEXViewModel *)object {
     if ([self.itemsArray containsObject:object]) {
         [self.itemsArray removeObject:object];
     }
 }
 
-- (id)dataModelAtIndex:(NSUInteger)index
-{
+- (id)dataModelAtIndex:(NSUInteger)index {
     ZZFLEXViewModel *viewModel = [self objectAtIndex:index];
     return viewModel.dataModel;
 }

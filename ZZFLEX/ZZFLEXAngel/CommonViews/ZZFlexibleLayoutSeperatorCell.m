@@ -10,8 +10,7 @@
 
 @implementation ZZFlexibleLayoutSeperatorModel
 
-- (id)initWithSize:(CGSize)size andColor:(UIColor *)color
-{
+- (id)initWithSize:(CGSize)size andColor:(UIColor *)color {
     if (self = [super init]) {
         self.size = size;
         self.color = color;
@@ -23,21 +22,19 @@
 
 @implementation ZZFlexibleLayoutSeperatorCell
 
-+ (CGSize)viewSizeByDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel
-{
++ (CGSize)viewSizeByDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel {
     return dataModel.size;
 }
 
-- (id)init
-{
+- (id)init {
     if (self = [super init]) {
         [self setBackgroundColor:[UIColor clearColor]];
+        self.accessibilityElementsHidden = YES;
     }
     return self;
 }
 
-- (void)setViewDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel
-{
+- (void)setViewDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel {
     if (dataModel.color) {
         [self setBackgroundColor:dataModel.color];
     }

@@ -1,12 +1,16 @@
 //
 //  MJRefreshStateHeader.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/4/24.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import "MJRefreshStateHeader.h"
+#import "MJRefreshConst.h"
+#import "NSBundle+MJRefresh.h"
+#import "UIView+MJExtension.h"
+#import "UIScrollView+MJExtension.h"
 
 @interface MJRefreshStateHeader()
 {
@@ -45,20 +49,19 @@
     return _lastUpdatedTimeLabel;
 }
 
-#pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
-{
-    if (title == nil) return;
-    self.stateTitles[@(state)] = title;
-    self.stateLabel.text = self.stateTitles[@(self.state)];
+- (void)setLastUpdatedTimeText:(NSString * _Nonnull (^)(NSDate * _Nullable))lastUpdatedTimeText{
+    _lastUpdatedTimeText = lastUpdatedTimeText;
+    // 重新设置key（重新显示时间）
+    self.lastUpdatedTimeKey = self.lastUpdatedTimeKey;
 }
 
-#pragma mark - 日历获取在9.x之后的系统使用currentCalendar会出异常。在8.0之后使用系统新API。
-- (NSCalendar *)currentCalendar {
-    if ([NSCalendar respondsToSelector:@selector(calendarWithIdentifier:)]) {
-        return [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-    }
-    return [NSCalendar currentCalendar];
+#pragma mark - 公共方法
+- (instancetype)setTitle:(NSString *)title forState:(MJRefreshState)state
+{
+    if (title == nil) return self;
+    self.stateTitles[@(state)] = title;
+    self.stateLabel.text = self.stateTitles[@(self.state)];
+    return self;
 }
 
 #pragma mark key的处理
@@ -79,8 +82,8 @@
     
     if (lastUpdatedTime) {
         // 1.获得年月日
-        NSCalendar *calendar = [self currentCalendar];
-        NSUInteger unitFlags = NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitHour |NSCalendarUnitMinute;
+        NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+        NSUInteger unitFlags = NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
         NSDateComponents *cmp1 = [calendar components:unitFlags fromDate:lastUpdatedTime];
         NSDateComponents *cmp2 = [calendar components:unitFlags fromDate:[NSDate date]];
         
@@ -109,6 +112,15 @@
     }
 }
 
+
+- (void)textConfiguration {
+    // 初始化文字
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
+    self.lastUpdatedTimeKey = MJRefreshHeaderLastUpdatedTimeKey;
+}
+
 #pragma mark - 覆盖父类的方法
 - (void)prepare
 {
@@ -116,11 +128,13 @@
     
     // 初始化间距
     self.labelLeftInset = MJRefreshLabelLeftInset;
+    [self textConfiguration];
+}
+
+- (void)i18nDidChange {
+    [self textConfiguration];
     
-    // 初始化文字
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
+    [super i18nDidChange];
 }
 
 - (void)placeSubviews
@@ -164,4 +178,14 @@
     // 重新设置key（重新显示时间）
     self.lastUpdatedTimeKey = self.lastUpdatedTimeKey;
 }
+@end
+
+#pragma mark - <<< 为 Swift 扩展链式语法 >>> -
+@implementation MJRefreshStateHeader (ChainingGrammar)
+
+- (instancetype)modifyLastUpdatedTimeText:(NSString * _Nonnull (^)(NSDate * _Nullable))handler {
+    self.lastUpdatedTimeText = handler;
+    return self;
+}
+
 @end

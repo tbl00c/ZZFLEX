@@ -12,14 +12,12 @@
 #import <Masonry/Masonry.h>
 
 #define     ZZFLEXVC_ANGEL_CHAIN_METHOD(methodName, returnType, paramType)  \
-- (returnType (^)(paramType))methodName \
-{   \
+- (returnType (^)(paramType))methodName {   \
     return self.angel.methodName;   \
 }
 
 #define     ZZFLEXVC_ANGEL_METHOD(methodName, returnType)  \
-- (returnType)methodName \
-{   \
+- (returnType)methodName {   \
     return [self.angel methodName];   \
 }
 
@@ -29,8 +27,7 @@
 
 @implementation ZZFLEXTableViewController
 
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init]) {
         _tableViewStyle = UITableViewStylePlain;
         _angel = [[ZZFLEXAngel alloc] init];
@@ -38,8 +35,7 @@
     return self;
 }
 
-- (void)loadView
-{
+- (void)loadView {
     [super loadView];
     _tableView = self.view.addTableViewWithStyle(1, self.tableViewStyle)
     .masonry(^ (__kindof UIView *view, MASConstraintMaker *make) {
@@ -47,38 +43,28 @@
     }).view;
     [self.angel setHostView:self.tableView];
     self.tableView.zz_setup.delegate(self).dataSource(self);
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(__zzflex_deviceOrientationDidChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     ZZFLEXLog(@"Dealloc: %@", NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)__zzflex_deviceOrientationDidChanged
-{
-    self.angel.upadte();
-    self.angel.reload();
-}
-
 #pragma mark 页面刷新
 /// 刷新页面
-- (void)reloadView
-{
+- (void)reloadView {
     [self.angel reloadView];
 }
 
 #pragma mark - # 整体
+ZZFLEXVC_ANGEL_CHAIN_METHOD(reload, void, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(clear, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(clearAllItems, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(clearAllCells, BOOL, void)
-ZZFLEXVC_ANGEL_CHAIN_METHOD(upadte, BOOL, void)
-ZZFLEXVC_ANGEL_CHAIN_METHOD(upadteAllItems, BOOL, void)
-ZZFLEXVC_ANGEL_CHAIN_METHOD(upadteAllCells, BOOL, void)
+ZZFLEXVC_ANGEL_CHAIN_METHOD(update, BOOL, void)
+ZZFLEXVC_ANGEL_CHAIN_METHOD(updateAllItems, BOOL, void)
+ZZFLEXVC_ANGEL_CHAIN_METHOD(updateAllCells, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(isEmpty, BOOL, void)
-ZZFLEXVC_ANGEL_CHAIN_METHOD(reload, void, void)
 
 #pragma mark - # Section操作
 ZZFLEXVC_ANGEL_CHAIN_METHOD(addSection, ZZFLEXAngelSectionChainModel *, NSInteger)
@@ -101,8 +87,7 @@ ZZFLEXVC_ANGEL_CHAIN_METHOD(addXibCell, ZZFLEXAngelViewChainModel *, Class)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(addCells, ZZFLEXAngelViewBatchChainModel *, Class)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(addXibCells, ZZFLEXAngelViewBatchChainModel *, Class)
 
-- (ZZFLEXAngelViewChainModel *(^)(CGSize size, UIColor *color))addSeperatorCell;
-{
+- (ZZFLEXAngelViewChainModel *(^)(CGSize size, UIColor *color))addSeperatorCell; {
     return self.angel.addSeperatorCell;
 }
 
@@ -124,55 +109,49 @@ ZZFLEXVC_ANGEL_METHOD(hasCell, ZZFLEXAngelViewEditChainModel *)
 ZZFLEXVC_ANGEL_METHOD(dataModel, ZZFLEXAngelViewEditChainModel *)
 ZZFLEXVC_ANGEL_METHOD(dataModelArray, ZZFLEXAngelViewBatchEditChainModel *)
 
+#pragma mark - # IndexPath
+ZZFLEXVC_ANGEL_METHOD(indexPath, ZZFLEXAngelIndexPathChainModel *)
+
 #pragma mark - # View & data
 ZZFLEXVC_ANGEL_METHOD(hostView, __kindof UIScrollView *)
 ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
 
 #pragma mark - ## Kernel
 //MARK: UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.angel numberOfSectionsInTableView:tableView];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.angel tableView:tableView numberOfRowsInSection:section];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self.angel tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return [self.angel tableView:tableView viewForHeaderInSection:section];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [self.angel tableView:tableView viewForFooterInSection:section];
 }
 
 //MARK: UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.angel tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self.angel tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return [self.angel tableView:tableView heightForHeaderInSection:section];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return [self.angel tableView:tableView heightForFooterInSection:section];
 }
 

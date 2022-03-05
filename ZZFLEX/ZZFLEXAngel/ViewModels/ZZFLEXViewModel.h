@@ -22,12 +22,13 @@
  */
 @interface ZZFLEXViewModel : NSObject
 
-/// view/cell类名
-@property (nonatomic, strong, readonly) NSString *className;
 /// view/cell类
 @property (nonatomic, assign) Class viewClass;
 
 @property (nonatomic, weak) id<ZZFLEXViewModelDelegate> vmDelegate;
+
+/// 复用标识（默认无需设置，除非对同个cell进行了不同定制）
+@property (nonatomic, strong) NSString *reuseIdentifier;
 
 /// view/cell的数据Model
 @property (nonatomic, strong) id dataModel;
@@ -58,8 +59,8 @@
  *  根据类名和数据源初始化viewModel
  */
 - (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel;
-- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel viewTag:(NSInteger)viewTag;
-- (instancetype)initWithViewClass:(Class)viewClass vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag;
+- (instancetype)initWithViewClass:(Class)viewClass reuseIdentifier:(NSString *)reuseIdentifier vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel viewTag:(NSInteger)viewTag;
+- (instancetype)initWithViewClass:(Class)viewClass reuseIdentifier:(NSString *)reuseIdentifier vmDelegate:(id<ZZFLEXViewModelDelegate>)vmDelegate dataModel:(id)dataModel viewSize:(CGSize)viewSize viewTag:(NSInteger)viewTag;
 
 /**
  *  重新计算视图大小

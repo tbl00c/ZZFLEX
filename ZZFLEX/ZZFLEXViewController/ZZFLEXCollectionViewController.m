@@ -15,21 +15,18 @@
 #import <Masonry/Masonry.h>
 
 #define     ZZFLEXVC_ANGEL_CHAIN_METHOD(methodName, returnType, paramType)  \
-- (returnType (^)(paramType))methodName \
-{   \
+- (returnType (^)(paramType))methodName {   \
     return self.angel.methodName;   \
 }
 
 #define     ZZFLEXVC_ANGEL_METHOD(methodName, returnType)  \
-- (returnType)methodName \
-{   \
+- (returnType)methodName {   \
     return [self.angel methodName];   \
 }
 
 @implementation ZZFLEXCollectionViewController
 
-- (id)init
-{
+- (id)init {
     if (self = [super init]) {
         _scrollDirection = UICollectionViewScrollDirectionVertical;
         
@@ -41,8 +38,7 @@
     return self;
 }
 
-- (void)loadView
-{
+- (void)loadView {
     [super loadView];
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -51,35 +47,41 @@
     [self.view layoutIfNeeded];
 }
 
-- (void)dealloc
-{
+- (void)resetCollectionViewWithLayout:(UICollectionViewLayout *)layout {
+    [_collectionView removeFromSuperview];
+    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    [self.view addSubview:_collectionView];
+    [_angel setHostView:_collectionView];
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+}
+
+- (void)dealloc {
     ZZFLEXLog(@"Dealloc: %@", NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - # Setter
-- (void)setScrollDirection:(UICollectionViewScrollDirection)scrollDirection
-{
+- (void)setScrollDirection:(UICollectionViewScrollDirection)scrollDirection {
     _scrollDirection = scrollDirection;
     [(ZZFlexibleLayoutFlowLayout *)self.collectionView.collectionViewLayout setScrollDirection:scrollDirection];
 }
 
 #pragma mark 页面刷新
 /// 刷新页面
-- (void)reloadView
-{
+- (void)reloadView {
     [self.angel reloadView];
 }
 
 #pragma mark - # 整体
+ZZFLEXVC_ANGEL_CHAIN_METHOD(reload, void, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(clear, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(clearAllItems, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(clearAllCells, BOOL, void)
-ZZFLEXVC_ANGEL_CHAIN_METHOD(upadte, BOOL, void)
-ZZFLEXVC_ANGEL_CHAIN_METHOD(upadteAllItems, BOOL, void)
-ZZFLEXVC_ANGEL_CHAIN_METHOD(upadteAllCells, BOOL, void)
+ZZFLEXVC_ANGEL_CHAIN_METHOD(update, BOOL, void)
+ZZFLEXVC_ANGEL_CHAIN_METHOD(updateAllItems, BOOL, void)
+ZZFLEXVC_ANGEL_CHAIN_METHOD(updateAllCells, BOOL, void)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(isEmpty, BOOL, void)
-ZZFLEXVC_ANGEL_CHAIN_METHOD(reload, void, void)
 
 #pragma mark - # Section操作
 ZZFLEXVC_ANGEL_CHAIN_METHOD(addSection, ZZFLEXAngelSectionChainModel *, NSInteger)
@@ -102,8 +104,7 @@ ZZFLEXVC_ANGEL_CHAIN_METHOD(addXibCell, ZZFLEXAngelViewChainModel *, Class)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(addCells, ZZFLEXAngelViewBatchChainModel *, Class)
 ZZFLEXVC_ANGEL_CHAIN_METHOD(addXibCells, ZZFLEXAngelViewBatchChainModel *, Class)
 
-- (ZZFLEXAngelViewChainModel *(^)(CGSize size, UIColor *color))addSeperatorCell;
-{
+- (ZZFLEXAngelViewChainModel *(^)(CGSize size, UIColor *color))addSeperatorCell; {
     return self.angel.addSeperatorCell;
 }
 
@@ -125,84 +126,73 @@ ZZFLEXVC_ANGEL_METHOD(hasCell, ZZFLEXAngelViewEditChainModel *)
 ZZFLEXVC_ANGEL_METHOD(dataModel, ZZFLEXAngelViewEditChainModel *)
 ZZFLEXVC_ANGEL_METHOD(dataModelArray, ZZFLEXAngelViewBatchEditChainModel *)
 
+#pragma mark - # IndexPath
+ZZFLEXVC_ANGEL_METHOD(indexPath, ZZFLEXAngelIndexPathChainModel *)
+
 #pragma mark - # View & data
 ZZFLEXVC_ANGEL_METHOD(hostView, __kindof UIScrollView *)
 ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
 
 #pragma mark - # Kernal
 //MARK: UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return [self.angel numberOfSectionsInCollectionView:collectionView];
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.angel collectionView:collectionView numberOfItemsInSection:section];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.angel collectionView:collectionView cellForItemAtIndexPath:indexPath];
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     return [self.angel collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
 }
 
 //MARK: UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.angel collectionView:collectionView didSelectItemAtIndexPath:indexPath];
 }
 
 //MARK: ZZFlexibleLayoutFlowLayoutDelegate
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.angel collectionView:collectionView layout:collectionViewLayout sizeForItemAtIndexPath:indexPath];
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     return [self.angel collectionView:collectionView layout:collectionViewLayout referenceSizeForHeaderInSection:section];
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     return [self.angel collectionView:collectionView layout:collectionViewLayout referenceSizeForFooterInSection:section];
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return [self.angel collectionView:collectionView layout:collectionViewLayout minimumLineSpacingForSectionAtIndex:section];
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return [self.angel collectionView:collectionView layout:collectionViewLayout minimumInteritemSpacingForSectionAtIndex:section];
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return [self.angel collectionView:collectionView layout:collectionViewLayout insetForSectionAtIndex:section];
 }
 
-- (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout colorForSectionAtIndex:(NSInteger)section
-{
+- (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout colorForSectionAtIndex:(NSInteger)section {
     return [self.angel collectionView:collectionView layout:collectionViewLayout colorForSectionAtIndex:section];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionHeaderPinToVisibleBounds:(NSInteger)section
-{
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionHeaderPinToVisibleBounds:(NSInteger)section {
     if (self.sectionHeadersPinToVisibleBounds) {
         return YES;
     }
     return NO;
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionFooterPinToVisibleBounds:(NSInteger)section
-{
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didSectionFooterPinToVisibleBounds:(NSInteger)section {
     if (self.sectionFootersPinToVisibleBounds) {
         return YES;
     }
@@ -213,19 +203,16 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
 
 #pragma mark - ## ZZFLEXCollectionViewController (Scroll)
 @implementation ZZFLEXCollectionViewController (Scroll)
-- (void)scrollToTop:(BOOL)animated
-{
+- (void)scrollToTop:(BOOL)animated {
     [self.collectionView setContentOffset:CGPointZero animated:animated];
 }
 
-- (void)scrollToBottom:(BOOL)animated
-{
+- (void)scrollToBottom:(BOOL)animated {
     CGFloat y = self.collectionView.contentSize.height - self.collectionView.frame.size.height;
     [self.collectionView setContentOffset:CGPointMake(0, y) animated:animated];
 }
 
-- (void)scrollToSection:(NSInteger)sectionTag position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated
-{
+- (void)scrollToSection:(NSInteger)sectionTag position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated {
     if (self.hasSection(sectionTag)) {
         NSInteger section = [self sectionIndexForTag:sectionTag];
         NSUInteger sectionCount = [self.collectionView numberOfSections];
@@ -246,8 +233,7 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
     }
 }
 
-- (void)scrollToSection:(NSInteger)sectionTag cell:(NSInteger)cellTag position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated
-{
+- (void)scrollToSection:(NSInteger)sectionTag cell:(NSInteger)cellTag position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated {
     NSArray *indexPaths = [self cellIndexPathForSectionTag:sectionTag cellTag:cellTag];
     if (indexPaths.count > 0) {
         NSIndexPath *indexPath = indexPaths[0];
@@ -255,8 +241,7 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
     }
 }
 
-- (void)scrollToCell:(NSInteger)cellTag position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated
-{
+- (void)scrollToCell:(NSInteger)cellTag position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated {
     NSArray *indexPaths = [self cellIndexPathForCellTag:cellTag];
     if (indexPaths.count > 0) {
         NSIndexPath *indexPath = indexPaths[0];
@@ -264,23 +249,20 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
     }
 }
 
-- (void)scrollToSectionIndex:(NSInteger)sectionIndex position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated
-{
+- (void)scrollToSectionIndex:(NSInteger)sectionIndex position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated {
     if (sectionIndex < self.data.count) {
         [self scrollToIndexPath:[NSIndexPath indexPathForItem:0 inSection:sectionIndex] position:scrollPosition animated:animated];
     }
 }
 
-- (void)scrollToIndexPath:(NSIndexPath *)indexPath position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated
-{
+- (void)scrollToIndexPath:(NSIndexPath *)indexPath position:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated {
     if (self.hasCell.atIndexPath(indexPath)) {
         [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
     }
 }
 
 #pragma mark - # Private
-- (NSInteger)sectionIndexForTag:(NSInteger)sectionTag
-{
+- (NSInteger)sectionIndexForTag:(NSInteger)sectionTag {
     for (int section = 0; section < self.data.count; section++) {
         ZZFLEXSectionModel *sectionModel = self.data[section];
         if (sectionModel.sectionTag == sectionTag) {
@@ -290,8 +272,7 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
     return 0;
 }
 
-- (NSArray<NSIndexPath *> *)cellIndexPathForCellTag:(NSInteger)cellTag
-{
+- (NSArray<NSIndexPath *> *)cellIndexPathForCellTag:(NSInteger)cellTag {
     NSMutableArray *data = [[NSMutableArray alloc] init];
     for (int section = 0; section < self.data.count; section++) {
         ZZFLEXSectionModel *sectionModel = self.data[section];
@@ -306,8 +287,7 @@ ZZFLEXVC_ANGEL_METHOD(data, NSMutableArray *)
     return data.count > 0 ? data : nil;
 }
 
-- (NSArray<NSIndexPath *> *)cellIndexPathForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag
-{
+- (NSArray<NSIndexPath *> *)cellIndexPathForSectionTag:(NSInteger)sectionTag cellTag:(NSInteger)cellTag {
     NSMutableArray *data = [[NSMutableArray alloc] init];
     NSInteger sectionIndex = [self sectionIndexForTag:sectionTag];
     ZZFLEXSectionModel *sectionModel = self.data[sectionIndex];

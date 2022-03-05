@@ -22,6 +22,7 @@
 #import "ZZFLEXAngelViewChainModel.h"
 #import "ZZFLEXAngelViewBatchChainModel.h"
 #import "ZZFLEXAngelViewEditChainModel.h"
+#import "ZZFLEXAngelIndexPathChainModel.h"
 
 #define     ZZFLEX_CHAINAPI_TYPE            @property (nonatomic, copy, readonly)
 
@@ -52,13 +53,13 @@ ZZFLEX_CHAINAPI_TYPE BOOL (^clearAllItems)(void);
 ZZFLEX_CHAINAPI_TYPE BOOL (^clearAllCells)(void);
 
 /// 更新所有元素
-ZZFLEX_CHAINAPI_TYPE BOOL (^upadte)(void);
+ZZFLEX_CHAINAPI_TYPE BOOL (^update)(void);
 
 /// 更新所有Cell、Header、Fotter
-ZZFLEX_CHAINAPI_TYPE BOOL (^upadteAllItems)(void);
+ZZFLEX_CHAINAPI_TYPE BOOL (^updateAllItems)(void);
 
 /// 更新所有Cell
-ZZFLEX_CHAINAPI_TYPE BOOL (^upadteAllCells)(void);
+ZZFLEX_CHAINAPI_TYPE BOOL (^updateAllCells)(void);
 
 /// 是不是空列表
 ZZFLEX_CHAINAPI_TYPE BOOL (^isEmpty)(void);
@@ -129,6 +130,9 @@ ZZFLEX_CHAINAPI_TYPE ZZFLEXAngelViewEditChainModel *hasCell;
 ZZFLEX_CHAINAPI_TYPE ZZFLEXAngelViewEditChainModel *dataModel;
 /// 批量cell数据源获取(注意，dataModel为nil的元素，在数组中以NSNull存在)
 ZZFLEX_CHAINAPI_TYPE ZZFLEXAngelViewBatchEditChainModel *dataModelArray;
+
+/// 获取IndexPath
+ZZFLEX_CHAINAPI_TYPE ZZFLEXAngelIndexPathChainModel *indexPath;
 
 @end
 

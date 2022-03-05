@@ -26,10 +26,8 @@
 /// backgrounColor
 - (ZZFLEXReturnType (^)(UIColor *backgrounColor))backgrounColor;
 
-@property (nonatomic, strong, readonly) ZZFLEXSectionModel *sectionModel;
-
 /// 初始化，框架内部使用
-- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel;
+- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel listData:(NSMutableArray *)listData;
 
 @end
 
@@ -52,9 +50,6 @@
 /// 插入到某个section后
 - (ZZFLEXAngelSectionInsertChainModel *(^)(NSInteger sectionTag))afterSection;
 
-/// 框架内部使用
-- (instancetype)initWithSectionModel:(ZZFLEXSectionModel *)sectionModel listData:(NSMutableArray *)listData;
-
 @end
 
 #pragma mark - ## ZZFLEXAngelSectionEditChainModel （编辑）
@@ -68,7 +63,10 @@
 @property (nonatomic, strong, readonly) id dataModelForHeader;
 /// footer数据源
 @property (nonatomic, strong, readonly) id dataModelForFooter;
-
+/// section在数据源中的位置
+@property (nonatomic, assign, readonly) NSInteger index;
+/// 获取section高度
+@property (nonatomic, assign, readonly) NSInteger height;
 /// 根据viewTag获取数据源
 - (id (^)(NSInteger viewTag))dataModelByViewTag;
 /// 根据viewTag批量获取数据源
@@ -91,6 +89,10 @@
 - (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))deleteCellByTag;
 /// 批量删除指定tag的cell（所有该tag的cell）
 - (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))deleteAllCellsByTag;
+/// 删除指定index的cell
+- (ZZFLEXAngelSectionEditChainModel * (^)(NSInteger index))deleteCellAtIndex;
+/// 删除指定dataModel的cell
+- (ZZFLEXAngelSectionEditChainModel * (^)(id dataModel))deleteCellByDataModel;
 
 #pragma mark 刷新
 /// 更新视图和cell高度
@@ -106,8 +108,12 @@
 - (ZZFLEXAngelSectionEditChainModel *(^)(void))updateFooter;
 
 /// 更新指定tag的cell高度
-- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))updateCellByTag;
+- (ZZFLEXAngelSectionEditChainModel * (^)(NSInteger tag))updateCellByTag;
+/// 更新指定index的cell高度
+- (ZZFLEXAngelSectionEditChainModel * (^)(NSInteger index))updateCellAtIndex;
+/// 更新指定index的cell高度
+- (ZZFLEXAngelSectionEditChainModel * (^)(id dataModel))updateCellByDataModel;
 /// 批量更新指定tag的cell高度（所有该tag的cell）
-- (ZZFLEXAngelSectionEditChainModel *(^)(NSInteger tag))updateAllCellsByTag;
+- (ZZFLEXAngelSectionEditChainModel * (^)(NSInteger tag))updateAllCellsByTag;
 
 @end

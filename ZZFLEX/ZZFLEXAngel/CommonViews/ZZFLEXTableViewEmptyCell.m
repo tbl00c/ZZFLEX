@@ -10,21 +10,20 @@
 
 @implementation ZZFLEXTableViewEmptyCell
 
-+ (CGFloat)viewHeightByDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel
-{
++ (CGFloat)viewHeightByDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel {
     return dataModel.size.height;
 }
 
-- (id)init
-{
+- (id)init {
     if (self = [super init]) {
-        [self setBackgroundColor:[UIColor clearColor]];
+        self.backgroundColor = [UIColor clearColor];
+        self.accessibilityElementsHidden = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
 
-- (void)setViewDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel
-{
+- (void)setViewDataModel:(ZZFlexibleLayoutSeperatorModel *)dataModel {
     if (dataModel.color) {
         [self setBackgroundColor:dataModel.color];
     }

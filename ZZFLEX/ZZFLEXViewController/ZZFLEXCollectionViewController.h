@@ -46,6 +46,8 @@ ZZFLEXAngelAPIProtocol>
 /// footer悬浮，默认NO
 @property (nonatomic, assign) BOOL sectionFootersPinToVisibleBounds;
 
+- (void)resetCollectionViewWithLayout:(UICollectionViewLayout *)layout;
+
 @end
 
 #pragma mark - ## ZZFLEXCollectionViewController (Scroll)
