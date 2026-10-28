@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0FDC0010000000000000001 /* ZZFDSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FDC0010000000000000003 /* ZZFDSceneDelegate.m */; };
 		73C36E7BE34CE6277FA666FC /* Pods_ZZFLEXDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A866D88811125267B8016C /* Pods_ZZFLEXDemo.framework */; };
 		C20CB02720283FD50088276C /* ZZFDPlatformSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB02620283FD50088276C /* ZZFDPlatformSelectViewController.m */; };
 		C20CB02A202841A40088276C /* ZZFDPlatformItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20CB029202841A40088276C /* ZZFDPlatformItemCell.m */; };
@@ -107,6 +108,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0FDC0010000000000000002 /* ZZFDSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDSceneDelegate.h; sourceTree = "<group>"; };
+		D0FDC0010000000000000003 /* ZZFDSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFDSceneDelegate.m; sourceTree = "<group>"; };
 		90A4ADBAF45856FF582ACE2C /* Pods-ZZFLEXDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZFLEXDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9440C1BF2DD4CF4BDDF729E6 /* Pods-ZZFLEXDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZFLEXDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZZFLEXDemo/Pods-ZZFLEXDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C20CB02520283FD50088276C /* ZZFDPlatformSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFDPlatformSelectViewController.h; sourceTree = "<group>"; };
@@ -676,6 +679,8 @@
 				C2863A8F1FCCFB76008BC3C0 /* main.m */,
 				C2863A8D1FCCFB76008BC3C0 /* ZZFDAppDelegate.h */,
 				C2863A901FCCFB76008BC3C0 /* ZZFDAppDelegate.m */,
+				D0FDC0010000000000000002 /* ZZFDSceneDelegate.h */,
+				D0FDC0010000000000000003 /* ZZFDSceneDelegate.m */,
 				C2863A991FCCFBA7008BC3C0 /* LaunchScreen.storyboard */,
 				C2863A8E1FCCFB76008BC3C0 /* Assets.xcassets */,
 			);
@@ -1143,6 +1148,7 @@
 				C26B6B52202AE79C0058656E /* ZZFDSwitchCell.m in Sources */,
 				C25C21022027547E003D3192 /* ZZFDSubscriptionViewController.m in Sources */,
 				C2863A941FCCFB76008BC3C0 /* ZZFDAppDelegate.m in Sources */,
+				D0FDC0010000000000000001 /* ZZFDSceneDelegate.m in Sources */,
 				C2863AA61FCD022B008BC3C0 /* ZZFDMainMenuCell.m in Sources */,
 				C26B6B79202AF53B0058656E /* ZZFDSubscriptionAngel.m in Sources */,
 				C22212D524235D5700FA0B32 /* WXContactsViewController.m in Sources */,
