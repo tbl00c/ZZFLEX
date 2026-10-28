@@ -17,9 +17,7 @@
   "source_files": "XLPhotoBrowser+CoderXL/**/*.{h,m}",
   "frameworks": "UIKit",
   "dependencies": {
-    "SDWebImage": [
-
-    ]
+    "SDWebImage": []
   },
   "requires_arc": true
 }

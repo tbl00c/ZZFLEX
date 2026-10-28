@@ -55,15 +55,9 @@
           "name": "TLColor",
           "source_files": "TLKit/Classes/TLComponents/TLColor/*.{h,m}",
           "dependencies": {
-            "TLKit/TLCategories/UIKit/UIColor": [
-
-            ],
-            "TLKit/TLShortcut": [
-
-            ],
-            "TLKit/TLComponents/TLTheme": [
-
-            ]
+            "TLKit/TLCategories/UIKit/UIColor": [],
+            "TLKit/TLShortcut": [],
+            "TLKit/TLComponents/TLTheme": []
           },
           "resources": "TLKit/Classes/TLComponents/TLColor/TLColorTable.txt"
         },
@@ -71,9 +65,7 @@
           "name": "TLPictureCarouselView",
           "source_files": "TLKit/Classes/TLComponents/TLPictureCarouselView/*.{h,m}",
           "dependencies": {
-            "TLKit/TLCategories/UIKit/UIScrollView": [
-
-            ]
+            "TLKit/TLCategories/UIKit/UIScrollView": []
           }
         },
         {
@@ -149,9 +141,7 @@
               "name": "NSString",
               "source_files": "TLKit/Classes/TLCategories/Foundation/NSString/*.{h,m}",
               "dependencies": {
-                "TLKit/TLCategories/Foundation/NSData": [
-
-                ]
+                "TLKit/TLCategories/Foundation/NSData": []
               }
             },
             {
@@ -189,12 +179,8 @@
               "name": "UIView",
               "source_files": "TLKit/Classes/TLCategories/UIKit/UIView/*.{h,m}",
               "dependencies": {
-                "TLKit/TLShortcut": [
-
-                ],
-                "TLKit/TLCategories/Foundation/NSObject": [
-
-                ]
+                "TLKit/TLShortcut": [],
+                "TLKit/TLCategories/Foundation/NSObject": []
               }
             },
             {
@@ -221,15 +207,9 @@
               "name": "UIViewController",
               "source_files": "TLKit/Classes/TLCategories/UIKit/UIViewController/*.{h,m}",
               "dependencies": {
-                "TLKit/TLCategories/UIKit/UIView": [
-
-                ],
-                "TLKit/TLCategories/UIKit/UINavigationController": [
-
-                ],
-                "TLKit/TLCategories/UIKit/UIBarButtonItem": [
-
-                ]
+                "TLKit/TLCategories/UIKit/UIView": [],
+                "TLKit/TLCategories/UIKit/UINavigationController": [],
+                "TLKit/TLCategories/UIKit/UIBarButtonItem": []
               }
             },
             {
@@ -264,9 +244,7 @@
               "name": "UINavigationItem",
               "source_files": "TLKit/Classes/TLCategories/UIKit/UINavigationItem/*.{h,m}",
               "dependencies": {
-                "TLKit/TLCategories/UIKit/UIBarButtonItem": [
-
-                ]
+                "TLKit/TLCategories/UIKit/UIBarButtonItem": []
               }
             },
             {

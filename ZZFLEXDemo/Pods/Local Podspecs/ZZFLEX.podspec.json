@@ -24,9 +24,7 @@
     "Foundation"
   ],
   "dependencies": {
-    "Masonry": [
-
-    ]
+    "Masonry": []
   },
   "requires_arc": true,
   "public_header_files": "ZZFLEX/**/*.{h}",
